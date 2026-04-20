@@ -1,0 +1,740 @@
+{
+    "NC_018939.1_1172 # 1249504 # 1250835 # 1 # ID=1_1172;partial=00;start_type=ATG;rbs_motif=AATAA;rbs_spacer=5bp;gc_cont=0.405": {
+        "gnl|BL_ORD_ID|2188|hsp_num:0": {
+            "type_match": "Perfect",
+            "ast_source": "",
+            "model_id": "2430",
+            "orf_strand": "+",
+            "orf_start": 1249504,
+            "orf_end": 1250835,
+            "orf_from": "NC_018939.1",
+            "model_name": "hp1181",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "pass_evalue": "n/a",
+            "pass_bitscore": "850",
+            "ARO_accession": "3003964",
+            "ARO_name": "hp1181",
+            "ARO_category": {
+                "36003": {
+                    "category_aro_accession": "0010002",
+                    "category_aro_cvterm_id": "36003",
+                    "category_aro_name": "major facilitator superfamily (MFS) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Major facilitator superfamily (MFS) transporters and ABC transporters comprise the two largest and most functionally diverse of the transporter superfamilies. However, MFS transporters are distinct from ABC transporters in both their primary sequence and structure and in the mechanism of energy coupling. As secondary transporters they are, like RND and SMR transporters, energized by the electrochemical proton gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35954": {
+                    "category_aro_accession": "0000036",
+                    "category_aro_cvterm_id": "35954",
+                    "category_aro_name": "ciprofloxacin",
+                    "category_aro_description": "Ciprofloxacin is a bacteriocidal fluoroquinolone. It blocks bacterial DNA replication by binding to the toposiomerase II or IV-DNA complex (or cleavable complex), thereby causing double-stranded breaks in the bacterial chromosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35968": {
+                    "category_aro_accession": "0000051",
+                    "category_aro_cvterm_id": "35968",
+                    "category_aro_name": "tetracycline",
+                    "category_aro_description": "Tetracycline is a broad-spectrum polyketide antibiotic produced by many Streptomyces. It works by inhibiting action of the prokaryotic 30S ribosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37033": {
+                    "category_aro_accession": "3000689",
+                    "category_aro_cvterm_id": "37033",
+                    "category_aro_name": "metronidazole",
+                    "category_aro_description": "Metronidazole is a nitroimidazole that is active against anaerobic bacteria and protozoa. It is not effective against aerobic bacteria. Nitroimidazoles act by oxidizing DNA causing strand breaks and cell death.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36189": {
+                    "category_aro_accession": "3000050",
+                    "category_aro_cvterm_id": "36189",
+                    "category_aro_name": "tetracycline antibiotic",
+                    "category_aro_description": "These antibiotics are derived from tetracycline, a polyketide antibiotic that inhibits the 30S subunit of bacterial ribosomes.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "41239": {
+                    "category_aro_accession": "3004115",
+                    "category_aro_cvterm_id": "41239",
+                    "category_aro_name": "nitroimidazole antibiotic",
+                    "category_aro_description": "Nitroimidazoles are a group of drugs that have both antiprotozoal and antibacterial activity, classified with respect to the location of the nitro functional group.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2.3e-240,
+            "bit_score": 825.9,
+            "max_identities": 443,
+            "cvterm_id": "36758",
+            "query": "MFKKIFPLALVSSLRFLGLFIVLPVISLYADSFHSSSPLLVGLAVGGAYLTQIVFQTPMGILSDKIGRKVVVMVCLLLFLAGSLVCFIANDIVWLVIGRFIQGMGALGGVISAMVADEVKEEERTKAMAIMGAFIFISFTISMAIGPGVVAFLGGAKWLFLLTAILTLLSLLMLLKVKDAPKISYQIKNIKAYQPNSKALYLLYLSSFFEKAFMTLIFVLIPLALVNEFHKDESFLILVYVPGALLGVLSMGIASVMAEKYNKPKGVMLSGVLLFIVSYLCLFLADSSFLGKYLWLFIVGVAFFFIGFATLEPIMQSLASKFAKVHEKGKVLGQFTTFGYLGSFVGGVSGGLSYHHLGVSNTSLIVVALGLIWGLSLFLLNNPSKQKNVYFPLDAYNEEQFETLEDKIIEWYVNISEEIIIVKYNSDHISEEEIIHLAQNFRK",
+            "match": "MFKKIFPLALVSSLRFLGLFIVLPVISLYADSFHSSSPLLVGLAVGGAYLTQIVFQTPMGILSDKIGRKVVVMVCLLLFLAGSLVCFIANDIVWLVIGRFIQGMGALGGVISAMVADEVKEEERTKAMAIMGAFIFISFTISMAIGPGVVAFLGGAKWLFLLTAILTLLSLLMLLKVKDAPKISYQIKNIKAYQPNSKALYLLYLSSFFEKAFMTLIFVLIPLALVNEFHKDESFLILVYVPGALLGVLSMGIASVMAEKYNKPKGVMLSGVLLFIVSYLCLFLADSSFLGKYLWLFIVGVAFFFIGFATLEPIMQSLASKFAKVHEKGKVLGQFTTFGYLGSFVGGVSGGLSYHHLGVSNTSLIVVALGLIWGLSLFLLNNPSKQKNVYFPLDAYNEEQFETLEDKIIEWYVNISEEIIIVKYNSDHISEEEIIHLAQNFRK",
+            "sequence_from_db": "MFKKIFPLALVSSLRFLGLFIVLPVISLYADSFHSSSPLLVGLAVGGAYLTQIVFQTPMGILSDKIGRKVVVMVCLLLFLAGSLVCFIANDIVWLVIGRFIQGMGALGGVISAMVADEVKEEERTKAMAIMGAFIFISFTISMAIGPGVVAFLGGAKWLFLLTAILTLLSLLMLLKVKDAPKISYQIKNIKAYQPNSKALYLLYLSSFFEKAFMTLIFVLIPLALVNEFHKDESFLILVYVPGALLGVLSMGIASVMAEKYNKPKGVMLSGVLLFIVSYLCLFLADSSFLGKYLWLFIVGVAFFFIGFATLEPIMQSLASKFAKVHEKGKVLGQFTTFGYLGSFVGGVSGGLSYHHLGVSNTSLIVVALGLIWGLSLFLLNNPSKQKNVYFPLDAYNEEQFETLEDKIIEWYVNISEEIIIVKYNSDHISEEEIIHLAQNFRK",
+            "sequence_from_broadstreet": "MFKKIFPLALVSSLRFLGLFIVLPVISLYADSFHSSSPLLVGLAVGGAYLTQIVFQTPMGILSDKIGRKVVVMVCLLLFLAGSLVCFIANDIVWLVIGRFIQGMGALGGVISAMVADEVKEEERTKAMAIMGAFIFISFTISMAIGPGVVAFLGGAKWLFLLTAILTLLSLLMLLKVKDAPKISYQIKNIKAYQPNSKALYLLYLSSFFEKAFMTLIFVLIPLALVNEFHKDESFLILVYVPGALLGVLSMGIASVMAEKYNKPKGVMLSGVLLFIVSYLCLFLADSSFLGKYLWLFIVGVAFFFIGFATLEPIMQSLASKFAKVHEKGKVLGQFTTFGYLGSFVGGVSGGLSYHHLGVSNTSLIVVALGLIWGLSLFLLNNPSKQKNVYFPLDAYNEEQFETLEDKIIEWYVNISEEIIIVKYNSDHISEEEIIHLAQNFRK",
+            "dna_sequence_from_broadstreet": "ATGTTTAAGAAAATTTTTCCATTAGCGTTAGTGTCATCGTTGCGGTTTTTGGGGCTTTTTATTGTTTTGCCGGTCATTAGTTTGTATGCGGATAGTTTCCATTCAAGCAGTCCCTTACTCGTGGGGTTGGCTGTGGGCGGAGCGTATCTTACGCAAATTGTTTTTCAAACCCCCATGGGCATTCTTAGCGATAAGATAGGCCGTAAAGTGGTGGTTATGGTGTGCTTGCTGTTGTTTTTAGCCGGCTCGTTAGTGTGCTTTATAGCGAATGATATTGTTTGGCTCGTTATAGGGCGCTTCATTCAAGGCATGGGGGCTTTAGGGGGGGTTATTAGTGCGATGGTGGCGGATGAAGTGAAAGAAGAAGAGCGCACCAAAGCCATGGCCATCATGGGAGCGTTTATTTTCATTAGCTTCACTATAAGCATGGCGATTGGCCCTGGGGTTGTAGCGTTTTTGGGGGGGGCAAAATGGCTCTTTTTACTCACGGCGATCTTAACTTTATTGAGTTTATTGATGCTTTTAAAAGTCAAAGACGCCCCTAAAATTTCTTACCAGATCAAAAACATAAAAGCTTACCAACCCAACTCTAAAGCCTTGTATCTTTTGTATCTAAGCTCTTTTTTTGAAAAAGCGTTCATGACGCTTATTTTTGTGCTGATCCCTTTAGCCTTAGTGAATGAATTTCATAAAGATGAAAGCTTTTTAATCTTGGTGTATGTGCCTGGAGCCTTATTAGGGGTCTTAAGCATGGGAATAGCGAGCGTTATGGCTGAAAAATACAACAAGCCTAAAGGAGTGATGCTTTCTGGCGTATTATTGTTTATTGTGAGTTATTTGTGCTTGTTTTTAGCCGACTCTAGCTTTTTAGGGAAATATTTATGGCTTTTTATTGTTGGGGTGGCGTTTTTCTTTATTGGTTTTGCCACCTTAGAGCCTATCATGCAATCTTTAGCGTCTAAATTCGCCAAAGTGCATGAAAAAGGCAAGGTTTTAGGGCAATTCACTACTTTTGGCTATTTAGGGAGCTTTGTTGGGGGCGTGAGCGGGGGGTTGAGCTACCATCATTTAGGCGTTTCTAACACAAGCTTGATCGTTGTAGCTTTAGGGCTTATTTGGGGGCTATCGCTCTTTTTACTCAACAACCCTTCCAAGCAAAAAAATGTCTATTTCCCCTTAGACGCTTACAATGAGGAACAATTTGAAACTTTAGAGGATAAAATCATTGAATGGTATGTTAATATTAGCGAAGAAATCATTATTGTGAAATATAATTCCGATCACATTAGCGAAGAAGAAATCATTCACTTAGCGCAAAACTTTAGAAAATAA",
+            "partial": "0",
+            "query_start": 1249504,
+            "query_end": 1250832,
+            "hit_start": 0,
+            "hit_end": 1329,
+            "orf_dna_sequence": "ATGTTTAAGAAAATTTTTCCATTAGCGTTAGTGTCATCGTTGCGGTTTTTGGGGCTTTTTATTGTTTTGCCGGTCATTAGTTTGTATGCGGATAGTTTCCATTCAAGCAGTCCCTTACTCGTGGGGTTGGCTGTGGGCGGAGCGTATCTTACGCAAATTGTTTTTCAAACCCCCATGGGCATTCTTAGCGATAAGATAGGCCGTAAAGTGGTGGTTATGGTGTGCTTGCTGTTGTTTTTAGCCGGCTCGTTAGTGTGCTTTATAGCGAATGATATTGTTTGGCTCGTTATAGGGCGCTTCATTCAAGGCATGGGGGCTTTAGGGGGGGTTATTAGTGCGATGGTGGCGGATGAAGTGAAAGAAGAAGAGCGCACCAAAGCCATGGCCATCATGGGAGCGTTTATTTTCATTAGCTTCACTATAAGCATGGCGATTGGCCCTGGGGTTGTAGCGTTTTTGGGGGGGGCAAAATGGCTCTTTTTACTCACGGCGATCTTAACTTTATTGAGTTTATTGATGCTTTTAAAAGTCAAAGACGCCCCTAAAATTTCTTACCAGATCAAAAACATAAAAGCTTACCAACCCAACTCTAAAGCCTTGTATCTTTTGTATCTAAGCTCTTTTTTTGAAAAAGCGTTCATGACGCTTATTTTTGTGCTGATCCCTTTAGCCTTAGTGAATGAATTTCATAAAGATGAAAGCTTTTTAATCTTGGTGTATGTGCCTGGAGCCTTATTAGGGGTCTTAAGCATGGGAATAGCGAGCGTTATGGCTGAAAAATACAACAAGCCTAAAGGAGTGATGCTTTCTGGCGTATTATTGTTTATTGTGAGTTATTTGTGCTTGTTTTTAGCCGACTCTAGCTTTTTAGGGAAATATTTATGGCTTTTTATTGTTGGGGTGGCGTTTTTCTTTATTGGTTTTGCCACCTTAGAGCCTATCATGCAATCTTTAGCGTCTAAATTCGCCAAAGTGCATGAAAAAGGCAAGGTTTTAGGGCAATTCACTACTTTTGGCTATTTAGGGAGCTTTGTTGGGGGCGTGAGCGGGGGGTTGAGCTACCATCATTTAGGCGTTTCTAACACAAGCTTGATCGTTGTAGCTTTAGGGCTTATTTGGGGGCTATCGCTCTTTTTACTCAACAACCCTTCCAAGCAAAAAAATGTCTATTTCCCCTTAGACGCTTACAATGAGGAACAATTTGAAACTTTAGAGGATAAAATCATTGAATGGTATGTTAATATTAGCGAAGAAATCATTATTGTGAAATATAATTCCGATCACATTAGCGAAGAAGAAATCATTCACTTAGCGCAAAACTTTAGAAAATAA",
+            "orf_prot_sequence": "MFKKIFPLALVSSLRFLGLFIVLPVISLYADSFHSSSPLLVGLAVGGAYLTQIVFQTPMGILSDKIGRKVVVMVCLLLFLAGSLVCFIANDIVWLVIGRFIQGMGALGGVISAMVADEVKEEERTKAMAIMGAFIFISFTISMAIGPGVVAFLGGAKWLFLLTAILTLLSLLMLLKVKDAPKISYQIKNIKAYQPNSKALYLLYLSSFFEKAFMTLIFVLIPLALVNEFHKDESFLILVYVPGALLGVLSMGIASVMAEKYNKPKGVMLSGVLLFIVSYLCLFLADSSFLGKYLWLFIVGVAFFFIGFATLEPIMQSLASKFAKVHEKGKVLGQFTTFGYLGSFVGGVSGGLSYHHLGVSNTSLIVVALGLIWGLSLFLLNNPSKQKNVYFPLDAYNEEQFETLEDKIIEWYVNISEEIIIVKYNSDHISEEEIIHLAQNFRK",
+            "perc_identity": 100.0
+        }
+    },
+    "NC_018939.1_642 # 687939 # 688592 # 1 # ID=1_642;partial=00;start_type=ATG;rbs_motif=AAAGGA;rbs_spacer=10bp;gc_cont=0.413": {
+        "gnl|BL_ORD_ID|4776|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "Y",
+                "change": "D",
+                "position": 62
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "Y",
+                "change": "D",
+                "position": 62
+            },
+            "orf_strand": "+",
+            "orf_start": 687939,
+            "orf_end": 688592,
+            "orf_from": "NC_018939.1",
+            "model_name": "Helicobacter pylori frxA mutation conferring resistance to metronidazole",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "5759",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 420,
+            "ARO_accession": "3007059",
+            "ARO_name": "Helicobacter pylori frxA mutation conferring resistance to metronidazole",
+            "ARO_category": {
+                "45616": {
+                    "category_aro_accession": "3007056",
+                    "category_aro_cvterm_id": "45616",
+                    "category_aro_name": "Antibiotic resistant Helicobacter pylori nitroreductase",
+                    "category_aro_description": "Inactivation of the oxygen-insensitive NADPH nitroreductases in Helicobacter pylori play a role in metronidazole resistance.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "37033": {
+                    "category_aro_accession": "3000689",
+                    "category_aro_cvterm_id": "37033",
+                    "category_aro_name": "metronidazole",
+                    "category_aro_description": "Metronidazole is a nitroimidazole that is active against anaerobic bacteria and protozoa. It is not effective against aerobic bacteria. Nitroimidazoles act by oxidizing DNA causing strand breaks and cell death.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "41239": {
+                    "category_aro_accession": "3004115",
+                    "category_aro_cvterm_id": "41239",
+                    "category_aro_name": "nitroimidazole antibiotic",
+                    "category_aro_description": "Nitroimidazoles are a group of drugs that have both antiprotozoal and antibacterial activity, classified with respect to the location of the nitro functional group.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 4.5e-125,
+            "max_identities": 217,
+            "bit_score": 441.8,
+            "cvterm_id": "36758",
+            "query": "MDREQVVALQHQRFAAKKYDPNRRISQKDWEALVEVGRLAPSSIGLEPWKMLLLKNERMKEDLKPMAWGALFGLEGASHFVIYLARKGVTYDSDYVKKVMHEVKKRDYDTNSRFAQIIKNFQENDMKLNSERSLFDWASKQTYIQMANMMMAAAMLGIDSCPIEGYDQEKVEAYLEEKGYLNTAEFGVSVMACFGYRNQEITPKTRWKTEVIYEVIE",
+            "match": "MDREQVVALQHQRFAAKKYDPNRRISQKDWEALVEVGRLAPSSIGLEPWKMLLLKNERMKEDLKPMAWGALFGLEGASHFVIYLARKGVTYDSDYVKKVMHEVKKRDYDTNSRFAQIIKNFQENDMKLNSERSLFDWASKQTYIQMANMMMAAAMLGIDSCPIEGYDQEKVEAYLEEKGYLNTAEFGVSVMACFGYRNQEITPKTRWKTEVIYEVIE",
+            "sequence_from_db": "MDREQVVALQHQRFAAKKYDPNRRISQKDWEALVEVGRLAPSSIGLEPWKMLLLKNERMKEDLKPMAWGALFGLEGASHFVIYLARKGVTYDSDYVKKVMHEVKKRDYDTNSRFAQIIKNFQENDMKLNSERSLFDWASKQTYIQMANMMMAAAMLGIDSCPIEGYDQEKVEAYLEEKGYLNTAEFGVSVMACFGYRNQEITPKTRWKTEVIYEVIE",
+            "sequence_from_broadstreet": "MDREQVVALQHQRFAAKKYDPNRRISQKDWEALVEVGRLAPSSIGLEPWKMLLLKNERMKEDLKPMAWGALFGLEGASHFVIYLARKGVTYDSDYVKKVMHEVKKRDYDTNSRFAQIIKNFQENDMKLNSERSLFDWASKQTYIQMANMMMAAAMLGIDSCPIEGYDQEKVEAYLEEKGYLNTAEFGVSVMACFGYRNQEITPKTRWKTEVIYEVIE",
+            "dna_sequence_from_broadstreet": "ATGGACAGAGAACAAGTGGTTGCTTTACAGCACCAACGATTTGCTGCAAAAAAATACGATCCTAATCGTCGTATTTCCCAAAAGGATTGGGAAGCTTTGGTTGAAGTGGGGAGATTAGCCCCTTCTTCAATCGGGCTTGAACCATGGAAAATGCTTTTATTGAAAAATGAACGCATGAAAGAAGATTTAAAACCGATGGCCTGGGGGGCGCTTTTTGGTTTGGAGGGAGCGAGCCATTTTGTCATTTATCTTGCGCGAAAAGGCGTTACTTATGACAGCGATTACGTTAAAAAAGTGATGCATGAGGTTAAAAAAAGGGATTATGACACTAATTCTAGGTTCGCTCAAATCATCAAAAATTTCCAAGAGAACGATATGAAACTCAATAGCGAACGATCTTTGTTTGATTGGGCTAGCAAGCAGACTTATATCCAAATGGCGAACATGATGATGGCAGCGGCCATGTTAGGGATTGATTCTTGCCCGATTGAAGGGTATGATCAAGAAAAAGTGGAGGCTTATTTAGAGGAAAAAGGCTATCTGAACACGGCGGAATTTGGCGTGTCGGTAATGGCTTGTTTTGGTTATCGTAACCAAGAAATCACCCCTAAAACCCGCTGGAAGACAGAAGTTATTTATGAAGTGATTGAATAA",
+            "partial": "0",
+            "query_start": 687939,
+            "query_end": 688589,
+            "hit_start": 0,
+            "hit_end": 651,
+            "orf_dna_sequence": "ATGGACAGAGAACAAGTGGTTGCTTTACAGCACCAACGATTTGCTGCAAAAAAATACGATCCTAATCGTCGTATTTCCCAAAAGGATTGGGAAGCTTTGGTTGAAGTGGGGAGATTAGCCCCTTCTTCAATCGGGCTTGAACCATGGAAAATGCTTTTATTGAAAAATGAACGCATGAAAGAAGATTTAAAACCGATGGCCTGGGGGGCGCTTTTTGGTTTGGAGGGAGCGAGCCATTTTGTCATTTATCTTGCGCGAAAAGGCGTTACTTATGACAGCGATTACGTTAAAAAAGTGATGCATGAGGTTAAAAAAAGGGATTATGACACTAATTCTAGGTTCGCTCAAATCATCAAAAATTTCCAAGAGAACGATATGAAACTCAATAGCGAACGATCTTTGTTTGATTGGGCTAGCAAGCAGACTTATATCCAAATGGCGAACATGATGATGGCAGCGGCCATGTTAGGGATTGATTCTTGCCCGATTGAAGGGTATGATCAAGAAAAAGTGGAGGCTTATTTAGAGGAAAAAGGCTATCTGAACACGGCGGAATTTGGCGTGTCGGTAATGGCTTGTTTTGGTTATCGTAACCAAGAAATCACCCCTAAAACCCGCTGGAAGACAGAAGTTATTTATGAAGTGATTGAATAA",
+            "orf_prot_sequence": "MDREQVVALQHQRFAAKKYDPNRRISQKDWEALVEVGRLAPSSIGLEPWKMLLLKNERMKEDLKPMAWGALFGLEGASHFVIYLARKGVTYDSDYVKKVMHEVKKRDYDTNSRFAQIIKNFQENDMKLNSERSLFDWASKQTYIQMANMMMAAAMLGIDSCPIEGYDQEKVEAYLEEKGYLNTAEFGVSVMACFGYRNQEITPKTRWKTEVIYEVIE",
+            "perc_identity": 100.0
+        }
+    },
+    "NC_018939.1_949 # 1013570 # 1014202 # -1 # ID=1_949;partial=00;start_type=ATG;rbs_motif=AAAGGA;rbs_spacer=6bp;gc_cont=0.406": {
+        "gnl|BL_ORD_ID|4833|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "C",
+                "change": "T",
+                "position": 49
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "C",
+                "change": "T",
+                "position": 49
+            },
+            "orf_strand": "-",
+            "orf_start": 1013570,
+            "orf_end": 1014202,
+            "orf_from": "NC_018939.1",
+            "model_name": "Helicobacter pylori rdxA mutation conferring resistance to metronidazole",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "5755",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 400,
+            "ARO_accession": "3007055",
+            "ARO_name": "Helicobacter pylori rdxA mutation conferring resistance to metronidazole",
+            "ARO_category": {
+                "45616": {
+                    "category_aro_accession": "3007056",
+                    "category_aro_cvterm_id": "45616",
+                    "category_aro_name": "Antibiotic resistant Helicobacter pylori nitroreductase",
+                    "category_aro_description": "Inactivation of the oxygen-insensitive NADPH nitroreductases in Helicobacter pylori play a role in metronidazole resistance.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "37033": {
+                    "category_aro_accession": "3000689",
+                    "category_aro_cvterm_id": "37033",
+                    "category_aro_name": "metronidazole",
+                    "category_aro_description": "Metronidazole is a nitroimidazole that is active against anaerobic bacteria and protozoa. It is not effective against aerobic bacteria. Nitroimidazoles act by oxidizing DNA causing strand breaks and cell death.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "41239": {
+                    "category_aro_accession": "3004115",
+                    "category_aro_cvterm_id": "41239",
+                    "category_aro_name": "nitroimidazole antibiotic",
+                    "category_aro_description": "Nitroimidazoles are a group of drugs that have both antiprotozoal and antibacterial activity, classified with respect to the location of the nitro functional group.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 3.6e-119,
+            "max_identities": 210,
+            "bit_score": 422.2,
+            "cvterm_id": "36906",
+            "query": "MKFLDQEKRRQLLNERHSCKMFDSHYEFSSTELEEIAEIARLSPSSYNTQPWHFVMVTDKDLKKQIAAHSYFNEEMIKSASALMVVCSLRPSELLPHGHYMQNLYPESYKVRVIPSFAQMLGVRFNHSMQRLESYILEQCYIAVGQICMGVSLMGLDSCIIGGFDPLKVGEVLEERINKPKIACLIALGKRVAEASQKSRKSKVDAITWL",
+            "match": "MKFLDQEKRRQLLNERHSCKMFDSHYEFSSTELEEIAEIARLSPSSYNTQPWHFVMVTDKDLKKQIAAHSYFNEEMIKSASALMVVCSLRPSELLPHGHYMQNLYPESYKVRVIPSFAQMLGVRFNHSMQRLESYILEQCYIAVGQICMGVSLMGLDSCIIGGFDPLKVGEVLEERINKPKIACLIALGKRVAEASQKSRKSKVDAITWL",
+            "sequence_from_db": "MKFLDQEKRRQLLNERHSCKMFDSHYEFSSTELEEIAEIARLSPSSYNTQPWHFVMVTDKDLKKQIAAHSYFNEEMIKSASALMVVCSLRPSELLPHGHYMQNLYPESYKVRVIPSFAQMLGVRFNHSMQRLESYILEQCYIAVGQICMGVSLMGLDSCIIGGFDPLKVGEVLEERINKPKIACLIALGKRVAEASQKSRKSKVDAITWL",
+            "sequence_from_broadstreet": "MKFLDQEKRRQLLNERHSCKMFDSHYEFSSTELEEIAEIARLSPSSYNTQPWHFVMVTDKDLKKQIAAHSYFNEEMIKSASALMVVCSLRPSELLPHGHYMQNLYPESYKVRVIPSFAQMLGVRFNHSMQRLESYILEQCYIAVGQICMGVSLMGLDSCIIGGFDPLKVGEVLEERINKPKIACLIALGKRVAEASQKSRKSKVDAITWL",
+            "dna_sequence_from_broadstreet": "ATGAAATTTTTGGATCAAGAAAAAAGAAGACAATTATTAAACGAGCGCCATTCTTGCAAGATGTTTGATAGCCATTATGAGTTTTCTAGCACAGAATTAGAAGAAATCGCTGAAATCGCCAGGCTATCGCCAAGCTCTTACAACACGCAGCCATGGCATTTTGTGATGGTTACTGATAAGGATTTAAAAAAACAAATTGCAGCGCACAGCTATTTCAATGAAGAGATGATTAAAAGCGCTTCAGCGTTAATGGTGGTATGCTCTTTAAGACCCAGCGAGTTGTTACCACACGGCCACTACATGCAAAATCTCTATCCGGAGTCTTATAAAGTTAGAGTGATCCCCTCTTTTGCTCAAATGCTTGGCGTGAGATTCAACCACAGCATGCAAAGATTAGAAAGCTATATTTTAGAGCAATGCTATATCGCTGTGGGGCAAATTTGCATGGGCGTGAGCTTAATGGGATTGGATAGTTGCATTATTGGAGGCTTTGATCCTTTAAAGGTGGGCGAAGTTTTAGAAGAGCGTATCAATAAGCCTAAAATCGCATGCTTGATCGCTTTGGGCAAGAGGGTGGCAGAAGCGAGTCAAAAATCAAGAAAATCAAAAGTTGATGCGATTACTTGGTTGTGA",
+            "partial": "0",
+            "query_start": 1013570,
+            "query_end": 1014199,
+            "hit_start": 0,
+            "hit_end": 630,
+            "orf_dna_sequence": "ATGAAATTTTTGGATCAAGAAAAAAGAAGACAATTATTAAACGAGCGCCATTCTTGCAAGATGTTTGATAGCCATTATGAGTTTTCTAGCACAGAATTAGAAGAAATCGCTGAAATCGCCAGGCTATCGCCAAGCTCTTACAACACGCAGCCATGGCATTTTGTGATGGTTACTGATAAGGATTTAAAAAAACAAATTGCAGCGCACAGCTATTTCAATGAAGAGATGATTAAAAGCGCTTCAGCGTTAATGGTGGTATGCTCTTTAAGACCCAGCGAGTTGTTACCACACGGCCACTACATGCAAAATCTCTATCCGGAGTCTTATAAAGTTAGAGTGATCCCCTCTTTTGCTCAAATGCTTGGCGTGAGATTCAACCACAGCATGCAAAGATTAGAAAGCTATATTTTAGAGCAATGCTATATCGCTGTGGGGCAAATTTGCATGGGCGTGAGCTTAATGGGATTGGATAGTTGCATTATTGGAGGCTTTGATCCTTTAAAGGTGGGCGAAGTTTTAGAAGAGCGTATCAATAAGCCTAAAATCGCATGCTTGATCGCTTTGGGCAAGAGGGTGGCAGAAGCGAGTCAAAAATCAAGAAAATCAAAAGTTGATGCGATTACTTGGTTGTGA",
+            "orf_prot_sequence": "MKFLDQEKRRQLLNERHSCKMFDSHYEFSSTELEEIAEIARLSPSSYNTQPWHFVMVTDKDLKKQIAAHSYFNEEMIKSASALMVVCSLRPSELLPHGHYMQNLYPESYKVRVIPSFAQMLGVRFNHSMQRLESYILEQCYIAVGQICMGVSLMGLDSCIIGGFDPLKVGEVLEERINKPKIACLIALGKRVAEASQKSRKSKVDAITWL",
+            "perc_identity": 100.0
+        }
+    },
+    "NC_018939.1_1548 # 1647293 # 1649059 # -1 # ID=1_1548;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.409": {
+        "gnl|BL_ORD_ID|4774|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "S",
+                "change": "H",
+                "position": 494
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "S",
+                "change": "H",
+                "position": 494
+            },
+            "orf_strand": "-",
+            "orf_start": 1647293,
+            "orf_end": 1649059,
+            "orf_from": "NC_018939.1",
+            "model_name": "Helicobacter pylori pbp2 mutants conferring resistance to amoxicillin",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "5757",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 1000,
+            "ARO_accession": "3007058",
+            "ARO_name": "Helicobacter pylori pbp2 mutants conferring resistance to amoxicillin",
+            "ARO_category": {
+                "40661": {
+                    "category_aro_accession": "3003938",
+                    "category_aro_cvterm_id": "40661",
+                    "category_aro_name": "Penicillin-binding protein mutations conferring resistance to beta-lactam antibiotics",
+                    "category_aro_description": "Mutations in PBP transpeptidases that change the affinity for penicillin thereby conferring resistance to penicillin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35981": {
+                    "category_aro_accession": "0000064",
+                    "category_aro_cvterm_id": "35981",
+                    "category_aro_name": "amoxicillin",
+                    "category_aro_description": "Amoxicillin is a moderate-spectrum, bacteriolytic, beta-lactam antibiotic used to treat bacterial infections caused by susceptible microorganisms. A derivative of penicillin, it has a wider range of treatment but remains relatively ineffective against Gram-negative bacteria. It is commonly taken with clavulanic acid, a beta-lactamase inhibitor. Like other beta-lactams, amoxicillin interferes with the synthesis of peptidoglycan.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 578,
+            "bit_score": 1165.6,
+            "cvterm_id": "36906",
+            "query": "MKNLRYKLLLFVFIGFWGLLALNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGNITDRNDEFLATNELVFGVFLPSGLKQKDLLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYATMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVLPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMDAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKHKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKITLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "match": "MKNLRYKLLLFVFIGFWGLL LNLFILSVKNQEYYEKLAERNMTKKEFLVPTRG+ITDRNDEFLATNELVFGVFLPS LKQK+LLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPY  MQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVV PSTNNHLQLSLDKRLQKEADKLFENKRGAILVM+AENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGK KFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSK+TLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "sequence_from_db": "MKNLRYKLLLFVFIGFWGLLVLNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGDITDRNDEFLATNELVFGVFLPSRLKQKELLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYIAMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVPPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMNAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKRKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKVTLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "sequence_from_broadstreet": "MKNLRYKLLLFVFIGFWGLLVLNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGDITDRNDEFLATNELVFGVFLPSRLKQKELLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYIAMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVPPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMNAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKRKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKVTLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "dna_sequence_from_broadstreet": "ATGAAAAATCTTCGCTATAAGCTTTTGCTCTTTGTTTTTATAGGGTTTTGGGGGTTATTGGTTTTAAATTTATTTATTTTAAGCGTTAAAAATCAAGAATACTATGAAAAATTGGCCGAACGCAACATGACCAAAAAGGAATTTCTAGTCCCTACAAGGGGCGATATTACAGACAGAAATGATGAGTTTTTAGCCACTAACGAATTGGTGTTTGGCGTGTTTTTGCCTAGTAGACTGAAACAAAAAGAACTTTTGGAAAAAATTGAAATCATCCAAAAGTTTTTCCCTAACTTTTCCAAAGAAACGCTTTTAAACAATTACCAAAAAGAAAATTCGCTTTATAACCACAACCTCATTAAAGTGGTGGGATTCATTCCTTATATCGCCATGCAACCTCTTTATGCCAAACTCATCCAAACTCAAGGCATTTTTGCTCTTCCCTTAGACAAGCGCTACTACCCTAATAACGCTTTAGCTTCACATGTTTTAGGCTATGTGGGGGTGGCAAGCTTGCAAGATCTAAAAGACGATGAAGAAAATCAATACAGCCAGATTGTAGGCAAAACCGGCATTGAAAAAGAATATAACAAGCTTTTACAAGGCAAGGTGGGCTATAAAATCATGCGTGTCAATGCACTCAATCAAGAATTAGCCACTTTAGAAGTAGTGCCGCCAAGCACCAACAACCACTTGCAATTGAGTTTAGACAAACGCTTGCAAAAAGAAGCGGACAAGCTCTTTGAAAATAAGAGAGGGGCTATTTTAGTGATGAACGCAGAAAATGGGGAATTGCTCGTTGCAGGAAGTTACCCTGAATACAATTTGAACGATTTTGTAGGCGGGATCAGTCAAGACAAATGGCAAAAACTTCAAGATGATATTTATAACCCCTTATTAAACCGCTTCGCTAACGCTTTGTATCCGCCGGGATCTGTGGTTAAAATGGGCGTGGGCTTGAGCTTTTTAGAAAACCTTCATATCACAGAAAACACCACCATACCCACCCCGCCTTTTATTGAAGTGGGCAAGCGCAAATTCAGGGACTGGAAAAAAACAGGGCATGGCAATTCTAATTTGTATAAAGCGATTAGGGAGTCCGTGGATGTGTATTTTTATAAGTTTGGGCTTGAAATCTCTATAGAAAAACTCTCTAAAACCTTAAGAGAAGTGGGCTTTGGGGAAAAAACAGGCGTTGATTTGCCGAATGAATTTGTGGGGATTGTGCCGGATAATTTGTGGAAACTCAAACGATTCAATCAAGATTGGCGCGTTGGGGACACGCTCATTACTGCTATTGGGCAAGGCTCTTTTTTAGCCACGCCCTTACAAGTGCTAGCCTATACGGGACTCATTGCGACAGGCAAACTGGCAACGCCTCATTTTGCTATCAATAATAAACAGCCGCTCAAAGACCCCCTGAATAGTTTTCAAAAAAAGAAGCTCCAAGCCTTGCGCGTGGGCATGTATGAAGTGTGTAACCATAAAGACGGCACCGCTTATCATTCCACAAGGGGTTCTAAGGTTACTTTAGCGTGTAAAACCGGCACCGCGCAAGTCGTGGAAATCGCTCAAAACATCGTCAATCGCATGAAAGAAAAGGATATGGAGTATTTCCATCGATCCCATGCGTGGATTACCGCATTTTTGCCTTATGAAAAACCCAAATACGCTATCACTATTTTAGTAGAACATGGGGAAGGGGGGTCAAAACTAGGGGGCTTGTTAGTGAAAATGAGCAATAAACTCTATGAGCTTGGCTATCTTTAA",
+            "partial": "0",
+            "query_start": 1647293,
+            "query_end": 1649056,
+            "hit_start": 0,
+            "hit_end": 1764,
+            "orf_dna_sequence": "ATGAAAAATCTTCGCTATAAGCTTTTGCTCTTTGTTTTTATAGGGTTTTGGGGGTTACTAGCCTTAAATTTATTTATTTTAAGCGTTAAAAATCAAGAATACTATGAAAAATTGGCTGAACGAAACATGACTAAAAAGGAATTTCTAGTCCCTACAAGGGGAAATATTACAGACAGAAATGATGAGTTTTTGGCCACTAATGAATTGGTGTTTGGCGTGTTTTTGCCCAGCGGACTGAAACAAAAAGATCTTTTAGAAAAAATTGAAATCATCCAAAAGTTTTTCCCTAACTTTTCTAAAGAAACGCTTTTAAACAATTACCAAAAAGAAAATTCGCTTTATAACCATAACCTCATTAAAGTGGTTGGCTTCATTCCTTATGCCACCATGCAACCTCTTTATGCCAAACTCATCCAAACTCAAGGCATTTTTGCGCTTCCCTTAGACAAGCGTTACTACCCTAATAACGCTTTAGCTTCGCATGTTTTAGGCTATGTGGGGGTGGCAAGCTTGCAAGATTTAAAAGACGATGAGGAGAATCAATACAGCCAGATTGTAGGCAAAACCGGCATTGAAAAAGAATACAACAAGCTTTTACAAGGCAAGGTGGGTTATAAAATCATGCGTGTCAATGCGCTCAATCAAGAATTAGCCACCTTAGAAGTAGTGCTGCCAAGCACCAACAACCACTTGCAATTGAGTTTAGACAAACGCTTGCAAAAAGAAGCGGACAAGCTCTTTGAAAATAAAAGGGGGGCTATTTTAGTGATGGATGCAGAAAATGGGGAATTGCTCGTTGCAGGAAGTTACCCTGAATACAATTTGAACGATTTTGTAGGCGGGATCAGTCAAGACAAATGGCAAAAACTTCAAGATGATATTTATAACCCCTTATTAAACCGCTTCGCTAACGCCTTGTATCCGCCGGGATCTGTGGTTAAAATGGGCGTGGGCTTGAGCTTTTTAGAAAACCTTCATATCACAGAAAACACCACCATACCCACCCCGCCTTTTATTGAAGTGGGCAAGCACAAATTCAGAGACTGGAAAAAAACAGGGCATGGCAATTCTAATTTGTATAAAGCCATTAGGGAGTCCGTGGATGTGTATTTTTATAAGTTTGGGCTTGAAATCTCTATAGAAAAACTCTCTAAAACCTTAAGGGAAGTGGGCTTTGGGGAAAAAACGGGCGTTGATTTGCCGAATGAATTTGTGGGGATTGTGCCGGATAATTTGTGGAAACTCAAACGCTTCAATCAAGACTGGCGCGTTGGGGACACGCTCATTACCGCTATTGGGCAAGGCTCTTTTTTAGCCACGCCCTTGCAGGTTCTAGCCTACACGGGACTCATTGCTACGGGCAAACTGGCAACGCCTCATTTCGCTATCAACAACAAACAACCGCTTAAAGATCCCCTAAATAGCTTTCAAAAAAAGAAGCTCCAAGCCTTGAGAGTGGGCATGTATGAAGTGTGTAACCATAAAGACGGCACCGCTTATCATTCCACAAGGGGTTCTAAGATTACTTTAGCGTGTAAAACCGGCACCGCACAAGTCGTGGAAATCGCTCAAAACATCGTCAATCGCATGAAAGAAAAGGATATGGAATATTTCCATCGATCCCATGCGTGGATTACCGCATTTTTGCCTTATGAAAAACCCAAATACGCTATCACTATTTTAGTAGAACATGGGGAAGGGGGGTCAAAACTAGGGGGCCTGTTAGTGAAGATGAGTAATAAACTCTATGAGCTTGGCTATCTTTAA",
+            "orf_prot_sequence": "MKNLRYKLLLFVFIGFWGLLALNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGNITDRNDEFLATNELVFGVFLPSGLKQKDLLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYATMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVLPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMDAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKHKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKITLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "perc_identity": 98.3
+        },
+        "gnl|BL_ORD_ID|4774|hsp_num:1": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "E",
+                "change": "G",
+                "position": 572
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "E",
+                "change": "G",
+                "position": 572
+            },
+            "orf_strand": "-",
+            "orf_start": 1647293,
+            "orf_end": 1649059,
+            "orf_from": "NC_018939.1",
+            "model_name": "Helicobacter pylori pbp2 mutants conferring resistance to amoxicillin",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "5757",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 1000,
+            "ARO_accession": "3007058",
+            "ARO_name": "Helicobacter pylori pbp2 mutants conferring resistance to amoxicillin",
+            "ARO_category": {
+                "40661": {
+                    "category_aro_accession": "3003938",
+                    "category_aro_cvterm_id": "40661",
+                    "category_aro_name": "Penicillin-binding protein mutations conferring resistance to beta-lactam antibiotics",
+                    "category_aro_description": "Mutations in PBP transpeptidases that change the affinity for penicillin thereby conferring resistance to penicillin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35981": {
+                    "category_aro_accession": "0000064",
+                    "category_aro_cvterm_id": "35981",
+                    "category_aro_name": "amoxicillin",
+                    "category_aro_description": "Amoxicillin is a moderate-spectrum, bacteriolytic, beta-lactam antibiotic used to treat bacterial infections caused by susceptible microorganisms. A derivative of penicillin, it has a wider range of treatment but remains relatively ineffective against Gram-negative bacteria. It is commonly taken with clavulanic acid, a beta-lactamase inhibitor. Like other beta-lactams, amoxicillin interferes with the synthesis of peptidoglycan.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 578,
+            "bit_score": 1165.6,
+            "cvterm_id": "36906",
+            "query": "MKNLRYKLLLFVFIGFWGLLALNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGNITDRNDEFLATNELVFGVFLPSGLKQKDLLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYATMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVLPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMDAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKHKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKITLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "match": "MKNLRYKLLLFVFIGFWGLL LNLFILSVKNQEYYEKLAERNMTKKEFLVPTRG+ITDRNDEFLATNELVFGVFLPS LKQK+LLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPY  MQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVV PSTNNHLQLSLDKRLQKEADKLFENKRGAILVM+AENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGK KFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSK+TLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "sequence_from_db": "MKNLRYKLLLFVFIGFWGLLVLNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGDITDRNDEFLATNELVFGVFLPSRLKQKELLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYIAMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVPPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMNAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKRKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKVTLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "sequence_from_broadstreet": "MKNLRYKLLLFVFIGFWGLLVLNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGDITDRNDEFLATNELVFGVFLPSRLKQKELLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYIAMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVPPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMNAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKRKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKVTLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "dna_sequence_from_broadstreet": "ATGAAAAATCTTCGCTATAAGCTTTTGCTCTTTGTTTTTATAGGGTTTTGGGGGTTATTGGTTTTAAATTTATTTATTTTAAGCGTTAAAAATCAAGAATACTATGAAAAATTGGCCGAACGCAACATGACCAAAAAGGAATTTCTAGTCCCTACAAGGGGCGATATTACAGACAGAAATGATGAGTTTTTAGCCACTAACGAATTGGTGTTTGGCGTGTTTTTGCCTAGTAGACTGAAACAAAAAGAACTTTTGGAAAAAATTGAAATCATCCAAAAGTTTTTCCCTAACTTTTCCAAAGAAACGCTTTTAAACAATTACCAAAAAGAAAATTCGCTTTATAACCACAACCTCATTAAAGTGGTGGGATTCATTCCTTATATCGCCATGCAACCTCTTTATGCCAAACTCATCCAAACTCAAGGCATTTTTGCTCTTCCCTTAGACAAGCGCTACTACCCTAATAACGCTTTAGCTTCACATGTTTTAGGCTATGTGGGGGTGGCAAGCTTGCAAGATCTAAAAGACGATGAAGAAAATCAATACAGCCAGATTGTAGGCAAAACCGGCATTGAAAAAGAATATAACAAGCTTTTACAAGGCAAGGTGGGCTATAAAATCATGCGTGTCAATGCACTCAATCAAGAATTAGCCACTTTAGAAGTAGTGCCGCCAAGCACCAACAACCACTTGCAATTGAGTTTAGACAAACGCTTGCAAAAAGAAGCGGACAAGCTCTTTGAAAATAAGAGAGGGGCTATTTTAGTGATGAACGCAGAAAATGGGGAATTGCTCGTTGCAGGAAGTTACCCTGAATACAATTTGAACGATTTTGTAGGCGGGATCAGTCAAGACAAATGGCAAAAACTTCAAGATGATATTTATAACCCCTTATTAAACCGCTTCGCTAACGCTTTGTATCCGCCGGGATCTGTGGTTAAAATGGGCGTGGGCTTGAGCTTTTTAGAAAACCTTCATATCACAGAAAACACCACCATACCCACCCCGCCTTTTATTGAAGTGGGCAAGCGCAAATTCAGGGACTGGAAAAAAACAGGGCATGGCAATTCTAATTTGTATAAAGCGATTAGGGAGTCCGTGGATGTGTATTTTTATAAGTTTGGGCTTGAAATCTCTATAGAAAAACTCTCTAAAACCTTAAGAGAAGTGGGCTTTGGGGAAAAAACAGGCGTTGATTTGCCGAATGAATTTGTGGGGATTGTGCCGGATAATTTGTGGAAACTCAAACGATTCAATCAAGATTGGCGCGTTGGGGACACGCTCATTACTGCTATTGGGCAAGGCTCTTTTTTAGCCACGCCCTTACAAGTGCTAGCCTATACGGGACTCATTGCGACAGGCAAACTGGCAACGCCTCATTTTGCTATCAATAATAAACAGCCGCTCAAAGACCCCCTGAATAGTTTTCAAAAAAAGAAGCTCCAAGCCTTGCGCGTGGGCATGTATGAAGTGTGTAACCATAAAGACGGCACCGCTTATCATTCCACAAGGGGTTCTAAGGTTACTTTAGCGTGTAAAACCGGCACCGCGCAAGTCGTGGAAATCGCTCAAAACATCGTCAATCGCATGAAAGAAAAGGATATGGAGTATTTCCATCGATCCCATGCGTGGATTACCGCATTTTTGCCTTATGAAAAACCCAAATACGCTATCACTATTTTAGTAGAACATGGGGAAGGGGGGTCAAAACTAGGGGGCTTGTTAGTGAAAATGAGCAATAAACTCTATGAGCTTGGCTATCTTTAA",
+            "partial": "0",
+            "query_start": 1647293,
+            "query_end": 1649056,
+            "hit_start": 0,
+            "hit_end": 1764,
+            "orf_dna_sequence": "ATGAAAAATCTTCGCTATAAGCTTTTGCTCTTTGTTTTTATAGGGTTTTGGGGGTTACTAGCCTTAAATTTATTTATTTTAAGCGTTAAAAATCAAGAATACTATGAAAAATTGGCTGAACGAAACATGACTAAAAAGGAATTTCTAGTCCCTACAAGGGGAAATATTACAGACAGAAATGATGAGTTTTTGGCCACTAATGAATTGGTGTTTGGCGTGTTTTTGCCCAGCGGACTGAAACAAAAAGATCTTTTAGAAAAAATTGAAATCATCCAAAAGTTTTTCCCTAACTTTTCTAAAGAAACGCTTTTAAACAATTACCAAAAAGAAAATTCGCTTTATAACCATAACCTCATTAAAGTGGTTGGCTTCATTCCTTATGCCACCATGCAACCTCTTTATGCCAAACTCATCCAAACTCAAGGCATTTTTGCGCTTCCCTTAGACAAGCGTTACTACCCTAATAACGCTTTAGCTTCGCATGTTTTAGGCTATGTGGGGGTGGCAAGCTTGCAAGATTTAAAAGACGATGAGGAGAATCAATACAGCCAGATTGTAGGCAAAACCGGCATTGAAAAAGAATACAACAAGCTTTTACAAGGCAAGGTGGGTTATAAAATCATGCGTGTCAATGCGCTCAATCAAGAATTAGCCACCTTAGAAGTAGTGCTGCCAAGCACCAACAACCACTTGCAATTGAGTTTAGACAAACGCTTGCAAAAAGAAGCGGACAAGCTCTTTGAAAATAAAAGGGGGGCTATTTTAGTGATGGATGCAGAAAATGGGGAATTGCTCGTTGCAGGAAGTTACCCTGAATACAATTTGAACGATTTTGTAGGCGGGATCAGTCAAGACAAATGGCAAAAACTTCAAGATGATATTTATAACCCCTTATTAAACCGCTTCGCTAACGCCTTGTATCCGCCGGGATCTGTGGTTAAAATGGGCGTGGGCTTGAGCTTTTTAGAAAACCTTCATATCACAGAAAACACCACCATACCCACCCCGCCTTTTATTGAAGTGGGCAAGCACAAATTCAGAGACTGGAAAAAAACAGGGCATGGCAATTCTAATTTGTATAAAGCCATTAGGGAGTCCGTGGATGTGTATTTTTATAAGTTTGGGCTTGAAATCTCTATAGAAAAACTCTCTAAAACCTTAAGGGAAGTGGGCTTTGGGGAAAAAACGGGCGTTGATTTGCCGAATGAATTTGTGGGGATTGTGCCGGATAATTTGTGGAAACTCAAACGCTTCAATCAAGACTGGCGCGTTGGGGACACGCTCATTACCGCTATTGGGCAAGGCTCTTTTTTAGCCACGCCCTTGCAGGTTCTAGCCTACACGGGACTCATTGCTACGGGCAAACTGGCAACGCCTCATTTCGCTATCAACAACAAACAACCGCTTAAAGATCCCCTAAATAGCTTTCAAAAAAAGAAGCTCCAAGCCTTGAGAGTGGGCATGTATGAAGTGTGTAACCATAAAGACGGCACCGCTTATCATTCCACAAGGGGTTCTAAGATTACTTTAGCGTGTAAAACCGGCACCGCACAAGTCGTGGAAATCGCTCAAAACATCGTCAATCGCATGAAAGAAAAGGATATGGAATATTTCCATCGATCCCATGCGTGGATTACCGCATTTTTGCCTTATGAAAAACCCAAATACGCTATCACTATTTTAGTAGAACATGGGGAAGGGGGGTCAAAACTAGGGGGCCTGTTAGTGAAGATGAGTAATAAACTCTATGAGCTTGGCTATCTTTAA",
+            "orf_prot_sequence": "MKNLRYKLLLFVFIGFWGLLALNLFILSVKNQEYYEKLAERNMTKKEFLVPTRGNITDRNDEFLATNELVFGVFLPSGLKQKDLLEKIEIIQKFFPNFSKETLLNNYQKENSLYNHNLIKVVGFIPYATMQPLYAKLIQTQGIFALPLDKRYYPNNALASHVLGYVGVASLQDLKDDEENQYSQIVGKTGIEKEYNKLLQGKVGYKIMRVNALNQELATLEVVLPSTNNHLQLSLDKRLQKEADKLFENKRGAILVMDAENGELLVAGSYPEYNLNDFVGGISQDKWQKLQDDIYNPLLNRFANALYPPGSVVKMGVGLSFLENLHITENTTIPTPPFIEVGKHKFRDWKKTGHGNSNLYKAIRESVDVYFYKFGLEISIEKLSKTLREVGFGEKTGVDLPNEFVGIVPDNLWKLKRFNQDWRVGDTLITAIGQGSFLATPLQVLAYTGLIATGKLATPHFAINNKQPLKDPLNSFQKKKLQALRVGMYEVCNHKDGTAYHSTRGSKITLACKTGTAQVVEIAQNIVNRMKEKDMEYFHRSHAWITAFLPYEKPKYAITILVEHGEGGSKLGGLLVKMSNKLYELGYL",
+            "perc_identity": 98.3
+        }
+    },
+    "2794_4113 | model_type_id: 40295 | pass_bit_score: 2000 | SNP: a2146c,a2147g,a2147c,a2146t,a1410g,a2167g,c1707t,c2922t,a2144g,a2142g,a2146g,a2143g | Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin | QUERY: NC_018939.1": {
+        "gnl|BL_ORD_ID|0|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "Curated-R",
+            "snp": {
+                "original": "c",
+                "change": "t",
+                "position": 1707
+            },
+            "query_snp": {
+                "original": "C",
+                "change": "C",
+                "position": 1705
+            },
+            "orf_strand": "+",
+            "orf_start": 445256,
+            "orf_end": 448229,
+            "_orf_strand": "a2146c,a2147g,a2147c,a2146t,a1410g,a2167g,c1707t,c2922t,a2144g,a2142g,a2146g,a2143g",
+            "_orf_start": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "_orf_end": "",
+            "orf_from": "NC_018939.1",
+            "strand": "+",
+            "hit_def": "NC_018939.1",
+            "sbjct_start": 445256,
+            "sbjct_end": 448229,
+            "query_start": 1,
+            "query_end": 2975,
+            "model_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "model_type": "rRNA gene variant model",
+            "model_type_id": 40295,
+            "model_id": "2794",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "2000",
+            "ARO_accession": "3004134",
+            "ARO_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "ARO_category": {
+                "41251": {
+                    "category_aro_accession": "3004125",
+                    "category_aro_cvterm_id": "41251",
+                    "category_aro_name": "23S rRNA with mutation conferring resistance to macrolide antibiotics",
+                    "category_aro_description": "Nucleotide point mutations in the 23S rRNA subunit may confer resistance to macrolide antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35982": {
+                    "category_aro_accession": "0000065",
+                    "category_aro_cvterm_id": "35982",
+                    "category_aro_name": "clarithromycin",
+                    "category_aro_description": "Clarithromycin is a methyl derivative of erythromycin, sharing the 14-carbon macrolide ring. The antibiotic binds to the 50S subunit of the ribosome and is used to treat pharyngitis, tonsillitis, acute maxillary sinusitis, acute bacterial exacerbation of chronic bronchitis, pneumonia (especially atypical pneumonias associated with Chlamydia pneumoniae or TWAR), and skin structure infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 2949,
+            "bit_score": 5343.48,
+            "cvterm_id": "36906",
+            "query": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTAT-AAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "match": "||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||| |   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  |||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+            "sbjct": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGC-GAACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "sequence_from_db": "",
+            "orf_dna_sequence": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGC-GAACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "orf_prot_sequence": "",
+            "hit_start": 1335765,
+            "hit_end": 1344687,
+            "sequence_from_broadstreet": "",
+            "dna_sequence_from_broadstreet": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "partial": "0",
+            "perc_identity": 99.09
+        },
+        "gnl|BL_ORD_ID|0|hsp_num:1": {
+            "type_match": "Strict",
+            "ast_source": "Curated-R",
+            "snp": {
+                "original": "a",
+                "change": "g",
+                "position": 2144
+            },
+            "query_snp": {
+                "original": "G",
+                "change": "G",
+                "position": 2142
+            },
+            "orf_strand": "+",
+            "orf_start": 445256,
+            "orf_end": 448229,
+            "_orf_strand": "a2146c,a2147g,a2147c,a2146t,a1410g,a2167g,c1707t,c2922t,a2144g,a2142g,a2146g,a2143g",
+            "_orf_start": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "_orf_end": "",
+            "orf_from": "NC_018939.1",
+            "strand": "+",
+            "hit_def": "NC_018939.1",
+            "sbjct_start": 445256,
+            "sbjct_end": 448229,
+            "query_start": 1,
+            "query_end": 2975,
+            "model_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "model_type": "rRNA gene variant model",
+            "model_type_id": 40295,
+            "model_id": "2794",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "2000",
+            "ARO_accession": "3004134",
+            "ARO_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "ARO_category": {
+                "41251": {
+                    "category_aro_accession": "3004125",
+                    "category_aro_cvterm_id": "41251",
+                    "category_aro_name": "23S rRNA with mutation conferring resistance to macrolide antibiotics",
+                    "category_aro_description": "Nucleotide point mutations in the 23S rRNA subunit may confer resistance to macrolide antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35982": {
+                    "category_aro_accession": "0000065",
+                    "category_aro_cvterm_id": "35982",
+                    "category_aro_name": "clarithromycin",
+                    "category_aro_description": "Clarithromycin is a methyl derivative of erythromycin, sharing the 14-carbon macrolide ring. The antibiotic binds to the 50S subunit of the ribosome and is used to treat pharyngitis, tonsillitis, acute maxillary sinusitis, acute bacterial exacerbation of chronic bronchitis, pneumonia (especially atypical pneumonias associated with Chlamydia pneumoniae or TWAR), and skin structure infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 2949,
+            "bit_score": 5343.48,
+            "cvterm_id": "36906",
+            "query": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTAT-AAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "match": "||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||| |   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  |||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+            "sbjct": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGC-GAACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "sequence_from_db": "",
+            "orf_dna_sequence": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGC-GAACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "orf_prot_sequence": "",
+            "hit_start": 1335765,
+            "hit_end": 1344687,
+            "sequence_from_broadstreet": "",
+            "dna_sequence_from_broadstreet": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "partial": "0",
+            "perc_identity": 99.09
+        },
+        "gnl|BL_ORD_ID|0|hsp_num:2": {
+            "type_match": "Strict",
+            "ast_source": "Curated-R",
+            "snp": {
+                "original": "c",
+                "change": "t",
+                "position": 1707
+            },
+            "query_snp": {
+                "original": "C",
+                "change": "C",
+                "position": 1705
+            },
+            "orf_strand": "-",
+            "orf_start": 1476911,
+            "orf_end": 1473937,
+            "_orf_strand": "a2146c,a2147g,a2147c,a2146t,a1410g,a2167g,c1707t,c2922t,a2144g,a2142g,a2146g,a2143g",
+            "_orf_start": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "_orf_end": "",
+            "orf_from": "NC_018939.1",
+            "strand": "-",
+            "hit_def": "NC_018939.1",
+            "sbjct_start": 1476911,
+            "sbjct_end": 1473937,
+            "query_start": 1,
+            "query_end": 2975,
+            "model_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "model_type": "rRNA gene variant model",
+            "model_type_id": 40295,
+            "model_id": "2794",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "2000",
+            "ARO_accession": "3004134",
+            "ARO_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "ARO_category": {
+                "41251": {
+                    "category_aro_accession": "3004125",
+                    "category_aro_cvterm_id": "41251",
+                    "category_aro_name": "23S rRNA with mutation conferring resistance to macrolide antibiotics",
+                    "category_aro_description": "Nucleotide point mutations in the 23S rRNA subunit may confer resistance to macrolide antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35982": {
+                    "category_aro_accession": "0000065",
+                    "category_aro_cvterm_id": "35982",
+                    "category_aro_name": "clarithromycin",
+                    "category_aro_description": "Clarithromycin is a methyl derivative of erythromycin, sharing the 14-carbon macrolide ring. The antibiotic binds to the 50S subunit of the ribosome and is used to treat pharyngitis, tonsillitis, acute maxillary sinusitis, acute bacterial exacerbation of chronic bronchitis, pneumonia (especially atypical pneumonias associated with Chlamydia pneumoniae or TWAR), and skin structure infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 2946,
+            "bit_score": 5325.01,
+            "cvterm_id": "36906",
+            "query": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAA-GGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTG-ATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "match": "||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||| |||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  |||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+            "sbjct": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCG-AACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAAAAGCACCCATCCTTTAAANAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGCATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "sequence_from_db": "",
+            "orf_dna_sequence": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCG-AACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAAAAGCACCCATCCTTTAAANAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGCATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "orf_prot_sequence": "",
+            "hit_start": 4430730,
+            "hit_end": 4421811,
+            "sequence_from_broadstreet": "",
+            "dna_sequence_from_broadstreet": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "partial": "0",
+            "perc_identity": 98.96
+        },
+        "gnl|BL_ORD_ID|0|hsp_num:3": {
+            "type_match": "Strict",
+            "ast_source": "Curated-R",
+            "snp": {
+                "original": "a",
+                "change": "g",
+                "position": 2144
+            },
+            "query_snp": {
+                "original": "G",
+                "change": "G",
+                "position": 2142
+            },
+            "orf_strand": "-",
+            "orf_start": 1476911,
+            "orf_end": 1473937,
+            "_orf_strand": "a2146c,a2147g,a2147c,a2146t,a1410g,a2167g,c1707t,c2922t,a2144g,a2142g,a2146g,a2143g",
+            "_orf_start": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "_orf_end": "",
+            "orf_from": "NC_018939.1",
+            "strand": "-",
+            "hit_def": "NC_018939.1",
+            "sbjct_start": 1476911,
+            "sbjct_end": 1473937,
+            "query_start": 1,
+            "query_end": 2975,
+            "model_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "model_type": "rRNA gene variant model",
+            "model_type_id": 40295,
+            "model_id": "2794",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "2000",
+            "ARO_accession": "3004134",
+            "ARO_name": "Helicobacter pylori 23S rRNA with mutation conferring resistance to clarithromycin",
+            "ARO_category": {
+                "41251": {
+                    "category_aro_accession": "3004125",
+                    "category_aro_cvterm_id": "41251",
+                    "category_aro_name": "23S rRNA with mutation conferring resistance to macrolide antibiotics",
+                    "category_aro_description": "Nucleotide point mutations in the 23S rRNA subunit may confer resistance to macrolide antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35982": {
+                    "category_aro_accession": "0000065",
+                    "category_aro_cvterm_id": "35982",
+                    "category_aro_name": "clarithromycin",
+                    "category_aro_description": "Clarithromycin is a methyl derivative of erythromycin, sharing the 14-carbon macrolide ring. The antibiotic binds to the 50S subunit of the ribosome and is used to treat pharyngitis, tonsillitis, acute maxillary sinusitis, acute bacterial exacerbation of chronic bronchitis, pneumonia (especially atypical pneumonias associated with Chlamydia pneumoniae or TWAR), and skin structure infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "max_identities": 2946,
+            "bit_score": 5325.01,
+            "cvterm_id": "36906",
+            "query": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAA-GGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTG-ATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "match": "||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||| |||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  |||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||| ||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+            "sbjct": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCG-AACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAAAAGCACCCATCCTTTAAANAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGCATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "sequence_from_db": "",
+            "orf_dna_sequence": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAAGGGCGGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTTTAATAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGTATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCCGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGAATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCG-AACAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGCCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCCCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAAAAGCACCCATCCTTTAAANAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACT-GTGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGCGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTTAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGTCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCACAGCGATGTGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAATGGGAATATCATGCGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGCATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATGAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTGAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "orf_prot_sequence": "",
+            "hit_start": 4430730,
+            "hit_end": 4421811,
+            "sequence_from_broadstreet": "",
+            "dna_sequence_from_broadstreet": "AAGGCAGTGGTAGCGCTGAAGAATATTCGTGCAATTGTCGTTATTCATTATAAAAGGGCAGGTTTTAAAGGATATTTTAAAATTTAAAACAAGCTTTTAAGAGCAGATGGCGGATGCCTTGCCAAAGAGAGGCGATGAAGGACGTACTAGACTGCGATAAGCTATGCGGAGCTGTCAAGGAGCTTTGATGCGTAGATGTCCGAATGGGGCAACCCAACTAATAGAGATATTAGTTACTCTAATTTAGAGAGCGAACCTAGTGAAGTGAAACATCTCAGTAACTAGAGGAAAAGAAATCAACGAGATTCCCTAAGTAGTGGCGAGCGAACGGGGAAAAGGGCAAACCGAGTGCTTGCATTCGGGGTTGAGGACTGCAACATCCAAGAGAACGCTTTAGCAGAGTTACCTGGAAAGGTAAGCCATAGAAAGTGATAGCCTTGTATGCGACAAGGCGTTCTTAGGTAGCAGGATCCAGAGTAGGCCAGGACACGAGAAATCCAGGTTGAAGCTGGGGAGACCACTCTCCAACCCTAAATACTACTCTTTGAGCGATAGCGAACAAGTACCGTGAGGGAAAGGTGAAAAGAACCGCAGTGAGCGGAGTGAAATAGAACCTGAAACCATCTGCTTACAATCATTCAGAGCCCTATGATTTATCAGGGTGATGGACTGCCTTTTGCATAATGATCCTGCGAGTTGTGGTATCTGGCAAGGTTAAGCGGATGCGAAGCCGTAGCGAAAGCGAGTCTTAATAGGGCGGTTTAAGTCAGATGCTGCAGACCCGAAGCTAAGTGATCTATCCATGGCCAAGTTGAAACGCGTGTAATAGCGCGTGGAGGACTGAACTCGTACCCATTGAAACGGGTTGGGATGAGCTGTGGATAGGGGTGAAAGGTCAAACAAACTTAGTGATAGCTGGTTCTCTTCGAAATATATTTAGGTATAGCCTCAAGTGATAATAAAAGGGGGTAGAGCTCTGATTGGGCTAGGGCTGCTCGCCGCGGTACCAAACCCTATCAAACTTCGAATACCTTTTATCGTATCTTGGGAGTCAGGCGGTGGGTGATAAAATCAATCGTCAAAAGGGGAACAACCCAGACTACCAAATAAGGTCCCTAAGTTCTATTCTGAGTGGAAAAAGATGTGTGGCTACTCAAACAACCAGGAGGTTGGCTTAGAAGCAGCCATCCTTTAAAGAAAGCGTAACAGCTCACTGGTCTAGTGGTCATGCGCTGAAAATATAACGGGGCTAAGATAGACACCGAATTTGTAGATTGTGTTAAACACAGTGGTAGAAGAGCGTTCATACCAGCGTTGAAGGTATACCGGTAAGGAGTGCTGGAGCGGTATGAAGTGAGCATGCAGGAATGAGTAACGATAAGATATATGAGAATTGTATCCGCCGTAAATCTAAGGTTTCCTACGCGATGGTCGTCATCGTAGGGTTAGTCGGGTCCTAAGCCGAGTCCGAAAGGGGTAGGTGATGGCAAATTGGTTAATATTCCAATACCGACTCATGGAGCGTGATGGGGGGACGCATAGGGTTAAGCGAGCTAGCTGATGGAAGTGCTAGTCTAAGGGCGTAGATTGGAGGGAAGGCAAATCCACCTCTGTATTTGAAACCCAAACAGGCTCTTTGAGTCCTTTCAGGACAAAGGGAGAATCGCTGATACCGTCGTGCCAAGAAAAGCCTCTAAGCATATCCATAGTCGTCCGTACCGCAAACCGACACAGGTAGATGAGATGAGTATTCTAAGGCGCGTGAAAGAACTCTGGTTAAGGAACTCTGCAAACTAGCACCGTAAGTTCGCGATAAGGTGTGCCGCAGCAATGCGGTCTCAGCAAAGAGTCCCTCCCGACTGTTTACCAAAAACACAGCACTTTGCCAACTCGTAAGAGGAAGTATAAGGTGTGACGCCTGCCCGGTGCTCGAAGGTTAAGAGGATGCGTCAGTCGCAAGATGAAGCGTTGAATTGAAGCCCGAGTAAACGGCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGTTAAATACCGACCTGCATGAATGGCGTAACGAGATGGGAGCTGTCTCAACCAGAGATTCAGTGAAATTGTAGTGGAGGTGAAAATTCCTCCTACCCGCGGCAAGACGGAAAGACCCCGTGGACCTTTACTACAACTTAGCACTGCTAACGGGAATATCATGTGCAGGATAGGTGGGAGGCTTTGAAGTAAGGGCTTTGGCTCTTATGGAGCCATCCTTGAGATACCACCCTTGATGTTTCTGTTAGCTAACTGGCCTGTGTTATCCACAGGCAGGACAATGCTTGGTGGGTAGTTTGACTGGGGCGGTCGCCTCCTAAAAAGTAACGGAGGCTTGCAAAGGTTGGCTCATTGCGGTTGGAAATCGCAAGTTGAGTGTAATGGCACAAGCCAGCCTGACTGTAAGACATACAAGTCAAGCAGAGACGAAAGTCGGTCATAGTGATCCGGTGGTTCTGTGTGGAAGGGCCATCGCTCAAAGGATAAAAGGTACCCCGGGGATAACAGGCTGATCTCCCCCAAGAGCTCACATCGACGGGGAGGTTTGGCACCTCGATGTCGGCTCATCGCATCCTGGGGCTGGAGCAGGTCCCAAGGGTATGGCTGTTCGCCATTTAAAGCGGTACGCGAGCTGGGTTCAGAACGTCGTGAGACAGTTCGGTCCCTATCTGCCGTGGGCGTAGGAAAGTTGAGGAGAGCTGTCCCTAGTACGAGAGGACCGGGATGGACGTGTCACTGGTGCACCAGTTGTTCTGCCAAGAGCATCGCTGGGTAGCTACACACGGATGTGATAACTGCTGAAAGCATCTAAGCAGGAAGCCAACTCCAAGATAAACTTTCCCTGAAGCTCGCACAAAGACTATGTGCTTGATAGGGTAGATGTGTAAGCGCAGTAATGCGTTTAGCTGACTACTACTAATAGAGCGTTTGGCTTGTTTTT",
+            "partial": "0",
+            "perc_identity": 98.96
+        }
+    }
+}

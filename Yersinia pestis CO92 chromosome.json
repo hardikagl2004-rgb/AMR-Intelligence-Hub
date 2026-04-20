@@ -1,0 +1,1394 @@
+{
+    "NZ_CP009973.1_176 # 209063 # 210727 # 1 # ID=1_176;partial=00;start_type=ATG;rbs_motif=AGGA;rbs_spacer=6bp;gc_cont=0.451": {
+        "gnl|BL_ORD_ID|2805|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 209063,
+            "orf_end": 210727,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "ArnT",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "3795",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "400",
+            "ARO_accession": "3005053",
+            "ARO_name": "ArnT",
+            "ARO_category": {
+                "41433": {
+                    "category_aro_accession": "3004269",
+                    "category_aro_cvterm_id": "41433",
+                    "category_aro_name": "pmr phosphoethanolamine transferase",
+                    "category_aro_description": "This family of phosphoethanolamine transferase catalyze the addition of 4-amino-4-deoxy-L-arabinose (L-Ara4N) and phosphoethanolamine to lipid A, which impedes the binding of colistin to the cell membrane.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36966": {
+                    "category_aro_accession": "3000622",
+                    "category_aro_cvterm_id": "36966",
+                    "category_aro_name": "colistin A",
+                    "category_aro_description": "Colistin A, or polymyxin E1, has a 6-octanoic acid lipid tail. Polymyxins disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36968": {
+                    "category_aro_accession": "3000624",
+                    "category_aro_cvterm_id": "36968",
+                    "category_aro_name": "colistin B",
+                    "category_aro_description": "Colistin B, or polymyxin E2, has a 6-heptanoic acid lipid tail. Polymyxins disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36192": {
+                    "category_aro_accession": "3000053",
+                    "category_aro_cvterm_id": "36192",
+                    "category_aro_name": "peptide antibiotic",
+                    "category_aro_description": "Peptide antibiotics have a wide range of antibacterial mechanisms, depending on the amino acids that make up the antibiotic, although most act to disrupt the cell membrane in some manner. Subclasses of peptide antibiotics can include additional sidechains of other types, such as lipids in the case of the lipopeptide antibiotics.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 1.6e-171,
+            "bit_score": 597.4,
+            "max_identities": 299,
+            "cvterm_id": "35915",
+            "query": "GAALLALFFVLVYLLPVNSRLLWQPDETRYAEISREMLQRGDWVVPYFMDIRYFEKPVAGYWFNNISQWIFGDSNFAVRFGSIFSTALSAVLVYWLATLLWRNRSTSVLATLIYLSFLLVFGIGTYAVLDPMISLWLTAAMVSFYLTLKAENWQQKVGAYALLGVACGMGFMTKGFLALAVPVIAVLPIVIQQKRIKDLVVFGPIAIVCAVLLSLPWALAIAQREPDFWNYFFWVEHIQRFAEASAQHKSPIWYYLPILCIGVLPWLGLLPGALFKGWRERATKPELFFLLSWVVMPLLFFSVAKGKLPTYILPCMAPLSLLMAAYATDCANNIRMRALKINGVINLLFGVACALVIVVIGLGLVKDIVAYGPQENQKVWLGVLAFAGWGVTGFITLRNNARNWRWAAACPLLFILLVGYLIPQQVVDSKQPQNFIKNNFSELSSSRYVLTDSVGVAAGLAWELKRSDILMFSEKGELTYGLAYPDSQDNYISNDDFPTWLAQARKEGDVSLVVQLAKNEA-LPAHLPPADKVNLMNRLALLWY",
+            "match": "G +L+ALF  L YLLP+N RLLWQPDETRYAEISREML  GDWVVP+F+ +RYFEKP+AGYW N+I QW+FG +NF VRFGS+F+  ++A+LV WLA  ++R++  ++L+ +I+L+ +LV+ IGTYAVLDPMI+LWL  AM SF+  ++A +   K+  Y LLGVACGMG MTKGFLALAVPV+ VLP VI +KR ++++ +G +A++   L+ LPW LAIAQREPDFW YFFWVEHIQRFAE  AQHK+P WYY+P L  G LPWL LLPGAL +GW ER       +LL WV MP LFFS+AKGKLPTYILPC APLS+LMA YA + A     +AL+ING+INL  G+   + ++V+          +   E  K  L  +AFA W + G++ ++++ R W  AA CPL   LLVG+ IP +V+DSKQPQ  +      L  SRYVLT++VG+A GLAWELKRSDI+MF ++GEL YGL +PD+Q +++S   F  WLA  R++G VSLV+ + K E+ L   LP  D    + R+  L Y",
+            "sequence_from_db": "GVSLIALF-ALYYLLPLNFRLLWQPDETRYAEISREMLATGDWVVPHFLGLRYFEKPIAGYWINSIGQWLFGHNNFGVRFGSVFAITMTALLVAWLAWRIFRDKRVAILSLIIFLTAMLVYAIGTYAVLDPMITLWLALAMCSFWGAVQAHSRSGKILGYVLLGVACGMGVMTKGFLALAVPVVGVLPWVIARKRWREVLTYGWLAVIVCTLVVLPWGLAIAQREPDFWRYFFWVEHIQRFAEKDAQHKAPFWYYIPFLIAGSLPWLALLPGALKRGWLERDEARGALYLLGWVAMPFLFFSIAKGKLPTYILPCFAPLSILMARYALEAAKT-GAKALRINGMINLGVGLLGLIAVLVVSPWGFMHKPVWTKIELYKCLLAAIAFAVWALMGWLAMKDSGRRWSLAALCPLGLALLVGFAIPDRVIDSKQPQFLVDIVSESLQPSRYVLTNNVGIAGGLAWELKRSDIIMFDKQGELKYGLDWPDAQGSFVSQAGFADWLAAHRQQGPVSLVLLMDKGESMLDLPLPKPDNAYELGRVVFLQY",
+            "sequence_from_broadstreet": "MKSIRYGVSLIALFALYYLLPLNFRLLWQPDETRYAEISREMLATGDWVVPHFLGLRYFEKPIAGYWINSIGQWLFGHNNFGVRFGSVFAITMTALLVAWLAWRIFRDKRVAILSLIIFLTAMLVYAIGTYAVLDPMITLWLALAMCSFWGAVQAHSRSGKILGYVLLGVACGMGVMTKGFLALAVPVVGVLPWVIARKRWREVLTYGWLAVIVCTLVVLPWGLAIAQREPDFWRYFFWVEHIQRFAEKDAQHKAPFWYYIPFLIAGSLPWLALLPGALKRGWLERDEARGALYLLGWVAMPFLFFSIAKGKLPTYILPCFAPLSILMARYALEAAKTGAKALRINGMINLGVGLLGLIAVLVVSPWGFMHKPVWTKIELYKCLLAAIAFAVWALMGWLAMKDSGRRWSLAALCPLGLALLVGFAIPDRVIDSKQPQFLVDIVSESLQPSRYVLTNNVGIAGGLAWELKRSDIIMFDKQGELKYGLDWPDAQGSFVSQAGFADWLAAHRQQGPVSLVLLMDKGESMLDLPLPKPDNAYELGRVVFLQYLPQ",
+            "dna_sequence_from_broadstreet": "ATGAAAAGCATTCGCTATGGCGTCTCTCTGATTGCGCTGTTTGCGCTGTATTATCTGCTGCCGCTCAATTTCCGTTTGCTCTGGCAACCCGACGAAACCCGCTACGCGGAGATCAGCCGTGAAATGCTGGCCACCGGCGACTGGGTGGTACCGCATTTTCTCGGCCTGCGCTACTTCGAAAAACCGATTGCCGGTTACTGGATCAACAGTATCGGTCAGTGGCTGTTTGGCCATAATAACTTCGGCGTACGCTTCGGGTCGGTCTTCGCCATCACCATGACCGCCCTGCTGGTGGCCTGGCTGGCGTGGCGGATCTTTCGTGATAAGCGGGTAGCTATCCTGTCGCTGATTATCTTCCTCACCGCGATGCTGGTGTATGCGATTGGCACCTATGCGGTGCTGGACCCGATGATCACCCTGTGGCTGGCGCTGGCGATGTGCAGCTTCTGGGGCGCGGTGCAGGCGCACAGCCGCAGCGGCAAAATACTGGGCTACGTGCTGCTGGGCGTCGCCTGCGGGATGGGGGTGATGACCAAGGGCTTCCTGGCGCTGGCGGTGCCGGTGGTGGGCGTTCTGCCGTGGGTGATCGCCCGTAAACGCTGGCGTGAAGTGCTGACCTACGGCTGGCTGGCGGTAATCGTCTGTACGCTGGTGGTGCTGCCCTGGGGGCTGGCTATCGCTCAGCGCGAGCCGGACTTCTGGCGCTACTTCTTCTGGGTCGAGCATATTCAGCGTTTTGCTGAAAAAGACGCCCAGCACAAAGCGCCGTTCTGGTACTACATCCCGTTCCTGATCGCCGGCAGTCTGCCGTGGCTGGCCCTGCTGCCGGGGGCGCTAAAGCGCGGCTGGCTTGAGCGCGATGAGGCCCGCGGCGCGCTGTATCTGTTAGGTTGGGTGGCGATGCCGTTCCTGTTCTTCAGTATCGCCAAAGGCAAACTGCCGACCTATATTCTGCCGTGCTTTGCGCCGCTGTCGATCCTGATGGCCCGCTACGCGCTGGAGGCCGCAAAGACCGGCGCGAAAGCGTTGCGCATCAACGGGATGATCAACCTGGGCGTTGGTTTGCTGGGGCTTATCGCCGTGCTGGTGGTCTCGCCGTGGGGCTTCATGCATAAGCCGGTGTGGACCAAGATTGAGCTGTATAAATGTCTGCTGGCGGCGATCGCTTTTGCCGTCTGGGCGCTGATGGGCTGGCTGGCGATGAAAGACTCTGGCCGCCGCTGGAGCCTCGCCGCGCTCTGTCCGCTCGGCCTGGCGCTGCTGGTGGGCTTCGCCATCCCGGACCGGGTTATCGACAGCAAACAGCCGCAGTTCCTCGTGGATATCGTCAGCGAATCCCTGCAGCCCAGCCGTTACGTCCTGACCAACAACGTTGGGATCGCCGGCGGCCTGGCCTGGGAGCTGAAGCGAAGCGATATTATTATGTTCGACAAACAGGGTGAGCTGAAGTACGGTCTCGACTGGCCGGATGCTCAGGGAAGCTTTGTCAGCCAGGCCGGTTTTGCCGACTGGCTGGCCGCGCATCGTCAGCAGGGGCCGGTCTCGCTGGTGCTGTTGATGGATAAAGGAGAGAGTATGCTCGACTTACCGTTACCGAAACCGGATAACGCCTACGAGCTGGGCCGGGTCGTTTTCCTTCAGTACCTGCCGCAATGA",
+            "partial": "0",
+            "query_start": 209084,
+            "query_end": 210712,
+            "hit_start": 18,
+            "hit_end": 1644,
+            "orf_dna_sequence": "ATGAAATTATTAAAAGACAGTGGCGCAGCATTATTGGCGCTATTTTTTGTATTGGTTTATTTGTTACCGGTGAATAGCCGTTTGTTATGGCAACCCGATGAAACTCGCTATGCTGAAATTAGTCGTGAAATGCTGCAGCGTGGCGACTGGGTCGTGCCGTATTTCATGGATATACGTTATTTTGAAAAACCGGTCGCCGGGTATTGGTTTAATAACATTAGCCAATGGATCTTTGGTGACAGTAATTTTGCAGTGAGATTTGGCTCTATTTTTAGCACGGCATTGAGTGCCGTATTAGTTTATTGGCTGGCAACCTTATTATGGCGTAATCGGTCAACCTCGGTACTGGCTACATTAATTTATCTTTCCTTTTTATTGGTGTTTGGCATTGGTACCTATGCAGTGCTGGACCCCATGATTTCTCTGTGGTTGACAGCGGCGATGGTGAGTTTTTATCTCACGCTAAAAGCCGAAAATTGGCAACAGAAAGTCGGCGCATATGCATTACTTGGGGTTGCTTGCGGTATGGGGTTTATGACCAAAGGCTTTCTGGCATTAGCGGTCCCGGTGATTGCGGTATTACCCATTGTCATCCAGCAAAAAAGGATAAAAGACCTTGTTGTTTTTGGTCCGATAGCAATTGTGTGCGCGGTATTATTAAGTTTACCGTGGGCTTTGGCGATCGCCCAACGAGAACCTGATTTCTGGAACTATTTCTTTTGGGTTGAACATATTCAGCGCTTTGCGGAAGCGAGTGCTCAACATAAATCTCCCATTTGGTATTACCTACCCATTTTATGTATTGGTGTCCTGCCTTGGCTAGGGCTATTACCTGGAGCCTTATTTAAAGGTTGGCGTGAGCGGGCAACAAAACCAGAATTATTCTTTTTACTCAGTTGGGTGGTTATGCCACTCCTATTTTTTAGCGTAGCAAAAGGGAAGCTACCGACTTATATTTTGCCCTGTATGGCACCTCTATCCTTGCTAATGGCGGCATATGCGACGGATTGCGCTAATAATATACGTATGCGGGCATTGAAAATAAACGGTGTAATAAATCTACTCTTCGGGGTTGCCTGTGCGTTAGTCATCGTCGTTATTGGCTTGGGGTTAGTGAAGGATATCGTGGCTTATGGGCCGCAAGAGAATCAGAAAGTTTGGTTAGGTGTGTTGGCATTTGCTGGTTGGGGAGTCACTGGGTTTATTACCTTACGCAATAACGCCCGAAACTGGCGCTGGGCAGCAGCTTGCCCACTGTTATTCATTTTGTTAGTGGGTTACCTAATTCCACAACAAGTGGTGGACTCAAAGCAACCGCAAAACTTTATCAAAAATAATTTTAGTGAACTCAGCTCCAGCCGCTATGTGCTGACCGACAGCGTTGGTGTTGCCGCTGGGCTGGCATGGGAGCTAAAACGCAGTGATATACTGATGTTCAGTGAAAAAGGTGAGCTAACCTATGGTTTGGCCTACCCAGACAGTCAGGATAATTATATCAGTAATGACGATTTCCCCACATGGCTTGCGCAGGCGAGAAAAGAAGGCGACGTCTCATTGGTCGTGCAATTAGCCAAAAATGAAGCACTCCCGGCCCATCTGCCGCCAGCGGATAAGGTGAATTTAATGAATCGACTCGCCCTGTTGTGGTACCAGAAAACACCATGA",
+            "orf_prot_sequence": "MKLLKDSGAALLALFFVLVYLLPVNSRLLWQPDETRYAEISREMLQRGDWVVPYFMDIRYFEKPVAGYWFNNISQWIFGDSNFAVRFGSIFSTALSAVLVYWLATLLWRNRSTSVLATLIYLSFLLVFGIGTYAVLDPMISLWLTAAMVSFYLTLKAENWQQKVGAYALLGVACGMGFMTKGFLALAVPVIAVLPIVIQQKRIKDLVVFGPIAIVCAVLLSLPWALAIAQREPDFWNYFFWVEHIQRFAEASAQHKSPIWYYLPILCIGVLPWLGLLPGALFKGWRERATKPELFFLLSWVVMPLLFFSVAKGKLPTYILPCMAPLSLLMAAYATDCANNIRMRALKINGVINLLFGVACALVIVVIGLGLVKDIVAYGPQENQKVWLGVLAFAGWGVTGFITLRNNARNWRWAAACPLLFILLVGYLIPQQVVDSKQPQNFIKNNFSELSSSRYVLTDSVGVAAGLAWELKRSDILMFSEKGELTYGLAYPDSQDNYISNDDFPTWLAQARKEGDVSLVVQLAKNEALPAHLPPADKVNLMNRLALLWYQKTP",
+            "perc_identity": 54.96
+        }
+    },
+    "NZ_CP009973.1_265 # 304742 # 305074 # 1 # ID=1_265;partial=00;start_type=ATG;rbs_motif=GAG;rbs_spacer=9bp;gc_cont=0.459": {
+        "gnl|BL_ORD_ID|4669|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 304742,
+            "orf_end": 305074,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "qacG",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "5731",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "75",
+            "ARO_accession": "3007015",
+            "ARO_name": "qacG",
+            "ARO_category": {
+                "36004": {
+                    "category_aro_accession": "0010003",
+                    "category_aro_cvterm_id": "36004",
+                    "category_aro_name": "small multidrug resistance (SMR) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Small multidrug resistance (SMR) proteins are a relatively small family of transporters, restricted to prokaryotic cells. They are also the smallest multidrug transporters, with only four transmembrane alpha-helices and no significant extramembrane domain.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "40514": {
+                    "category_aro_accession": "3003823",
+                    "category_aro_cvterm_id": "40514",
+                    "category_aro_name": "benzalkonium chloride",
+                    "category_aro_description": "Benzalkonium chloride is a type of cationic surfactant. It is an organic salt called a quaternary ammonium compound. It has three main categories of use: as a biocide, a cationic surfactant, and as a phase transfer agent.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "43746": {
+                    "category_aro_accession": "3005386",
+                    "category_aro_cvterm_id": "43746",
+                    "category_aro_name": "disinfecting agents and antiseptics",
+                    "category_aro_description": "Disinfectants that can also interact with antimicrobial resistance mechanisms, e.g. molecule efflux, and thus are the targets of disinfectant resistance.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 9.4e-18,
+            "bit_score": 84.3,
+            "max_identities": 36,
+            "cvterm_id": "35506",
+            "query": "FVYLFMAIIAEVVATTMLKASDGFSRLVPSVVVVIGYGIAFWGLSQVVKTMPLGIAYAIWSGLGIVLVSIAATFMYQQKLDWAAVVGMALIISGVMVINLLSKT",
+            "match": "++YLF++I  E++ T+ LK S+GF++L P++  ++ +GI F+ LS  +K +PL I YA W+GLG+VL +I +  ++++ ++  +++ + LI+ GV+++N+  ++",
+            "sequence_from_db": "YLYLFISIATEIIGTSFLKTSEGFTKLWPTLGTLLSFGICFYFLSLTIKFLPLNITYATWAGLGLVLTTIISVIVFKENVNLISIISIGLIVIGVVLLNVFGES",
+            "sequence_from_broadstreet": "MHYLYLFISIATEIIGTSFLKTSEGFTKLWPTLGTLLSFGICFYFLSLTIKFLPLNITYATWAGLGLVLTTIISVIVFKENVNLISIISIGLIVIGVVLLNVFGESH",
+            "dna_sequence_from_broadstreet": "ATGCATTATTTATATTTATTTATCTCAATTGCAACAGAAATAATCGGAACTAGTTTTTTAAAAACATCAGAAGGTTTCACAAAGTTATGGCCAACATTAGGTACACTACTTTCGTTTGGAATTTGCTTTTATTTTTTAAGTTTAACAATAAAATTTTTGCCCTTAAATATAACTTACGCAACATGGGCAGGTCTAGGATTAGTATTAACAACAATAATCTCAGTTATCGTTTTTAAAGAAAATGTTAATTTAATTAGTATAATTTCTATTGGCTTAATTGTTATAGGTGTAGTGCTCTTAAATGTATTTGGAGAAAGCCATTGA",
+            "partial": "0",
+            "query_start": 304751,
+            "query_end": 305062,
+            "hit_start": 6,
+            "hit_end": 318,
+            "orf_dna_sequence": "ATGAGCAGTTTTGTCTATTTATTTATGGCGATTATTGCCGAAGTGGTTGCGACGACGATGCTAAAAGCATCCGATGGTTTTTCTCGATTAGTCCCATCAGTGGTTGTCGTGATTGGTTATGGTATTGCTTTTTGGGGGCTTTCGCAGGTAGTTAAAACCATGCCGCTGGGTATTGCTTATGCGATTTGGTCCGGTTTGGGGATTGTACTGGTCTCAATCGCTGCCACCTTTATGTATCAACAAAAGCTGGATTGGGCGGCGGTTGTCGGTATGGCGCTGATTATTTCGGGTGTTATGGTGATTAACCTCCTGTCCAAGACACCGATGCATTAA",
+            "orf_prot_sequence": "MSSFVYLFMAIIAEVVATTMLKASDGFSRLVPSVVVVIGYGIAFWGLSQVVKTMPLGIAYAIWSGLGIVLVSIAATFMYQQKLDWAAVVGMALIISGVMVINLLSKTPMH",
+            "perc_identity": 34.62
+        },
+        "gnl|BL_ORD_ID|4668|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 304742,
+            "orf_end": 305074,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "qacJ",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "5730",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "75",
+            "ARO_accession": "3007014",
+            "ARO_name": "qacJ",
+            "ARO_category": {
+                "36004": {
+                    "category_aro_accession": "0010003",
+                    "category_aro_cvterm_id": "36004",
+                    "category_aro_name": "small multidrug resistance (SMR) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Small multidrug resistance (SMR) proteins are a relatively small family of transporters, restricted to prokaryotic cells. They are also the smallest multidrug transporters, with only four transmembrane alpha-helices and no significant extramembrane domain.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "40514": {
+                    "category_aro_accession": "3003823",
+                    "category_aro_cvterm_id": "40514",
+                    "category_aro_name": "benzalkonium chloride",
+                    "category_aro_description": "Benzalkonium chloride is a type of cationic surfactant. It is an organic salt called a quaternary ammonium compound. It has three main categories of use: as a biocide, a cationic surfactant, and as a phase transfer agent.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "43746": {
+                    "category_aro_accession": "3005386",
+                    "category_aro_cvterm_id": "43746",
+                    "category_aro_name": "disinfecting agents and antiseptics",
+                    "category_aro_description": "Disinfectants that can also interact with antimicrobial resistance mechanisms, e.g. molecule efflux, and thus are the targets of disinfectant resistance.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 6.1e-17,
+            "bit_score": 81.6,
+            "max_identities": 37,
+            "cvterm_id": "35508",
+            "query": "FVYLFMAIIAEVVATTMLKASDGFSRLVPSVVVVIGYGIAFWGLSQVVKTMPLGIAYAIWSGLGIVLVSIAATFMYQQKLDWAAVVGMALIISGVMVINLLSKT",
+            "match": "++YL +AII E++ T+ LK ++GF++L P++  +I +GI F+ LS  +K +PL ++YA W+GLG+VL +I +  ++++ ++  ++  + LII GV+++N+   +",
+            "sequence_from_db": "YLYLVIAIITEIIGTSFLKTAEGFTKLWPTLGTLISFGICFYFLSVTMKYLPLNVSYATWAGLGLVLTTIVSVVIFKESVNLISIFSIILIIIGVVLLNVFGSS",
+            "sequence_from_broadstreet": "MPYLYLVIAIITEIIGTSFLKTAEGFTKLWPTLGTLISFGICFYFLSVTMKYLPLNVSYATWAGLGLVLTTIVSVVIFKESVNLISIFSIILIIIGVVLLNVFGSSH",
+            "dna_sequence_from_broadstreet": "ATGCCTTACTTATATTTAGTAATAGCGATTATAACTGAAATAATAGGAACTAGTTTCTTAAAAACAGCAGAAGGATTTACAAAACTTTGGCCAACATTAGGCACACTTATTTCATTCGGGATATGTTTCTATTTTTTAAGTGTAACTATGAAATATTTACCACTCAATGTATCTTATGCAACTTGGGCAGGGTTAGGACTAGTTCTTACAACAATAGTTTCAGTTGTAATTTTCAAAGAAAGCGTCAATTTAATTAGTATATTTTCAATAATCTTAATTATTATTGGTGTTGTGCTTCTTAACGTTTTTGGATCAAGTCATTAA",
+            "partial": "0",
+            "query_start": 304751,
+            "query_end": 305062,
+            "hit_start": 6,
+            "hit_end": 318,
+            "orf_dna_sequence": "ATGAGCAGTTTTGTCTATTTATTTATGGCGATTATTGCCGAAGTGGTTGCGACGACGATGCTAAAAGCATCCGATGGTTTTTCTCGATTAGTCCCATCAGTGGTTGTCGTGATTGGTTATGGTATTGCTTTTTGGGGGCTTTCGCAGGTAGTTAAAACCATGCCGCTGGGTATTGCTTATGCGATTTGGTCCGGTTTGGGGATTGTACTGGTCTCAATCGCTGCCACCTTTATGTATCAACAAAAGCTGGATTGGGCGGCGGTTGTCGGTATGGCGCTGATTATTTCGGGTGTTATGGTGATTAACCTCCTGTCCAAGACACCGATGCATTAA",
+            "orf_prot_sequence": "MSSFVYLFMAIIAEVVATTMLKASDGFSRLVPSVVVVIGYGIAFWGLSQVVKTMPLGIAYAIWSGLGIVLVSIAATFMYQQKLDWAAVVGMALIISGVMVINLLSKTPMH",
+            "perc_identity": 35.58
+        }
+    },
+    "NZ_CP009973.1_531 # 578205 # 578534 # -1 # ID=1_531;partial=00;start_type=ATG;rbs_motif=AGG;rbs_spacer=8bp;gc_cont=0.476": {
+        "gnl|BL_ORD_ID|2743|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "-",
+            "orf_start": 578205,
+            "orf_end": 578534,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Klebsiella pneumoniae KpnF",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "3286",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "150",
+            "ARO_accession": "3004583",
+            "ARO_name": "Klebsiella pneumoniae KpnF",
+            "ARO_category": {
+                "36004": {
+                    "category_aro_accession": "0010003",
+                    "category_aro_cvterm_id": "36004",
+                    "category_aro_name": "small multidrug resistance (SMR) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Small multidrug resistance (SMR) proteins are a relatively small family of transporters, restricted to prokaryotic cells. They are also the smallest multidrug transporters, with only four transmembrane alpha-helices and no significant extramembrane domain.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35925": {
+                    "category_aro_accession": "0000006",
+                    "category_aro_cvterm_id": "35925",
+                    "category_aro_name": "erythromycin",
+                    "category_aro_description": "Erythromycin is a macrolide antibiotic with a 14-carbon ring that has an antimicrobial spectrum similar to or slightly wider than that of penicillin, and is often used for people that have an allergy to penicillins. Erythromycin may possess bacteriocidal activity, particularly at higher concentrations by binding to the 50S subunit of the bacterial 70S rRNA complex, inhibiting peptidyl-tRNA translocation. Thus, protein synthesis and subsequently structure/function processes critical for life or replication are inhibited.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35958": {
+                    "category_aro_accession": "0000040",
+                    "category_aro_cvterm_id": "35958",
+                    "category_aro_name": "streptomycin",
+                    "category_aro_description": "Streptomycin is an aminoglycoside antibiotic used to treat different types of bacterial infections. Streptomycin works by binding to the bacterial 30S ribosomal subunit, causing misreading of mRNA and leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35968": {
+                    "category_aro_accession": "0000051",
+                    "category_aro_cvterm_id": "35968",
+                    "category_aro_name": "tetracycline",
+                    "category_aro_description": "Tetracycline is a broad-spectrum polyketide antibiotic produced by many Streptomyces. It works by inhibiting action of the prokaryotic 30S ribosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35976": {
+                    "category_aro_accession": "0000059",
+                    "category_aro_cvterm_id": "35976",
+                    "category_aro_name": "cefepime",
+                    "category_aro_description": "Cefepime (INN) is a fourth-generation cephalosporin antibiotic developed in 1994. It contains an aminothiazolyl group that decreases its affinity with beta-lactamases. Cefepime shows high binding affinity with penicillin-binding proteins and has an extended spectrum of activity against Gram-positive and Gram-negative bacteria, with greater activity against both Gram-negative and Gram-positive organisms than third-generation agents.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35979": {
+                    "category_aro_accession": "0000062",
+                    "category_aro_cvterm_id": "35979",
+                    "category_aro_name": "ceftriaxone",
+                    "category_aro_description": "Ceftriaxone is a third-generation cephalosporin antibiotic. The presence of an aminothiazolyl sidechain increases ceftriazone's resistance to beta-lactamases. Like other third-generation cephalosporins, it has broad spectrum activity against Gram-positive and Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36308": {
+                    "category_aro_accession": "3000169",
+                    "category_aro_cvterm_id": "36308",
+                    "category_aro_name": "rifampin",
+                    "category_aro_description": "Rifampin is a semi-synthetic rifamycin, and inhibits RNA synthesis by binding to RNA polymerase. Rifampin is the mainstay agent for the treatment of tuberculosis, leprosy and complicated Gram-positive infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36966": {
+                    "category_aro_accession": "3000622",
+                    "category_aro_cvterm_id": "36966",
+                    "category_aro_name": "colistin A",
+                    "category_aro_description": "Colistin A, or polymyxin E1, has a 6-octanoic acid lipid tail. Polymyxins disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36968": {
+                    "category_aro_accession": "3000624",
+                    "category_aro_cvterm_id": "36968",
+                    "category_aro_name": "colistin B",
+                    "category_aro_description": "Colistin B, or polymyxin E2, has a 6-heptanoic acid lipid tail. Polymyxins disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37250": {
+                    "category_aro_accession": "3000870",
+                    "category_aro_cvterm_id": "37250",
+                    "category_aro_name": "triclosan",
+                    "category_aro_description": "Triclosan is a common antibacterial agent added to many consumer products as a biocide.  It is an inhibitor of fatty acid biosynthesis by blocking enoyl-carrier protein reductase (FabI).",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "40514": {
+                    "category_aro_accession": "3003823",
+                    "category_aro_cvterm_id": "40514",
+                    "category_aro_name": "benzalkonium chloride",
+                    "category_aro_description": "Benzalkonium chloride is a type of cationic surfactant. It is an organic salt called a quaternary ammonium compound. It has three main categories of use: as a biocide, a cationic surfactant, and as a phase transfer agent.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "45598": {
+                    "category_aro_accession": "3007039",
+                    "category_aro_cvterm_id": "45598",
+                    "category_aro_name": "chlorhexidine",
+                    "category_aro_description": "Chlorhexidine is a disinfectant and antiseptic that is used for skin disinfection, including mouthwashes (chlorhexidine gluconate).",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35935": {
+                    "category_aro_accession": "0000016",
+                    "category_aro_cvterm_id": "35935",
+                    "category_aro_name": "aminoglycoside antibiotic",
+                    "category_aro_description": "Aminoglycosides are a group of antibiotics that are mostly effective against Gram-negative bacteria. These molecules consist of aminated sugars attached to a dibasic cyclitol. Aminoglycosides work by binding to the bacterial 30S ribosomal subunit (some work by binding to the 50S subunit), inhibiting the translocation of the peptidyl-tRNA from the A-site to the P-site and also causing misreading of mRNA, leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36189": {
+                    "category_aro_accession": "3000050",
+                    "category_aro_cvterm_id": "36189",
+                    "category_aro_name": "tetracycline antibiotic",
+                    "category_aro_description": "These antibiotics are derived from tetracycline, a polyketide antibiotic that inhibits the 30S subunit of bacterial ribosomes.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36192": {
+                    "category_aro_accession": "3000053",
+                    "category_aro_cvterm_id": "36192",
+                    "category_aro_name": "peptide antibiotic",
+                    "category_aro_description": "Peptide antibiotics have a wide range of antibacterial mechanisms, depending on the amino acids that make up the antibiotic, although most act to disrupt the cell membrane in some manner. Subclasses of peptide antibiotics can include additional sidechains of other types, such as lipids in the case of the lipopeptide antibiotics.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36296": {
+                    "category_aro_accession": "3000157",
+                    "category_aro_cvterm_id": "36296",
+                    "category_aro_name": "rifamycin antibiotic",
+                    "category_aro_description": "Rifamycin antibiotics are a group of broad-spectrum ansamycin antibiotics that inhibit bacterial RNA polymerase by binding to a highly conserved region, blocking the oligonucleotide exit tunnel, and preventing the extension of nascent mRNAs.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "43746": {
+                    "category_aro_accession": "3005386",
+                    "category_aro_cvterm_id": "43746",
+                    "category_aro_name": "disinfecting agents and antiseptics",
+                    "category_aro_description": "Disinfectants that can also interact with antimicrobial resistance mechanisms, e.g. molecule efflux, and thus are the targets of disinfectant resistance.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2.5e-39,
+            "bit_score": 156.0,
+            "max_identities": 80,
+            "cvterm_id": "42598",
+            "query": "MQQLEFYPIAFLILAVMLEIVANILLKMSDGFRRKWLGILSLLSVLGAFSALAQAVKGIELSVAYALWGGFGIAATVAAGWILFNQRLNYKGWIGLILLLAGMVMIKLS",
+            "match": "MQQ E+   A+L +A++LEI+AN+ LK SDGFRRK  GILSL +VLGAFSAL+QAVKGI+LSVAYALWGGFGIAAT+AAGW+LF QRLN KGW G+ILL+AGMV+IKL+",
+            "sequence_from_db": "MQQFEWIHAAWLAIAIVLEIIANVFLKFSDGFRRKIYGILSLAAVLGAFSALSQAVKGIDLSVAYALWGGFGIAATIAAGWVLFGQRLNNKGWAGVILLVAGMVLIKLA",
+            "sequence_from_broadstreet": "MQQFEWIHAAWLAIAIVLEIIANVFLKFSDGFRRKIYGILSLAAVLGAFSALSQAVKGIDLSVAYALWGGFGIAATIAAGWVLFGQRLNNKGWAGVILLVAGMVLIKLA",
+            "dna_sequence_from_broadstreet": "ATGCAGCAGTTTGAGTGGATCCACGCCGCCTGGCTGGCAATCGCCATTGTGCTGGAAATTATTGCCAACGTCTTTTTGAAGTTTTCCGACGGCTTCCGCCGCAAGATCTACGGCATCCTGTCCCTGGCGGCAGTATTGGGCGCGTTCAGCGCCCTGTCGCAGGCGGTTAAAGGGATCGATCTCTCGGTCGCCTATGCGCTGTGGGGCGGCTTCGGTATCGCGGCGACCATCGCCGCCGGCTGGGTGCTGTTTGGTCAGCGTCTGAATAACAAAGGCTGGGCGGGGGTTATCCTGCTGGTAGCCGGCATGGTGTTAATTAAACTCGCCTGA",
+            "partial": "0",
+            "query_start": 578205,
+            "query_end": 578531,
+            "hit_start": 0,
+            "hit_end": 327,
+            "orf_dna_sequence": "ATGCAGCAGCTTGAGTTTTACCCTATAGCTTTCTTGATCTTGGCCGTTATGCTGGAAATCGTCGCTAATATCTTGCTGAAAATGTCAGATGGCTTTCGCCGAAAATGGTTGGGGATATTGTCCCTGTTGTCAGTATTAGGCGCATTCAGTGCATTGGCGCAAGCAGTGAAGGGGATTGAGCTGTCGGTAGCTTATGCCTTGTGGGGCGGTTTTGGTATTGCGGCCACTGTTGCGGCGGGCTGGATTCTGTTTAATCAACGGTTGAACTACAAAGGTTGGATTGGTTTGATCTTACTGCTGGCGGGCATGGTGATGATTAAGTTGTCATAG",
+            "orf_prot_sequence": "MQQLEFYPIAFLILAVMLEIVANILLKMSDGFRRKWLGILSLLSVLGAFSALAQAVKGIELSVAYALWGGFGIAATVAAGWILFNQRLNYKGWIGLILLLAGMVMIKLS",
+            "perc_identity": 73.39
+        }
+    },
+    "NZ_CP009973.1_2363 # 2632193 # 2632825 # 1 # ID=1_2363;partial=00;start_type=ATG;rbs_motif=AGGA;rbs_spacer=9bp;gc_cont=0.469": {
+        "gnl|BL_ORD_ID|801|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 2632193,
+            "orf_end": 2632825,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "CRP",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "869",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "400",
+            "ARO_accession": "3000518",
+            "ARO_name": "CRP",
+            "ARO_category": {
+                "36005": {
+                    "category_aro_accession": "0010004",
+                    "category_aro_cvterm_id": "36005",
+                    "category_aro_name": "resistance-nodulation-cell division (RND) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Resistance-nodulation-division (RND) proteins are found in both prokaryotic and eukaryotic cells and have diverse substrate specificities and physiological roles. However, there are relatively few RND transporters and they are secondary transporters, energized not by ATP binding/hydrolysis but by proton movement down the transmembrane electrochemical gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35925": {
+                    "category_aro_accession": "0000006",
+                    "category_aro_cvterm_id": "35925",
+                    "category_aro_name": "erythromycin",
+                    "category_aro_description": "Erythromycin is a macrolide antibiotic with a 14-carbon ring that has an antimicrobial spectrum similar to or slightly wider than that of penicillin, and is often used for people that have an allergy to penicillins. Erythromycin may possess bacteriocidal activity, particularly at higher concentrations by binding to the 50S subunit of the bacterial 70S rRNA complex, inhibiting peptidyl-tRNA translocation. Thus, protein synthesis and subsequently structure/function processes critical for life or replication are inhibited.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35930": {
+                    "category_aro_accession": "0000011",
+                    "category_aro_cvterm_id": "35930",
+                    "category_aro_name": "cloxacillin",
+                    "category_aro_description": "Cloxacillin is a semisynthetic, isoxazolyl penicillin derivative in the beta-lactam class of antibiotics. It interferes with peptidogylcan synthesis and is commonly used for treating penicillin-resistant Staphylococcus aureus infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35973": {
+                    "category_aro_accession": "0000056",
+                    "category_aro_cvterm_id": "35973",
+                    "category_aro_name": "oxacillin",
+                    "category_aro_description": "Oxacillin is a penicillinase-resistant beta-lactam. It is similar to methicillin, and has replaced methicillin in clinical use. Oxacillin, especially in combination with other antibiotics, is effective against many penicillinase-producing strains of Staphylococcus aureus and Staphylococcus epidermidis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37006": {
+                    "category_aro_accession": "3000662",
+                    "category_aro_cvterm_id": "37006",
+                    "category_aro_name": "norfloxacin",
+                    "category_aro_description": "Norfloxacin is a 6-fluoro, 7-piperazinyl quinolone with a wide range of activity against Gram-negative bacteria. It is inactive against most anaerobes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36590": {
+                    "category_aro_accession": "3000451",
+                    "category_aro_cvterm_id": "36590",
+                    "category_aro_name": "protein(s) and two-component regulatory system modulating antibiotic efflux",
+                    "category_aro_description": "Protein(s) and two component regulatory systems that directly or indirectly change rates of antibiotic efflux.",
+                    "category_aro_class_name": "Efflux Regulator"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2e-117,
+            "bit_score": 416.4,
+            "max_identities": 206,
+            "cvterm_id": "36839",
+            "query": "MVLGKPQTDPTLEWFLSHCHIHKYPSKSTLIHQGEKAETLYYIVKGSVAVLIKDEEGKEMILSYLNQGDFIGELGLFEEGQERSAWVRAKTACEVAEISYKKFRQLIQVNPDILMRLSSQMANRLQITSEKVGNLAFLDVTGRIAQTLLNLAKQPDAMTHPDGMQIKITRQEIGQIVGCSRETVGRILKMLEDQNLISAHGKTIVVYGTR",
+            "match": "MVLGKPQTDPTLEWFLSHCHIHKYPSKS LIHQGEKAETLYYIVKGSVAVLIKDEEGKEMILSYLNQGDFIGELGLFEEGQERSAWVRAKTACEVAEISYKKFRQLIQVNPDILMRLS+QMA RLQ+TSEKVGNLAFLDVTGRIAQTLLNLAKQPDAMTHPDGMQIKITRQEIGQIVGCSRETVGRILKMLEDQNLISAHGKTIVVYGTR",
+            "sequence_from_db": "MVLGKPQTDPTLEWFLSHCHIHKYPSKSKLIHQGEKAETLYYIVKGSVAVLIKDEEGKEMILSYLNQGDFIGELGLFEEGQERSAWVRAKTACEVAEISYKKFRQLIQVNPDILMRLSAQMARRLQVTSEKVGNLAFLDVTGRIAQTLLNLAKQPDAMTHPDGMQIKITRQEIGQIVGCSRETVGRILKMLEDQNLISAHGKTIVVYGTR",
+            "sequence_from_broadstreet": "MVLGKPQTDPTLEWFLSHCHIHKYPSKSKLIHQGEKAETLYYIVKGSVAVLIKDEEGKEMILSYLNQGDFIGELGLFEEGQERSAWVRAKTACEVAEISYKKFRQLIQVNPDILMRLSAQMARRLQVTSEKVGNLAFLDVTGRIAQTLLNLAKQPDAMTHPDGMQIKITRQEIGQIVGCSRETVGRILKMLEDQNLISAHGKTIVVYGTR",
+            "dna_sequence_from_broadstreet": "ATGGTGCTTGGCAAACCGCAAACAGACCCGACTCTCGAATGGTTCTTGTCTCATTGCCACATTCATAAGTACCCATCCAAGAGCAAGCTTATTCACCAGGGTGAAAAAGCGGAAACGCTGTACTACATCGTTAAAGGCTCTGTGGCAGTGCTGATCAAAGACGAAGAGGGTAAAGAAATGATCCTCTCCTATCTGAATCAGGGTGATTTTATTGGCGAACTGGGCCTGTTTGAAGAGGGCCAGGAACGTAGCGCATGGGTACGTGCGAAAACCGCCTGTGAAGTGGCTGAAATTTCGTACAAAAAATTTCGCCAATTGATTCAGGTAAACCCGGACATTCTGATGCGTTTGTCTGCACAGATGGCGCGTCGTCTGCAAGTCACTTCAGAGAAAGTGGGCAACCTGGCGTTCCTCGACGTGACGGGCCGCATTGCACAGACTCTGCTGAATCTGGCAAAACAACCAGACGCTATGACTCACCCGGACGGTATGCAAATCAAAATTACCCGTCAGGAAATTGGTCAGATTGTCGGCTGTTCTCGTGAAACCGTGGGACGCATTCTGAAGATGCTGGAAGATCAGAACCTGATCTCCGCACACGGTAAAACCATCGTCGTTTACGGCACTCGTTAA",
+            "partial": "0",
+            "query_start": 2632193,
+            "query_end": 2632822,
+            "hit_start": 0,
+            "hit_end": 630,
+            "orf_dna_sequence": "ATGGTTCTCGGTAAGCCACAAACAGACCCGACTCTCGAATGGTTCCTGTCTCATTGCCATATCCATAAGTACCCATCCAAAAGTACGCTGATTCACCAGGGTGAAAAAGCCGAAACGCTGTACTACATCGTGAAAGGCTCCGTTGCGGTGCTGATCAAAGATGAGGAAGGCAAAGAGATGATCCTCTCCTATTTAAACCAGGGGGATTTCATCGGCGAGCTTGGACTATTTGAAGAAGGCCAAGAACGCAGTGCTTGGGTGAGAGCAAAAACGGCCTGTGAAGTGGCTGAAATTTCTTACAAAAAGTTCCGTCAACTGATTCAGGTTAATCCAGATATCTTGATGCGCCTCTCTTCACAGATGGCGAATCGCTTACAAATAACATCGGAGAAAGTGGGTAACCTTGCTTTCCTTGACGTTACTGGACGCATTGCACAAACACTGCTTAATCTGGCAAAACAACCTGATGCCATGACCCACCCAGATGGAATGCAGATCAAAATTACCCGCCAGGAAATTGGTCAAATAGTTGGCTGCTCCCGCGAAACTGTGGGGCGGATACTAAAAATGCTGGAAGATCAAAACTTGATCTCCGCACACGGTAAAACGATCGTCGTTTACGGCACCCGTTAA",
+            "orf_prot_sequence": "MVLGKPQTDPTLEWFLSHCHIHKYPSKSTLIHQGEKAETLYYIVKGSVAVLIKDEEGKEMILSYLNQGDFIGELGLFEEGQERSAWVRAKTACEVAEISYKKFRQLIQVNPDILMRLSSQMANRLQITSEKVGNLAFLDVTGRIAQTLLNLAKQPDAMTHPDGMQIKITRQEIGQIVGCSRETVGRILKMLEDQNLISAHGKTIVVYGTR",
+            "perc_identity": 98.1
+        }
+    },
+    "NZ_CP009973.1_3368 # 3800175 # 3800360 # 1 # ID=1_3368;partial=00;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=6bp;gc_cont=0.452": {
+        "gnl|BL_ORD_ID|2814|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 3800175,
+            "orf_end": 3800360,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "rsmA",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "3807",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "100",
+            "ARO_accession": "3005069",
+            "ARO_name": "rsmA",
+            "ARO_category": {
+                "36005": {
+                    "category_aro_accession": "0010004",
+                    "category_aro_cvterm_id": "36005",
+                    "category_aro_name": "resistance-nodulation-cell division (RND) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Resistance-nodulation-division (RND) proteins are found in both prokaryotic and eukaryotic cells and have diverse substrate specificities and physiological roles. However, there are relatively few RND transporters and they are secondary transporters, energized not by ATP binding/hydrolysis but by proton movement down the transmembrane electrochemical gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36327": {
+                    "category_aro_accession": "3000188",
+                    "category_aro_cvterm_id": "36327",
+                    "category_aro_name": "trimethoprim",
+                    "category_aro_description": "Trimethoprim is a synthetic 5-(3,4,5- trimethoxybenzyl) pyrimidine inhibitor of dihydrofolate reductase, inhibiting synthesis of tetrahydrofolic acid. Tetrahydrofolic acid is an essential precursor in the de novo synthesis of the DNA nucleotide thymidine. Trimethoprim is a bacteriostatic antibiotic mainly used in the prophylaxis and treatment of urinary tract infections in combination with sulfamethoxazole, a sulfonamide antibiotic.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36524": {
+                    "category_aro_accession": "3000385",
+                    "category_aro_cvterm_id": "36524",
+                    "category_aro_name": "chloramphenicol",
+                    "category_aro_description": "Chloramphenicol is a bacteriostatic antimicrobial originally derived from the bacterium Streptomyces venezuelae. It was the first antibiotic to be manufactured synthetically on a large scale. It functions by inhibiting peptidyl transferase activity of the bacterial ribosome, binding to A2451 and A2452 residues in the 23S rRNA of the 50S ribosomal subunit and preventing peptide bond formation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36310": {
+                    "category_aro_accession": "3000171",
+                    "category_aro_cvterm_id": "36310",
+                    "category_aro_name": "diaminopyrimidine antibiotic",
+                    "category_aro_description": "Diaminopyrimidines are a class of organic compounds containing a pyrimidine ring substituted by two amine groups.  They are inhibitors of dihydrofolate reductase, an enzyme critical for DNA synthesis.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36526": {
+                    "category_aro_accession": "3000387",
+                    "category_aro_cvterm_id": "36526",
+                    "category_aro_name": "phenicol antibiotic",
+                    "category_aro_description": "Phenicols are broad spectrum bacteriostatic antibiotics acting on bacterial protein synthesis. More specifically, the phenicols block peptide elongation by binding to the peptidyltansferase centre of the 70S ribosome.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36590": {
+                    "category_aro_accession": "3000451",
+                    "category_aro_cvterm_id": "36590",
+                    "category_aro_name": "protein(s) and two-component regulatory system modulating antibiotic efflux",
+                    "category_aro_description": "Protein(s) and two component regulatory systems that directly or indirectly change rates of antibiotic efflux.",
+                    "category_aro_class_name": "Efflux Regulator"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2.4e-23,
+            "bit_score": 102.1,
+            "max_identities": 52,
+            "cvterm_id": "36752",
+            "query": "MLILTRRVGETLMIGDEVTVTVLGVKGNQVRIGVNAPKEVSVHREEIYQRIQAEKSQ",
+            "match": "MLILTRRVGETLM+GD+VTVTVLGVKGNQVRIGVNAPKEV+VHREEIYQRIQ EK Q",
+            "sequence_from_db": "MLILTRRVGETLMVGDDVTVTVLGVKGNQVRIGVNAPKEVAVHREEIYQRIQKEKDQ",
+            "sequence_from_broadstreet": "MLILTRRVGETLMVGDDVTVTVLGVKGNQVRIGVNAPKEVAVHREEIYQRIQKEKDQEPNH",
+            "dna_sequence_from_broadstreet": "ATGCTGATTCTGACTCGTCGGGTCGGAGAGACCCTGATGGTAGGTGACGACGTCACCGTGACGGTACTGGGTGTCAAAGGGAACCAGGTGCGCATCGGCGTCAACGCGCCGAAGGAAGTCGCCGTACACCGGGAGGAAATTTACCAGCGCATCCAGAAAGAGAAAGATCAAGAGCCAAACCATTAA",
+            "partial": "0",
+            "query_start": 3800175,
+            "query_end": 3800345,
+            "hit_start": 0,
+            "hit_end": 171,
+            "orf_dna_sequence": "ATGCTTATTCTGACTCGTCGAGTTGGTGAAACACTCATGATTGGCGATGAGGTTACGGTTACTGTATTAGGGGTTAAAGGCAACCAGGTTCGAATTGGTGTAAATGCTCCGAAAGAGGTTTCTGTTCACCGTGAAGAAATCTACCAGCGCATCCAAGCAGAAAAGTCTCAACCGACGACTTACTGA",
+            "orf_prot_sequence": "MLILTRRVGETLMIGDEVTVTVLGVKGNQVRIGVNAPKEVSVHREEIYQRIQAEKSQPTTY",
+            "perc_identity": 91.23
+        }
+    },
+    "NZ_CP009973.1_3406 # 3843279 # 3844814 # -1 # ID=1_3406;partial=00;start_type=GTG;rbs_motif=GGAG;rbs_spacer=6bp;gc_cont=0.538": {
+        "gnl|BL_ORD_ID|2754|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "-",
+            "orf_start": 3843279,
+            "orf_end": 3844814,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Klebsiella pneumoniae KpnH",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "3299",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "700",
+            "ARO_accession": "3004597",
+            "ARO_name": "Klebsiella pneumoniae KpnH",
+            "ARO_category": {
+                "36003": {
+                    "category_aro_accession": "0010002",
+                    "category_aro_cvterm_id": "36003",
+                    "category_aro_name": "major facilitator superfamily (MFS) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Major facilitator superfamily (MFS) transporters and ABC transporters comprise the two largest and most functionally diverse of the transporter superfamilies. However, MFS transporters are distinct from ABC transporters in both their primary sequence and structure and in the mechanism of energy coupling. As secondary transporters they are, like RND and SMR transporters, energized by the electrochemical proton gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35925": {
+                    "category_aro_accession": "0000006",
+                    "category_aro_cvterm_id": "35925",
+                    "category_aro_name": "erythromycin",
+                    "category_aro_description": "Erythromycin is a macrolide antibiotic with a 14-carbon ring that has an antimicrobial spectrum similar to or slightly wider than that of penicillin, and is often used for people that have an allergy to penicillins. Erythromycin may possess bacteriocidal activity, particularly at higher concentrations by binding to the 50S subunit of the bacterial 70S rRNA complex, inhibiting peptidyl-tRNA translocation. Thus, protein synthesis and subsequently structure/function processes critical for life or replication are inhibited.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35933": {
+                    "category_aro_accession": "0000014",
+                    "category_aro_cvterm_id": "35933",
+                    "category_aro_name": "gentamicin C",
+                    "category_aro_description": "Gentamicin C is a mixture of gentamicin C1, gentamicin C1a, and gentamicin C2 (these differ in substituents at position C6'). Gentamicin works by binding to the bacterial 30S ribosomal subunit, causing misreading of mRNA and leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35954": {
+                    "category_aro_accession": "0000036",
+                    "category_aro_cvterm_id": "35954",
+                    "category_aro_name": "ciprofloxacin",
+                    "category_aro_description": "Ciprofloxacin is a bacteriocidal fluoroquinolone. It blocks bacterial DNA replication by binding to the toposiomerase II or IV-DNA complex (or cleavable complex), thereby causing double-stranded breaks in the bacterial chromosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35957": {
+                    "category_aro_accession": "0000039",
+                    "category_aro_cvterm_id": "35957",
+                    "category_aro_name": "spectinomycin",
+                    "category_aro_description": "Spectinomycin is an aminoglycoside antibiotic used to treat different types of bacterial infections. Spectinomycin works by binding to the bacterial 30S ribosomal subunit inhibiting translation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35958": {
+                    "category_aro_accession": "0000040",
+                    "category_aro_cvterm_id": "35958",
+                    "category_aro_name": "streptomycin",
+                    "category_aro_description": "Streptomycin is an aminoglycoside antibiotic used to treat different types of bacterial infections. Streptomycin works by binding to the bacterial 30S ribosomal subunit, causing misreading of mRNA and leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35969": {
+                    "category_aro_accession": "0000052",
+                    "category_aro_cvterm_id": "35969",
+                    "category_aro_name": "tobramycin",
+                    "category_aro_description": "Tobramycin is an aminoglycoside antibiotic used to treat different types of bacterial infections. Tobramycin works by binding to the bacterial 30S ribosomal subunit, causing misreading of mRNA and leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35977": {
+                    "category_aro_accession": "0000060",
+                    "category_aro_cvterm_id": "35977",
+                    "category_aro_name": "ceftazidime",
+                    "category_aro_description": "Ceftazidime is a third-generation cephalosporin antibiotic. Like other third-generation cephalosporins, it has broad spectrum activity against Gram-positive and Gram-negative bacteria. Unlike most third-generation agents, it is active against Pseudomonas aeruginosa, however it has weaker activity against Gram-positive microorganisms and is not used for such infections.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35987": {
+                    "category_aro_accession": "0000070",
+                    "category_aro_cvterm_id": "35987",
+                    "category_aro_name": "ertapenem",
+                    "category_aro_description": "Ertapenem is a carbapenem antibiotic and is highly resistant to beta-lactamases like other carbapenems. It inhibits bacterial cell wall synthesis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35995": {
+                    "category_aro_accession": "0000078",
+                    "category_aro_cvterm_id": "35995",
+                    "category_aro_name": "piperacillin",
+                    "category_aro_description": "Piperacillin is an acetylureidopenicillin and has an extended spectrum of targets relative to other beta-lactam antibiotics. It inhibits cell wall synthesis in bacteria, and is usually taken with the beta-lactamase inhibitor tazobactam to overcome penicillin-resistant bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36297": {
+                    "category_aro_accession": "3000158",
+                    "category_aro_cvterm_id": "36297",
+                    "category_aro_name": "azithromycin",
+                    "category_aro_description": "Azithromycin is a 15-membered macrolide and falls under the subclass of azalide. Like other macrolides, azithromycin binds bacterial ribosomes to inhibit protein synthesis. The nitrogen substitution at the C-9a position prevents its degradation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36309": {
+                    "category_aro_accession": "3000170",
+                    "category_aro_cvterm_id": "36309",
+                    "category_aro_name": "imipenem",
+                    "category_aro_description": "Imipenem is a broad-spectrum antibiotic and is usually taken with cilastatin, which prevents hydrolysis of imipenem by renal dehydropeptidase-I. It is resistant to hydrolysis by most other beta-lactamases. Notable exceptions are the KPC beta-lactamases and Ambler Class B enzymes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36593": {
+                    "category_aro_accession": "3000454",
+                    "category_aro_cvterm_id": "36593",
+                    "category_aro_name": "polymyxin B",
+                    "category_aro_description": "Polymyxin B is mixture of mostly polymyxins B1 and B2, mainly used for resistant gram-negative infections. They are polypeptides with cationic detergent action on cell membranes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36969": {
+                    "category_aro_accession": "3000625",
+                    "category_aro_cvterm_id": "36969",
+                    "category_aro_name": "polymyxin B1",
+                    "category_aro_description": "Polymyxin B1 is in the family of polymyxin lipopeptides with a 6-methyloctanoic acid acyl group. These antibiotics disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36970": {
+                    "category_aro_accession": "3000626",
+                    "category_aro_cvterm_id": "36970",
+                    "category_aro_name": "polymyxin B2",
+                    "category_aro_description": "Polymyxin B2 is in the family of polymyxin lipopeptides with a 6-methylheptanoic acid acyl group. These antibiotics disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36971": {
+                    "category_aro_accession": "3000627",
+                    "category_aro_cvterm_id": "36971",
+                    "category_aro_name": "polymyxin B3",
+                    "category_aro_description": "Polymyxin B3 is in the family of polymyxin lipopeptides with an octanoic acid acyl group. These antibiotics disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36972": {
+                    "category_aro_accession": "3000628",
+                    "category_aro_cvterm_id": "36972",
+                    "category_aro_name": "polymyxin B4",
+                    "category_aro_description": "Polymyxin B4 is in the family of polymyxin lipopeptides with a heptanoic acid acyl group. These antibiotics disrupt the cell membrane of Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37006": {
+                    "category_aro_accession": "3000662",
+                    "category_aro_cvterm_id": "37006",
+                    "category_aro_name": "norfloxacin",
+                    "category_aro_description": "Norfloxacin is a 6-fluoro, 7-piperazinyl quinolone with a wide range of activity against Gram-negative bacteria. It is inactive against most anaerobes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "40523": {
+                    "category_aro_accession": "3003832",
+                    "category_aro_cvterm_id": "40523",
+                    "category_aro_name": "ticarcillin",
+                    "category_aro_description": "Ticarcillin is a carboxypenicillin used for the treatment of Gram-negative bacteria, particularly P. aeruginosa. Ticarcillin's antibiotic properties arise from its ability to prevent cross-linking of peptidoglycan during cell wall synthesis, when the bacteria try to divide, causing cell death.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "46133": {
+                    "category_aro_accession": "3007382",
+                    "category_aro_cvterm_id": "46133",
+                    "category_aro_name": "gentamicin",
+                    "category_aro_description": "Gentamicin is a commonly used aminoglycoside antibiotic derived from members of the Micromonospora genus of bacteria. It acts by binding the 30S ribosomal subunit, thus inhibiting protein synthesis. Gentamicin is typically used to treat Gram-negative infections of the repiratory and urinary tract, as well as infections of the bone and soft tissue. It also exhibits considerable nephrotoxicity and ototoxicity. Gentamicin is administered as a mixture of gentamicin type C (which makes about around 80% of the complex) and types A, B, and X (distributed in the remaining 20% of the complex).",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35935": {
+                    "category_aro_accession": "0000016",
+                    "category_aro_cvterm_id": "35935",
+                    "category_aro_name": "aminoglycoside antibiotic",
+                    "category_aro_description": "Aminoglycosides are a group of antibiotics that are mostly effective against Gram-negative bacteria. These molecules consist of aminated sugars attached to a dibasic cyclitol. Aminoglycosides work by binding to the bacterial 30S ribosomal subunit (some work by binding to the 50S subunit), inhibiting the translocation of the peptidyl-tRNA from the A-site to the P-site and also causing misreading of mRNA, leaving the bacterium unable to synthesize proteins vital to its growth.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35939": {
+                    "category_aro_accession": "0000020",
+                    "category_aro_cvterm_id": "35939",
+                    "category_aro_name": "carbapenem",
+                    "category_aro_description": "Carbapenems are a class of beta-lactam antibiotics with a broad spectrum of antibacterial activity, and have a structure which renders them highly resistant to beta-lactamases. Carbapenem antibiotics are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36192": {
+                    "category_aro_accession": "3000053",
+                    "category_aro_cvterm_id": "36192",
+                    "category_aro_name": "peptide antibiotic",
+                    "category_aro_description": "Peptide antibiotics have a wide range of antibacterial mechanisms, depending on the amino acids that make up the antibiotic, although most act to disrupt the cell membrane in some manner. Subclasses of peptide antibiotics can include additional sidechains of other types, such as lipids in the case of the lipopeptide antibiotics.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2.1e-253,
+            "bit_score": 869.4,
+            "max_identities": 428,
+            "cvterm_id": "42596",
+            "query": "QKPLEGAPLAWMTVALSLATFMQVLDSTIANVAIPTIAGDLGSSNSQGTWVITSFGVANAISIPVTGWLAKRVGEVRLFLWSTGLFVLASWLCGMSNSLGMLIFFRVIQGLVAGPLIPLSQSLLLNNYPPAKRSMALALWSMTIVVAPIFGPILGGYISDNYHWGWIFFINIPIGLVVVLLAGSTLKGRETKTEIRPIDTIGLVLLVVGIGALQIMLDQGKELDWFNSTEIIVLTVVAVVAITFLIVWELTDDHPVIDLSLFKSRNFTIGCLCLSLAYMLYFGAIVLLPQLLQEVYGYTATWAGLASAPVGILPVLLSPLIGRFAHRIDMRQLVTFSFIMYAVCFYWRAYTFEPGMDFGASAWPQFFQGFAIACFFMPLTTITLSGLPPERMAAASSLSNFMRTLAGSIGTSITTTLWTQRESLHHAQLTEFVNPYNPNATQAYQELEKLGMSQQQASAYLAREITNQGLIISANEIFWLSAGVFLMLLALIWFARPPFTSGGGGGGAH",
+            "match": "QKPLEGA L  MT+ALSLATFMQVLDSTIANVAIPTIAG+LGSS SQGTWVITSFGVANAISIP+TGWLAKRVGEV+LFLWST  F +ASW CG+S+SL MLIFFRVIQG+VAGPLIPLSQSLLLNNYPPAKRS+ALALWSMT++VAPI GPILGGYISDNYHWGWIFFIN+PIG+ VVL+   TL+GRET+TE R ID +GL LLV+GIG+LQIMLD+GKELDWF+S EII+LTVVAVVAI FLIVWELTDD+P++DLSLFKSRNFTIGCLC+SLAYMLYFGAIVLLPQLLQEVYGYTATWAGLASAPVGI+PV+LSP+IGRFAH++DMR+LVTFSFIMYAVCFYWRAYTFEPGMDFGASAWPQF QGFA+ACFFMPLTTITLSGLPPER+AAASSLSNF RTLAGSIGTSITTT+WT RES+HHAQLTE VNP+NPNA   Y +LE LGM+QQQAS ++A++ITNQGLIISANEIFW+SAG+FL+LL L+WFA+PPF +GGGGGGAH",
+            "sequence_from_db": "QKPLEGAQLVIMTIALSLATFMQVLDSTIANVAIPTIAGNLGSSLSQGTWVITSFGVANAISIPLTGWLAKRVGEVKLFLWSTIAFAIASWACGVSSSLNMLIFFRVIQGIVAGPLIPLSQSLLLNNYPPAKRSIALALWSMTVIVAPICGPILGGYISDNYHWGWIFFINVPIGVAVVLMTLQTLRGRETRTERRRIDAVGLALLVIGIGSLQIMLDRGKELDWFSSQEIIILTVVAVVAICFLIVWELTDDNPIVDLSLFKSRNFTIGCLCISLAYMLYFGAIVLLPQLLQEVYGYTATWAGLASAPVGIIPVILSPIIGRFAHKLDMRRLVTFSFIMYAVCFYWRAYTFEPGMDFGASAWPQFIQGFAVACFFMPLTTITLSGLPPERLAAASSLSNFTRTLAGSIGTSITTTMWTNRESMHHAQLTESVNPFNPNAQAMYSQLEGLGMTQQQASGWIAQQITNQGLIISANEIFWMSAGIFLILLGLVWFAKPPFGAGGGGGGAH",
+            "sequence_from_broadstreet": "MQQQKPLEGAQLVIMTIALSLATFMQVLDSTIANVAIPTIAGNLGSSLSQGTWVITSFGVANAISIPLTGWLAKRVGEVKLFLWSTIAFAIASWACGVSSSLNMLIFFRVIQGIVAGPLIPLSQSLLLNNYPPAKRSIALALWSMTVIVAPICGPILGGYISDNYHWGWIFFINVPIGVAVVLMTLQTLRGRETRTERRRIDAVGLALLVIGIGSLQIMLDRGKELDWFSSQEIIILTVVAVVAICFLIVWELTDDNPIVDLSLFKSRNFTIGCLCISLAYMLYFGAIVLLPQLLQEVYGYTATWAGLASAPVGIIPVILSPIIGRFAHKLDMRRLVTFSFIMYAVCFYWRAYTFEPGMDFGASAWPQFIQGFAVACFFMPLTTITLSGLPPERLAAASSLSNFTRTLAGSIGTSITTTMWTNRESMHHAQLTESVNPFNPNAQAMYSQLEGLGMTQQQASGWIAQQITNQGLIISANEIFWMSAGIFLILLGLVWFAKPPFGAGGGGGGAH",
+            "dna_sequence_from_broadstreet": "ATGCAACAGCAAAAACCGCTGGAAGGCGCGCAACTGGTCATTATGACGATTGCGCTGTCACTGGCGACATTCATGCAGGTGCTGGACTCCACCATTGCTAACGTGGCGATCCCCACTATCGCCGGGAATCTGGGCTCATCGCTCAGCCAGGGAACGTGGGTAATCACTTCTTTCGGGGTGGCGAATGCCATCTCGATCCCGCTTACCGGCTGGCTGGCAAAGCGCGTCGGGGAAGTGAAACTGTTCCTTTGGTCCACCATCGCCTTTGCTATTGCGTCGTGGGCGTGTGGTGTCTCCAGCAGCCTGAATATGCTGATCTTCTTCCGCGTGATTCAGGGGATTGTCGCCGGGCCGTTGATCCCGCTTTCGCAAAGTCTATTGCTGAATAACTACCCGCCAGCCAAACGCTCGATCGCGCTGGCGTTGTGGTCGATGACGGTGATTGTCGCGCCAATTTGCGGCCCGATCCTCGGCGGTTATATCAGCGATAATTACCACTGGGGCTGGATATTCTTCATCAACGTGCCGATTGGCGTGGCGGTGGTGTTGATGACACTGCAAACTCTGCGCGGACGTGAAACCCGCACCGAACGGCGGCGGATTGATGCCGTGGGGCTGGCACTGCTGGTTATTGGTATCGGCAGCCTGCAGATTATGCTCGACCGCGGTAAAGAGCTGGACTGGTTTTCATCACAGGAAATTATCATCCTTACCGTGGTGGCGGTGGTGGCTATCTGCTTCCTGATTGTCTGGGAGCTGACCGACGATAACCCGATAGTCGATCTGTCGTTGTTTAAGTCGCGCAACTTCACCATCGGCTGCTTGTGTATCAGCCTCGCGTATATGCTCTACTTCGGCGCTATTGTTCTGCTGCCGCAGTTGTTGCAGGAGGTCTACGGTTACACGGCGACCTGGGCAGGTTTGGCCTCTGCGCCGGTAGGGATTATTCCGGTGATCCTGTCGCCGATTATCGGCCGCTTCGCGCATAAACTGGATATGCGGCGGCTGGTAACCTTCAGCTTTATTATGTATGCCGTCTGCTTCTACTGGCGTGCCTATACCTTTGAACCAGGTATGGATTTTGGCGCGTCGGCCTGGCCGCAGTTTATCCAGGGGTTTGCGGTGGCCTGCTTCTTTATGCCGCTGACCACCATTACGCTGTCTGGTTTGCCACCGGAACGACTGGCGGCGGCATCGAGCCTCTCTAACTTTACGCGAACGCTGGCGGGGTCTATCGGCACGTCGATAACCACGACCATGTGGACCAACCGCGAGTCGATGCACCATGCGCAGTTGACTGAGTCGGTAAACCCGTTCAACCCGAATGCCCAGGCGATGTACAGTCAACTGGAAGGGCTTGGGATGACGCAACAGCAGGCATCAGGCTGGATTGCCCAGCAGATCACCAATCAGGGGCTGATTATTTCCGCCAATGAGATCTTCTGGATGTCAGCCGGGATATTCCTCATCCTGCTGGGGCTGGTGTGGTTTGCTAAACCGCCATTTGGCGCAGGTGGCGGCGGAGGCGGTGCGCACTAA",
+            "partial": "0",
+            "query_start": 3843285,
+            "query_end": 3844811,
+            "hit_start": 9,
+            "hit_end": 1536,
+            "orf_dna_sequence": "GTGGCACAAAAACCGCTTGAAGGAGCACCACTCGCCTGGATGACGGTGGCGCTTTCATTAGCGACCTTCATGCAGGTGCTGGACTCCACCATTGCTAACGTGGCCATCCCAACGATTGCGGGTGATTTAGGCTCGTCCAACTCGCAAGGGACGTGGGTAATCACCTCATTCGGGGTGGCGAATGCAATTTCGATCCCCGTCACCGGCTGGCTAGCCAAGCGAGTCGGTGAAGTGCGGCTGTTCTTGTGGTCAACAGGCTTGTTTGTGCTGGCCTCATGGCTATGCGGCATGTCAAACAGCTTGGGGATGCTTATCTTCTTCCGCGTTATCCAGGGTCTGGTCGCTGGGCCATTGATCCCACTCTCGCAAAGCCTGCTACTCAACAACTATCCGCCGGCGAAGCGAAGTATGGCCCTGGCGTTGTGGTCGATGACGATTGTTGTCGCCCCGATATTTGGGCCGATCCTCGGCGGTTATATCAGTGATAACTATCACTGGGGCTGGATCTTCTTTATCAATATCCCTATCGGTCTGGTGGTGGTCCTGCTGGCGGGCAGTACCCTGAAAGGACGAGAGACCAAAACAGAGATCAGACCCATTGATACCATCGGGCTGGTGTTATTGGTGGTCGGTATTGGTGCCTTGCAAATCATGCTTGATCAAGGCAAGGAGCTGGATTGGTTTAACTCGACAGAAATTATCGTCCTGACCGTGGTGGCTGTCGTGGCTATTACCTTCCTGATTGTCTGGGAGTTAACCGACGATCATCCGGTGATTGATTTGTCGCTGTTTAAATCGCGCAACTTTACCATTGGCTGTTTGTGTCTCAGCCTGGCCTATATGTTGTACTTTGGTGCGATTGTCTTACTGCCCCAGCTATTGCAGGAGGTGTATGGCTATACCGCCACCTGGGCCGGATTGGCATCGGCACCGGTGGGTATACTGCCCGTGCTGCTGTCGCCATTAATTGGTCGTTTTGCCCATCGAATTGATATGCGCCAGTTAGTGACATTTAGCTTCATTATGTATGCGGTGTGTTTCTACTGGCGAGCATATACCTTCGAACCGGGGATGGATTTTGGTGCCTCAGCATGGCCGCAGTTCTTCCAAGGCTTCGCCATTGCCTGCTTCTTCATGCCATTGACCACGATTACGTTATCCGGTTTGCCACCGGAGCGAATGGCCGCGGCATCCAGTTTGTCTAACTTTATGCGAACACTGGCAGGGTCGATTGGTACCTCAATCACTACCACCCTCTGGACGCAAAGAGAGTCGTTGCACCACGCGCAGTTGACGGAGTTTGTTAACCCGTACAACCCGAACGCGACGCAGGCCTACCAGGAGTTGGAAAAACTGGGGATGAGCCAGCAACAGGCTTCGGCCTACCTGGCCCGTGAAATTACCAATCAGGGGCTGATTATCTCTGCGAATGAGATTTTCTGGCTCTCGGCGGGGGTGTTCCTAATGCTGCTGGCCCTGATCTGGTTTGCCCGCCCTCCTTTCACCTCCGGTGGTGGCGGCGGCGGTGCGCATTAA",
+            "orf_prot_sequence": "MAQKPLEGAPLAWMTVALSLATFMQVLDSTIANVAIPTIAGDLGSSNSQGTWVITSFGVANAISIPVTGWLAKRVGEVRLFLWSTGLFVLASWLCGMSNSLGMLIFFRVIQGLVAGPLIPLSQSLLLNNYPPAKRSMALALWSMTIVVAPIFGPILGGYISDNYHWGWIFFINIPIGLVVVLLAGSTLKGRETKTEIRPIDTIGLVLLVVGIGALQIMLDQGKELDWFNSTEIIVLTVVAVVAITFLIVWELTDDHPVIDLSLFKSRNFTIGCLCLSLAYMLYFGAIVLLPQLLQEVYGYTATWAGLASAPVGILPVLLSPLIGRFAHRIDMRQLVTFSFIMYAVCFYWRAYTFEPGMDFGASAWPQFFQGFAIACFFMPLTTITLSGLPPERMAAASSLSNFMRTLAGSIGTSITTTLWTQRESLHHAQLTEFVNPYNPNATQAYQELEKLGMSQQQASAYLAREITNQGLIISANEIFWLSAGVFLMLLALIWFARPPFTSGGGGGGAH",
+            "perc_identity": 84.09
+        }
+    },
+    "NZ_CP009973.1_3536 # 3989042 # 3992194 # -1 # ID=1_3536;partial=00;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=10bp;gc_cont=0.493": {
+        "gnl|BL_ORD_ID|133|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "-",
+            "orf_start": 3989042,
+            "orf_end": 3992194,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "adeF",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "153",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "750",
+            "ARO_accession": "3000777",
+            "ARO_name": "adeF",
+            "ARO_category": {
+                "36005": {
+                    "category_aro_accession": "0010004",
+                    "category_aro_cvterm_id": "36005",
+                    "category_aro_name": "resistance-nodulation-cell division (RND) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Resistance-nodulation-division (RND) proteins are found in both prokaryotic and eukaryotic cells and have diverse substrate specificities and physiological roles. However, there are relatively few RND transporters and they are secondary transporters, energized not by ATP binding/hydrolysis but by proton movement down the transmembrane electrochemical gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35968": {
+                    "category_aro_accession": "0000051",
+                    "category_aro_cvterm_id": "35968",
+                    "category_aro_name": "tetracycline",
+                    "category_aro_description": "Tetracycline is a broad-spectrum polyketide antibiotic produced by many Streptomyces. It works by inhibiting action of the prokaryotic 30S ribosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36189": {
+                    "category_aro_accession": "3000050",
+                    "category_aro_cvterm_id": "36189",
+                    "category_aro_name": "tetracycline antibiotic",
+                    "category_aro_description": "These antibiotics are derived from tetracycline, a polyketide antibiotic that inhibits the 30S subunit of bacterial ribosomes.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 8.1e-220,
+            "bit_score": 758.8,
+            "max_identities": 444,
+            "cvterm_id": "35535",
+            "query": "MAKFFIDRPIFAWVIAIIIMLAGALAIMKLPVAQYPTIAPPAITIAANYPGADATTVQNTVTQVIEQNMNGIDNLLYMSSSSDSSGNVQLTLTFNSGTDPDIAQVQVQNKLQLAMPLLPQEVQQQGVSVEKSSSSFLMVAGFISEDGTMQQEDIADYVGSNIKDPISRTPGVGDVQLFGS-QYAMRIWMDPHKLNNYKLTPVDVINAIKIQNNQVAAGQLGGTPPVPGQELNSSIIAQTRLTNAEEFSQILLKVNTDGSQVRLKDVAIVKLGAESYNIIARYNGKPAAGIGIKLATGANALNTSAAVKAELAKLQPFFPSGLTVVYPYDTTPFVKISINEVVKTLIEAIILVFLVMYLFLQNFRATLIPTIAVPVVLLGTFAILSAFGYSINTLTMFGMVLAIGLLVDDAIVVVENVERVMQEEGLPPKEATKKSMEQIQGALVGIALVLSAVFVPMAFFGGATGAIYRQFSITIVSAMVLSVLVALILTPALCATMLKPIKKGDHGPKTG------------FFGWFNNMFEKSTHHYTDSVANILRSTGRYLVIYLAIVIGMAV-LFMRLPSSFLPEEDQGVFLTMVQLPAGATQERTQKVLNHVTDYYLDKEKNVVNSV----FTVNGFGFSGQGQNTGLAFVSLKNWDERKGEQNKVPAIVSRASAAFSKIKDGMVFAFNLPAIVELGTATGFDFQLIDQGNLGHQQLTDARNQLLGMAAQHPDMLVGVRPNGLE-DTPQFKVEVDQEKAQALGVAISDINTTLGSAMGGSYVNDFIDRGRVKKVYVQADAPFRMLPDDIDKWYVRNNMGQMVSFATFSTAKWEYGSPRLERYNGLPSMEILGQAAPGKSTGEAMDLMQELAAK-LPSGVGYDWTGMSYQERLSGNQAPALYAISLIVVFLCLAALYESWSIPFSVMLVVPLGVVGALLAATLRGLENDVYFQVGLLTTIGLSAKNAILIVEFAKDLMDKEGKGLVESTLESVRMRLRPILMTSLAFILGVMPLVISSGAGSGAQNAVGTGVMGGMITATVLAIFFVPLFFVVVR",
+            "match": "++KFFIDRPIFA V++++I+LAG L++ +LP+++YP + PP++ + A YPGA+   +  TV   +E+++NG++++LYM S ++S GN+ +T+ F  G DPD AQ  VQN++  AMP LP++VQ+ GV+  KSS +  MV    S D       + +Y   N+KD ++R  GVG+V LFGS  YAMR+W+DP K+    LT  +++NAI+ QN QVAAG +G +P      L  S+ AQ RLT  +EF+ I+LK   DG+  RL DVA V+L A  Y + +  + K A  I I  A GANAL  S  V++ + +L   FPS +     YD T FV+ SI  VV TL+EAI LV +V+ LFLQ +RA++IP +AVPV ++GTFA++ AFGYSIN L++FGMVLAIG++VDDAIVVVENVER + E GL P+EAT ++M ++ G ++ IAL L AVFVP+AF  G TG  Y+QF++TI  + V+S   +L L+PAL A +LK      H  K              FF  FN +F +++  Y+  V+ ++      + +Y A+ +G+ V +   +P  F+P +D+   ++  QLP GA+ +RT+ V+  ++D  L K+  V ++V     ++NGF  S    + G+ FV+LK +DERK +     AI    +  +S I+D  +  F  P ++ LGT  GF  QL D+G LG+  L DA    +  A   P++  G   +  + + PQ  V++D+ KA+  GVA++D+  T+   +G  YVNDF   GRV +V  QADAPFR  P+DI +   RN+ GQMV  ++       YG   + RYNG  S +I G  APG S+ +A   ++ +AA+ LP G+ ++WT ++YQ+ L+GN    ++ IS+++VFL LAA YES ++P +V+L+VP+G++ AL    L   +N+++ Q+GL+  +GL+ KNAILIVEFA++L + +G    ++ +E+ R+RLRPILMTS+AFI+GV+PLV S+GAGS  ++A+G  V  GMI  T   +F  P F+V++R",
+            "sequence_from_db": "ISKFFIDRPIFAGVLSVLILLAGLLSVFQLPISEYPEVVPPSVVVRAQYPGANPKVIAETVASPLEESINGVEDMLYMQSQANSDGNLTITVNFKLGIDPDKAQQLVQNRVSQAMPRLPEDVQRLGVTTLKSSPTLTMVVHLTSPDNRYDMTYLRNYAVLNVKDRLARLQGVGEVGLFGSGDYAMRVWLDPQKVAQRNLTATEIVNAIREQNIQVAAGTIGASPS--NSPLQLSVNAQGRLTTEQEFADIILKTAPDGAVTRLGDVARVELAASQYGLRSLLDNKQAVAIPIFQAPGANALQVSDQVRSTMKELSKDFPSSIKYDIVYDPTQFVRASIKAVVHTLLEAITLVVVVVILFLQTWRASIIPLLAVPVSIIGTFALMLAFGYSINALSLFGMVLAIGIVVDDAIVVVENVERNI-EAGLNPREATYRAMREVSGPIIAIALTLVAVFVPLAFMTGLTGQFYKQFAMTIAISTVISAFNSLTLSPALAALLLK-----GHDAKPDALTRIMNRVFGRFFALFNRVFSRASDRYSQGVSRVISHKASAMGVYAAL-LGLTVGISYIVPGGFVPAQDKQYLISFAQLPNGASLDRTEAVIRKMSDTAL-KQPGVESAVAFPGLSINGFTNS---SSAGIVFVTLKPFDERKAKDLSANAIAGALNQKYSAIQDAYIAVFPPPPVMGLGTMGGFKLQLEDRGALGYSALNDAAQNFMKAAQSAPEL--GPMFSSYQINVPQLNVDLDRVKAKQQGVAVTDVFNTMQIYLGSQYVNDFNRFGRVYQVRAQADAPFRANPEDILQLKTRNSAGQMVPLSSLVNVTQTYGPEMVVRYNGYTSADINGGPAPGYSSSQAEAAVERIAAQTLPRGIKFEWTDLTYQKILAGNAGLWVFPISVLLVFLVLAAQYESLTLPLAVILIVPMGILAALTGVWLTAGDNNIFTQIGLMVLVGLACKNAILIVEFAREL-EMQGATAFKAAVEASRLRLRPILMTSIAFIMGVVPLVTSTGAGSEMRHAMGVAVFFGMIGVTFFGLFLTPAFYVLIR",
+            "sequence_from_broadstreet": "MNISKFFIDRPIFAGVLSVLILLAGLLSVFQLPISEYPEVVPPSVVVRAQYPGANPKVIAETVASPLEESINGVEDMLYMQSQANSDGNLTITVNFKLGIDPDKAQQLVQNRVSQAMPRLPEDVQRLGVTTLKSSPTLTMVVHLTSPDNRYDMTYLRNYAVLNVKDRLARLQGVGEVGLFGSGDYAMRVWLDPQKVAQRNLTATEIVNAIREQNIQVAAGTIGASPSNSPLQLSVNAQGRLTTEQEFADIILKTAPDGAVTRLGDVARVELAASQYGLRSLLDNKQAVAIPIFQAPGANALQVSDQVRSTMKELSKDFPSSIKYDIVYDPTQFVRASIKAVVHTLLEAITLVVVVVILFLQTWRASIIPLLAVPVSIIGTFALMLAFGYSINALSLFGMVLAIGIVVDDAIVVVENVERNIEAGLNPREATYRAMREVSGPIIAIALTLVAVFVPLAFMTGLTGQFYKQFAMTIAISTVISAFNSLTLSPALAALLLKGHDAKPDALTRIMNRVFGRFFALFNRVFSRASDRYSQGVSRVISHKASAMGVYAALLGLTVGISYIVPGGFVPAQDKQYLISFAQLPNGASLDRTEAVIRKMSDTALKQPGVESAVAFPGLSINGFTNSSSAGIVFVTLKPFDERKAKDLSANAIAGALNQKYSAIQDAYIAVFPPPPVMGLGTMGGFKLQLEDRGALGYSALNDAAQNFMKAAQSAPELGPMFSSYQINVPQLNVDLDRVKAKQQGVAVTDVFNTMQIYLGSQYVNDFNRFGRVYQVRAQADAPFRANPEDILQLKTRNSAGQMVPLSSLVNVTQTYGPEMVVRYNGYTSADINGGPAPGYSSSQAEAAVERIAAQTLPRGIKFEWTDLTYQKILAGNAGLWVFPISVLLVFLVLAAQYESLTLPLAVILIVPMGILAALTGVWLTAGDNNIFTQIGLMVLVGLACKNAILIVEFARELEMQGATAFKAAVEASRLRLRPILMTSIAFIMGVVPLVTSTGAGSEMRHAMGVAVFFGMIGVTFFGLFLTPAFYVLIRTLNSKHKLHSAAVHEAPLASPHDH",
+            "dna_sequence_from_broadstreet": "ATGAATATTTCTAAATTTTTTATTGATCGGCCGATCTTTGCTGGTGTGCTATCAGTCTTGATTTTACTCGCCGGTCTCCTTTCGGTATTTCAGTTACCGATTTCTGAATATCCCGAGGTTGTTCCACCATCTGTGGTGGTACGCGCCCAATATCCGGGTGCAAACCCAAAAGTGATTGCTGAAACGGTTGCATCTCCGCTCGAAGAGTCAATCAACGGCGTCGAAGACATGCTGTATATGCAATCTCAAGCAAACAGCGACGGTAACCTAACCATTACGGTGAACTTTAAGCTCGGTATCGACCCAGACAAAGCCCAACAATTGGTTCAAAACCGTGTGTCTCAGGCCATGCCCCGTTTACCTGAAGATGTACAGCGCTTAGGTGTAACCACACTAAAAAGCTCACCTACTTTAACTATGGTAGTGCATCTGACCTCACCAGATAATCGCTATGACATGACCTACTTACGTAACTATGCGGTGCTCAACGTGAAAGACCGTTTAGCGCGTTTACAAGGGGTTGGTGAAGTCGGATTATTTGGTTCTGGTGACTACGCGATGCGTGTATGGCTTGACCCGCAAAAAGTAGCGCAGCGTAACCTCACCGCGACCGAAATTGTGAATGCAATCCGTGAACAAAATATTCAGGTTGCAGCGGGTACAATCGGTGCATCACCAAGTAATTCACCTTTACAGCTTTCAGTCAATGCTCAAGGTCGTTTAACTACTGAACAAGAATTCGCAGATATCATTTTAAAAACTGCACCAGATGGCGCGGTTACCCGATTGGGTGATGTTGCTCGTGTCGAACTTGCAGCCTCTCAATATGGCTTACGTTCATTGCTTGATAATAAACAAGCGGTCGCGATTCCAATTTTCCAAGCACCGGGTGCGAATGCTTTACAAGTTTCCGATCAAGTGCGTAGCACAATGAAGGAGCTTTCAAAAGATTTCCCATCTTCAATTAAATACGACATTGTTTATGACCCGACTCAATTCGTACGTGCAAGTATTAAAGCGGTCGTTCATACCTTACTTGAAGCAATTACACTGGTTGTTGTGGTCGTTATTTTATTCTTGCAAACATGGCGTGCCTCAATCATTCCATTGCTTGCCGTACCGGTTTCAATTATTGGTACATTCGCGCTCATGCTCGCTTTTGGTTACTCAATCAATGCGCTATCACTGTTCGGAATGGTACTTGCCATCGGGATTGTCGTCGATGACGCGATTGTGGTCGTCGAAAATGTCGAGAGGAATATTGAAGCAGGCTTAAACCCAAGGGAGGCGACTTACCGTGCCATGCGAGAAGTCAGTGGACCGATTATTGCCATTGCTTTAACACTTGTTGCAGTATTCGTACCTCTTGCCTTTATGACAGGCTTAACAGGGCAATTCTATAAACAATTTGCCATGACCATTGCCATTTCAACGGTTATTTCGGCATTTAACTCGCTTACCCTATCTCCTGCTTTGGCAGCGCTGTTACTGAAAGGACATGATGCTAAACCGGATGCCTTAACACGTATTATGAATCGTGTATTCGGTCGTTTCTTTGCACTGTTTAACCGTGTGTTTTCACGTGCTTCAGACCGTTATAGTCAAGGCGTCAGCCGTGTCATTTCCCATAAAGCTTCGGCAATGGGTGTCTATGCAGCACTCTTAGGTTTAACCGTTGGTATTTCCTATATTGTTCCAGGTGGTTTCGTTCCTGCGCAGGACAAACAATATTTAATTAGCTTTGCGCAGCTACCAAACGGCGCATCATTAGATCGTACCGAAGCGGTCATTCGTAAAATGAGTGACACTGCACTTAAACAACCTGGTGTAGAAAGTGCAGTTGCCTTTCCTGGCCTATCAATTAACGGTTTCACCAATAGCTCAAGTGCCGGTATTGTCTTTGTGACTTTAAAGCCATTTGATGAACGTAAGGCAAAAGACTTATCTGCAAATGCAATTGCAGGTGCGCTCAACCAGAAATATTCAGCTATTCAAGATGCCTATATCGCGGTTTTCCCACCGCCACCAGTGATGGGCTTAGGTACTATGGGCGGCTTTAAACTACAACTTGAAGACCGAGGTGCCTTAGGCTATTCAGCCTTGAACGATGCTGCACAAAACTTTATGAAGGCAGCACAATCAGCCCCTGAACTGGGTCCAATGTTCTCAAGTTATCAAATTAACGTACCTCAACTCAACGTAGATCTGGACCGTGTAAAAGCTAAACAGCAAGGCGTTGCTGTGACAGATGTTTTCAATACTATGCAGATTTATTTAGGTTCTCAGTACGTTAACGACTTTAACCGCTTTGGACGTGTTTATCAGGTTCGTGCACAAGCCGATGCGCCTTTCCGTGCTAACCCTGAAGATATTTTGCAGCTTAAAACCCGTAATAGTGCCGGACAAATGGTGCCATTATCTTCATTGGTGAATGTAACTCAAACCTATGGTCCTGAAATGGTCGTTCGTTATAACGGTTACACATCAGCAGATATTAACGGTGGCCCTGCCCCAGGTTATTCATCTAGCCAAGCAGAAGCTGCGGTTGAACGTATTGCTGCACAAACTCTACCGCGTGGTATCAAGTTTGAATGGACAGATTTAACTTATCAAAAAATCTTGGCTGGTAATGCTGGACTTTGGGTATTCCCTATTAGCGTATTACTCGTGTTCTTAGTGTTAGCTGCTCAGTATGAAAGCTTAACCCTACCATTAGCAGTTATCTTAATTGTACCAATGGGAATCTTAGCGGCTCTGACAGGTGTCTGGTTGACAGCTGGAGATAACAACATCTTTACTCAAATCGGTCTAATGGTACTGGTCGGGCTAGCCTGTAAAAATGCCATCTTAATTGTCGAATTTGCGAGGGAACTTGAAATGCAAGGTGCGACTGCCTTTAAAGCAGCCGTTGAAGCAAGTCGTCTACGTTTACGCCCAATTTTAATGACCTCTATTGCATTTATTATGGGTGTAGTGCCACTGGTTACTTCAACTGGCGCAGGTTCTGAAATGCGACATGCGATGGGTGTTGCCGTATTCTTCGGTATGATCGGTGTAACATTCTTTGGTTTATTCCTCACCCCGGCCTTTTACGTTCTGATTCGTACCCTCAACAGCAAACATAAACTGCATTCTGCGGCAGTTCATGAAGCGCCGTTAGCTAGCCCACATGATCATTAA",
+            "partial": "0",
+            "query_start": 3989042,
+            "query_end": 3992128,
+            "hit_start": 6,
+            "hit_end": 3105,
+            "orf_dna_sequence": "ATGGCTAAGTTCTTTATAGATCGCCCTATTTTCGCTTGGGTCATCGCCATCATCATCATGTTGGCTGGTGCCCTTGCGATCATGAAATTACCAGTAGCGCAATATCCGACCATTGCGCCACCGGCAATTACAATTGCCGCCAACTATCCTGGCGCCGATGCGACAACTGTGCAGAATACAGTGACGCAGGTTATCGAACAGAACATGAACGGCATCGATAACCTGCTCTATATGTCTTCCAGCAGTGACTCCTCCGGTAACGTTCAGTTGACGTTGACCTTTAACTCTGGCACTGACCCGGATATTGCTCAGGTTCAGGTCCAGAATAAACTGCAATTAGCCATGCCACTGCTGCCACAAGAAGTGCAGCAACAGGGCGTGAGCGTTGAAAAGTCCAGTAGTAGCTTCCTGATGGTTGCCGGTTTTATTTCTGAAGACGGTACGATGCAGCAGGAAGATATCGCCGACTATGTGGGCTCTAACATTAAAGACCCCATCAGCCGTACACCAGGGGTAGGTGATGTTCAGTTGTTCGGTTCCCAATATGCCATGCGCATCTGGATGGACCCGCATAAGCTGAATAACTACAAGCTGACACCGGTCGATGTGATTAACGCGATAAAAATACAGAACAACCAGGTCGCTGCGGGTCAATTGGGGGGGACACCACCAGTACCAGGTCAGGAATTGAACTCATCAATCATTGCACAAACCCGTTTGACCAATGCAGAAGAGTTCAGCCAGATATTACTGAAAGTGAATACCGACGGGTCGCAAGTTCGCTTGAAAGATGTGGCTATCGTTAAACTGGGTGCTGAAAGCTATAACATCATTGCCCGTTATAACGGTAAACCGGCCGCAGGTATTGGTATTAAGCTGGCCACCGGGGCGAACGCCTTGAACACCTCTGCGGCAGTGAAAGCCGAGTTGGCCAAATTACAGCCATTCTTCCCATCGGGGTTGACCGTAGTTTATCCGTATGACACCACACCATTTGTTAAAATTTCGATTAACGAAGTGGTTAAGACACTGATCGAAGCCATTATCTTGGTGTTCTTGGTAATGTACCTGTTCCTACAGAACTTCCGCGCAACCTTGATCCCAACGATTGCGGTGCCGGTAGTGCTATTGGGTACCTTTGCTATTTTGTCCGCCTTTGGCTATTCGATAAACACCTTAACGATGTTCGGGATGGTGCTGGCGATAGGGCTATTGGTCGATGACGCCATTGTGGTGGTGGAAAACGTCGAACGCGTGATGCAAGAGGAGGGCTTACCACCGAAAGAAGCAACCAAAAAATCCATGGAGCAGATCCAGGGGGCATTGGTTGGGATCGCGTTGGTATTGTCTGCGGTATTTGTTCCGATGGCTTTCTTCGGTGGCGCAACTGGGGCTATTTACCGTCAGTTCTCCATTACTATCGTTTCGGCCATGGTGCTTTCGGTTCTGGTGGCATTAATTCTGACACCAGCACTGTGTGCGACCATGCTAAAACCGATCAAGAAAGGCGATCATGGTCCAAAAACTGGCTTCTTTGGCTGGTTTAACAACATGTTCGAAAAGAGTACACACCACTATACCGACAGTGTCGCCAATATTTTGCGCAGCACAGGCCGTTATCTGGTTATCTATCTGGCTATTGTGATTGGTATGGCGGTGCTTTTCATGCGTCTACCGTCTTCATTCCTGCCAGAAGAAGATCAGGGGGTGTTCCTAACCATGGTGCAGTTGCCTGCGGGTGCTACGCAAGAACGTACCCAGAAAGTACTGAACCATGTGACGGATTACTATCTCGACAAAGAAAAAAACGTGGTTAACTCCGTGTTCACCGTTAACGGCTTTGGTTTCAGTGGTCAAGGTCAGAACACCGGTTTGGCATTCGTGAGTCTGAAGAATTGGGATGAGCGTAAAGGCGAGCAAAATAAAGTTCCAGCCATTGTCAGCCGCGCCTCTGCTGCATTCTCGAAAATTAAAGACGGTATGGTGTTCGCCTTTAACTTACCCGCCATTGTGGAGTTAGGTACGGCTACCGGTTTCGACTTCCAGTTAATTGATCAGGGTAACCTGGGGCACCAACAATTAACGGATGCACGTAACCAACTGTTGGGTATGGCAGCGCAACATCCAGATATGCTGGTTGGCGTGCGCCCTAATGGGCTGGAAGATACACCACAGTTTAAAGTGGAAGTTGATCAGGAGAAAGCTCAAGCCTTGGGCGTTGCTATTTCTGACATCAATACCACGCTGGGTTCAGCCATGGGCGGCAGCTATGTAAACGACTTTATCGACCGAGGTCGTGTGAAGAAAGTTTATGTACAAGCCGATGCACCATTCCGTATGTTGCCGGATGATATCGATAAGTGGTATGTCCGTAATAATATGGGTCAGATGGTGTCATTTGCGACCTTCTCCACCGCGAAATGGGAATATGGCTCACCACGGCTCGAGCGTTATAATGGGTTGCCATCAATGGAGATTCTGGGTCAGGCTGCACCGGGTAAGAGTACCGGCGAAGCCATGGATCTGATGCAAGAGCTGGCAGCTAAATTACCAAGTGGCGTAGGCTATGATTGGACCGGAATGTCCTATCAGGAACGTCTATCGGGTAATCAGGCCCCAGCACTGTATGCCATTTCATTGATTGTGGTCTTCTTGTGCTTGGCCGCTCTGTATGAAAGTTGGTCAATTCCATTCTCCGTTATGCTCGTGGTACCGCTCGGGGTTGTTGGTGCATTACTGGCAGCCACACTGCGCGGGTTGGAAAACGACGTTTACTTCCAGGTAGGCTTGCTGACCACCATTGGGCTATCGGCCAAGAACGCCATCTTGATTGTTGAGTTTGCCAAAGACTTGATGGATAAAGAAGGCAAGGGCTTGGTGGAATCAACATTGGAATCGGTGCGTATGCGTCTGCGCCCAATATTGATGACCTCACTGGCCTTTATCCTTGGGGTAATGCCACTGGTTATCAGTAGTGGTGCCGGTTCTGGTGCACAGAACGCGGTAGGTACCGGCGTAATGGGGGGGATGATCACTGCGACCGTACTGGCTATCTTCTTTGTTCCGCTATTCTTCGTTGTGGTTCGTCGCCGCTTCAGCAGAAAGACTGATGATATTGAACATAGTCATCCAGTTAACACGCCGGTGAAATAA",
+            "orf_prot_sequence": "MAKFFIDRPIFAWVIAIIIMLAGALAIMKLPVAQYPTIAPPAITIAANYPGADATTVQNTVTQVIEQNMNGIDNLLYMSSSSDSSGNVQLTLTFNSGTDPDIAQVQVQNKLQLAMPLLPQEVQQQGVSVEKSSSSFLMVAGFISEDGTMQQEDIADYVGSNIKDPISRTPGVGDVQLFGSQYAMRIWMDPHKLNNYKLTPVDVINAIKIQNNQVAAGQLGGTPPVPGQELNSSIIAQTRLTNAEEFSQILLKVNTDGSQVRLKDVAIVKLGAESYNIIARYNGKPAAGIGIKLATGANALNTSAAVKAELAKLQPFFPSGLTVVYPYDTTPFVKISINEVVKTLIEAIILVFLVMYLFLQNFRATLIPTIAVPVVLLGTFAILSAFGYSINTLTMFGMVLAIGLLVDDAIVVVENVERVMQEEGLPPKEATKKSMEQIQGALVGIALVLSAVFVPMAFFGGATGAIYRQFSITIVSAMVLSVLVALILTPALCATMLKPIKKGDHGPKTGFFGWFNNMFEKSTHHYTDSVANILRSTGRYLVIYLAIVIGMAVLFMRLPSSFLPEEDQGVFLTMVQLPAGATQERTQKVLNHVTDYYLDKEKNVVNSVFTVNGFGFSGQGQNTGLAFVSLKNWDERKGEQNKVPAIVSRASAAFSKIKDGMVFAFNLPAIVELGTATGFDFQLIDQGNLGHQQLTDARNQLLGMAAQHPDMLVGVRPNGLEDTPQFKVEVDQEKAQALGVAISDINTTLGSAMGGSYVNDFIDRGRVKKVYVQADAPFRMLPDDIDKWYVRNNMGQMVSFATFSTAKWEYGSPRLERYNGLPSMEILGQAAPGKSTGEAMDLMQELAAKLPSGVGYDWTGMSYQERLSGNQAPALYAISLIVVFLCLAALYESWSIPFSVMLVVPLGVVGALLAATLRGLENDVYFQVGLLTTIGLSAKNAILIVEFAKDLMDKEGKGLVESTLESVRMRLRPILMTSLAFILGVMPLVISSGAGSGAQNAVGTGVMGGMITATVLAIFFVPLFFVVVRRRFSRKTDDIEHSHPVNTPVK",
+            "perc_identity": 42.33
+        }
+    },
+    "NZ_CP009973.1_3625 # 4084757 # 4087888 # -1 # ID=1_3625;partial=00;start_type=ATG;rbs_motif=AGG;rbs_spacer=10bp;gc_cont=0.512": {
+        "gnl|BL_ORD_ID|133|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "-",
+            "orf_start": 4084757,
+            "orf_end": 4087888,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "adeF",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "153",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "750",
+            "ARO_accession": "3000777",
+            "ARO_name": "adeF",
+            "ARO_category": {
+                "36005": {
+                    "category_aro_accession": "0010004",
+                    "category_aro_cvterm_id": "36005",
+                    "category_aro_name": "resistance-nodulation-cell division (RND) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Resistance-nodulation-division (RND) proteins are found in both prokaryotic and eukaryotic cells and have diverse substrate specificities and physiological roles. However, there are relatively few RND transporters and they are secondary transporters, energized not by ATP binding/hydrolysis but by proton movement down the transmembrane electrochemical gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35968": {
+                    "category_aro_accession": "0000051",
+                    "category_aro_cvterm_id": "35968",
+                    "category_aro_name": "tetracycline",
+                    "category_aro_description": "Tetracycline is a broad-spectrum polyketide antibiotic produced by many Streptomyces. It works by inhibiting action of the prokaryotic 30S ribosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36189": {
+                    "category_aro_accession": "3000050",
+                    "category_aro_cvterm_id": "36189",
+                    "category_aro_name": "tetracycline antibiotic",
+                    "category_aro_description": "These antibiotics are derived from tetracycline, a polyketide antibiotic that inhibits the 30S subunit of bacterial ribosomes.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2e-218,
+            "bit_score": 754.2,
+            "max_identities": 436,
+            "cvterm_id": "35535",
+            "query": "MANFFIDRPIFAWVLAIILCLTGALAISTLPVEQYPNLAPPNVRISASYPGASAQTLENTVTQVIEQSMTGLDNLLYMSSQSSNSGSASVTLTFQAGTNPNEAMQQVQNQLQSAIKRLPQDVQQQGVSVSKSGDNTLMMVAFVSTDGSMDKQDISDYVASNLQDPLSRIEGVGSVDAFGS-QYAMRIWLDPNKLTNYQLTTSDIVSAIQSQNTQVAVGQLGGTPAVDNQALNATINAQSQLQTPEEFREITLRVNQDGSLVTLGDVAKIELGSEKYDYLSRFNGQAASGMGIKLASGANELQTDKRVKARLAELAPFFPHGLEAKIAYETTPFVQASIKDVVKTLLEAILLVFLVMYLFLQNFRATLIPTVAVPVVLLGTFAVLSAFGFSINTLTMFAIVLAIGLLVDDAIVVVENVERVMSEEGLDPREATRKSMGQIQGALIGIALVLSAVFIPMAFFGGTTGAIYRQFSITIVSAMVLSVLVALILTPAMCATLLKPIAPGHHHAKRG------------FFGWFNRMFDRNSHRYERGVARVLHHSLRYMLLYLLLLGGLALLFLKLPTSFLPLEDRGVFMAQVQLPVGSTQQQTLKVVEKVENYFLTEEKNNVLSVFATVGSGPGGNGQNVARLFIRLADWDQRTASTDSSFAIIERATKELSKIVEAKVSVSSPPAISGLGGSSGFDMELQDHGGHGHDKLMVARNQLLQMASQEPALTRVRHNGLDDSPQLQIDIDQRKAQALGVSLNDINSTLKTAWGSTYVNDFVDRGRVKKVYVQSEATARMLPEDVNKWYVRNKNGGMVPFSAFSTTRWEYGSPRLERYNGYSALEIVGEAASGVSTGTAMDVMEKLVSQ-LPNGFGLEWTGMSYQERLSGSQAPALYAISLLVVFLCLAALYESWSIPFSVMLVVPLGVIGAVAATWMRGLENDVYFQVGLLTIIGLSAKNAILIVEFANELNNRGKDLVEATLEASRQRLRPILMTSLAFIFGVLPMAISQGAGSGSQHAVGTGVMGGMISATVLAIFFVPLFFVLVR",
+            "match": "++ FFIDRPIFA VL++++ L G L++  LP+ +YP + PP+V + A YPGA+ + +  TV   +E+S+ G++++LYM SQ+++ G+ ++T+ F+ G +P++A Q VQN++  A+ RLP+DVQ+ GV+  KS     M+V   S D   D   + +Y   N++D L+R++GVG V  FGS  YAMR+WLDP K+    LT ++IV+AI+ QN QVA G +G +P+  N  L  ++NAQ +L T +EF +I L+   DG++  LGDVA++EL + +Y   S  + + A  + I  A GAN LQ   +V++ + EL+  FP  ++  I Y+ T FV+ASIK VV TLLEAI LV +V+ LFLQ +RA++IP +AVPV ++GTFA++ AFG+SIN L++F +VLAIG++VDDAIVVVENVER + E GL+PREAT ++M ++ G +I IAL L AVF+P+AF  G TG  Y+QF++TI  + V+S   +L L+PA+ A LLK      H AK              FF  FNR+F R S RY +GV+RV+ H    M +Y  LLG    +   +P  F+P +D+   ++  QLP G++  +T  V+ K+ +  L +        F  +      N  +   +F+ L  +D+R A   S+ AI     ++ S I +A ++V  PP + GLG   GF ++L+D G  G+  L  A    ++ A   P L  +  +   + PQL +D+D+ KA+  GV++ D+ +T++   GS YVNDF   GRV +V  Q++A  R  PED+ +   RN  G MVP S+       YG   + RYNGY++ +I G  A G S+  A   +E++ +Q LP G   EWT ++YQ+ L+G+    ++ IS+L+VFL LAA YES ++P +V+L+VP+G++ A+   W+   +N+++ Q+GL+ ++GL+ KNAILIVEFA EL  +G    +A +EASR RLRPILMTS+AFI GV+P+  S GAGS  +HA+G  V  GMI  T   +F  P F+VL+R",
+            "sequence_from_db": "ISKFFIDRPIFAGVLSVLILLAGLLSVFQLPISEYPEVVPPSVVVRAQYPGANPKVIAETVASPLEESINGVEDMLYMQSQANSDGNLTITVNFKLGIDPDKAQQLVQNRVSQAMPRLPEDVQRLGVTTLKSSPTLTMVVHLTSPDNRYDMTYLRNYAVLNVKDRLARLQGVGEVGLFGSGDYAMRVWLDPQKVAQRNLTATEIVNAIREQNIQVAAGTIGASPS--NSPLQLSVNAQGRLTTEQEFADIILKTAPDGAVTRLGDVARVELAASQYGLRSLLDNKQAVAIPIFQAPGANALQVSDQVRSTMKELSKDFPSSIKYDIVYDPTQFVRASIKAVVHTLLEAITLVVVVVILFLQTWRASIIPLLAVPVSIIGTFALMLAFGYSINALSLFGMVLAIGIVVDDAIVVVENVERNI-EAGLNPREATYRAMREVSGPIIAIALTLVAVFVPLAFMTGLTGQFYKQFAMTIAISTVISAFNSLTLSPALAALLLKG-----HDAKPDALTRIMNRVFGRFFALFNRVFSRASDRYSQGVSRVISHKASAMGVYAALLGLTVGISYIVPGGFVPAQDKQYLISFAQLPNGASLDRTEAVIRKMSDTALKQPGVESAVAFPGLSINGFTNSSSAGIVFVTLKPFDERKAKDLSANAIAGALNQKYSAIQDAYIAVFPPPPVMGLGTMGGFKLQLEDRGALGYSALNDAAQNFMKAAQSAPELGPMFSSYQINVPQLNVDLDRVKAKQQGVAVTDVFNTMQIYLGSQYVNDFNRFGRVYQVRAQADAPFRANPEDILQLKTRNSAGQMVPLSSLVNVTQTYGPEMVVRYNGYTSADINGGPAPGYSSSQAEAAVERIAAQTLPRGIKFEWTDLTYQKILAGNAGLWVFPISVLLVFLVLAAQYESLTLPLAVILIVPMGILAALTGVWLTAGDNNIFTQIGLMVLVGLACKNAILIVEFARELEMQGATAFKAAVEASRLRLRPILMTSIAFIMGVVPLVTSTGAGSEMRHAMGVAVFFGMIGVTFFGLFLTPAFYVLIR",
+            "sequence_from_broadstreet": "MNISKFFIDRPIFAGVLSVLILLAGLLSVFQLPISEYPEVVPPSVVVRAQYPGANPKVIAETVASPLEESINGVEDMLYMQSQANSDGNLTITVNFKLGIDPDKAQQLVQNRVSQAMPRLPEDVQRLGVTTLKSSPTLTMVVHLTSPDNRYDMTYLRNYAVLNVKDRLARLQGVGEVGLFGSGDYAMRVWLDPQKVAQRNLTATEIVNAIREQNIQVAAGTIGASPSNSPLQLSVNAQGRLTTEQEFADIILKTAPDGAVTRLGDVARVELAASQYGLRSLLDNKQAVAIPIFQAPGANALQVSDQVRSTMKELSKDFPSSIKYDIVYDPTQFVRASIKAVVHTLLEAITLVVVVVILFLQTWRASIIPLLAVPVSIIGTFALMLAFGYSINALSLFGMVLAIGIVVDDAIVVVENVERNIEAGLNPREATYRAMREVSGPIIAIALTLVAVFVPLAFMTGLTGQFYKQFAMTIAISTVISAFNSLTLSPALAALLLKGHDAKPDALTRIMNRVFGRFFALFNRVFSRASDRYSQGVSRVISHKASAMGVYAALLGLTVGISYIVPGGFVPAQDKQYLISFAQLPNGASLDRTEAVIRKMSDTALKQPGVESAVAFPGLSINGFTNSSSAGIVFVTLKPFDERKAKDLSANAIAGALNQKYSAIQDAYIAVFPPPPVMGLGTMGGFKLQLEDRGALGYSALNDAAQNFMKAAQSAPELGPMFSSYQINVPQLNVDLDRVKAKQQGVAVTDVFNTMQIYLGSQYVNDFNRFGRVYQVRAQADAPFRANPEDILQLKTRNSAGQMVPLSSLVNVTQTYGPEMVVRYNGYTSADINGGPAPGYSSSQAEAAVERIAAQTLPRGIKFEWTDLTYQKILAGNAGLWVFPISVLLVFLVLAAQYESLTLPLAVILIVPMGILAALTGVWLTAGDNNIFTQIGLMVLVGLACKNAILIVEFARELEMQGATAFKAAVEASRLRLRPILMTSIAFIMGVVPLVTSTGAGSEMRHAMGVAVFFGMIGVTFFGLFLTPAFYVLIRTLNSKHKLHSAAVHEAPLASPHDH",
+            "dna_sequence_from_broadstreet": "ATGAATATTTCTAAATTTTTTATTGATCGGCCGATCTTTGCTGGTGTGCTATCAGTCTTGATTTTACTCGCCGGTCTCCTTTCGGTATTTCAGTTACCGATTTCTGAATATCCCGAGGTTGTTCCACCATCTGTGGTGGTACGCGCCCAATATCCGGGTGCAAACCCAAAAGTGATTGCTGAAACGGTTGCATCTCCGCTCGAAGAGTCAATCAACGGCGTCGAAGACATGCTGTATATGCAATCTCAAGCAAACAGCGACGGTAACCTAACCATTACGGTGAACTTTAAGCTCGGTATCGACCCAGACAAAGCCCAACAATTGGTTCAAAACCGTGTGTCTCAGGCCATGCCCCGTTTACCTGAAGATGTACAGCGCTTAGGTGTAACCACACTAAAAAGCTCACCTACTTTAACTATGGTAGTGCATCTGACCTCACCAGATAATCGCTATGACATGACCTACTTACGTAACTATGCGGTGCTCAACGTGAAAGACCGTTTAGCGCGTTTACAAGGGGTTGGTGAAGTCGGATTATTTGGTTCTGGTGACTACGCGATGCGTGTATGGCTTGACCCGCAAAAAGTAGCGCAGCGTAACCTCACCGCGACCGAAATTGTGAATGCAATCCGTGAACAAAATATTCAGGTTGCAGCGGGTACAATCGGTGCATCACCAAGTAATTCACCTTTACAGCTTTCAGTCAATGCTCAAGGTCGTTTAACTACTGAACAAGAATTCGCAGATATCATTTTAAAAACTGCACCAGATGGCGCGGTTACCCGATTGGGTGATGTTGCTCGTGTCGAACTTGCAGCCTCTCAATATGGCTTACGTTCATTGCTTGATAATAAACAAGCGGTCGCGATTCCAATTTTCCAAGCACCGGGTGCGAATGCTTTACAAGTTTCCGATCAAGTGCGTAGCACAATGAAGGAGCTTTCAAAAGATTTCCCATCTTCAATTAAATACGACATTGTTTATGACCCGACTCAATTCGTACGTGCAAGTATTAAAGCGGTCGTTCATACCTTACTTGAAGCAATTACACTGGTTGTTGTGGTCGTTATTTTATTCTTGCAAACATGGCGTGCCTCAATCATTCCATTGCTTGCCGTACCGGTTTCAATTATTGGTACATTCGCGCTCATGCTCGCTTTTGGTTACTCAATCAATGCGCTATCACTGTTCGGAATGGTACTTGCCATCGGGATTGTCGTCGATGACGCGATTGTGGTCGTCGAAAATGTCGAGAGGAATATTGAAGCAGGCTTAAACCCAAGGGAGGCGACTTACCGTGCCATGCGAGAAGTCAGTGGACCGATTATTGCCATTGCTTTAACACTTGTTGCAGTATTCGTACCTCTTGCCTTTATGACAGGCTTAACAGGGCAATTCTATAAACAATTTGCCATGACCATTGCCATTTCAACGGTTATTTCGGCATTTAACTCGCTTACCCTATCTCCTGCTTTGGCAGCGCTGTTACTGAAAGGACATGATGCTAAACCGGATGCCTTAACACGTATTATGAATCGTGTATTCGGTCGTTTCTTTGCACTGTTTAACCGTGTGTTTTCACGTGCTTCAGACCGTTATAGTCAAGGCGTCAGCCGTGTCATTTCCCATAAAGCTTCGGCAATGGGTGTCTATGCAGCACTCTTAGGTTTAACCGTTGGTATTTCCTATATTGTTCCAGGTGGTTTCGTTCCTGCGCAGGACAAACAATATTTAATTAGCTTTGCGCAGCTACCAAACGGCGCATCATTAGATCGTACCGAAGCGGTCATTCGTAAAATGAGTGACACTGCACTTAAACAACCTGGTGTAGAAAGTGCAGTTGCCTTTCCTGGCCTATCAATTAACGGTTTCACCAATAGCTCAAGTGCCGGTATTGTCTTTGTGACTTTAAAGCCATTTGATGAACGTAAGGCAAAAGACTTATCTGCAAATGCAATTGCAGGTGCGCTCAACCAGAAATATTCAGCTATTCAAGATGCCTATATCGCGGTTTTCCCACCGCCACCAGTGATGGGCTTAGGTACTATGGGCGGCTTTAAACTACAACTTGAAGACCGAGGTGCCTTAGGCTATTCAGCCTTGAACGATGCTGCACAAAACTTTATGAAGGCAGCACAATCAGCCCCTGAACTGGGTCCAATGTTCTCAAGTTATCAAATTAACGTACCTCAACTCAACGTAGATCTGGACCGTGTAAAAGCTAAACAGCAAGGCGTTGCTGTGACAGATGTTTTCAATACTATGCAGATTTATTTAGGTTCTCAGTACGTTAACGACTTTAACCGCTTTGGACGTGTTTATCAGGTTCGTGCACAAGCCGATGCGCCTTTCCGTGCTAACCCTGAAGATATTTTGCAGCTTAAAACCCGTAATAGTGCCGGACAAATGGTGCCATTATCTTCATTGGTGAATGTAACTCAAACCTATGGTCCTGAAATGGTCGTTCGTTATAACGGTTACACATCAGCAGATATTAACGGTGGCCCTGCCCCAGGTTATTCATCTAGCCAAGCAGAAGCTGCGGTTGAACGTATTGCTGCACAAACTCTACCGCGTGGTATCAAGTTTGAATGGACAGATTTAACTTATCAAAAAATCTTGGCTGGTAATGCTGGACTTTGGGTATTCCCTATTAGCGTATTACTCGTGTTCTTAGTGTTAGCTGCTCAGTATGAAAGCTTAACCCTACCATTAGCAGTTATCTTAATTGTACCAATGGGAATCTTAGCGGCTCTGACAGGTGTCTGGTTGACAGCTGGAGATAACAACATCTTTACTCAAATCGGTCTAATGGTACTGGTCGGGCTAGCCTGTAAAAATGCCATCTTAATTGTCGAATTTGCGAGGGAACTTGAAATGCAAGGTGCGACTGCCTTTAAAGCAGCCGTTGAAGCAAGTCGTCTACGTTTACGCCCAATTTTAATGACCTCTATTGCATTTATTATGGGTGTAGTGCCACTGGTTACTTCAACTGGCGCAGGTTCTGAAATGCGACATGCGATGGGTGTTGCCGTATTCTTCGGTATGATCGGTGTAACATTCTTTGGTTTATTCCTCACCCCGGCCTTTTACGTTCTGATTCGTACCCTCAACAGCAAACATAAACTGCATTCTGCGGCAGTTCATGAAGCGCCGTTAGCTAGCCCACATGATCATTAA",
+            "partial": "0",
+            "query_start": 4084757,
+            "query_end": 4087837,
+            "hit_start": 6,
+            "hit_end": 3105,
+            "orf_dna_sequence": "ATGGCAAATTTTTTCATCGACCGCCCGATTTTTGCCTGGGTATTGGCGATAATTTTGTGTCTCACCGGCGCATTGGCAATCTCGACACTCCCTGTCGAACAATACCCGAATTTGGCCCCCCCGAATGTACGTATCAGCGCCAGCTACCCCGGAGCCTCTGCTCAAACACTGGAAAATACCGTTACCCAAGTGATTGAACAAAGCATGACCGGCCTGGATAACCTGTTGTATATGTCATCACAAAGCAGCAATTCAGGTAGCGCCAGTGTCACGCTCACGTTTCAGGCGGGTACTAACCCTAACGAAGCGATGCAGCAGGTACAGAATCAACTGCAATCAGCCATCAAGAGGCTGCCCCAAGACGTACAACAACAAGGGGTTTCCGTTTCAAAATCGGGTGATAACACCTTGATGATGGTGGCGTTTGTCTCCACTGACGGCAGTATGGATAAACAAGATATCTCCGATTATGTCGCCAGTAATCTGCAAGACCCACTCAGCAGAATTGAAGGGGTCGGCAGCGTCGATGCCTTTGGTTCACAATATGCGATGCGTATTTGGCTCGATCCGAATAAACTTACTAACTATCAGCTGACAACGAGTGATATTGTCAGTGCGATTCAATCCCAGAATACTCAGGTCGCCGTAGGTCAATTGGGCGGAACCCCCGCCGTTGATAATCAGGCATTGAACGCGACCATCAACGCCCAATCCCAGCTACAAACACCCGAAGAGTTTCGGGAAATTACGCTACGGGTCAATCAGGACGGTTCACTGGTCACCCTGGGCGATGTCGCAAAAATAGAGCTGGGTTCCGAGAAGTACGATTATCTCAGCCGCTTCAACGGCCAAGCCGCCTCAGGTATGGGGATTAAACTGGCTTCCGGGGCCAATGAATTACAAACCGATAAACGGGTCAAAGCCCGGCTTGCCGAATTGGCACCGTTCTTCCCTCACGGTTTAGAAGCCAAAATCGCCTACGAAACCACACCGTTTGTACAAGCGTCCATTAAGGACGTGGTGAAAACACTGCTGGAAGCCATTCTGTTGGTTTTCTTGGTCATGTATCTCTTTTTACAGAACTTCCGCGCAACCTTGATCCCAACGGTTGCCGTACCGGTGGTGCTATTGGGCACCTTTGCCGTGCTATCGGCATTTGGCTTTAGTATTAATACGTTAACCATGTTTGCCATTGTTCTGGCTATCGGGCTGTTGGTGGATGACGCCATTGTGGTGGTGGAAAACGTCGAACGGGTGATGAGCGAAGAAGGGCTGGATCCGCGCGAGGCCACACGAAAATCGATGGGGCAAATTCAAGGCGCACTGATCGGGATAGCGCTGGTACTGTCTGCCGTATTTATTCCAATGGCCTTCTTTGGCGGCACCACCGGGGCTATCTATCGTCAGTTCTCCATTACTATCGTTTCGGCCATGGTGCTGTCGGTATTGGTCGCGTTGATCCTGACACCGGCCATGTGTGCCACCCTACTTAAACCCATTGCACCGGGGCATCATCACGCTAAACGGGGGTTTTTCGGTTGGTTTAACCGCATGTTTGACCGTAATTCTCACCGTTACGAAAGAGGTGTCGCGCGCGTATTGCATCACAGCTTGCGCTACATGCTGCTGTATTTACTGTTGCTCGGCGGGCTGGCCTTGCTATTCCTTAAATTACCCACCTCTTTCCTGCCATTGGAAGACCGTGGTGTCTTTATGGCTCAGGTGCAACTTCCGGTTGGATCAACTCAGCAACAGACACTGAAAGTGGTTGAGAAAGTTGAGAATTACTTCCTGACAGAAGAGAAAAACAACGTATTATCCGTATTCGCTACCGTCGGCTCTGGCCCTGGCGGAAATGGGCAAAATGTAGCACGCCTGTTTATTCGCCTTGCCGACTGGGATCAACGCACCGCCAGCACCGATTCCTCATTCGCTATTATTGAACGAGCGACTAAAGAACTCAGTAAAATTGTTGAAGCGAAGGTGTCGGTCAGTAGTCCGCCAGCAATTTCAGGTTTAGGTGGGTCGTCAGGTTTCGATATGGAATTACAGGACCATGGCGGCCATGGCCATGATAAATTGATGGTCGCCCGCAACCAATTGTTGCAGATGGCGTCGCAGGAACCCGCGTTAACCCGAGTGCGGCATAACGGGCTGGATGATAGCCCACAGTTGCAGATTGATATTGATCAACGCAAAGCGCAAGCACTGGGCGTCTCTCTGAATGACATTAACAGCACGCTGAAAACCGCCTGGGGCTCAACCTATGTCAATGATTTTGTTGACCGTGGACGGGTGAAGAAGGTGTATGTTCAATCAGAAGCCACGGCCCGTATGCTGCCGGAAGACGTCAACAAATGGTATGTGCGCAATAAAAATGGCGGCATGGTGCCTTTCTCCGCCTTCTCTACTACCCGATGGGAATATGGCTCTCCCCGCCTGGAGCGCTACAACGGCTATTCAGCACTGGAAATTGTCGGTGAAGCGGCTTCTGGAGTCAGTACCGGTACCGCGATGGATGTGATGGAAAAACTGGTCAGCCAATTGCCCAATGGCTTTGGTTTAGAGTGGACCGGCATGTCTTATCAAGAGCGATTGTCCGGCTCTCAGGCACCCGCCCTCTATGCTATCTCGCTACTGGTGGTCTTCCTCTGCCTGGCTGCATTGTATGAGAGCTGGTCAATCCCATTCTCCGTGATGCTGGTGGTCCCGTTAGGGGTGATAGGTGCTGTTGCAGCCACTTGGATGCGTGGGCTGGAAAATGATGTTTACTTCCAAGTCGGTCTATTAACCATCATTGGGCTCTCGGCCAAGAATGCCATTTTGATTGTTGAGTTTGCCAATGAACTGAATAACCGAGGTAAGGACCTGGTCGAGGCAACACTGGAGGCCTCTCGCCAGCGATTACGGCCTATTTTGATGACCTCGCTGGCCTTTATTTTTGGTGTATTGCCGATGGCAATCAGCCAGGGCGCGGGTTCCGGTAGCCAACATGCGGTGGGCACCGGCGTAATGGGCGGGATGATCTCAGCCACTGTACTGGCTATTTTCTTTGTGCCTCTGTTCTTTGTCTTGGTACGTCGCCGTTTTCCCGGCAGAATAATACCGAACAAAGAGATAAACCCTAAATAG",
+            "orf_prot_sequence": "MANFFIDRPIFAWVLAIILCLTGALAISTLPVEQYPNLAPPNVRISASYPGASAQTLENTVTQVIEQSMTGLDNLLYMSSQSSNSGSASVTLTFQAGTNPNEAMQQVQNQLQSAIKRLPQDVQQQGVSVSKSGDNTLMMVAFVSTDGSMDKQDISDYVASNLQDPLSRIEGVGSVDAFGSQYAMRIWLDPNKLTNYQLTTSDIVSAIQSQNTQVAVGQLGGTPAVDNQALNATINAQSQLQTPEEFREITLRVNQDGSLVTLGDVAKIELGSEKYDYLSRFNGQAASGMGIKLASGANELQTDKRVKARLAELAPFFPHGLEAKIAYETTPFVQASIKDVVKTLLEAILLVFLVMYLFLQNFRATLIPTVAVPVVLLGTFAVLSAFGFSINTLTMFAIVLAIGLLVDDAIVVVENVERVMSEEGLDPREATRKSMGQIQGALIGIALVLSAVFIPMAFFGGTTGAIYRQFSITIVSAMVLSVLVALILTPAMCATLLKPIAPGHHHAKRGFFGWFNRMFDRNSHRYERGVARVLHHSLRYMLLYLLLLGGLALLFLKLPTSFLPLEDRGVFMAQVQLPVGSTQQQTLKVVEKVENYFLTEEKNNVLSVFATVGSGPGGNGQNVARLFIRLADWDQRTASTDSSFAIIERATKELSKIVEAKVSVSSPPAISGLGGSSGFDMELQDHGGHGHDKLMVARNQLLQMASQEPALTRVRHNGLDDSPQLQIDIDQRKAQALGVSLNDINSTLKTAWGSTYVNDFVDRGRVKKVYVQSEATARMLPEDVNKWYVRNKNGGMVPFSAFSTTRWEYGSPRLERYNGYSALEIVGEAASGVSTGTAMDVMEKLVSQLPNGFGLEWTGMSYQERLSGSQAPALYAISLLVVFLCLAALYESWSIPFSVMLVVPLGVIGAVAATWMRGLENDVYFQVGLLTIIGLSAKNAILIVEFANELNNRGKDLVEATLEASRQRLRPILMTSLAFIFGVLPMAISQGAGSGSQHAVGTGVMGGMISATVLAIFFVPLFFVLVRRRFPGRIIPNKEINPK",
+            "perc_identity": 41.88
+        }
+    },
+    "NZ_CP009973.1_1995 # 2234299 # 2236062 # -1 # ID=1_1995;partial=00;start_type=ATG;rbs_motif=AGG;rbs_spacer=6bp;gc_cont=0.531": {
+        "gnl|BL_ORD_ID|2500|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "D",
+                "change": "N",
+                "position": 350
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "D",
+                "change": "N",
+                "position": 328
+            },
+            "orf_strand": "-",
+            "orf_start": 2234299,
+            "orf_end": 2236062,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Haemophilus influenzae PBP3 conferring resistance to beta-lactam antibiotics",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "2886",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 500,
+            "ARO_accession": "3004446",
+            "ARO_name": "Haemophilus influenzae PBP3 conferring resistance to beta-lactam antibiotics",
+            "ARO_category": {
+                "40661": {
+                    "category_aro_accession": "3003938",
+                    "category_aro_cvterm_id": "40661",
+                    "category_aro_name": "Penicillin-binding protein mutations conferring resistance to beta-lactam antibiotics",
+                    "category_aro_description": "Mutations in PBP transpeptidases that change the affinity for penicillin thereby conferring resistance to penicillin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35979": {
+                    "category_aro_accession": "0000062",
+                    "category_aro_cvterm_id": "35979",
+                    "category_aro_name": "ceftriaxone",
+                    "category_aro_description": "Ceftriaxone is a third-generation cephalosporin antibiotic. The presence of an aminothiazolyl sidechain increases ceftriazone's resistance to beta-lactamases. Like other third-generation cephalosporins, it has broad spectrum activity against Gram-positive and Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36981": {
+                    "category_aro_accession": "3000637",
+                    "category_aro_cvterm_id": "36981",
+                    "category_aro_name": "ampicillin",
+                    "category_aro_description": "Ampicillin is a penicillin derivative that is highly acid stable, with its activity similar to benzylpenicillin.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36988": {
+                    "category_aro_accession": "3000644",
+                    "category_aro_cvterm_id": "36988",
+                    "category_aro_name": "cefaclor",
+                    "category_aro_description": "Cefaclor is a semisynthetic cephalosporin derived from cephalexin. It has broad-spectrum antibiotic activity.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36989": {
+                    "category_aro_accession": "3000645",
+                    "category_aro_cvterm_id": "36989",
+                    "category_aro_name": "cefotaxime",
+                    "category_aro_description": "Cefotaxime is a semisynthetic cephalosporin taken parenterally. It is resistant to most beta-lactamases and active against Gram-negative rods and cocci due to its aminothiazoyl and methoximino functional groups.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36993": {
+                    "category_aro_accession": "3000649",
+                    "category_aro_cvterm_id": "36993",
+                    "category_aro_name": "cefditoren",
+                    "category_aro_description": "Cefditoren is a semisynthetic cephalosporin active against staphylococci, streptococci, and and most enterobacteria. It is resistant to staphylococcal and most enterobacterial beta-lactamases, and is usually taken as the prodrug cefditoren pivoxil.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36994": {
+                    "category_aro_accession": "3000650",
+                    "category_aro_cvterm_id": "36994",
+                    "category_aro_name": "cefdinir",
+                    "category_aro_description": "Cefdinir is similar to cefixime with a modified side-chain at its 7-amino position. It also shares similar activity with cefixime but is more active against staphylococci. It has also be shown to enhance phagocytosis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 1.1e-162,
+            "max_identities": 296,
+            "bit_score": 568.2,
+            "cvterm_id": "41640",
+            "query": "KTARPGKLKRQEEQA----SFISWRFALLCGCILLALVGLIMRTAYLQVINPDKLVREGDMRSLRVQEVPTARGMISDRSGRPLAVSVPVNAVWADPKELIEQGGISLDTRWKALSDALEIPLDQLATRINANPKGRFVYLARQVNPAIGDYIRKLKLPGIHLRQESRRYYPAGQVMAHIIGVTNIDGQGIEGVEKSFDRWLTGQPGERTVRKDHYGRVIEDISSVDSQAAHNLVLSVDERLQALVYRELNNAVAFNKAESGTAVLVDVNTGEVLAMANSPSYNPNNLTGTPKDAMRNRAITDIFEPGSTVKPMVVMTALQHGVVKENSVLNTLPYFVNGHQIKDVARYAELSVTGILQKSSNVGVSKLALAMPSSALVDTYSRFGFGKATNLGLVGESSG-LYPKKQRWSDIERATFSFGYGLMVTPLQLARVYATIGSMGVYRPLSITRVDPPVAGERIFPEPLVRTVVHMMESVALPGGGGTKAAIKGYRIAIKTGTAKKVGPDGKYMDRYLAYTAGVAPASNPRFALVVVINDPQAGKYYGGAVSAPVFGAIMGGVLRTMNIEPDA",
+            "match": "K   P  +K+ + Q      F+  R+ L    ILL L  L+ R AY+Q IN D L  E D RSLR  EV + RG I DR+G+ L+VSVP++A+ ADPK ++++  ++   R  AL++ L +  + L  +I  N K  ++YLARQV  +  +YIR+LK+ GI L  E RR+YP  +  AH++G T+IDG GIEG+EKSF+  L G+ G RTVRKD  G ++  IS      A ++ LS+DE+LQ++VYRE+  AV+ N AESGTAVLVDV TGEVLAMA +PSYNPNN  G   + MRNRAITD FEPGSTVKP VV+TALQ GVVK + +++T  + ++G +I DVA  A+ ++  IL  SSN GVS+LAL MP SAL++TY   G  K T+LGL+GE  G L   ++RW+DIERAT ++GYG+  TPLQ+AR YAT+GS GVYRPLSIT+VDPPV G+R+F E + + +V ++E VA+      +A ++GYR+ +KTGTA+K+  +G Y+++Y+A+TAG+AP S+PR+ALVV+INDP+AG+YYGGAVSAPVF  IMG  LR   I  DA",
+            "sequence_from_db": "KLTAPETVKQNKPQKVFEKCFMRGRYMLSTVLILLGLCALVARAAYVQSINADTLSNEADKRSLRKDEVLSVRGSILDRNGQLLSVSVPMSAIVADPKTMLKENSLADKERIAALAEELGMTENDLVKKIEKNSKSGYLYLARQVELSKANYIRRLKIKGIILETEHRRFYPRVEEAAHVVGYTDIDGNGIEGIEKSFNSLLVGKDGSRTVRKDKRGNIVAHISDEKKYDAQDVTLSIDEKLQSMVYREIKKAVSENNAESGTAVLVDVRTGEVLAMATAPSYNPNNRVGVKSELMRNRAITDTFEPGSTVKPFVVLTALQRGVVKRDEIIDTTSFKLSGKEIVDVAPRAQQTLDEILMNSSNRGVSRLALRMPPSALMETYQNAGLSKPTDLGLIGEQVGILNANRKRWADIERATVAYGYGITATPLQIARAYATLGSFGVYRPLSITKVDPPVIGKRVFSEKITKDIVGILEKVAIK---NKRAMVEGYRVGVKTGTARKI-ENGHYVNKYVAFTAGIAPISDPRYALVVLINDPKAGEYYGGAVSAPVFSNIMGYALRANAIPQDA",
+            "sequence_from_broadstreet": "MVKFNSSRKSGKSKKTIRKLTAPETVKQNKPQKVFEKCFMRGRYMLSTVLILLGLCALVARAAYVQSINADTLSNEADKRSLRKDEVLSVRGSILDRNGQLLSVSVPMSAIVADPKTMLKENSLADKERIAALAEELGMTENDLVKKIEKNSKSGYLYLARQVELSKANYIRRLKIKGIILETEHRRFYPRVEEAAHVVGYTDIDGNGIEGIEKSFNSLLVGKDGSRTVRKDKRGNIVAHISDEKKYDAQDVTLSIDEKLQSMVYREIKKAVSENNAESGTAVLVDVRTGEVLAMATAPSYNPNNRVGVKSELMRNRAITDTFEPGSTVKPFVVLTALQRGVVKRDEIIDTTSFKLSGKEIVDVAPRAQQTLDEILMNSSNRGVSRLALRMPPSALMETYQNAGLSKPTDLGLIGEQVGILNANRKRWADIERATVAYGYGITATPLQIARAYATLGSFGVYRPLSITKVDPPVIGKRVFSEKITKDIVGILEKVAIKNKRAMVEGYRVGVKTGTARKIENGHYVNKYVAFTAGIAPISDPRYALVVLINDPKAGEYYGGAVSAPVFSNIMGYALRANAIPQDAEAAENTTTKSAKRIVYIGEHKNQKVN",
+            "dna_sequence_from_broadstreet": "ATGGTGAAATTTAATTCCTCGCGTAAATCAGGTAAGTCAAAAAAAACAATTAGAAAATTGACCGCACCTGAAACTGTAAAGCAAAACAAGCCTCAAAAGGTGTTTGAAAAATGCTTTATGCGTGGACGTTATATGCTTTCTACGGTTCTTATTTTACTTGGCCTGTGTGCTTTAGTCGCACGAGCAGCTTATGTTCAATCTATTAATGCCGATACGTTATCGAATGAAGCGGATAAGCGTTCTTTGCGTAAAGATGAAGTATTATCGGTGCGTGGTTCTATTTTAGATCGTAATGGTCAGCTTTTATCTGTAAGCGTGCCGATGAGCGCGATTGTGGCAGATCCAAAAACGATGTTGAAGGAAAATTCGCTTGCGGATAAAGAACGAATTGCAGCTTTAGCCGAAGAATTAGGTATGACTGAAAATGATTTAGTGAAAAAAATTGAGAAAAATTCTAAATCTGGTTATTTGTATTTAGCACGTCAAGTTGAATTAAGTAAAGCTAACTATATTCGTAGATTAAAAATTAAGGGTATTATTTTAGAAACAGAGCATCGCCGTTTTTATCCTCGTGTAGAAGAAGCTGCACACGTGGTGGGTTATACGGATATTGATGGAAATGGTATTGAAGGCATTGAGAAAAGTTTTAATTCCCTGCTTGTTGGTAAAGACGGTTCACGTACTGTTCGTAAAGATAAACGTGGGAATATTGTTGCACATATCTCCGATGAGAAAAAATATGATGCACAAGATGTTACCTTAAGTATCGATGAAAAATTGCAATCTATGGTGTATCGTGAGATTAAAAAGGCGGTGTCTGAGAATAATGCTGAGTCTGGTACTGCGGTGTTAGTTGATGTTCGAACAGGGGAAGTGTTAGCTATGGCGACTGCGCCCTCTTATAATCCAAACAACCGTGTCGGCGTGAAATCAGAGTTAATGCGTAACCGTGCAATTACCGATACTTTTGAGCCAGGTTCTACGGTAAAACCTTTCGTTGTTTTAACCGCACTTCAACGAGGTGTAGTTAAACGAGATGAAATTATTGATACTACGTCCTTTAAATTAAGCGGTAAAGAAATTGTGGACGTTGCACCACGTGCTCAGCAAACTTTAGACGAGATTTTAATGAACTCTAGTAACCGTGGTGTAAGTCGTCTTGCATTACGTATGCCACCTAGTGCATTAATGGAAACTTATCAAAATGCAGGTTTAAGTAAACCGACAGATTTAGGCTTGATCGGAGAGCAAGTTGGGATTTTGAATGCAAATCGTAAACGCTGGGCAGATATTGAGCGTGCAACAGTCGCTTATGGTTATGGTATTACTGCGACACCTTTACAAATTGCTCGTGCCTATGCAACCCTTGGTAGTTTCGGTGTTTATCGTCCGCTTTCTATCACTAAAGTTGATCCGCCAGTTATTGGGAAACGGGTTTTCTCTGAAAAAATAACTAAAGATATTGTGGGAATTTTAGAGAAAGTAGCAATTAAAAATAAACGCGCAATGGTGGAAGGCTACCGTGTCGGCGTAAAAACAGGTACGGCACGTAAGATTGAAAATGGACATTATGTAAATAAGTATGTGGCATTTACTGCGGGTATTGCACCAATTAGTGATCCTCGTTATGCATTAGTGGTTTTGATCAATGATCCAAAAGCAGGAGAATATTATGGTGGTGCGGTTTCTGCCCCTGTATTCTCTAACATTATGGGCTATGCGTTACGTGCAAATGCTATTCCGCAAGATGCTGAAGCAGCTGAAAACACAACAACGAAAAGTGCAAAACGTATTGTTTATATTGGCGAACACAAGAATCAAAAAGTGAATTAA",
+            "partial": "0",
+            "query_start": 2234302,
+            "query_end": 2235996,
+            "hit_start": 54,
+            "hit_end": 1752,
+            "orf_dna_sequence": "ATGAAGACAGCGCGCCCCGGGAAGTTAAAGCGTCAGGAAGAACAAGCCAGCTTTATTAGCTGGCGTTTTGCGTTGCTGTGCGGTTGTATTTTACTGGCATTGGTTGGGCTGATTATGCGTACCGCATACCTGCAAGTGATCAACCCCGATAAGCTGGTGCGCGAGGGGGATATGCGCTCGCTGCGAGTACAAGAGGTGCCGACGGCGCGTGGCATGATAAGCGATCGCTCTGGCCGCCCTTTGGCGGTCAGTGTACCCGTCAATGCGGTTTGGGCCGATCCAAAAGAACTGATTGAACAGGGGGGGATCTCTCTGGATACCCGCTGGAAAGCCCTGTCGGATGCATTAGAAATCCCTTTAGATCAACTTGCCACGCGCATTAATGCCAATCCAAAAGGCCGCTTTGTCTATCTGGCCCGTCAGGTGAACCCCGCGATTGGCGACTACATCCGCAAGCTGAAATTACCCGGTATCCATCTACGTCAGGAATCCCGTCGCTACTATCCGGCAGGTCAGGTGATGGCTCACATTATTGGTGTGACCAATATCGATGGGCAAGGGATTGAAGGTGTTGAGAAAAGTTTTGATCGCTGGCTCACCGGCCAACCGGGCGAGCGAACGGTGCGCAAAGACCATTATGGCCGTGTTATTGAAGATATCTCCTCTGTTGACAGCCAGGCGGCGCATAACCTGGTGCTGAGTGTGGACGAGCGTTTGCAGGCGTTGGTGTACCGCGAGCTCAATAATGCGGTGGCGTTTAACAAAGCAGAATCGGGCACGGCGGTATTAGTCGATGTGAACACCGGTGAAGTCTTGGCGATGGCGAACAGCCCGTCTTACAACCCGAATAACCTAACCGGTACGCCGAAAGACGCGATGCGTAACCGGGCAATAACCGATATTTTTGAACCCGGCTCGACAGTCAAGCCAATGGTAGTGATGACGGCCTTACAGCATGGTGTTGTGAAAGAGAACAGTGTGCTGAATACCTTGCCGTACTTTGTTAACGGTCACCAGATTAAAGACGTGGCCCGTTACGCTGAGCTATCCGTCACTGGGATCTTACAGAAGTCGAGTAACGTCGGTGTTTCTAAACTGGCGTTAGCGATGCCATCCTCAGCGTTAGTAGATACTTACTCACGGTTTGGGTTTGGGAAAGCGACCAATTTGGGGTTGGTCGGAGAAAGCAGTGGCTTATATCCTAAAAAACAACGGTGGTCTGACATAGAGAGGGCCACCTTCTCTTTCGGCTACGGGCTAATGGTAACACCGTTACAACTAGCGCGAGTCTATGCAACCATCGGCAGCATGGGGGTCTATCGCCCGCTGTCGATAACCCGAGTTGACCCACCTGTCGCCGGTGAACGCATCTTCCCTGAACCCCTGGTACGCACCGTGGTTCATATGATGGAAAGCGTGGCACTGCCTGGCGGTGGTGGTACCAAAGCGGCGATCAAAGGCTACCGTATCGCGATTAAAACCGGTACGGCCAAAAAAGTCGGTCCCGATGGCAAGTATATGGATCGATACCTCGCTTACACCGCTGGCGTTGCGCCCGCGAGTAACCCTCGATTTGCTCTGGTTGTGGTGATCAATGACCCGCAGGCAGGGAAATATTACGGTGGTGCGGTTTCTGCACCGGTATTCGGTGCCATCATGGGCGGCGTTTTACGCACCATGAACATTGAGCCAGATGCGTTACCCACCGGTGATAAAAGCGAATTAGTGATTAATACAAAAGAGGGTTCAGGTGGCAGATCGTAA",
+            "orf_prot_sequence": "MKTARPGKLKRQEEQASFISWRFALLCGCILLALVGLIMRTAYLQVINPDKLVREGDMRSLRVQEVPTARGMISDRSGRPLAVSVPVNAVWADPKELIEQGGISLDTRWKALSDALEIPLDQLATRINANPKGRFVYLARQVNPAIGDYIRKLKLPGIHLRQESRRYYPAGQVMAHIIGVTNIDGQGIEGVEKSFDRWLTGQPGERTVRKDHYGRVIEDISSVDSQAAHNLVLSVDERLQALVYRELNNAVAFNKAESGTAVLVDVNTGEVLAMANSPSYNPNNLTGTPKDAMRNRAITDIFEPGSTVKPMVVMTALQHGVVKENSVLNTLPYFVNGHQIKDVARYAELSVTGILQKSSNVGVSKLALAMPSSALVDTYSRFGFGKATNLGLVGESSGLYPKKQRWSDIERATFSFGYGLMVTPLQLARVYATIGSMGVYRPLSITRVDPPVAGERIFPEPLVRTVVHMMESVALPGGGGTKAAIKGYRIAIKTGTAKKVGPDGKYMDRYLAYTAGVAPASNPRFALVVVINDPQAGKYYGGAVSAPVFGAIMGGVLRTMNIEPDALPTGDKSELVINTKEGSGGRS",
+            "perc_identity": 51.93
+        },
+        "gnl|BL_ORD_ID|2500|hsp_num:1": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "S",
+                "change": "N",
+                "position": 357
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "S",
+                "change": "N",
+                "position": 335
+            },
+            "orf_strand": "-",
+            "orf_start": 2234299,
+            "orf_end": 2236062,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Haemophilus influenzae PBP3 conferring resistance to beta-lactam antibiotics",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "2886",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 500,
+            "ARO_accession": "3004446",
+            "ARO_name": "Haemophilus influenzae PBP3 conferring resistance to beta-lactam antibiotics",
+            "ARO_category": {
+                "40661": {
+                    "category_aro_accession": "3003938",
+                    "category_aro_cvterm_id": "40661",
+                    "category_aro_name": "Penicillin-binding protein mutations conferring resistance to beta-lactam antibiotics",
+                    "category_aro_description": "Mutations in PBP transpeptidases that change the affinity for penicillin thereby conferring resistance to penicillin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35979": {
+                    "category_aro_accession": "0000062",
+                    "category_aro_cvterm_id": "35979",
+                    "category_aro_name": "ceftriaxone",
+                    "category_aro_description": "Ceftriaxone is a third-generation cephalosporin antibiotic. The presence of an aminothiazolyl sidechain increases ceftriazone's resistance to beta-lactamases. Like other third-generation cephalosporins, it has broad spectrum activity against Gram-positive and Gram-negative bacteria.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36981": {
+                    "category_aro_accession": "3000637",
+                    "category_aro_cvterm_id": "36981",
+                    "category_aro_name": "ampicillin",
+                    "category_aro_description": "Ampicillin is a penicillin derivative that is highly acid stable, with its activity similar to benzylpenicillin.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36988": {
+                    "category_aro_accession": "3000644",
+                    "category_aro_cvterm_id": "36988",
+                    "category_aro_name": "cefaclor",
+                    "category_aro_description": "Cefaclor is a semisynthetic cephalosporin derived from cephalexin. It has broad-spectrum antibiotic activity.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36989": {
+                    "category_aro_accession": "3000645",
+                    "category_aro_cvterm_id": "36989",
+                    "category_aro_name": "cefotaxime",
+                    "category_aro_description": "Cefotaxime is a semisynthetic cephalosporin taken parenterally. It is resistant to most beta-lactamases and active against Gram-negative rods and cocci due to its aminothiazoyl and methoximino functional groups.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36993": {
+                    "category_aro_accession": "3000649",
+                    "category_aro_cvterm_id": "36993",
+                    "category_aro_name": "cefditoren",
+                    "category_aro_description": "Cefditoren is a semisynthetic cephalosporin active against staphylococci, streptococci, and and most enterobacteria. It is resistant to staphylococcal and most enterobacterial beta-lactamases, and is usually taken as the prodrug cefditoren pivoxil.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36994": {
+                    "category_aro_accession": "3000650",
+                    "category_aro_cvterm_id": "36994",
+                    "category_aro_name": "cefdinir",
+                    "category_aro_description": "Cefdinir is similar to cefixime with a modified side-chain at its 7-amino position. It also shares similar activity with cefixime but is more active against staphylococci. It has also be shown to enhance phagocytosis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35951": {
+                    "category_aro_accession": "0000032",
+                    "category_aro_cvterm_id": "35951",
+                    "category_aro_name": "cephalosporin",
+                    "category_aro_description": "Cephalosporins are a class of beta-lactam antibiotics, containing the beta-lactam ring fused with a dihydrothiazolidine ring. Together with cephamycins they belong to a sub-group called cephems. Cephalosporin are bactericidal, and act by inhibiting the synthesis of the peptidoglycan layer of bacterial cell walls. The peptidoglycan layer is important for cell wall structural integrity, especially in Gram-positive organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36017": {
+                    "category_aro_accession": "3000008",
+                    "category_aro_cvterm_id": "36017",
+                    "category_aro_name": "penicillin beta-lactam",
+                    "category_aro_description": "Penicilins (Penams) are a group of antibiotics derived from Penicillium fungi that share a skeleton beta-lactam moiety fused with a thiazolidine ring. Penicillin-like antibiotics are historically significant because they are the first drugs that were effective against many previously serious diseases such as syphilis and Staphylococcus infections. Penicillins are still widely used today, though many types of bacteria are now resistant. All penicillins are beta-lactam antibiotics in the penam sub-group, and are used in the treatment of bacterial infections caused by susceptible, usually Gram-positive, organisms.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 1.1e-162,
+            "max_identities": 296,
+            "bit_score": 568.2,
+            "cvterm_id": "41640",
+            "query": "KTARPGKLKRQEEQA----SFISWRFALLCGCILLALVGLIMRTAYLQVINPDKLVREGDMRSLRVQEVPTARGMISDRSGRPLAVSVPVNAVWADPKELIEQGGISLDTRWKALSDALEIPLDQLATRINANPKGRFVYLARQVNPAIGDYIRKLKLPGIHLRQESRRYYPAGQVMAHIIGVTNIDGQGIEGVEKSFDRWLTGQPGERTVRKDHYGRVIEDISSVDSQAAHNLVLSVDERLQALVYRELNNAVAFNKAESGTAVLVDVNTGEVLAMANSPSYNPNNLTGTPKDAMRNRAITDIFEPGSTVKPMVVMTALQHGVVKENSVLNTLPYFVNGHQIKDVARYAELSVTGILQKSSNVGVSKLALAMPSSALVDTYSRFGFGKATNLGLVGESSG-LYPKKQRWSDIERATFSFGYGLMVTPLQLARVYATIGSMGVYRPLSITRVDPPVAGERIFPEPLVRTVVHMMESVALPGGGGTKAAIKGYRIAIKTGTAKKVGPDGKYMDRYLAYTAGVAPASNPRFALVVVINDPQAGKYYGGAVSAPVFGAIMGGVLRTMNIEPDA",
+            "match": "K   P  +K+ + Q      F+  R+ L    ILL L  L+ R AY+Q IN D L  E D RSLR  EV + RG I DR+G+ L+VSVP++A+ ADPK ++++  ++   R  AL++ L +  + L  +I  N K  ++YLARQV  +  +YIR+LK+ GI L  E RR+YP  +  AH++G T+IDG GIEG+EKSF+  L G+ G RTVRKD  G ++  IS      A ++ LS+DE+LQ++VYRE+  AV+ N AESGTAVLVDV TGEVLAMA +PSYNPNN  G   + MRNRAITD FEPGSTVKP VV+TALQ GVVK + +++T  + ++G +I DVA  A+ ++  IL  SSN GVS+LAL MP SAL++TY   G  K T+LGL+GE  G L   ++RW+DIERAT ++GYG+  TPLQ+AR YAT+GS GVYRPLSIT+VDPPV G+R+F E + + +V ++E VA+      +A ++GYR+ +KTGTA+K+  +G Y+++Y+A+TAG+AP S+PR+ALVV+INDP+AG+YYGGAVSAPVF  IMG  LR   I  DA",
+            "sequence_from_db": "KLTAPETVKQNKPQKVFEKCFMRGRYMLSTVLILLGLCALVARAAYVQSINADTLSNEADKRSLRKDEVLSVRGSILDRNGQLLSVSVPMSAIVADPKTMLKENSLADKERIAALAEELGMTENDLVKKIEKNSKSGYLYLARQVELSKANYIRRLKIKGIILETEHRRFYPRVEEAAHVVGYTDIDGNGIEGIEKSFNSLLVGKDGSRTVRKDKRGNIVAHISDEKKYDAQDVTLSIDEKLQSMVYREIKKAVSENNAESGTAVLVDVRTGEVLAMATAPSYNPNNRVGVKSELMRNRAITDTFEPGSTVKPFVVLTALQRGVVKRDEIIDTTSFKLSGKEIVDVAPRAQQTLDEILMNSSNRGVSRLALRMPPSALMETYQNAGLSKPTDLGLIGEQVGILNANRKRWADIERATVAYGYGITATPLQIARAYATLGSFGVYRPLSITKVDPPVIGKRVFSEKITKDIVGILEKVAIK---NKRAMVEGYRVGVKTGTARKI-ENGHYVNKYVAFTAGIAPISDPRYALVVLINDPKAGEYYGGAVSAPVFSNIMGYALRANAIPQDA",
+            "sequence_from_broadstreet": "MVKFNSSRKSGKSKKTIRKLTAPETVKQNKPQKVFEKCFMRGRYMLSTVLILLGLCALVARAAYVQSINADTLSNEADKRSLRKDEVLSVRGSILDRNGQLLSVSVPMSAIVADPKTMLKENSLADKERIAALAEELGMTENDLVKKIEKNSKSGYLYLARQVELSKANYIRRLKIKGIILETEHRRFYPRVEEAAHVVGYTDIDGNGIEGIEKSFNSLLVGKDGSRTVRKDKRGNIVAHISDEKKYDAQDVTLSIDEKLQSMVYREIKKAVSENNAESGTAVLVDVRTGEVLAMATAPSYNPNNRVGVKSELMRNRAITDTFEPGSTVKPFVVLTALQRGVVKRDEIIDTTSFKLSGKEIVDVAPRAQQTLDEILMNSSNRGVSRLALRMPPSALMETYQNAGLSKPTDLGLIGEQVGILNANRKRWADIERATVAYGYGITATPLQIARAYATLGSFGVYRPLSITKVDPPVIGKRVFSEKITKDIVGILEKVAIKNKRAMVEGYRVGVKTGTARKIENGHYVNKYVAFTAGIAPISDPRYALVVLINDPKAGEYYGGAVSAPVFSNIMGYALRANAIPQDAEAAENTTTKSAKRIVYIGEHKNQKVN",
+            "dna_sequence_from_broadstreet": "ATGGTGAAATTTAATTCCTCGCGTAAATCAGGTAAGTCAAAAAAAACAATTAGAAAATTGACCGCACCTGAAACTGTAAAGCAAAACAAGCCTCAAAAGGTGTTTGAAAAATGCTTTATGCGTGGACGTTATATGCTTTCTACGGTTCTTATTTTACTTGGCCTGTGTGCTTTAGTCGCACGAGCAGCTTATGTTCAATCTATTAATGCCGATACGTTATCGAATGAAGCGGATAAGCGTTCTTTGCGTAAAGATGAAGTATTATCGGTGCGTGGTTCTATTTTAGATCGTAATGGTCAGCTTTTATCTGTAAGCGTGCCGATGAGCGCGATTGTGGCAGATCCAAAAACGATGTTGAAGGAAAATTCGCTTGCGGATAAAGAACGAATTGCAGCTTTAGCCGAAGAATTAGGTATGACTGAAAATGATTTAGTGAAAAAAATTGAGAAAAATTCTAAATCTGGTTATTTGTATTTAGCACGTCAAGTTGAATTAAGTAAAGCTAACTATATTCGTAGATTAAAAATTAAGGGTATTATTTTAGAAACAGAGCATCGCCGTTTTTATCCTCGTGTAGAAGAAGCTGCACACGTGGTGGGTTATACGGATATTGATGGAAATGGTATTGAAGGCATTGAGAAAAGTTTTAATTCCCTGCTTGTTGGTAAAGACGGTTCACGTACTGTTCGTAAAGATAAACGTGGGAATATTGTTGCACATATCTCCGATGAGAAAAAATATGATGCACAAGATGTTACCTTAAGTATCGATGAAAAATTGCAATCTATGGTGTATCGTGAGATTAAAAAGGCGGTGTCTGAGAATAATGCTGAGTCTGGTACTGCGGTGTTAGTTGATGTTCGAACAGGGGAAGTGTTAGCTATGGCGACTGCGCCCTCTTATAATCCAAACAACCGTGTCGGCGTGAAATCAGAGTTAATGCGTAACCGTGCAATTACCGATACTTTTGAGCCAGGTTCTACGGTAAAACCTTTCGTTGTTTTAACCGCACTTCAACGAGGTGTAGTTAAACGAGATGAAATTATTGATACTACGTCCTTTAAATTAAGCGGTAAAGAAATTGTGGACGTTGCACCACGTGCTCAGCAAACTTTAGACGAGATTTTAATGAACTCTAGTAACCGTGGTGTAAGTCGTCTTGCATTACGTATGCCACCTAGTGCATTAATGGAAACTTATCAAAATGCAGGTTTAAGTAAACCGACAGATTTAGGCTTGATCGGAGAGCAAGTTGGGATTTTGAATGCAAATCGTAAACGCTGGGCAGATATTGAGCGTGCAACAGTCGCTTATGGTTATGGTATTACTGCGACACCTTTACAAATTGCTCGTGCCTATGCAACCCTTGGTAGTTTCGGTGTTTATCGTCCGCTTTCTATCACTAAAGTTGATCCGCCAGTTATTGGGAAACGGGTTTTCTCTGAAAAAATAACTAAAGATATTGTGGGAATTTTAGAGAAAGTAGCAATTAAAAATAAACGCGCAATGGTGGAAGGCTACCGTGTCGGCGTAAAAACAGGTACGGCACGTAAGATTGAAAATGGACATTATGTAAATAAGTATGTGGCATTTACTGCGGGTATTGCACCAATTAGTGATCCTCGTTATGCATTAGTGGTTTTGATCAATGATCCAAAAGCAGGAGAATATTATGGTGGTGCGGTTTCTGCCCCTGTATTCTCTAACATTATGGGCTATGCGTTACGTGCAAATGCTATTCCGCAAGATGCTGAAGCAGCTGAAAACACAACAACGAAAAGTGCAAAACGTATTGTTTATATTGGCGAACACAAGAATCAAAAAGTGAATTAA",
+            "partial": "0",
+            "query_start": 2234302,
+            "query_end": 2235996,
+            "hit_start": 54,
+            "hit_end": 1752,
+            "orf_dna_sequence": "ATGAAGACAGCGCGCCCCGGGAAGTTAAAGCGTCAGGAAGAACAAGCCAGCTTTATTAGCTGGCGTTTTGCGTTGCTGTGCGGTTGTATTTTACTGGCATTGGTTGGGCTGATTATGCGTACCGCATACCTGCAAGTGATCAACCCCGATAAGCTGGTGCGCGAGGGGGATATGCGCTCGCTGCGAGTACAAGAGGTGCCGACGGCGCGTGGCATGATAAGCGATCGCTCTGGCCGCCCTTTGGCGGTCAGTGTACCCGTCAATGCGGTTTGGGCCGATCCAAAAGAACTGATTGAACAGGGGGGGATCTCTCTGGATACCCGCTGGAAAGCCCTGTCGGATGCATTAGAAATCCCTTTAGATCAACTTGCCACGCGCATTAATGCCAATCCAAAAGGCCGCTTTGTCTATCTGGCCCGTCAGGTGAACCCCGCGATTGGCGACTACATCCGCAAGCTGAAATTACCCGGTATCCATCTACGTCAGGAATCCCGTCGCTACTATCCGGCAGGTCAGGTGATGGCTCACATTATTGGTGTGACCAATATCGATGGGCAAGGGATTGAAGGTGTTGAGAAAAGTTTTGATCGCTGGCTCACCGGCCAACCGGGCGAGCGAACGGTGCGCAAAGACCATTATGGCCGTGTTATTGAAGATATCTCCTCTGTTGACAGCCAGGCGGCGCATAACCTGGTGCTGAGTGTGGACGAGCGTTTGCAGGCGTTGGTGTACCGCGAGCTCAATAATGCGGTGGCGTTTAACAAAGCAGAATCGGGCACGGCGGTATTAGTCGATGTGAACACCGGTGAAGTCTTGGCGATGGCGAACAGCCCGTCTTACAACCCGAATAACCTAACCGGTACGCCGAAAGACGCGATGCGTAACCGGGCAATAACCGATATTTTTGAACCCGGCTCGACAGTCAAGCCAATGGTAGTGATGACGGCCTTACAGCATGGTGTTGTGAAAGAGAACAGTGTGCTGAATACCTTGCCGTACTTTGTTAACGGTCACCAGATTAAAGACGTGGCCCGTTACGCTGAGCTATCCGTCACTGGGATCTTACAGAAGTCGAGTAACGTCGGTGTTTCTAAACTGGCGTTAGCGATGCCATCCTCAGCGTTAGTAGATACTTACTCACGGTTTGGGTTTGGGAAAGCGACCAATTTGGGGTTGGTCGGAGAAAGCAGTGGCTTATATCCTAAAAAACAACGGTGGTCTGACATAGAGAGGGCCACCTTCTCTTTCGGCTACGGGCTAATGGTAACACCGTTACAACTAGCGCGAGTCTATGCAACCATCGGCAGCATGGGGGTCTATCGCCCGCTGTCGATAACCCGAGTTGACCCACCTGTCGCCGGTGAACGCATCTTCCCTGAACCCCTGGTACGCACCGTGGTTCATATGATGGAAAGCGTGGCACTGCCTGGCGGTGGTGGTACCAAAGCGGCGATCAAAGGCTACCGTATCGCGATTAAAACCGGTACGGCCAAAAAAGTCGGTCCCGATGGCAAGTATATGGATCGATACCTCGCTTACACCGCTGGCGTTGCGCCCGCGAGTAACCCTCGATTTGCTCTGGTTGTGGTGATCAATGACCCGCAGGCAGGGAAATATTACGGTGGTGCGGTTTCTGCACCGGTATTCGGTGCCATCATGGGCGGCGTTTTACGCACCATGAACATTGAGCCAGATGCGTTACCCACCGGTGATAAAAGCGAATTAGTGATTAATACAAAAGAGGGTTCAGGTGGCAGATCGTAA",
+            "orf_prot_sequence": "MKTARPGKLKRQEEQASFISWRFALLCGCILLALVGLIMRTAYLQVINPDKLVREGDMRSLRVQEVPTARGMISDRSGRPLAVSVPVNAVWADPKELIEQGGISLDTRWKALSDALEIPLDQLATRINANPKGRFVYLARQVNPAIGDYIRKLKLPGIHLRQESRRYYPAGQVMAHIIGVTNIDGQGIEGVEKSFDRWLTGQPGERTVRKDHYGRVIEDISSVDSQAAHNLVLSVDERLQALVYRELNNAVAFNKAESGTAVLVDVNTGEVLAMANSPSYNPNNLTGTPKDAMRNRAITDIFEPGSTVKPMVVMTALQHGVVKENSVLNTLPYFVNGHQIKDVARYAELSVTGILQKSSNVGVSKLALAMPSSALVDTYSRFGFGKATNLGLVGESSGLYPKKQRWSDIERATFSFGYGLMVTPLQLARVYATIGSMGVYRPLSITRVDPPVAGERIFPEPLVRTVVHMMESVALPGGGGTKAAIKGYRIAIKTGTAKKVGPDGKYMDRYLAYTAGVAPASNPRFALVVVINDPQAGKYYGGAVSAPVFGAIMGGVLRTMNIEPDALPTGDKSELVINTKEGSGGRS",
+            "perc_identity": 51.93
+        }
+    },
+    "NZ_CP009973.1_2335 # 2608305 # 2609489 # -1 # ID=1_2335;partial=00;start_type=GTG;rbs_motif=AGGA;rbs_spacer=8bp;gc_cont=0.482": {
+        "gnl|BL_ORD_ID|1964|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "R",
+                "change": "F",
+                "position": 234
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "R",
+                "change": "F",
+                "position": 219
+            },
+            "orf_strand": "-",
+            "orf_start": 2608305,
+            "orf_end": 2609489,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Escherichia coli EF-Tu mutants conferring resistance to Pulvomycin",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "2158",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 700,
+            "ARO_accession": "3003369",
+            "ARO_name": "Escherichia coli EF-Tu mutants conferring resistance to Pulvomycin",
+            "ARO_category": {
+                "37711": {
+                    "category_aro_accession": "3001312",
+                    "category_aro_cvterm_id": "37711",
+                    "category_aro_name": "elfamycin resistant EF-Tu",
+                    "category_aro_description": "Sequence variants of elongation factor Tu that confer resistance to elfamycin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36725": {
+                    "category_aro_accession": "3000586",
+                    "category_aro_cvterm_id": "36725",
+                    "category_aro_name": "pulvomycin",
+                    "category_aro_description": "Pulvomycin is a polyketide antibiotic that binds elongation factor Tu (EF-Tu) to inhibit protein biosynthesis by preventing the formation of the ternary complex (EF-Tu*GTP*aa-tRNA). Phenotypically, it was shown that pulvomycin sensitivity is dominant over resistance.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37618": {
+                    "category_aro_accession": "3001219",
+                    "category_aro_cvterm_id": "37618",
+                    "category_aro_name": "elfamycin antibiotic",
+                    "category_aro_description": "Elfamycins are molecules that inhibit bacterial elongation factor Tu (EF-Tu), a key protein which brings aminoacyl-tRNA (aa-tRNA) to the ribosome during protein synthesis. Elfamycins defined by their target (EF-Tu), rather than a conserved chemical backbone. Elfamycins follow two mechanisms to disrupt protein synthesis: 1. kirromycins and enacyloxin fix EF-Tu in the GTP bound conformation and lock EF-Tu onto the ribosome, and 2. pulvomycin and GE2270 cover the binding site of aa-tRNA disallowing EF-Tu from being charged with aa-tRNA. All elfamycins cause increased the affinity of EF-Tu for GTP.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 4.7e-221,
+            "max_identities": 374,
+            "bit_score": 761.5,
+            "cvterm_id": "36763",
+            "query": "MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGSARAFDQIDNAPEEKARGITINTSHVEYDTPARHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFMNKCDMVDDEELLELVEMEVRELLSAYDFPGDDLPVVRGSALKALEGEAEWEAKIIELAGYLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTVKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREDIERGQVLAKPGSIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNINMIVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVI",
+            "match": "+SKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGG+ARAFDQIDNAPEEKARGITINTSHVEYDTP RHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVF+NKCDMVDDEELLELVEMEVRELLS YDFPGDD P+VRGSALKALEG+AEWEAKI+ELAG+LDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGI+KVGEEVEIVGIK+T KSTCTGVEMFRKLLDEGRAGENVGVLLRGIKRE+IERGQVLAKPG+IKPHT FESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNI M+VTLIHPIAMDDGLRFAIREGGRTVGAGVVAKV+",
+            "sequence_from_db": "VSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGAARAFDQIDNAPEEKARGITINTSHVEYDTPTRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPIVRGSALKALEGDAEWEAKILELAGFLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIIKVGEEVEIVGIKETQKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREEIERGQVLAKPGTIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIKMVVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVL",
+            "sequence_from_broadstreet": "MLSPEGESTIVRNIAVSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGAARAFDQIDNAPEEKARGITINTSHVEYDTPTRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPIVRGSALKALEGDAEWEAKILELAGFLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIIKVGEEVEIVGIKETQKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREEIERGQVLAKPGTIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIKMVVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVLG",
+            "dna_sequence_from_broadstreet": "GTGCTCTCTCCTGAAGGGGAGAGCACTATAGTAAGGAATATAGCCGTGTCTAAAGAAAAATTTGAACGTACAAAACCGCACGTTAACGTTGGTACTATCGGCCACGTTGACCACGGTAAAACTACTCTGACCGCTGCAATCACCACCGTACTGGCTAAAACCTACGGCGGTGCTGCTCGTGCATTCGACCAGATCGATAACGCGCCGGAAGAAAAAGCTCGTGGTATCACCATCAACACTTCTCACGTTGAATACGACACCCCGACCCGTCACTACGCGCACGTAGACTGCCCGGGGCACGCCGACTATGTTAAAAACATGATCACCGGTGCTGCTCAGATGGACGGCGCGATCCTGGTAGTTGCTGCGACTGACGGCCCGATGCCGCAGACTCGTGAGCACATCCTGCTGGGTCGTCAGGTAGGCGTTCCGTACATCATCGTGTTCCTGAACAAATGCGACATGGTTGATGACGAAGAGCTGCTGGAACTGGTTGAAATGGAAGTTCGTGAACTTCTGTCTCAGTACGACTTCCCGGGCGACGACACTCCGATCGTTCGTGGTTCTGCTCTGAAAGCGCTGGAAGGCGACGCAGAGTGGGAAGCGAAAATCCTGGAACTGGCTGGCTTCCTGGATTCTTACATTCCGGAACCAGAGCGTGCGATTGACAAGCCGTTCCTGCTGCCGATCGAAGACGTATTCTCCATCTCCGGTCGTGGTACCGTTGTTACCGGTCGTGTAGAACGCGGTATCATCAAAGTTGGTGAAGAAGTTGAAATCGTTGGTATCAAAGAGACTCAGAAGTCTACCTGTACTGGCGTTGAAATGTTCCGCAAACTGCTGGACGAAGGCCGTGCTGGTGAGAACGTAGGTGTTCTGCTGCGTGGTATCAAACGTGAAGAAATCGAACGTGGTCAGGTACTGGCTAAGCCGGGCACCATCAAGCCGCACACCAAGTTCGAATCTGAAGTGTACATTCTGTCCAAAGATGAAGGCGGTCGTCATACTCCGTTCTTCAAAGGCTACCGTCCGCAGTTCTACTTCCGTACTACTGACGTGACTGGTACCATCGAACTGCCGGAAGGCGTAGAGATGGTAATGCCGGGCGACAACATCAAAATGGTTGTTACCCTGATCCACCCGATCGCGATGGACGACGGTCTGCGTTTCGCAATCCGTGAAGGCGGCCGTACCGTTGGCGCGGGCGTTGTTGCTAAAGTTCTGGGCTAA",
+            "partial": "0",
+            "query_start": 2608305,
+            "query_end": 2609483,
+            "hit_start": 45,
+            "hit_end": 1224,
+            "orf_dna_sequence": "GTGTCTAAAGAAAAATTTGAACGTACCAAACCCCATGTAAACGTCGGTACTATCGGCCACGTTGACCATGGTAAAACTACCCTGACAGCAGCAATCACCACCGTTCTGGCTAAAACCTACGGCGGTAGCGCTCGTGCTTTCGATCAAATCGATAACGCACCAGAAGAAAAAGCACGTGGTATCACCATCAACACTTCTCACGTTGAATATGATACTCCTGCTCGTCACTATGCGCACGTTGACTGCCCAGGTCACGCCGACTATGTTAAAAACATGATCACCGGTGCTGCTCAAATGGATGGTGCAATCCTGGTTGTTGCTGCAACTGATGGCCCTATGCCACAGACTCGTGAGCACATCCTGTTGGGTCGTCAGGTTGGCGTTCCTTACATCATCGTATTCATGAACAAATGTGACATGGTTGATGATGAAGAGCTGCTGGAACTGGTAGAAATGGAAGTTCGTGAACTTCTGTCTGCTTACGACTTCCCTGGCGATGATCTGCCAGTTGTTCGTGGTTCAGCGCTGAAAGCACTGGAAGGCGAAGCTGAGTGGGAAGCTAAAATCATCGAACTGGCTGGTTACCTGGATTCTTATATCCCAGAACCAGAACGTGCTATCGACAAGCCGTTCCTGCTGCCAATCGAAGACGTATTCTCTATCTCAGGCCGTGGTACTGTAGTAACTGGTCGTGTAGAGCGCGGTATCGTTAAAGTCGGCGAAGAAGTTGAAATCGTCGGTATCAAAGATACTGTTAAATCTACTTGTACTGGCGTTGAAATGTTCCGCAAATTGCTGGACGAAGGCCGTGCTGGTGAGAACGTTGGTGTTCTGCTGCGTGGTATCAAACGTGAAGATATCGAACGTGGTCAAGTTCTGGCTAAACCAGGTTCTATCAAACCACACACTACCTTTGAATCAGAAGTTTATATTCTGAGCAAAGATGAAGGCGGCCGTCATACTCCGTTCTTCAAAGGCTACCGTCCTCAGTTCTACTTCCGTACAACTGACGTAACCGGTACCATCGAATTGCCAGAAGGCGTTGAAATGGTGATGCCAGGTGACAACATCAACATGATTGTTACCCTGATTCACCCAATCGCAATGGACGACGGCTTGCGTTTCGCAATCCGTGAAGGCGGCCGTACTGTAGGCGCTGGTGTTGTTGCTAAAGTAATCGCTTAA",
+            "orf_prot_sequence": "MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGSARAFDQIDNAPEEKARGITINTSHVEYDTPARHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFMNKCDMVDDEELLELVEMEVRELLSAYDFPGDDLPVVRGSALKALEGEAEWEAKIIELAGYLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTVKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREDIERGQVLAKPGSIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNINMIVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVIA",
+            "perc_identity": 95.17
+        }
+    },
+    "NZ_CP009973.1_2915 # 3272664 # 3273848 # 1 # ID=1_2915;partial=00;start_type=ATG;rbs_motif=GAGG;rbs_spacer=8bp;gc_cont=0.479": {
+        "gnl|BL_ORD_ID|1964|hsp_num:0": {
+            "type_match": "Strict",
+            "snp": {
+                "original": "R",
+                "change": "F",
+                "position": 234
+            },
+            "ast_source": "Curated-R",
+            "query_snp": {
+                "original": "R",
+                "change": "F",
+                "position": 219
+            },
+            "orf_strand": "+",
+            "orf_start": 3272664,
+            "orf_end": 3273848,
+            "orf_from": "NZ_CP009973.1",
+            "model_name": "Escherichia coli EF-Tu mutants conferring resistance to Pulvomycin",
+            "model_type": "protein variant model",
+            "model_type_id": 40293,
+            "model_id": "2158",
+            "pass_evalue": "n/a",
+            "pass_bitscore": 700,
+            "ARO_accession": "3003369",
+            "ARO_name": "Escherichia coli EF-Tu mutants conferring resistance to Pulvomycin",
+            "ARO_category": {
+                "37711": {
+                    "category_aro_accession": "3001312",
+                    "category_aro_cvterm_id": "37711",
+                    "category_aro_name": "elfamycin resistant EF-Tu",
+                    "category_aro_description": "Sequence variants of elongation factor Tu that confer resistance to elfamycin antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36725": {
+                    "category_aro_accession": "3000586",
+                    "category_aro_cvterm_id": "36725",
+                    "category_aro_name": "pulvomycin",
+                    "category_aro_description": "Pulvomycin is a polyketide antibiotic that binds elongation factor Tu (EF-Tu) to inhibit protein biosynthesis by preventing the formation of the ternary complex (EF-Tu*GTP*aa-tRNA). Phenotypically, it was shown that pulvomycin sensitivity is dominant over resistance.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37618": {
+                    "category_aro_accession": "3001219",
+                    "category_aro_cvterm_id": "37618",
+                    "category_aro_name": "elfamycin antibiotic",
+                    "category_aro_description": "Elfamycins are molecules that inhibit bacterial elongation factor Tu (EF-Tu), a key protein which brings aminoacyl-tRNA (aa-tRNA) to the ribosome during protein synthesis. Elfamycins defined by their target (EF-Tu), rather than a conserved chemical backbone. Elfamycins follow two mechanisms to disrupt protein synthesis: 1. kirromycins and enacyloxin fix EF-Tu in the GTP bound conformation and lock EF-Tu onto the ribosome, and 2. pulvomycin and GE2270 cover the binding site of aa-tRNA disallowing EF-Tu from being charged with aa-tRNA. All elfamycins cause increased the affinity of EF-Tu for GTP.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 1.2e-216,
+            "max_identities": 367,
+            "bit_score": 746.9,
+            "cvterm_id": "36763",
+            "query": "MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGSARAFDQIDNAPEEKARGITINTSHVEYDTPARHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWEAKIIELAEALDSYIPQPERAIDRPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIIDTIKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDDVQRGQVLAKPGSIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNVNMVVNLIAPIAMDDGLRFAIREGGRTVGAGVVAKVI",
+            "match": "+SKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGG+ARAFDQIDNAPEEKARGITINTSHVEYDTP RHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTP++RGSALKALEGDAEWEAKI+ELA  LDSYIP+PERAID+PFLLPIEDVFSISGRGTVVTGRVERGI+KVGEEVEIVGI +T K+TCTGVEMFRKLLDEGRAGENVGVLLRG KR++++RGQVLAKPG+IKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDN+ MVV LI PIAMDDGLRFAIREGGRTVGAGVVAKV+",
+            "sequence_from_db": "VSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGAARAFDQIDNAPEEKARGITINTSHVEYDTPTRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPIVRGSALKALEGDAEWEAKILELAGFLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIIKVGEEVEIVGIKETQKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREEIERGQVLAKPGTIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIKMVVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVL",
+            "sequence_from_broadstreet": "MLSPEGESTIVRNIAVSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGAARAFDQIDNAPEEKARGITINTSHVEYDTPTRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPIVRGSALKALEGDAEWEAKILELAGFLDSYIPEPERAIDKPFLLPIEDVFSISGRGTVVTGRVERGIIKVGEEVEIVGIKETQKSTCTGVEMFRKLLDEGRAGENVGVLLRGIKREEIERGQVLAKPGTIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIKMVVTLIHPIAMDDGLRFAIREGGRTVGAGVVAKVLG",
+            "dna_sequence_from_broadstreet": "GTGCTCTCTCCTGAAGGGGAGAGCACTATAGTAAGGAATATAGCCGTGTCTAAAGAAAAATTTGAACGTACAAAACCGCACGTTAACGTTGGTACTATCGGCCACGTTGACCACGGTAAAACTACTCTGACCGCTGCAATCACCACCGTACTGGCTAAAACCTACGGCGGTGCTGCTCGTGCATTCGACCAGATCGATAACGCGCCGGAAGAAAAAGCTCGTGGTATCACCATCAACACTTCTCACGTTGAATACGACACCCCGACCCGTCACTACGCGCACGTAGACTGCCCGGGGCACGCCGACTATGTTAAAAACATGATCACCGGTGCTGCTCAGATGGACGGCGCGATCCTGGTAGTTGCTGCGACTGACGGCCCGATGCCGCAGACTCGTGAGCACATCCTGCTGGGTCGTCAGGTAGGCGTTCCGTACATCATCGTGTTCCTGAACAAATGCGACATGGTTGATGACGAAGAGCTGCTGGAACTGGTTGAAATGGAAGTTCGTGAACTTCTGTCTCAGTACGACTTCCCGGGCGACGACACTCCGATCGTTCGTGGTTCTGCTCTGAAAGCGCTGGAAGGCGACGCAGAGTGGGAAGCGAAAATCCTGGAACTGGCTGGCTTCCTGGATTCTTACATTCCGGAACCAGAGCGTGCGATTGACAAGCCGTTCCTGCTGCCGATCGAAGACGTATTCTCCATCTCCGGTCGTGGTACCGTTGTTACCGGTCGTGTAGAACGCGGTATCATCAAAGTTGGTGAAGAAGTTGAAATCGTTGGTATCAAAGAGACTCAGAAGTCTACCTGTACTGGCGTTGAAATGTTCCGCAAACTGCTGGACGAAGGCCGTGCTGGTGAGAACGTAGGTGTTCTGCTGCGTGGTATCAAACGTGAAGAAATCGAACGTGGTCAGGTACTGGCTAAGCCGGGCACCATCAAGCCGCACACCAAGTTCGAATCTGAAGTGTACATTCTGTCCAAAGATGAAGGCGGTCGTCATACTCCGTTCTTCAAAGGCTACCGTCCGCAGTTCTACTTCCGTACTACTGACGTGACTGGTACCATCGAACTGCCGGAAGGCGTAGAGATGGTAATGCCGGGCGACAACATCAAAATGGTTGTTACCCTGATCCACCCGATCGCGATGGACGACGGTCTGCGTTTCGCAATCCGTGAAGGCGGCCGTACCGTTGGCGCGGGCGTTGTTGCTAAAGTTCTGGGCTAA",
+            "partial": "0",
+            "query_start": 3272664,
+            "query_end": 3273842,
+            "hit_start": 45,
+            "hit_end": 1224,
+            "orf_dna_sequence": "ATGTCTAAAGAAAAGTTTGAACGTACAAAGCCGCACGTTAATGTGGGTACTATTGGCCACGTTGACCATGGTAAAACTACCTTAACTGCTGCAATCACCACCGTATTGGCTAAAACCTACGGCGGTAGTGCTCGTGCATTCGACCAGATCGACAACGCTCCGGAAGAAAAAGCGCGTGGTATCACCATCAACACTTCTCACGTTGAATATGATACTCCTGCTCGTCACTATGCACACGTTGACTGCCCAGGTCATGCTGACTACGTTAAAAATATGATCACCGGTGCTGCTCAGATGGATGGAGCGATCTTGGTTGTTGCTGCAACCGATGGCCCTATGCCGCAGACTCGTGAGCATATCCTGCTGGGCCGCCAGGTTGGTGTCCCATACATTATTGTCTTCCTGAACAAATGTGACATGGTTGACGATGAAGAGTTGCTAGAGTTGGTTGAAATGGAGGTTCGTGAGCTTCTGTCTCAATACGATTTCCCAGGCGACGACACTCCAGTCATCCGTGGTTCAGCGTTGAAAGCCCTGGAAGGTGACGCTGAGTGGGAAGCTAAAATTATCGAGTTGGCAGAAGCTCTGGATAGCTATATTCCGCAACCAGAACGCGCTATTGATAGACCATTCCTATTGCCAATTGAAGACGTATTCTCTATTTCTGGTCGTGGTACTGTAGTTACTGGTCGTGTAGAACGTGGTATTGTTAAGGTCGGCGAAGAAGTTGAAATCGTTGGTATTATCGATACGATTAAAACAACTTGTACTGGCGTTGAAATGTTCCGCAAGCTGCTGGATGAAGGCCGTGCTGGTGAAAATGTTGGTGTTCTGCTGCGTGGTACTAAGCGTGACGATGTTCAGCGTGGTCAAGTACTGGCGAAACCAGGTTCTATCAAGCCACACACGAAGTTTGAGTCAGAAGTTTATATTCTGAGCAAAGATGAAGGCGGCCGTCATACACCGTTCTTCAAGGGCTACCGTCCTCAGTTCTACTTCCGTACAACTGACGTGACCGGTACCATTGAGCTGCCAGAAGGCGTTGAAATGGTCATGCCTGGTGACAACGTAAACATGGTTGTTAACCTAATTGCTCCTATCGCAATGGATGATGGTCTGCGCTTCGCAATTCGTGAGGGTGGCCGTACTGTTGGTGCTGGCGTTGTTGCTAAAGTCATTGAATAA",
+            "orf_prot_sequence": "MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGSARAFDQIDNAPEEKARGITINTSHVEYDTPARHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWEAKIIELAEALDSYIPQPERAIDRPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIIDTIKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDDVQRGQVLAKPGSIKPHTKFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNVNMVVNLIAPIAMDDGLRFAIREGGRTVGAGVVAKVIE",
+            "perc_identity": 93.38
+        }
+    }
+}

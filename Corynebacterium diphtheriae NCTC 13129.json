@@ -1,0 +1,202 @@
+{
+    "NC_002935.2_1901 # 1999616 # 2000446 # 1 # ID=1_1901;partial=00;start_type=GTG;rbs_motif=AGG;rbs_spacer=6bp;gc_cont=0.616": {
+        "gnl|BL_ORD_ID|977|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 1999616,
+            "orf_end": 2000446,
+            "orf_from": "NC_002935.2",
+            "model_name": "sul1",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "1070",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "500",
+            "ARO_accession": "3000410",
+            "ARO_name": "sul1",
+            "ARO_category": {
+                "41402": {
+                    "category_aro_accession": "3004238",
+                    "category_aro_cvterm_id": "41402",
+                    "category_aro_name": "sulfonamide resistant sul",
+                    "category_aro_description": "The sul genes encode forms of dihydropteroate synthase that confer resistance to sulfonamide.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36463": {
+                    "category_aro_accession": "3000324",
+                    "category_aro_cvterm_id": "36463",
+                    "category_aro_name": "sulfadiazine",
+                    "category_aro_description": "Sulfadiazine is a potent inhibitor of dihydropteroate synthase, interfering with the tetrahydrofolic biosynthesis pathway. Tetrahydrofolic acid is essential for folate synthesis, a precursor to many nucleotides and amino acids.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36464": {
+                    "category_aro_accession": "3000325",
+                    "category_aro_cvterm_id": "36464",
+                    "category_aro_name": "sulfadimidine",
+                    "category_aro_description": "Sulfadimidine is an alkaline sulfonamide antibiotic that inhibits dihydropteroate synthase, and enzyme in the tetrahydrofolic acid biosynthesis pathway. This interferes with the production of folate, which is a precursor to many amino acids and nucleotides.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36466": {
+                    "category_aro_accession": "3000327",
+                    "category_aro_cvterm_id": "36466",
+                    "category_aro_name": "sulfadoxine",
+                    "category_aro_description": "Sulfadoxine is an inhibitor of dihydropteroate synthase, interfering with the tetrahydrofolic biosynthesis pathway. Tetrahydrofolic acid is essential for folate synthesis, a precursor to many nucleotides and amino acids.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36468": {
+                    "category_aro_accession": "3000329",
+                    "category_aro_cvterm_id": "36468",
+                    "category_aro_name": "sulfamethoxazole",
+                    "category_aro_description": "Sulfamethoxazole is a sulfonamide antibiotic usually taken with trimethoprim, a diaminopyrimidine antibiotic. Sulfamethoxazole inhibits dihydropteroate synthase, essential to tetrahydrofolic acid biosynthesis. This pathway generates compounds used in the synthesis of many amino acids and nucleotides.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36469": {
+                    "category_aro_accession": "3000330",
+                    "category_aro_cvterm_id": "36469",
+                    "category_aro_name": "sulfisoxazole",
+                    "category_aro_description": "Sulfisoxazole is an inhibitor of dihydropteroate synthase, interfering with the tetrahydrofolic biosynthesis pathway. Tetrahydrofolic acid is essential for folate synthesis, a precursor to many nucleotides and amino acids.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37027": {
+                    "category_aro_accession": "3000683",
+                    "category_aro_cvterm_id": "37027",
+                    "category_aro_name": "sulfacetamide",
+                    "category_aro_description": "Sulfacetamide is a very soluable sulfonamide antibiotic previously used to treat urinary tract infections. Its relatively low activity and toxicity to those with Stevens-Johnson syndrome have reduced its use and availability.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37028": {
+                    "category_aro_accession": "3000684",
+                    "category_aro_cvterm_id": "37028",
+                    "category_aro_name": "mafenide",
+                    "category_aro_description": "Mafenide is a sulfonamide used topically for treating burns.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37042": {
+                    "category_aro_accession": "3000698",
+                    "category_aro_cvterm_id": "37042",
+                    "category_aro_name": "sulfasalazine",
+                    "category_aro_description": "Sulfasalazine is a derivative of the early sulfonamide sulfapyridine (salicylazosulfapyridine). It was developed to increase water solubility and is taken orally for ulcerative colitis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37043": {
+                    "category_aro_accession": "3000699",
+                    "category_aro_cvterm_id": "37043",
+                    "category_aro_name": "sulfamethizole",
+                    "category_aro_description": "Sulfamethizole is a short-acting sulfonamide that inhibits dihydropteroate synthetase.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36421": {
+                    "category_aro_accession": "3000282",
+                    "category_aro_cvterm_id": "36421",
+                    "category_aro_name": "sulfonamide antibiotic",
+                    "category_aro_description": "Sulfonamides are broad spectrum, synthetic antibiotics that contain the sulfonamide group. Sulfonamides inhibit dihydropteroate synthase, which catalyzes the conversion of p-aminobenzoic acid to dihydropteroic acid as part of the tetrahydrofolic acid biosynthetic pathway. Tetrahydrofolic acid is essential for folate synthesis, a precursor of many nucleotides and amino acids. Many sulfamides are taken with trimethoprim, an inhibitor of dihydrofolate reductase, also disturbing the trihydrofolic acid synthesis pathway.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35998": {
+                    "category_aro_accession": "0001002",
+                    "category_aro_cvterm_id": "35998",
+                    "category_aro_name": "antibiotic target replacement",
+                    "category_aro_description": "Replacement or substitution of antibiotic action target, which process will result in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 7e-155,
+            "bit_score": 541.2,
+            "max_identities": 274,
+            "cvterm_id": "39525",
+            "query": "MFGILNLTEDSFFDESRRLDPAGAVTAAIEMLRVGSDVVDVGPAASHPDARPVSPADEIRRIAPLLDALSDQMHRVSIDSFQPETQRYALKRGVGYLNDIQGFPDPALYPDIAEADCRLVVMHSAQRDGIATRTGHLRPEDALDEIVRFFEARVSALRRSGVAADRLILDPGMGFFLSPAPETSLHVLSNLQKLKSALGLPLLVSVSRKSFLGATVGLPVKDLGPASLAAELHAIGNGADYVRTHAPGDLRSAITFSETLAKFRSRNARDRGLDHA",
+            "match": "+FGILNLTEDSFFDESRRLDPAGAVTAAIEMLRVGSDVVDVGPAASHPDARPVSPADEIRRIAPLLDALSDQMHRVSIDSFQPETQRYALKRGVGYLNDIQGFPDPALYPDIAEADCRLVVMHSAQRDGIATRTGHLRPEDALDEIVRFFEARVSALRRSGVAADRLILDPGMGFFLSPAPETSLHVLSNLQKLKSALGLPLLVSVSRKSFLGATVGLPVKDLGPASLAAELHAIGNGADYVRTHAPGDLRSAITFSETLAKFRSR+ARDRGLDHA",
+            "sequence_from_db": "VFGILNLTEDSFFDESRRLDPAGAVTAAIEMLRVGSDVVDVGPAASHPDARPVSPADEIRRIAPLLDALSDQMHRVSIDSFQPETQRYALKRGVGYLNDIQGFPDPALYPDIAEADCRLVVMHSAQRDGIATRTGHLRPEDALDEIVRFFEARVSALRRSGVAADRLILDPGMGFFLSPAPETSLHVLSNLQKLKSALGLPLLVSVSRKSFLGATVGLPVKDLGPASLAAELHAIGNGADYVRTHAPGDLRSAITFSETLAKFRSRDARDRGLDHA",
+            "sequence_from_broadstreet": "MVTVFGILNLTEDSFFDESRRLDPAGAVTAAIEMLRVGSDVVDVGPAASHPDARPVSPADEIRRIAPLLDALSDQMHRVSIDSFQPETQRYALKRGVGYLNDIQGFPDPALYPDIAEADCRLVVMHSAQRDGIATRTGHLRPEDALDEIVRFFEARVSALRRSGVAADRLILDPGMGFFLSPAPETSLHVLSNLQKLKSALGLPLLVSVSRKSFLGATVGLPVKDLGPASLAAELHAIGNGADYVRTHAPGDLRSAITFSETLAKFRSRDARDRGLDHA",
+            "dna_sequence_from_broadstreet": "ATGGTGACGGTGTTCGGCATTCTGAATCTCACCGAGGACTCCTTCTTCGATGAGAGCCGGCGGCTAGACCCCGCCGGCGCTGTCACCGCGGCGATCGAAATGCTGCGAGTCGGATCAGACGTCGTGGATGTCGGACCGGCCGCCAGCCATCCGGACGCGAGGCCTGTATCGCCGGCCGATGAGATCAGACGTATTGCGCCGCTCTTAGACGCCCTGTCCGATCAGATGCACCGTGTTTCAATCGACAGCTTCCAACCGGAAACCCAGCGCTATGCGCTCAAGCGCGGCGTGGGCTACCTGAACGATATCCAAGGATTTCCTGACCCTGCGCTCTATCCCGATATTGCTGAGGCGGACTGCAGGCTGGTGGTTATGCACTCAGCGCAGCGGGATGGCATCGCCACCCGCACCGGTCACCTTCGACCCGAAGACGCGCTCGACGAGATTGTGCGGTTCTTCGAGGCGCGGGTTTCCGCCTTGCGACGGAGCGGGGTCGCTGCCGACCGGCTCATCCTCGATCCGGGGATGGGATTTTTCTTGAGCCCCGCACCGGAAACATCGCTGCACGTGCTGTCGAACCTTCAAAAGCTGAAGTCGGCGTTGGGGCTTCCGCTATTGGTCTCGGTGTCGCGGAAATCCTTCTTGGGCGCCACCGTTGGCCTTCCTGTAAAGGATCTGGGTCCAGCGAGCCTTGCGGCGGAACTTCACGCGATCGGCAATGGCGCTGACTACGTCCGCACCCACGCGCCTGGAGATCTGCGAAGCGCAATCACCTTCTCGGAAACCCTCGCGAAATTTCGCAGTCGCGACGCCAGAGACCGAGGGTTAGATCATGCCTAG",
+            "partial": "0",
+            "query_start": 1999616,
+            "query_end": 2000443,
+            "hit_start": 9,
+            "hit_end": 837,
+            "orf_dna_sequence": "GTGTTCGGCATTCTGAATCTCACCGAGGACTCCTTCTTCGATGAGAGCCGGCGGCTAGACCCCGCCGGCGCTGTCACCGCGGCGATCGAAATGCTGCGAGTCGGATCAGACGTCGTGGATGTCGGACCGGCCGCCAGCCATCCGGACGCGAGGCCTGTATCGCCGGCCGATGAGATCAGACGTATTGCGCCGCTCTTAGACGCCCTGTCCGATCAGATGCACCGTGTTTCAATCGACAGCTTCCAACCGGAAACCCAGCGCTATGCGCTCAAGCGCGGCGTGGGCTACCTGAACGATATCCAAGGATTTCCTGACCCTGCGCTCTATCCCGATATTGCTGAGGCGGACTGCAGGCTGGTGGTTATGCACTCAGCGCAGCGGGATGGCATCGCCACCCGCACCGGTCACCTTCGACCCGAAGACGCGCTCGACGAGATTGTGCGGTTCTTCGAGGCGCGGGTTTCCGCCTTGCGACGGAGCGGGGTCGCTGCCGACCGGCTCATCCTCGATCCGGGGATGGGATTTTTCTTGAGCCCCGCACCGGAAACATCGCTGCACGTGCTGTCGAACCTTCAAAAGCTGAAGTCGGCGTTGGGGCTTCCGCTATTGGTCTCGGTGTCGCGGAAATCCTTCTTGGGCGCCACCGTTGGCCTTCCTGTAAAGGATCTGGGTCCAGCGAGCCTTGCGGCGGAACTTCACGCGATCGGCAATGGCGCTGACTACGTCCGCACCCACGCGCCTGGAGATCTGCGAAGCGCAATCACCTTCTCGGAAACCCTCGCGAAATTTCGCAGTCGCAACGCCAGAGACCGAGGGTTAGATCATGCCTAG",
+            "orf_prot_sequence": "MFGILNLTEDSFFDESRRLDPAGAVTAAIEMLRVGSDVVDVGPAASHPDARPVSPADEIRRIAPLLDALSDQMHRVSIDSFQPETQRYALKRGVGYLNDIQGFPDPALYPDIAEADCRLVVMHSAQRDGIATRTGHLRPEDALDEIVRFFEARVSALRRSGVAADRLILDPGMGFFLSPAPETSLHVLSNLQKLKSALGLPLLVSVSRKSFLGATVGLPVKDLGPASLAAELHAIGNGADYVRTHAPGDLRSAITFSETLAKFRSRNARDRGLDHA",
+            "perc_identity": 99.28
+        }
+    },
+    "NC_002935.2_2115 # 2244892 # 2246574 # -1 # ID=1_2115;partial=00;start_type=GTG;rbs_motif=AGG;rbs_spacer=9bp;gc_cont=0.547": {
+        "gnl|BL_ORD_ID|4761|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "-",
+            "orf_start": 2244892,
+            "orf_end": 2246574,
+            "orf_from": "NC_002935.2",
+            "model_name": "vanW gene in vanI cluster",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "2242",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "50",
+            "ARO_accession": "3003724",
+            "ARO_name": "vanW gene in vanI cluster",
+            "ARO_category": {
+                "36011": {
+                    "category_aro_accession": "3000002",
+                    "category_aro_cvterm_id": "36011",
+                    "category_aro_name": "vanW",
+                    "category_aro_description": "vanW is an accessory gene, with unknown function, found on vancomycin resistance operons.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36373": {
+                    "category_aro_accession": "3000234",
+                    "category_aro_cvterm_id": "36373",
+                    "category_aro_name": "glycopeptide resistance gene cluster",
+                    "category_aro_description": "Genes that when expressed confer resistance to vancomycin and teicoplanin type antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35947": {
+                    "category_aro_accession": "0000028",
+                    "category_aro_cvterm_id": "35947",
+                    "category_aro_name": "vancomycin",
+                    "category_aro_description": "Vancomycin is a glycopeptide antibiotic used in the prophylaxis and treatment of infections caused by Gram-positive bacteria. Vancomycin inhibits the synthesis of peptidoglycan, the major component of the cell wall of gram-positive bacteria. Its mechanism of action is unusual in that it acts by binding precursors of peptidoglycan, rather than by interacting with an enzyme.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35948": {
+                    "category_aro_accession": "0000029",
+                    "category_aro_cvterm_id": "35948",
+                    "category_aro_name": "teicoplanin",
+                    "category_aro_description": "Teicoplanin is a glycopeptide antibiotic used in the prophylaxis and treatment of serious infections caused by Gram-positive bacteria. Teicoplanin has a unique acyl-aliphatic chain, and binds to cell wall precursors to inhibit transglycosylation  and transpeptidation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36220": {
+                    "category_aro_accession": "3000081",
+                    "category_aro_cvterm_id": "36220",
+                    "category_aro_name": "glycopeptide antibiotic",
+                    "category_aro_description": "Glycopeptide antibiotics are natural products produced non-ribosomally by Actinomycetales bacteria. With the exception of bleomycins, they act by binding the terminal D-Ala-D-Ala in peptidoglycan precursors of the growing bacterial cell wall and are generally active against Gram-positive bacteria.  This inhibits transglycosylation leading to cell death due to osmotic stress.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 5.2e-16,
+            "bit_score": 80.9,
+            "max_identities": 57,
+            "cvterm_id": "42594",
+            "query": "GVRIEWDKTLEHFDKRVTGKDSRTFDVAYTDEPATFTTEQAEAATFDQVVGEFTT----GGYSQASGINIARVAQMVNGAIVAPGDTFSLNGYTGPRGIAQGFVESGIILNGHADKAVGGGISQFATTLYNAAYFAGMEDVAHTPHSYYISRYPAGREATVFEGAIDLQFKNTSPYPVRIVTSAGGGSVTVQLTGV",
+            "match": "GVR++ DK+ E   + +  +            P T     AE       +G++TT      + + + + +A  A+ +NG I+ PG  FS N   G R   +G++ + + +        GGGI Q +TTLY A   A +E +    HS  +S  P G++ATV  GA+D +F+NT+   + +  + GG  + V++ GV",
+            "sequence_from_db": "GVRLDVDKSWEQLQQSIGMETVPLVTEVIVVHPTT-----AELEKVKDPLGDYTTYFNPSFHERVTNVRLA--AEAINGLILPPGGEFSFNDTVGKREPERGYLPALMYMGNRVVTDDGGGICQDSTTLYQATKQARLEVLERYSHSLPVSYVPLGQDATVAYGALDFRFRNTTQGYLLLNAATGGNWIRVRIFGV",
+            "sequence_from_broadstreet": "MLRRKPWVFLLVILFSQLSLSILLGATVTYGAGYAKAPEGLTVWEKDLGGMTKDEAYAVLAEVIPKAVVYDRTVYFLELNQTDQDLKDYLASQYIISTGNVITDAFEYLHRMSRTIPSPELLNQEEVLAQLRKFALDIDQPGKAAEAYYENGEIVIEEGSLGVRLDVDKSWEQLQQSIGMETVPLVTEVIVVHPTTAELEKVKDPLGDYTTYFNPSFHERVTNVRLAAEAINGLILPPGGEFSFNDTVGKREPERGYLPALMYMGNRVVTDDGGGICQDSTTLYQATKQARLEVLERYSHSLPVSYVPLGQDATVAYGALDFRFRNTTQGYLLLNAATGGNWIRVRIFGVADSEHPALDEPDGYPVKPREWSK",
+            "dna_sequence_from_broadstreet": "ATGTTAAGAAGGAAACCATGGGTCTTTCTTTTGGTAATTTTATTTAGTCAGCTTAGCTTATCTATACTTTTGGGGGCTACGGTAACCTACGGTGCGGGTTATGCGAAGGCACCCGAGGGGTTGACGGTTTGGGAAAAAGATCTGGGTGGGATGACCAAGGATGAGGCCTATGCAGTCCTTGCCGAAGTAATCCCCAAGGCAGTCGTCTATGACCGGACGGTTTATTTCTTGGAGCTAAACCAAACCGATCAAGATCTAAAGGACTATCTGGCAAGTCAATACATCATTTCCACCGGAAATGTTATTACGGATGCCTTTGAGTACCTGCACAGAATGTCAAGGACTATCCCGTCTCCTGAGTTACTCAATCAGGAGGAAGTTCTTGCTCAGCTCCGCAAGTTCGCCCTGGATATCGATCAGCCGGGTAAGGCGGCTGAAGCCTATTATGAGAATGGCGAGATCGTCATCGAAGAGGGCAGTTTGGGAGTCAGACTTGATGTGGACAAATCATGGGAACAACTGCAGCAAAGCATAGGCATGGAGACGGTGCCGCTTGTTACGGAGGTCATAGTGGTTCACCCTACTACGGCCGAATTAGAGAAGGTCAAAGATCCCTTGGGGGATTACACCACCTATTTTAACCCTTCCTTTCATGAACGGGTTACCAATGTACGGCTTGCGGCTGAAGCGATCAATGGACTTATTCTTCCGCCGGGTGGTGAATTCTCCTTTAATGATACGGTGGGAAAACGTGAGCCTGAAAGAGGGTATTTGCCGGCTTTAATGTATATGGGCAATAGAGTTGTCACAGATGATGGCGGAGGGATTTGCCAGGATTCGACCACTCTTTATCAAGCGACCAAACAGGCCAGGCTGGAAGTGCTGGAAAGATACAGCCATTCTCTGCCGGTTTCCTATGTTCCGTTGGGGCAGGATGCTACGGTTGCTTATGGAGCGCTGGATTTCCGCTTTCGGAACACGACTCAGGGTTATTTGCTGCTTAATGCAGCTACAGGCGGCAATTGGATTCGGGTAAGAATTTTCGGTGTGGCCGATTCTGAACACCCTGCCCTTGACGAACCGGACGGTTATCCTGTAAAACCCAGAGAATGGTCAAAGTAA",
+            "partial": "0",
+            "query_start": 2245783,
+            "query_end": 2246358,
+            "hit_start": 483,
+            "hit_end": 1050,
+            "orf_dna_sequence": "GTGTGCACTAAATTGGGTCAGGTGAGTTCTAAGAAAGTAGCCAAGTTTAGTGCGGGTGTGATCCTGGGGCTGGGAGTCCTCGGCGGTATCGCATACGGCGCTGACTACGTGACGTCGCAAGGCGAAGTGCCTCGTGGCACAACTGTGGGAGGCATCGCAATCGGTGGAATGGCTAAAGAAGACGCCATTTCCACCCTGCAAAAGCAACTGAAATTGACCGACCAGGTCACCGTCACCGCTGGCGAGCGCACAGCTACTTTCTCCCCAGAGGTTGCAGGGCTGAGCGTGGATTGGAACGAAACAATCCGTGCCGCCGGTAAGCAATCCGCCAACCCCATTACTCGTCTGAGCAGTTTTTTTACCACCCACGAGGTAGAGATCGTCTCCGAGCGCGATGATTCTAAGCTCATCCCTGAGTTAGAGCGCGTACAAAAAGAACTCAGCCCAGCACCCGCCGATGCCGCTATTCGTCTTACCGACGGAAAAGTGGAAGTCATCCCAGCTGTTAACGGCCAAGAGCTGGATAAAAAAGAACTAGATAAGGCTGTTGTTTCCTCGTGGCTACACCCTGAGGGAGTAAGCGTTGACCCGAAGGTGACTAAGCCGCGCATCGGTGAATCCGCTGTGGAAGAGGCACGCCCTGCTGCCGAAGCCGCCGTCAGCAGCCCCATCGTGGCACACGGCCGCGACAAAATCGACGGTGTCATTGAACCAACCCGCATGGGCGAGGTAGTGACCTTCGAACCTGATGGCAAGAAGTTCCGCGTTGCCGTGAACACCGATGCCGCACGCGCAATTTTGAACGAGACACTCAACGTGACCGAGGTGCAGCGGAGAAACGCTGACATTCAATTCTCTGGTTCAGCAAAGACCGTGATCCCGCACATGGACGGCGTGCGAATCGAATGGGACAAGACGCTGGAGCACTTTGATAAGCGTGTGACCGGCAAGGACAGCCGCACATTCGACGTCGCCTACACCGATGAGCCAGCCACCTTCACCACCGAGCAAGCAGAGGCTGCAACCTTCGATCAAGTTGTCGGTGAATTTACTACCGGTGGCTACTCACAAGCATCGGGTATCAATATTGCACGCGTTGCTCAGATGGTCAACGGTGCTATTGTAGCCCCCGGAGATACCTTCTCACTCAATGGGTACACTGGCCCGCGTGGTATTGCCCAAGGATTTGTGGAATCCGGCATTATCCTCAATGGTCACGCTGATAAAGCCGTTGGCGGTGGCATTAGCCAGTTCGCTACTACTTTGTATAACGCTGCGTACTTCGCGGGCATGGAAGACGTAGCCCATACTCCACATAGCTATTACATCTCTCGTTACCCTGCTGGACGCGAAGCTACCGTATTTGAAGGTGCTATCGACTTGCAGTTTAAAAACACCTCACCATACCCCGTCCGCATTGTCACCTCCGCCGGCGGCGGTTCGGTAACAGTACAGCTCACTGGTGTGAAAACGGTGAATGTGGAATCGATCAACGGTGGTCGCTGGAACTACACACCACCGCGTCCGATCACACTTTCTGGCCCAGATTGTGCCGCTTCTTCCGGTGCACAGGGCTTTACCACCAGCGATACTCGTATCATCCGTTCGCTTTCTGGCTCCGAGATCTCTCGTGAGACAAAAACCACCGTGTATGATCCTTCGCCTATCGTGACTTGTTCCTAA",
+            "orf_prot_sequence": "MCTKLGQVSSKKVAKFSAGVILGLGVLGGIAYGADYVTSQGEVPRGTTVGGIAIGGMAKEDAISTLQKQLKLTDQVTVTAGERTATFSPEVAGLSVDWNETIRAAGKQSANPITRLSSFFTTHEVEIVSERDDSKLIPELERVQKELSPAPADAAIRLTDGKVEVIPAVNGQELDKKELDKAVVSSWLHPEGVSVDPKVTKPRIGESAVEEARPAAEAAVSSPIVAHGRDKIDGVIEPTRMGEVVTFEPDGKKFRVAVNTDAARAILNETLNVTEVQRRNADIQFSGSAKTVIPHMDGVRIEWDKTLEHFDKRVTGKDSRTFDVAYTDEPATFTTEQAEAATFDQVVGEFTTGGYSQASGINIARVAQMVNGAIVAPGDTFSLNGYTGPRGIAQGFVESGIILNGHADKAVGGGISQFATTLYNAAYFAGMEDVAHTPHSYYISRYPAGREATVFEGAIDLQFKNTSPYPVRIVTSAGGGSVTVQLTGVKTVNVESINGGRWNYTPPRPITLSGPDCAASSGAQGFTTSDTRIIRSLSGSEISRETKTTVYDPSPIVTCS",
+            "perc_identity": 29.08
+        }
+    }
+}

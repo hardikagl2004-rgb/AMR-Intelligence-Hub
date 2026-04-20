@@ -1,0 +1,614 @@
+{
+    "NZ_CP089948.1_578 # 596028 # 596744 # 1 # ID=1_578;partial=00;start_type=ATG;rbs_motif=AAGGAG;rbs_spacer=5bp;gc_cont=0.432": {
+        "gnl|BL_ORD_ID|1668|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 596028,
+            "orf_end": 596744,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "vanY gene in vanM cluster",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "1713",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "50",
+            "ARO_accession": "3002961",
+            "ARO_name": "vanY gene in vanM cluster",
+            "ARO_category": {
+                "36216": {
+                    "category_aro_accession": "3000077",
+                    "category_aro_cvterm_id": "36216",
+                    "category_aro_name": "vanY",
+                    "category_aro_description": "VanY is a D,D-carboxypeptidase that cleaves removes the terminal D-Ala from peptidoglycan for the addition of D-Lactate. The D-Ala-D-Lac peptidoglycan subunits have reduced binding affinity with vancomycin compared to D-Ala-D-Ala.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36373": {
+                    "category_aro_accession": "3000234",
+                    "category_aro_cvterm_id": "36373",
+                    "category_aro_name": "glycopeptide resistance gene cluster",
+                    "category_aro_description": "Genes that when expressed confer resistance to vancomycin and teicoplanin type antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35947": {
+                    "category_aro_accession": "0000028",
+                    "category_aro_cvterm_id": "35947",
+                    "category_aro_name": "vancomycin",
+                    "category_aro_description": "Vancomycin is a glycopeptide antibiotic used in the prophylaxis and treatment of infections caused by Gram-positive bacteria. Vancomycin inhibits the synthesis of peptidoglycan, the major component of the cell wall of gram-positive bacteria. Its mechanism of action is unusual in that it acts by binding precursors of peptidoglycan, rather than by interacting with an enzyme.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35948": {
+                    "category_aro_accession": "0000029",
+                    "category_aro_cvterm_id": "35948",
+                    "category_aro_name": "teicoplanin",
+                    "category_aro_description": "Teicoplanin is a glycopeptide antibiotic used in the prophylaxis and treatment of serious infections caused by Gram-positive bacteria. Teicoplanin has a unique acyl-aliphatic chain, and binds to cell wall precursors to inhibit transglycosylation  and transpeptidation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36220": {
+                    "category_aro_accession": "3000081",
+                    "category_aro_cvterm_id": "36220",
+                    "category_aro_name": "glycopeptide antibiotic",
+                    "category_aro_description": "Glycopeptide antibiotics are natural products produced non-ribosomally by Actinomycetales bacteria. With the exception of bleomycins, they act by binding the terminal D-Ala-D-Ala in peptidoglycan precursors of the growing bacterial cell wall and are generally active against Gram-positive bacteria.  This inhibits transglycosylation leading to cell death due to osmotic stress.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 4.5e-17,
+            "bit_score": 83.2,
+            "max_identities": 54,
+            "cvterm_id": "36779",
+            "query": "EIIVANKHYPLSKDYNPGENPTAKAELV-----KLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVG-KEAKEIAASGLSLEEYYGF",
+            "match": "+++   KH  L+K Y         +E V     +++ A ++ G       SGFR+++ Q  LYQ+  +         Y+   GYSEH  GLA D+  T  ++ +E    +WL D+A +YGF++RY   K   TG   E WH RYVG   +  I     +LEEY  F",
+            "sequence_from_db": "DVVNLFKHDELTKGYELLNREIYLSEKVAREFSEMVDAAEKEGVRHFSINSGFRNFDEQNALYQEMGSD--------YALPAGYSEHNLGLALDIGSTQMEM-SEAPEGKWLEDNAWEYGFILRYPMDKTAITGIQYEPWHFRYVGLPHSAIIEEKNFALEEYLDF",
+            "sequence_from_broadstreet": "MVFQGNLLLVNNEYPVLEESIKTDVVNLFKHDELTKGYELLNREIYLSEKVAREFSEMVDAAEKEGVRHFSINSGFRNFDEQNALYQEMGSDYALPAGYSEHNLGLALDIGSTQMEMSEAPEGKWLEDNAWEYGFILRYPMDKTAITGIQYEPWHFRYVGLPHSAIIEEKNFALEEYLDFLKEQKSISGTIHGENYEISYYPITEKTDIEMPANLHYEISGNNMDGVIVTVYR",
+            "dna_sequence_from_broadstreet": "ATGGTCTTTCAAGGAAACTTACTCTTGGTTAATAACGAATATCCGGTTCTCGAAGAGAGTATAAAAACAGACGTTGTAAATTTATTTAAACATGATGAATTGACAAAAGGATATGAATTGCTCAATAGGGAAATTTATTTATCGGAGAAAGTTGCCCGTGAATTTTCAGAGATGGTAGATGCGGCTGAAAAAGAAGGAGTTCGCCATTTTTCAATCAATAGTGGGTTTCGAAACTTTGATGAGCAAAATGCCCTTTATCAAGAAATGGGGTCTGACTACGCCTTGCCTGCAGGTTATAGCGAACATAATTTAGGTTTAGCACTTGATATCGGATCTACTCAAATGGAAATGAGTGAGGCACCGGAAGGAAAGTGGCTAGAAGATAATGCGTGGGAATACGGCTTTATTTTACGCTATCCAATGGACAAAACGGCCATCACAGGTATTCAGTATGAACCTTGGCATTTTCGCTATGTGGGATTACCGCACAGTGCAATTATAGAGGAAAAGAATTTTGCTTTAGAAGAATATTTGGATTTCCTAAAAGAACAAAAATCCATTTCAGGTACTATACATGGCGAAAATTATGAGATTTCTTATTATCCTATTACCGAAAAAACAGACATTGAAATGCCTGCCAATCTTCATTATGAAATATCAGGAAACAATATGGATGGTGTGATTGTGACAGTGTATCGCTAA",
+            "partial": "0",
+            "query_start": 596241,
+            "query_end": 596720,
+            "hit_start": 69,
+            "hit_end": 540,
+            "orf_dna_sequence": "ATGAAGAAAAGATACCTAGTCTTGACAGCTTTGCTAGCCTTGAGTCTAGCAGCTTGTTCACAAGAAAAAACAAAAAATGAAGATGGAGAAACTAAGACAGAACAGACAGCCAAAGCTGATGGAACAGTCGGTAGTAAGTCTCAAGGAGCTGCCCAGAAGAAAGCAGAAGTGGTCAATAAAGGTGATTACTACAGCATTCAAGGGAAATACGATGAAATCATCGTAGCCAACAAACACTATCCATTGTCTAAAGACTATAATCCAGGGGAAAATCCAACAGCCAAGGCAGAGTTGGTCAAACTCATCAAAGCGATGCAAGAGGCAGGTTTCCCTATTAGTGATCATTACAGTGGTTTTAGAAGTTATGAAACTCAGACCAAGCTCTATCAAGATTATGTCAACCAAGATGGAAAGGCAGCAGCTGACCGTTACTCTGCCCGTCCTGGCTATAGCGAACACCAGACAGGCTTGGCCTTTGATGTGATTGGGACTGATGGTGATTTGGTGACAGAAGAAAAAGCAGCCCAATGGCTCTTGGATCATGCAGCTGATTATGGCTTTGTTGTCCGTTATCTCAAAGGCAAGGAAAAGGAAACAGGCTATATGGCTGAAGAATGGCACCTGCGTTATGTAGGAAAAGAAGCTAAAGAAATTGCTGCAAGTGGTCTCAGTTTGGAAGAATACTATGGCTTTGAAGGCGGAGACTACGTCGATTAA",
+            "orf_prot_sequence": "MKKRYLVLTALLALSLAACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKYDEIIVANKHYPLSKDYNPGENPTAKAELVKLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEIAASGLSLEEYYGFEGGDYVD",
+            "perc_identity": 32.53
+        },
+        "gnl|BL_ORD_ID|601|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 596028,
+            "orf_end": 596744,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "vanY gene in vanB cluster",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "556",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "50",
+            "ARO_accession": "3002956",
+            "ARO_name": "vanY gene in vanB cluster",
+            "ARO_category": {
+                "36216": {
+                    "category_aro_accession": "3000077",
+                    "category_aro_cvterm_id": "36216",
+                    "category_aro_name": "vanY",
+                    "category_aro_description": "VanY is a D,D-carboxypeptidase that cleaves removes the terminal D-Ala from peptidoglycan for the addition of D-Lactate. The D-Ala-D-Lac peptidoglycan subunits have reduced binding affinity with vancomycin compared to D-Ala-D-Ala.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36373": {
+                    "category_aro_accession": "3000234",
+                    "category_aro_cvterm_id": "36373",
+                    "category_aro_name": "glycopeptide resistance gene cluster",
+                    "category_aro_description": "Genes that when expressed confer resistance to vancomycin and teicoplanin type antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35947": {
+                    "category_aro_accession": "0000028",
+                    "category_aro_cvterm_id": "35947",
+                    "category_aro_name": "vancomycin",
+                    "category_aro_description": "Vancomycin is a glycopeptide antibiotic used in the prophylaxis and treatment of infections caused by Gram-positive bacteria. Vancomycin inhibits the synthesis of peptidoglycan, the major component of the cell wall of gram-positive bacteria. Its mechanism of action is unusual in that it acts by binding precursors of peptidoglycan, rather than by interacting with an enzyme.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36220": {
+                    "category_aro_accession": "3000081",
+                    "category_aro_cvterm_id": "36220",
+                    "category_aro_name": "glycopeptide antibiotic",
+                    "category_aro_description": "Glycopeptide antibiotics are natural products produced non-ribosomally by Actinomycetales bacteria. With the exception of bleomycins, they act by binding the terminal D-Ala-D-Ala in peptidoglycan precursors of the growing bacterial cell wall and are generally active against Gram-positive bacteria.  This inhibits transglycosylation leading to cell death due to osmotic stress.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 3.8e-16,
+            "bit_score": 80.1,
+            "max_identities": 61,
+            "cvterm_id": "35918",
+            "query": "IIVANKHYPLSKDYNPGENPTAKAE---------LVKLIKAMQEAG-FPISDHYSGFRSYETQTKLYQD---------YVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKE-AKEIAASGLSLEEYYGFE",
+            "match": "+I+ N+  P+   Y+      +  E         L  L  A +  G +PI    SG+R+ E Q ++  +         Y +   KA A+ + A PG SEHQ GLA D I  DG   T  +  +WL +++  +GF+ RY   K + TG   E WH RYVG E A +I   GL LEEY   E",
+            "sequence_from_db": "LILVNRQNPIPAQYDVELEQLSNGERIDIRISPYLQDLFDAARADGVYPIVA--SGYRTTEKQQEIMDEKVAEYKAKGYTSAQAKAEAETWVAVPGTSEHQLGLAVD-INADGIHSTGNEVYRWLDENSYRFGFIRRYPPDKTEITGVSNEPWHYRYVGIEAATKIYHQGLCLEEYLNTE",
+            "sequence_from_broadstreet": "MEKSNYHSNVNHHKRHMKQSGEKRAFLWAFIISFTVCTLFLGWRLVSVLEATQLPPIPATHTGSGTGVAENPEENTLATAKEQGDEQEWSLILVNRQNPIPAQYDVELEQLSNGERIDIRISPYLQDLFDAARADGVYPIVASGYRTTEKQQEIMDEKVAEYKAKGYTSAQAKAEAETWVAVPGTSEHQLGLAVDINADGIHSTGNEVYRWLDENSYRFGFIRRYPPDKTEITGVSNEPWHYRYVGIEAATKIYHQGLCLEEYLNTEK",
+            "dna_sequence_from_broadstreet": "ATGGAAAAAAGCAACTATCATTCCAATGTGAATCATCACAAACGGCATATGAAACAATCTGGGGAAAAACGGGCTTTTCTATGGGCGTTCATTATCTCGTTCACAGTCTGCACGCTGTTTTTGGGGTGGAGATTGGTTTCCGTATTGGAGGCAACACAGCTACCGCCCATCCCTGCAACTCATACAGGCAGCGGGACTGGTGTAGCGGAGAATCCAGAGGAAAACACTCTTGCCACCGCCAAAGAACAGGGAGATGAACAGGAATGGAGCCTGATTTTAGTGAACAGGCAGAACCCCATCCCCGCCCAGTACGATGTGGAACTTGAGCAGCTGTCAAATGGTGAGCGGATAGACATTCGGATTTCTCCCTACCTCCAGGATTTGTTTGATGCCGCAAGAGCTGATGGAGTTTACCCGATTGTCGCATCCGGATACCGGACAACAGAAAAACAGCAAGAAATCATGGATGAAAAAGTCGCCGAATACAAGGCGAAAGGCTACACCTCTGCACAGGCTAAAGCGGAAGCAGAAACTTGGGTGGCCGTGCCGGGAACAAGCGAGCATCAGCTTGGTCTTGCTGTGGATATCAATGCGGATGGAATTCATTCAACCGGCAACGAGGTTTACAGATGGCTGGATGAAAACAGCTATCGCTTTGGTTTTATTCGCCGCTACCCGCCAGACAAGACAGAGATAACCGGTGTGAGCAACGAGCCGTGGCATTACCGATATGTCGGCATCGAAGCTGCCACAAAGATATACCACCAAGGGCTTTGCCTTGAGGAATATTTAAACACAGAAAAATGA",
+            "partial": "0",
+            "query_start": 596244,
+            "query_end": 596723,
+            "hit_start": 270,
+            "hit_end": 801,
+            "orf_dna_sequence": "ATGAAGAAAAGATACCTAGTCTTGACAGCTTTGCTAGCCTTGAGTCTAGCAGCTTGTTCACAAGAAAAAACAAAAAATGAAGATGGAGAAACTAAGACAGAACAGACAGCCAAAGCTGATGGAACAGTCGGTAGTAAGTCTCAAGGAGCTGCCCAGAAGAAAGCAGAAGTGGTCAATAAAGGTGATTACTACAGCATTCAAGGGAAATACGATGAAATCATCGTAGCCAACAAACACTATCCATTGTCTAAAGACTATAATCCAGGGGAAAATCCAACAGCCAAGGCAGAGTTGGTCAAACTCATCAAAGCGATGCAAGAGGCAGGTTTCCCTATTAGTGATCATTACAGTGGTTTTAGAAGTTATGAAACTCAGACCAAGCTCTATCAAGATTATGTCAACCAAGATGGAAAGGCAGCAGCTGACCGTTACTCTGCCCGTCCTGGCTATAGCGAACACCAGACAGGCTTGGCCTTTGATGTGATTGGGACTGATGGTGATTTGGTGACAGAAGAAAAAGCAGCCCAATGGCTCTTGGATCATGCAGCTGATTATGGCTTTGTTGTCCGTTATCTCAAAGGCAAGGAAAAGGAAACAGGCTATATGGCTGAAGAATGGCACCTGCGTTATGTAGGAAAAGAAGCTAAAGAAATTGCTGCAAGTGGTCTCAGTTTGGAAGAATACTATGGCTTTGAAGGCGGAGACTACGTCGATTAA",
+            "orf_prot_sequence": "MKKRYLVLTALLALSLAACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKYDEIIVANKHYPLSKDYNPGENPTAKAELVKLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEIAASGLSLEEYYGFEGGDYVD",
+            "perc_identity": 33.89
+        },
+        "gnl|BL_ORD_ID|4675|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 596028,
+            "orf_end": 596744,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "vanY gene in vanA cluster",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "89",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "50",
+            "ARO_accession": "3002955",
+            "ARO_name": "vanY gene in vanA cluster",
+            "ARO_category": {
+                "36216": {
+                    "category_aro_accession": "3000077",
+                    "category_aro_cvterm_id": "36216",
+                    "category_aro_name": "vanY",
+                    "category_aro_description": "VanY is a D,D-carboxypeptidase that cleaves removes the terminal D-Ala from peptidoglycan for the addition of D-Lactate. The D-Ala-D-Lac peptidoglycan subunits have reduced binding affinity with vancomycin compared to D-Ala-D-Ala.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36373": {
+                    "category_aro_accession": "3000234",
+                    "category_aro_cvterm_id": "36373",
+                    "category_aro_name": "glycopeptide resistance gene cluster",
+                    "category_aro_description": "Genes that when expressed confer resistance to vancomycin and teicoplanin type antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35947": {
+                    "category_aro_accession": "0000028",
+                    "category_aro_cvterm_id": "35947",
+                    "category_aro_name": "vancomycin",
+                    "category_aro_description": "Vancomycin is a glycopeptide antibiotic used in the prophylaxis and treatment of infections caused by Gram-positive bacteria. Vancomycin inhibits the synthesis of peptidoglycan, the major component of the cell wall of gram-positive bacteria. Its mechanism of action is unusual in that it acts by binding precursors of peptidoglycan, rather than by interacting with an enzyme.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35948": {
+                    "category_aro_accession": "0000029",
+                    "category_aro_cvterm_id": "35948",
+                    "category_aro_name": "teicoplanin",
+                    "category_aro_description": "Teicoplanin is a glycopeptide antibiotic used in the prophylaxis and treatment of serious infections caused by Gram-positive bacteria. Teicoplanin has a unique acyl-aliphatic chain, and binds to cell wall precursors to inhibit transglycosylation  and transpeptidation.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36220": {
+                    "category_aro_accession": "3000081",
+                    "category_aro_cvterm_id": "36220",
+                    "category_aro_name": "glycopeptide antibiotic",
+                    "category_aro_description": "Glycopeptide antibiotics are natural products produced non-ribosomally by Actinomycetales bacteria. With the exception of bleomycins, they act by binding the terminal D-Ala-D-Ala in peptidoglycan precursors of the growing bacterial cell wall and are generally active against Gram-positive bacteria.  This inhibits transglycosylation leading to cell death due to osmotic stress.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 2.3e-13,
+            "bit_score": 70.9,
+            "max_identities": 67,
+            "cvterm_id": "36779",
+            "query": "MKKRYLVLTALLALSL-------AACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKY--------DEIIVANKHYPLSKDYNPGENPTAKAELV--KLIKAMQEAGFPISDHY---SGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEI-AASGLSLEEYYGF",
+            "match": "MKK + +L  L  + L       A  SQEK + ++ +   ++  +  GT  +  +    +  E V +G+   I  KY         +I+  +KH  L   Y   ++    ++ +  K  + + +A      H+   SG+R ++ Q+ LYQ+            Y+   GYSEH +GL+ DV G+    +      +W+ ++A  YGF++RY + K + TG   E WH+RYVG     I       LEEY  +",
+            "sequence_from_db": "MKKLFFLLLLLFLIYLGYDYVNEALFSQEKVEFQNYDQNPKEHLENSGTSENTQEKTITE--EQVYQGNLLLINSKYPVRQESVKSDIVNLSKHDELINGYGLLDSNIYMSKEIAQKFSEMVNDAVKGGVSHFIINSGYRDFDEQSVLYQEM--------GAEYALPAGYSEHNSGLSLDV-GSSLTKMERAPEGKWIEENAWKYGFILRYPEDKTELTGIQYEPWHIRYVGLPHSAIMKEKNFVLEEYMDY",
+            "sequence_from_broadstreet": "MKKLFFLLLLLFLIYLGYDYVNEALFSQEKVEFQNYDQNPKEHLENSGTSENTQEKTITEEQVYQGNLLLINSKYPVRQESVKSDIVNLSKHDELINGYGLLDSNIYMSKEIAQKFSEMVNDAVKGGVSHFIINSGYRDFDEQSVLYQEMGAEYALPAGYSEHNSGLSLDVGSSLTKMERAPEGKWIEENAWKYGFILRYPEDKTELTGIQYEPWHIRYVGLPHSAIMKEKNFVLEEYMDYLKEEKTISVSVNGEKYEIFYYPVTKNTTIHVPTNLRYEISGNNIDGVIVTVFPGSTHTNSRR",
+            "dna_sequence_from_broadstreet": "ATGAAGAAGTTGTTTTTTTTATTGTTATTGTTATTCTTAATATACTTAGGTTATGACTACGTTAATGAAGCACTGTTTTCTCAGGAAAAAGTCGAATTTCAAAATTATGATCAAAATCCCAAAGAACATTTAGAAAATAGTGGGACTTCTGAAAATACCCAAGAGAAAACAATTACAGAAGAACAGGTTTATCAAGGAAATCTGCTATTAATCAATAGTAAATATCCTGTTCGCCAAGAAAGTGTGAAGTCAGATATCGTGAATTTATCTAAACATGACGAATTAATAAATGGATACGGGTTGCTTGATAGTAATATTTATATGTCAAAAGAAATAGCACAAAAATTTTCAGAGATGGTCAATGATGCTGTAAAGGGTGGCGTTAGTCATTTTATTATTAATAGTGGCTATCGAGACTTTGATGAGCAAAGTGTGCTTTACCAAGAAATGGGGGCTGAGTATGCCTTACCAGCAGGTTATAGTGAGCATAATTCAGGTTTATCACTAGATGTAGGATCAAGCTTGACGAAAATGGAACGAGCCCCTGAAGGAAAGTGGATAGAAGAAAATGCTTGGAAATACGGGTTCATTTTACGTTATCCAGAGGACAAAACAGAGTTAACAGGAATTCAATATGAACCATGGCATATTCGCTATGTTGGTTTACCACATAGTGCGATTATGAAAGAAAAGAATTTCGTTCTCGAGGAATATATGGATTACCTAAAAGAAGAAAAAACCATTTCTGTTAGTGTAAATGGGGAAAAATATGAGATCTTTTATTATCCTGTTACTAAAAATACCACCATTCATGTGCCGACTAATCTTCGTTATGAGATATCAGGAAACAATATAGACGGTGTAATTGTGACAGTGTTTCCCGGATCAACACATACTAATTCAAGGAGGTAA",
+            "partial": "0",
+            "query_start": 596028,
+            "query_end": 596720,
+            "hit_start": 0,
+            "hit_end": 723,
+            "orf_dna_sequence": "ATGAAGAAAAGATACCTAGTCTTGACAGCTTTGCTAGCCTTGAGTCTAGCAGCTTGTTCACAAGAAAAAACAAAAAATGAAGATGGAGAAACTAAGACAGAACAGACAGCCAAAGCTGATGGAACAGTCGGTAGTAAGTCTCAAGGAGCTGCCCAGAAGAAAGCAGAAGTGGTCAATAAAGGTGATTACTACAGCATTCAAGGGAAATACGATGAAATCATCGTAGCCAACAAACACTATCCATTGTCTAAAGACTATAATCCAGGGGAAAATCCAACAGCCAAGGCAGAGTTGGTCAAACTCATCAAAGCGATGCAAGAGGCAGGTTTCCCTATTAGTGATCATTACAGTGGTTTTAGAAGTTATGAAACTCAGACCAAGCTCTATCAAGATTATGTCAACCAAGATGGAAAGGCAGCAGCTGACCGTTACTCTGCCCGTCCTGGCTATAGCGAACACCAGACAGGCTTGGCCTTTGATGTGATTGGGACTGATGGTGATTTGGTGACAGAAGAAAAAGCAGCCCAATGGCTCTTGGATCATGCAGCTGATTATGGCTTTGTTGTCCGTTATCTCAAAGGCAAGGAAAAGGAAACAGGCTATATGGCTGAAGAATGGCACCTGCGTTATGTAGGAAAAGAAGCTAAAGAAATTGCTGCAAGTGGTCTCAGTTTGGAAGAATACTATGGCTTTGAAGGCGGAGACTACGTCGATTAA",
+            "orf_prot_sequence": "MKKRYLVLTALLALSLAACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKYDEIIVANKHYPLSKDYNPGENPTAKAELVKLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEIAASGLSLEEYYGFEGGDYVD",
+            "perc_identity": 26.59
+        },
+        "gnl|BL_ORD_ID|1803|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 596028,
+            "orf_end": 596744,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "vanY gene in vanF cluster",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "1899",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "50",
+            "ARO_accession": "3002958",
+            "ARO_name": "vanY gene in vanF cluster",
+            "ARO_category": {
+                "36216": {
+                    "category_aro_accession": "3000077",
+                    "category_aro_cvterm_id": "36216",
+                    "category_aro_name": "vanY",
+                    "category_aro_description": "VanY is a D,D-carboxypeptidase that cleaves removes the terminal D-Ala from peptidoglycan for the addition of D-Lactate. The D-Ala-D-Lac peptidoglycan subunits have reduced binding affinity with vancomycin compared to D-Ala-D-Ala.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36373": {
+                    "category_aro_accession": "3000234",
+                    "category_aro_cvterm_id": "36373",
+                    "category_aro_name": "glycopeptide resistance gene cluster",
+                    "category_aro_description": "Genes that when expressed confer resistance to vancomycin and teicoplanin type antibiotics.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35947": {
+                    "category_aro_accession": "0000028",
+                    "category_aro_cvterm_id": "35947",
+                    "category_aro_name": "vancomycin",
+                    "category_aro_description": "Vancomycin is a glycopeptide antibiotic used in the prophylaxis and treatment of infections caused by Gram-positive bacteria. Vancomycin inhibits the synthesis of peptidoglycan, the major component of the cell wall of gram-positive bacteria. Its mechanism of action is unusual in that it acts by binding precursors of peptidoglycan, rather than by interacting with an enzyme.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "36220": {
+                    "category_aro_accession": "3000081",
+                    "category_aro_cvterm_id": "36220",
+                    "category_aro_name": "glycopeptide antibiotic",
+                    "category_aro_description": "Glycopeptide antibiotics are natural products produced non-ribosomally by Actinomycetales bacteria. With the exception of bleomycins, they act by binding the terminal D-Ala-D-Ala in peptidoglycan precursors of the growing bacterial cell wall and are generally active against Gram-positive bacteria.  This inhibits transglycosylation leading to cell death due to osmotic stress.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 3.3e-12,
+            "bit_score": 67.0,
+            "max_identities": 64,
+            "cvterm_id": "39542",
+            "query": "MKKRYLVLTALLAL----SLAACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKY--------DEIIVANKHYPLSKDYNPGENPTAKAELV-----KLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEIAAS-GLSLEEYYGF",
+            "match": "MKK  L+L   L L    ++   SQ+K ++   E   + T+  D  + +++    +   E + +G+   +  ++         +II    H  L+K Y   +N    +E +     ++I A +E G       SG+R  + Q++LY++  +         ++   G+SEH  GL+ DV G+    + +    +W+  +  +YGF++RY   K   TG   E WH+RYVG     I     L+LEEY  +",
+            "sequence_from_db": "MKKWGLLLVFALFLVFIFNILPISQDKVEDRIYEQNDKDTS--DDKMTAENMQKIELTEEQIYQGNLLLVNNEHPVHQKSIKSDIINLFTHKELTKGYGLLDNEIKLSEEIAGKFSEMIAAAEEDGVSNFLISSGYRDLDEQSRLYEEMGSD--------FALPAGHSEHNLGLSLDV-GSTQMKMDKAPEGKWIEKNCWEYGFILRYPLDKTDVTGIQYEPWHIRYVGLPHSAIMQEMNLALEEYLDY",
+            "sequence_from_broadstreet": "MKKWGLLLVFALFLVFIFNILPISQDKVEDRIYEQNDKDTSDDKMTAENMQKIELTEEQIYQGNLLLVNNEHPVHQKSIKSDIINLFTHKELTKGYGLLDNEIKLSEEIAGKFSEMIAAAEEDGVSNFLISSGYRDLDEQSRLYEEMGSDFALPAGHSEHNLGLSLDVGSTQMKMDKAPEGKWIEKNCWEYGFILRYPLDKTDVTGIQYEPWHIRYVGLPHSAIMQEMNLALEEYLDYLKEEKSISVRVDGKKYTISYDPISQNETIEVEVPADEQYEISGNNIDGVIVTTFS",
+            "dna_sequence_from_broadstreet": "ATGAAAAAGTGGGGACTTTTATTGGTTTTTGCATTATTTCTAGTATTTATTTTTAATATATTACCGATATCCCAAGATAAAGTAGAGGATCGAATATATGAACAAAATGACAAAGATACATCGGATGATAAAATGACAGCTGAAAATATGCAAAAGATTGAGCTTACGGAAGAGCAGATCTATCAAGGGAATCTACTCTTGGTCAACAATGAACATCCTGTTCACCAAAAGAGTATAAAATCGGATATTATAAATTTATTTACGCACAAAGAATTGACAAAGGGGTATGGGTTACTTGATAACGAAATTAAATTGTCAGAGGAAATAGCTGGGAAATTTTCAGAGATGATAGCTGCGGCTGAAGAGGATGGCGTTAGTAATTTTTTAATTAGCAGTGGTTATCGAGACTTGGATGAGCAAAGCAGACTTTATGAGGAAATGGGTTCTGATTTTGCTTTGCCAGCAGGTCATAGTGAACACAACTTGGGGTTATCGCTTGATGTAGGATCTACTCAAATGAAGATGGATAAAGCGCCTGAAGGAAAGTGGATAGAAAAAAATTGTTGGGAATACGGCTTTATATTACGCTATCCCTTGGATAAAACGGATGTTACAGGAATTCAATATGAACCTTGGCATATTCGCTATGTCGGTTTGCCTCACAGTGCGATTATGCAGGAAATGAATTTAGCTTTGGAAGAATATTTAGATTATTTAAAAGAAGAAAAGAGCATTTCTGTTCGTGTTGATGGGAAAAAATATACAATTTCATATGATCCCATTTCTCAAAACGAGACAATTGAAGTTGAAGTACCAGCGGATGAACAGTATGAAATATCTGGTAATAATATTGATGGAGTAATTGTGACCACATTTTCTTGA",
+            "partial": "0",
+            "query_start": 596028,
+            "query_end": 596720,
+            "hit_start": 0,
+            "hit_end": 714,
+            "orf_dna_sequence": "ATGAAGAAAAGATACCTAGTCTTGACAGCTTTGCTAGCCTTGAGTCTAGCAGCTTGTTCACAAGAAAAAACAAAAAATGAAGATGGAGAAACTAAGACAGAACAGACAGCCAAAGCTGATGGAACAGTCGGTAGTAAGTCTCAAGGAGCTGCCCAGAAGAAAGCAGAAGTGGTCAATAAAGGTGATTACTACAGCATTCAAGGGAAATACGATGAAATCATCGTAGCCAACAAACACTATCCATTGTCTAAAGACTATAATCCAGGGGAAAATCCAACAGCCAAGGCAGAGTTGGTCAAACTCATCAAAGCGATGCAAGAGGCAGGTTTCCCTATTAGTGATCATTACAGTGGTTTTAGAAGTTATGAAACTCAGACCAAGCTCTATCAAGATTATGTCAACCAAGATGGAAAGGCAGCAGCTGACCGTTACTCTGCCCGTCCTGGCTATAGCGAACACCAGACAGGCTTGGCCTTTGATGTGATTGGGACTGATGGTGATTTGGTGACAGAAGAAAAAGCAGCCCAATGGCTCTTGGATCATGCAGCTGATTATGGCTTTGTTGTCCGTTATCTCAAAGGCAAGGAAAAGGAAACAGGCTATATGGCTGAAGAATGGCACCTGCGTTATGTAGGAAAAGAAGCTAAAGAAATTGCTGCAAGTGGTCTCAGTTTGGAAGAATACTATGGCTTTGAAGGCGGAGACTACGTCGATTAA",
+            "orf_prot_sequence": "MKKRYLVLTALLALSLAACSQEKTKNEDGETKTEQTAKADGTVGSKSQGAAQKKAEVVNKGDYYSIQGKYDEIIVANKHYPLSKDYNPGENPTAKAELVKLIKAMQEAGFPISDHYSGFRSYETQTKLYQDYVNQDGKAAADRYSARPGYSEHQTGLAFDVIGTDGDLVTEEKAAQWLLDHAADYGFVVRYLKGKEKETGYMAEEWHLRYVGKEAKEIAASGLSLEEYYGFEGGDYVD",
+            "perc_identity": 25.7
+        }
+    },
+    "NZ_CP089948.1_909 # 918364 # 919563 # 1 # ID=1_909;partial=00;start_type=ATG;rbs_motif=GGAGG;rbs_spacer=8bp;gc_cont=0.432": {
+        "gnl|BL_ORD_ID|1920|hsp_num:0": {
+            "type_match": "Perfect",
+            "ast_source": "",
+            "model_id": "2003",
+            "orf_strand": "+",
+            "orf_start": 918364,
+            "orf_end": 919563,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "pmrA",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "pass_evalue": "n/a",
+            "pass_bitscore": "750",
+            "ARO_accession": "3000822",
+            "ARO_name": "pmrA",
+            "ARO_category": {
+                "36003": {
+                    "category_aro_accession": "0010002",
+                    "category_aro_cvterm_id": "36003",
+                    "category_aro_name": "major facilitator superfamily (MFS) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. Major facilitator superfamily (MFS) transporters and ABC transporters comprise the two largest and most functionally diverse of the transporter superfamilies. However, MFS transporters are distinct from ABC transporters in both their primary sequence and structure and in the mechanism of energy coupling. As secondary transporters they are, like RND and SMR transporters, energized by the electrochemical proton gradient.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35954": {
+                    "category_aro_accession": "0000036",
+                    "category_aro_cvterm_id": "35954",
+                    "category_aro_name": "ciprofloxacin",
+                    "category_aro_description": "Ciprofloxacin is a bacteriocidal fluoroquinolone. It blocks bacterial DNA replication by binding to the toposiomerase II or IV-DNA complex (or cleavable complex), thereby causing double-stranded breaks in the bacterial chromosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37006": {
+                    "category_aro_accession": "3000662",
+                    "category_aro_cvterm_id": "37006",
+                    "category_aro_name": "norfloxacin",
+                    "category_aro_description": "Norfloxacin is a 6-fluoro, 7-piperazinyl quinolone with a wide range of activity against Gram-negative bacteria. It is inactive against most anaerobes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 1.8e-220,
+            "bit_score": 759.6,
+            "max_identities": 399,
+            "cvterm_id": "39596",
+            "query": "MTEINWKDNLRIAWFGNFLTGASISLVVPFMPIFVENLGVGSQQVAFYAGLAISVSAISAALFSPIWGILADKYGRKPMMIRAGLAMTITMGGLAFVPNIYWLIFLRLLNGVFAGFVPNATALIASQVPKEKSGSALGTLSTGVVAGTLTGPFIGGFIAELFGIRTVFLLVGSFLFLAAILTICFIKEDFQPVAKEKAIPTKELFTSVKYPYLLLNLFLTSFVIQFSAQSIGPILALYVRDLGQTENLLFVSGLIVSSMGFSSMMSAGVMGKLGDKVGNHRLLVVAQFYSVIIYLLCANASSPLQLGLYRFLFGLGTGALIPGVNALLSKMTPKAGISRVFAFNQVFFYLGGVVGPMAGSAVAGQFGYHAVFYATSLCVAFSCLFNLIQFRTLLKVKEI",
+            "match": "MTEINWKDNLRIAWFGNFLTGASISLVVPFMPIFVENLGVGSQQVAFYAGLAISVSAISAALFSPIWGILADKYGRKPMMIRAGLAMTITMGGLAFVPNIYWLIFLRLLNGVFAGFVPNATALIASQVPKEKSGSALGTLSTGVVAGTLTGPFIGGFIAELFGIRTVFLLVGSFLFLAAILTICFIKEDFQPVAKEKAIPTKELFTSVKYPYLLLNLFLTSFVIQFSAQSIGPILALYVRDLGQTENLLFVSGLIVSSMGFSSMMSAGVMGKLGDKVGNHRLLVVAQFYSVIIYLLCANASSPLQLGLYRFLFGLGTGALIPGVNALLSKMTPKAGISRVFAFNQVFFYLGGVVGPMAGSAVAGQFGYHAVFYATSLCVAFSCLFNLIQFRTLLKVKEI",
+            "sequence_from_db": "MTEINWKDNLRIAWFGNFLTGASISLVVPFMPIFVENLGVGSQQVAFYAGLAISVSAISAALFSPIWGILADKYGRKPMMIRAGLAMTITMGGLAFVPNIYWLIFLRLLNGVFAGFVPNATALIASQVPKEKSGSALGTLSTGVVAGTLTGPFIGGFIAELFGIRTVFLLVGSFLFLAAILTICFIKEDFQPVAKEKAIPTKELFTSVKYPYLLLNLFLTSFVIQFSAQSIGPILALYVRDLGQTENLLFVSGLIVSSMGFSSMMSAGVMGKLGDKVGNHRLLVVAQFYSVIIYLLCANASSPLQLGLYRFLFGLGTGALIPGVNALLSKMTPKAGISRVFAFNQVFFYLGGVVGPMAGSAVAGQFGYHAVFYATSLCVAFSCLFNLIQFRTLLKVKEI",
+            "sequence_from_broadstreet": "MTEINWKDNLRIAWFGNFLTGASISLVVPFMPIFVENLGVGSQQVAFYAGLAISVSAISAALFSPIWGILADKYGRKPMMIRAGLAMTITMGGLAFVPNIYWLIFLRLLNGVFAGFVPNATALIASQVPKEKSGSALGTLSTGVVAGTLTGPFIGGFIAELFGIRTVFLLVGSFLFLAAILTICFIKEDFQPVAKEKAIPTKELFTSVKYPYLLLNLFLTSFVIQFSAQSIGPILALYVRDLGQTENLLFVSGLIVSSMGFSSMMSAGVMGKLGDKVGNHRLLVVAQFYSVIIYLLCANASSPLQLGLYRFLFGLGTGALIPGVNALLSKMTPKAGISRVFAFNQVFFYLGGVVGPMAGSAVAGQFGYHAVFYATSLCVAFSCLFNLIQFRTLLKVKEI",
+            "dna_sequence_from_broadstreet": "ATGACAGAGATTAACTGGAAGGATAATCTGCGTATTGCCTGGTTTGGTAATTTTCTGACAGGAGCCAGTATTTCTTTGGTTGTACCTTTTATGCCCATCTTCGTGGAAAATCTAGGTGTAGGGAGTCAGCAAGTCGCTTTTTATGCAGGCTTAGCAATTTCTGTCTCTGCTATTTCCGCGGCGCTCTTTTCTCCTATTTGGGGTATTCTTGCTGACAAATACGGCCGAAAACCCATGATGATTCGGGCAGGTCTTGCTATGACTATCACTATGGGAGGCTTGGCCTTTGTCCCAAATATCTATTGGTTAATCTTTCTTCGTTTACTAAACGGTGTATTTGCAGGTTTTGTTCCTAATGCAACGGCACTGATAGCCAGTCAGGTTCCAAAGGAGAAATCAGGCTCTGCCTTAGGTACTTTGTCTACAGGCGTAGTTGCAGGTACTCTAACCGGTCCCTTTATTGGTGGCTTTATCGCAGAATTATTTGGCATTCGTACAGTTTTCTTACTGGTTGGTAGTTTTCTATTTTTAGCTGCTATTTTGACTATTTGCTTTATCAAGGAAGATTTTCAACCAGTAGCCAAGGAAAAGGCTATTCCAACAAAGGAATTATTTACCTCGGTTAAATATCCCTATCTTTTGCTCAATCTCTTTTTAACCAGTTTTGTCATCCAATTTTCAGCTCAATCGATCGGCCCTATTTTGGCTCTTTATGTACGCGACTTAGGGCAGACAGAGAATCTTCTTTTTGTCTCTGGTTTGATTGTGTCCAGTATGGGCTTTTCCAGTATGATGAGTGCAGGAGTCATGGGCAAGCTAGGTGACAAGGTGGGCAATCATCGTCTCTTGGTTGTCGCCCAGTTTTATTCAGTCATCATCTATCTCCTCTGTGCCAATGCCTCTAGCCCCCTTCAACTAGGACTCTATCGTTTCCTCTTTGGCTTGGGAACCGGTGCCTTGATTCCAGGGGTTAATGCCCTACTCAGCAAAATGACTCCCAAAGCCGGCATTTCGAGGGTCTTTGCCTTCAATCAGGTATTCTTTTATCTGGGAGGTGTTGTTGGTCCCATGGCAGGTTCTGCAGTAGCAGGTCAATTTGGCTACCATGCTGTCTTTTATGCGACAAGCCTTTGTGTTGCCTTTAGTTGTCTCTTTAACCTGATTCAATTTCGAACATTATTAAAAGTAAAGGAAATCTAG",
+            "partial": "0",
+            "query_start": 918364,
+            "query_end": 919560,
+            "hit_start": 0,
+            "hit_end": 1197,
+            "orf_dna_sequence": "ATGACAGAGATTAACTGGAAGGATAATCTGCGCATTGCCTGGTTTGGTAATTTTCTGACAGGAGCCAGTATTTCTTTGGTTGTACCTTTTATGCCCATCTTCGTGGAAAATCTAGGTGTAGGGAGTCAGCAAGTCGCTTTTTATGCAGGCTTAGCAATTTCTGTCTCTGCTATTTCCGCGGCGCTCTTTTCTCCTATTTGGGGTATTCTTGCTGACAAATACGGCCGAAAACCCATGATGATTCGGGCAGGTCTTGCTATGACTATCACTATGGGAGGCTTGGCCTTTGTCCCAAATATCTATTGGTTAATCTTTCTTCGTTTACTAAACGGTGTATTTGCAGGTTTTGTTCCTAATGCAACGGCACTGATAGCCAGTCAGGTTCCAAAGGAGAAATCAGGCTCTGCCTTAGGTACTTTGTCTACAGGCGTAGTTGCAGGTACTCTAACTGGTCCCTTTATTGGTGGCTTTATCGCAGAATTATTTGGCATTCGTACAGTTTTCTTACTGGTTGGTAGTTTTCTATTTTTAGCTGCTATTTTGACTATTTGCTTTATCAAGGAAGATTTTCAACCAGTAGCCAAGGAAAAGGCTATTCCAACAAAGGAATTATTTACCTCGGTTAAATATCCCTATCTTTTGCTCAATCTCTTTTTAACCAGTTTTGTCATCCAATTTTCAGCTCAATCGATTGGCCCTATTTTGGCTCTTTATGTACGCGACTTAGGGCAGACAGAGAATCTTCTTTTTGTCTCTGGTTTGATTGTGTCCAGTATGGGCTTTTCCAGCATGATGAGTGCAGGAGTCATGGGCAAGCTAGGTGACAAGGTGGGCAATCATCGTCTCTTGGTTGTCGCCCAGTTTTATTCAGTCATCATCTATCTCCTCTGTGCCAATGCCTCTAGCCCCCTTCAACTAGGACTCTATCGTTTCCTCTTTGGATTGGGAACCGGTGCCTTGATTCCCGGGGTTAATGCCCTACTCAGCAAAATGACTCCCAAAGCCGGCATTTCGAGGGTCTTTGCCTTCAATCAGGTATTCTTTTATCTGGGAGGTGTTGTTGGTCCCATGGCAGGTTCTGCAGTAGCAGGTCAATTTGGCTACCATGCTGTCTTTTATGCGACAAGCCTTTGTGTTGCCTTTAGTTGTCTCTTTAACCTGATTCAATTTCGAACATTATTAAAAGTAAAGGAAATCTAG",
+            "orf_prot_sequence": "MTEINWKDNLRIAWFGNFLTGASISLVVPFMPIFVENLGVGSQQVAFYAGLAISVSAISAALFSPIWGILADKYGRKPMMIRAGLAMTITMGGLAFVPNIYWLIFLRLLNGVFAGFVPNATALIASQVPKEKSGSALGTLSTGVVAGTLTGPFIGGFIAELFGIRTVFLLVGSFLFLAAILTICFIKEDFQPVAKEKAIPTKELFTSVKYPYLLLNLFLTSFVIQFSAQSIGPILALYVRDLGQTENLLFVSGLIVSSMGFSSMMSAGVMGKLGDKVGNHRLLVVAQFYSVIIYLLCANASSPLQLGLYRFLFGLGTGALIPGVNALLSKMTPKAGISRVFAFNQVFFYLGGVVGPMAGSAVAGQFGYHAVFYATSLCVAFSCLFNLIQFRTLLKVKEI",
+            "perc_identity": 100.0
+        }
+    },
+    "NZ_CP089948.1_1952 # 1973367 # 1975133 # -1 # ID=1_1952;partial=00;start_type=ATG;rbs_motif=AAGGAG;rbs_spacer=7bp;gc_cont=0.422": {
+        "gnl|BL_ORD_ID|1906|hsp_num:0": {
+            "type_match": "Perfect",
+            "ast_source": "",
+            "model_id": "2112",
+            "orf_strand": "-",
+            "orf_start": 1973367,
+            "orf_end": 1975133,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "patB",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "pass_evalue": "n/a",
+            "pass_bitscore": "750",
+            "ARO_accession": "3000025",
+            "ARO_name": "patB",
+            "ARO_category": {
+                "36002": {
+                    "category_aro_accession": "0010001",
+                    "category_aro_cvterm_id": "36002",
+                    "category_aro_name": "ATP-binding cassette (ABC) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. ATP-binding cassette (ABC) transporters are present in all cells of all organisms and use the energy of ATP binding/hydrolysis to transport substrates across cell membranes.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35954": {
+                    "category_aro_accession": "0000036",
+                    "category_aro_cvterm_id": "35954",
+                    "category_aro_name": "ciprofloxacin",
+                    "category_aro_description": "Ciprofloxacin is a bacteriocidal fluoroquinolone. It blocks bacterial DNA replication by binding to the toposiomerase II or IV-DNA complex (or cleavable complex), thereby causing double-stranded breaks in the bacterial chromosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37006": {
+                    "category_aro_accession": "3000662",
+                    "category_aro_cvterm_id": "37006",
+                    "category_aro_name": "norfloxacin",
+                    "category_aro_description": "Norfloxacin is a 6-fluoro, 7-piperazinyl quinolone with a wide range of activity against Gram-negative bacteria. It is inactive against most anaerobes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 0.0,
+            "bit_score": 1106.7,
+            "max_identities": 588,
+            "cvterm_id": "40078",
+            "query": "MKTVQFFWHYFKVYKFSFVVVILMIVLATFAQALFPVFSGQAVTQLANLVQAYQNGNPELVWQSLSGIMVNLGLLVLVLFISSVIYMCLMTRVIAESTNEMRKGLFGKLAQLTVSFFDRRQDGDILSHFTSDLDNILQAFNESLIQVMSNIVLYIGLILVMFSRNVTLALITIASTPLAFLMLIFIVKMARKYTNLQQKEVGKLNAYMDESISGQKAVIVQGIQEDMMAGFLEQNERVRKATFKGRMFSGILFPVMNGMSLINTAIVIFAGSAVLLNDKSIETSTALGLIVMFAQFSQQYYQPIIQVAASWGSLQLAFTGAERIQEMFDAEEEIRPEKAPTFTKLQESVEISHIVFSYLPDKPILKDVSISAPKGQMTAVVGPTGSGKTTIMNLINRFYDVDAGGIYFDGKDIRGYDLDSLRSKVGIVLQDSVLFSGTIRDNIRFGVPDASQEMVEVAAKATHIHDYIESLPDKYDTLIDDDQSIFSTGQKQLISIARTLMTDPEVLILDEATSNVDTVTESKIQHAMEVVVAGRTSFVIAHRLKTILNADQIIVLKDGEVIERGNHHELLKLGGFYSELYHNQFVFE",
+            "match": "MKTVQFFWHYFKVYKFSFVVVILMIVLATFAQALFPVFSGQAVTQLANLVQAYQNGNPELVWQSLSGIMVNLGLLVLVLFISSVIYMCLMTRVIAESTNEMRKGLFGKLAQLTVSFFDRRQDGDILSHFTSDLDNILQAFNESLIQVMSNIVLYIGLILVMFSRNVTLALITIASTPLAFLMLIFIVKMARKYTNLQQKEVGKLNAYMDESISGQKAVIVQGIQEDMMAGFLEQNERVRKATFKGRMFSGILFPVMNGMSLINTAIVIFAGSAVLLNDKSIETSTALGLIVMFAQFSQQYYQPIIQVAASWGSLQLAFTGAERIQEMFDAEEEIRPEKAPTFTKLQESVEISHIVFSYLPDKPILKDVSISAPKGQMTAVVGPTGSGKTTIMNLINRFYDVDAGGIYFDGKDIRGYDLDSLRSKVGIVLQDSVLFSGTIRDNIRFGVPDASQEMVEVAAKATHIHDYIESLPDKYDTLIDDDQSIFSTGQKQLISIARTLMTDPEVLILDEATSNVDTVTESKIQHAMEVVVAGRTSFVIAHRLKTILNADQIIVLKDGEVIERGNHHELLKLGGFYSELYHNQFVFE",
+            "sequence_from_db": "MKTVQFFWHYFKVYKFSFVVVILMIVLATFAQALFPVFSGQAVTQLANLVQAYQNGNPELVWQSLSGIMVNLGLLVLVLFISSVIYMCLMTRVIAESTNEMRKGLFGKLAQLTVSFFDRRQDGDILSHFTSDLDNILQAFNESLIQVMSNIVLYIGLILVMFSRNVTLALITIASTPLAFLMLIFIVKMARKYTNLQQKEVGKLNAYMDESISGQKAVIVQGIQEDMMAGFLEQNERVRKATFKGRMFSGILFPVMNGMSLINTAIVIFAGSAVLLNDKSIETSTALGLIVMFAQFSQQYYQPIIQVAASWGSLQLAFTGAERIQEMFDAEEEIRPEKAPTFTKLQESVEISHIVFSYLPDKPILKDVSISAPKGQMTAVVGPTGSGKTTIMNLINRFYDVDAGGIYFDGKDIRGYDLDSLRSKVGIVLQDSVLFSGTIRDNIRFGVPDASQEMVEVAAKATHIHDYIESLPDKYDTLIDDDQSIFSTGQKQLISIARTLMTDPEVLILDEATSNVDTVTESKIQHAMEVVVAGRTSFVIAHRLKTILNADQIIVLKDGEVIERGNHHELLKLGGFYSELYHNQFVFE",
+            "sequence_from_broadstreet": "MKTVQFFWHYFKVYKFSFVVVILMIVLATFAQALFPVFSGQAVTQLANLVQAYQNGNPELVWQSLSGIMVNLGLLVLVLFISSVIYMCLMTRVIAESTNEMRKGLFGKLAQLTVSFFDRRQDGDILSHFTSDLDNILQAFNESLIQVMSNIVLYIGLILVMFSRNVTLALITIASTPLAFLMLIFIVKMARKYTNLQQKEVGKLNAYMDESISGQKAVIVQGIQEDMMAGFLEQNERVRKATFKGRMFSGILFPVMNGMSLINTAIVIFAGSAVLLNDKSIETSTALGLIVMFAQFSQQYYQPIIQVAASWGSLQLAFTGAERIQEMFDAEEEIRPEKAPTFTKLQESVEISHIVFSYLPDKPILKDVSISAPKGQMTAVVGPTGSGKTTIMNLINRFYDVDAGGIYFDGKDIRGYDLDSLRSKVGIVLQDSVLFSGTIRDNIRFGVPDASQEMVEVAAKATHIHDYIESLPDKYDTLIDDDQSIFSTGQKQLISIARTLMTDPEVLILDEATSNVDTVTESKIQHAMEVVVAGRTSFVIAHRLKTILNADQIIVLKDGEVIERGNHHELLKLGGFYSELYHNQFVFE",
+            "dna_sequence_from_broadstreet": "ATGAAGACAGTTCAATTTTTTTGGCATTATTTTAAGGTCTACAAGTTCTCATTTGTAGTTGTCATCCTGATGATTGTTCTGGCGACTTTTGCCCAAGCCCTCTTTCCAGTCTTTTCTGGACAAGCGGTGACGCAGCTAGCCAATTTAGTTCAAGCTTATCAAAATGGCAATCCAGAACTTGTATGGCAAAGCCTATCAGGAATCATGGTCAATCTTGGCCTGCTGGTTTTGGTTCTATTTATCTCTAGTGTAATATACATGTGTCTCATGACGCGCGTGATTGCAGAATCGACCAACGAGATGCGCAAAGGCCTCTTTGGTAAGCTTGCTCAGTTGACGGTTTCTTTCTTTGACCGTCGACAAGATGGCGATATCCTGTCTCATTTTACCAGTGATTTGGATAATATCCTCCAAGCCTTTAACGAAAGCTTGATTCAGGTCATGAGCAATATTGTTTTATACATTGGTCTGATTCTTGTCATGTTTTCGAGAAATGTGACGCTGGCTCTCATCACCATTGCCAGCACCCCATTGGCTTTCCTTATGCTGATTTTCATCGTGAAAATGGCACGCAAATACACCAACCTCCAGCAGAAAGAGGTAGGGAAGCTCAACGCCTATATGGATGAGAGCATCTCAGGCCAAAAAGCCGTGATTGTGCAAGGAATTCAAGAGGATATGATGGCAGGATTTCTTGAACAAAATGAGCGCGTGCGCAAGGCAACCTTTAAAGGAAGAATGTTCTCAGGAATTCTTTTCCCTGTCATGAATGGGATGAGCCTGATTAATACAGCCATCGTCATCTTTGCTGGTTCGGCTGTACTTTTGAATGATAAGTCTATTGAAACAAGTACAGCCCTAGGTTTGATTGTTATGTTTGCACAATTTTCACAGCAGTACTACCAGCCTATTATCCAAGTTGCAGCGAGTTGGGGAAGCCTTCAGTTGGCCTTTACTGGAGCTGAACGAATTCAGGAAATGTTTGATGCAGAGGAGGAAATCCGACCTGAAAAGGCTCCAACCTTCACTAAGTTGCAAGAAAGTGTTGAAATCAGTCATATCGTTTTTTCATACTTGCCTGATAAACCTATTTTGAAAGATGTCAGCATTTCTGCCCCTAAAGGCCAGATGACAGCAGTTGTTGGGCCGACAGGTTCAGGAAAAACGACTATTATGAACCTCATCAATCGCTTTTATGATGTTGATGCTGGTGGTATTTATTTTGATGGTAAAGACATTCGTGGCTATGACTTAGATAGTCTTAGAAGCAAGGTGGGAATTGTATTGCAAGATTCGGTCTTGTTTAGCGGAACGATTAGAGACAATATCCGATTTGGTGTGCCAGATGCTAGTCAGGAAATGGTTGAGGTAGCAGCAAAAGCAACCCACATTCACGACTATATCGAAAGTTTGCCTGATAAGTACGATACTCTTATTGATGATGACCAGAGCATCTTTTCAACAGGGCAGAAGCAATTGATTTCAATCGCTCGAACCCTGATGACAGATCCAGAAGTTCTCATTCTCGATGAAGCAACTTCAAACGTAGATACGGTGACAGAAAGCAAGATTCAGCATGCCATGGAGGTGGTTGTAGCAGGTAGAACTAGTTTCGTCATTGCCCACCGCTTGAAAACCATTCTCAATGCAGATCAGATTATTGTCCTTAAAGATGGAGAAGTCATTGAACGTGGTAACCACCATGAACTTTTGAAGCTAGGTGGCTTTTATTCAGAACTCTATCACAATCAATTTGTTTTCGAATAA",
+            "partial": "0",
+            "query_start": 1973367,
+            "query_end": 1975130,
+            "hit_start": 0,
+            "hit_end": 1764,
+            "orf_dna_sequence": "ATGAAGACAGTTCAATTTTTTTGGCATTATTTTAAGGTCTACAAGTTCTCATTTGTAGTTGTCATCCTGATGATTGTTCTGGCGACTTTTGCCCAAGCCCTCTTTCCAGTCTTTTCTGGACAAGCGGTGACGCAGCTAGCCAATTTAGTTCAAGCTTATCAAAATGGCAATCCAGAACTTGTATGGCAAAGCCTATCAGGAATCATGGTCAATCTTGGCCTGCTGGTTTTGGTTCTATTTATCTCTAGTGTAATATACATGTGTCTCATGACGCGCGTGATTGCAGAATCGACCAACGAGATGCGCAAAGGCCTCTTTGGTAAGCTTGCTCAGTTGACGGTTTCTTTCTTTGACCGTCGACAAGATGGCGATATCCTGTCTCATTTTACCAGTGATTTGGATAATATCCTCCAAGCCTTTAACGAAAGCTTGATTCAGGTCATGAGCAATATTGTTTTATACATTGGTCTGATTCTTGTCATGTTTTCGAGAAATGTGACGCTGGCTCTCATCACCATTGCCAGCACCCCATTGGCTTTCCTTATGCTGATTTTCATCGTGAAAATGGCACGCAAATACACCAACCTCCAGCAGAAAGAGGTAGGGAAGCTCAACGCCTATATGGATGAGAGCATCTCAGGCCAAAAAGCCGTGATTGTGCAAGGAATTCAAGAGGATATGATGGCAGGATTTCTTGAACAAAATGAGCGCGTGCGCAAGGCAACCTTTAAAGGAAGAATGTTCTCAGGAATTCTTTTCCCTGTCATGAATGGGATGAGCCTGATTAATACAGCCATCGTCATCTTTGCTGGTTCGGCTGTACTTTTGAATGATAAGTCTATTGAAACAAGTACAGCCCTAGGTTTGATTGTTATGTTTGCACAATTTTCACAGCAGTACTACCAGCCTATTATCCAAGTTGCAGCGAGTTGGGGAAGCCTTCAGTTGGCCTTTACTGGAGCTGAACGAATTCAGGAAATGTTTGATGCAGAGGAGGAAATCCGACCTGAAAAGGCTCCAACCTTCACTAAGTTGCAAGAAAGTGTTGAAATCAGTCATATCGTTTTTTCATACTTGCCTGATAAACCTATTTTGAAAGATGTCAGCATTTCTGCCCCTAAAGGCCAGATGACAGCAGTTGTTGGGCCGACAGGTTCAGGAAAAACGACTATTATGAACCTCATCAATCGCTTTTATGATGTTGATGCTGGTGGTATTTATTTTGATGGTAAAGACATTCGTGGCTATGACTTAGATAGTCTTAGAAGCAAGGTGGGAATTGTATTGCAAGATTCGGTCTTGTTTAGCGGAACGATTAGAGACAATATCCGATTTGGTGTGCCAGATGCTAGTCAGGAAATGGTTGAGGTAGCAGCAAAAGCAACCCACATTCACGACTATATCGAAAGTTTGCCTGATAAGTACGATACTCTTATTGATGATGACCAGAGCATCTTTTCAACAGGGCAGAAGCAATTGATTTCAATCGCTCGAACCCTGATGACAGATCCAGAAGTTCTCATTCTCGATGAAGCAACTTCAAACGTAGATACGGTGACAGAAAGCAAGATTCAGCATGCCATGGAGGTGGTTGTAGCAGGTAGAACTAGTTTCGTCATTGCCCACCGCTTGAAAACCATTCTCAATGCAGATCAGATTATTGTCCTTAAAGATGGAGAAGTCATTGAACGTGGTAACCACCATGAACTTTTGAAGCTAGGTGGCTTTTATTCAGAACTCTATCACAATCAATTTGTTTTCGAATAA",
+            "orf_prot_sequence": "MKTVQFFWHYFKVYKFSFVVVILMIVLATFAQALFPVFSGQAVTQLANLVQAYQNGNPELVWQSLSGIMVNLGLLVLVLFISSVIYMCLMTRVIAESTNEMRKGLFGKLAQLTVSFFDRRQDGDILSHFTSDLDNILQAFNESLIQVMSNIVLYIGLILVMFSRNVTLALITIASTPLAFLMLIFIVKMARKYTNLQQKEVGKLNAYMDESISGQKAVIVQGIQEDMMAGFLEQNERVRKATFKGRMFSGILFPVMNGMSLINTAIVIFAGSAVLLNDKSIETSTALGLIVMFAQFSQQYYQPIIQVAASWGSLQLAFTGAERIQEMFDAEEEIRPEKAPTFTKLQESVEISHIVFSYLPDKPILKDVSISAPKGQMTAVVGPTGSGKTTIMNLINRFYDVDAGGIYFDGKDIRGYDLDSLRSKVGIVLQDSVLFSGTIRDNIRFGVPDASQEMVEVAAKATHIHDYIESLPDKYDTLIDDDQSIFSTGQKQLISIARTLMTDPEVLILDEATSNVDTVTESKIQHAMEVVVAGRTSFVIAHRLKTILNADQIIVLKDGEVIERGNHHELLKLGGFYSELYHNQFVFE",
+            "perc_identity": 100.0
+        }
+    },
+    "NZ_CP089948.1_1954 # 1975925 # 1977619 # -1 # ID=1_1954;partial=00;start_type=ATG;rbs_motif=AAGGAG;rbs_spacer=5bp;gc_cont=0.447": {
+        "gnl|BL_ORD_ID|1902|hsp_num:0": {
+            "type_match": "Perfect",
+            "ast_source": "",
+            "model_id": "2081",
+            "orf_strand": "-",
+            "orf_start": 1975925,
+            "orf_end": 1977619,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "patA",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "pass_evalue": "n/a",
+            "pass_bitscore": "750",
+            "ARO_accession": "3000024",
+            "ARO_name": "patA",
+            "ARO_category": {
+                "36002": {
+                    "category_aro_accession": "0010001",
+                    "category_aro_cvterm_id": "36002",
+                    "category_aro_name": "ATP-binding cassette (ABC) antibiotic efflux pump",
+                    "category_aro_description": "Directed pumping of antibiotic out of a cell to confer resistance. ATP-binding cassette (ABC) transporters are present in all cells of all organisms and use the energy of ATP binding/hydrolysis to transport substrates across cell membranes.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "35954": {
+                    "category_aro_accession": "0000036",
+                    "category_aro_cvterm_id": "35954",
+                    "category_aro_name": "ciprofloxacin",
+                    "category_aro_description": "Ciprofloxacin is a bacteriocidal fluoroquinolone. It blocks bacterial DNA replication by binding to the toposiomerase II or IV-DNA complex (or cleavable complex), thereby causing double-stranded breaks in the bacterial chromosome.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37006": {
+                    "category_aro_accession": "3000662",
+                    "category_aro_cvterm_id": "37006",
+                    "category_aro_name": "norfloxacin",
+                    "category_aro_description": "Norfloxacin is a 6-fluoro, 7-piperazinyl quinolone with a wide range of activity against Gram-negative bacteria. It is inactive against most anaerobes.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35920": {
+                    "category_aro_accession": "0000001",
+                    "category_aro_cvterm_id": "35920",
+                    "category_aro_name": "fluoroquinolone antibiotic",
+                    "category_aro_description": "The fluoroquinolones are a family of synthetic broad-spectrum antibiotics that are 4-quinolone-3-carboxylates. These compounds interact with topoisomerase II (DNA gyrase) to disrupt bacterial DNA replication, damage DNA, and cause cell death.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "36298": {
+                    "category_aro_accession": "3000159",
+                    "category_aro_cvterm_id": "36298",
+                    "category_aro_name": "efflux pump complex or subunit conferring antibiotic resistance",
+                    "category_aro_description": "Efflux proteins that pump antibiotic out of a cell to confer resistance.",
+                    "category_aro_class_name": "Efflux Component"
+                },
+                "36001": {
+                    "category_aro_accession": "0010000",
+                    "category_aro_cvterm_id": "36001",
+                    "category_aro_name": "antibiotic efflux",
+                    "category_aro_description": "Antibiotic resistance via the transport of antibiotics out of the cell.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 5e-309,
+            "bit_score": 1054.3,
+            "max_identities": 564,
+            "cvterm_id": "40078",
+            "query": "MLIQKIKTYKWQALASLLMTGLMVASSLLQPRYLQEVLGALLTGKYEAIYSIGAWLIGVAVVGLVAGGLNVVLAAYIAQGVSSDLREDAFRKIQTFSYADIEQFNAGNLVVRMTNDINQIQNVVMMTFQILFRLPLLFIGSFILAVQTLPSLWWVIVLMVVLIFGLTAVMMGMMGPRFAKFQTLLERINAIAKENLRGVRVVKSFVQEKEQFAKFTEVSDELLGQNLYIGYAFSVVEPFMMLVGYGAVFLSIWLVAGMVQSDPSVVGSIASFVNYLSQIIFTIVMVGFLGNSVSRAMISMRRIREILDAEPAMTFKDIPDEELVGSLSFENVTFTYPMDKEPMLKDVSFTIEPGQMVGVVGATGAGKSTLAQLIPRLFDPQDGAIKIGGKDIREVSEGTLRKTVSIVLQRAILFSGTIADNLRQGKGNATLFEMERAANIAQASEFIHRMEKTFESPVEERGTNFSGGQKQRMSIARGIVSNPRILIFDDSTSALDAKSERLVQEALNKDLKGTTTIIIAQKISSVVHADKILVLNQGRLIGQGTHADLVANNAVYREIYETQK",
+            "match": "MLIQKIKTYKWQALASLLMTGLMVASSLLQPRYLQEVLGALLTGKYEAIYSIGAWLIGVAVVGLVAGGLNVVLAAYIAQGVSSDLREDAFRKIQTFSYADIEQFNAGNLVVRMTNDINQIQNVVMMTFQILFRLPLLFIGSFILAVQTLPSLWWVIVLMVVLIFGLTAVMMGMMGPRFAKFQTLLERINAIAKENLRGVRVVKSFVQEKEQFAKFTEVSDELLGQNLYIGYAFSVVEPFMMLVGYGAVFLSIWLVAGMVQSDPSVVGSIASFVNYLSQIIFTIVMVGFLGNSVSRAMISMRRIREILDAEPAMTFKDIPDEELVGSLSFENVTFTYPMDKEPMLKDVSFTIEPGQMVGVVGATGAGKSTLAQLIPRLFDPQDGAIKIGGKDIREVSEGTLRKTVSIVLQRAILFSGTIADNLRQGKGNATLFEMERAANIAQASEFIHRMEKTFESPVEERGTNFSGGQKQRMSIARGIVSNPRILIFDDSTSALDAKSERLVQEALNKDLKGTTTIIIAQKISSVVHADKILVLNQGRLIGQGTHADLVANNAVYREIYETQK",
+            "sequence_from_db": "MLIQKIKTYKWQALASLLMTGLMVASSLLQPRYLQEVLGALLTGKYEAIYSIGAWLIGVAVVGLVAGGLNVVLAAYIAQGVSSDLREDAFRKIQTFSYADIEQFNAGNLVVRMTNDINQIQNVVMMTFQILFRLPLLFIGSFILAVQTLPSLWWVIVLMVVLIFGLTAVMMGMMGPRFAKFQTLLERINAIAKENLRGVRVVKSFVQEKEQFAKFTEVSDELLGQNLYIGYAFSVVEPFMMLVGYGAVFLSIWLVAGMVQSDPSVVGSIASFVNYLSQIIFTIVMVGFLGNSVSRAMISMRRIREILDAEPAMTFKDIPDEELVGSLSFENVTFTYPMDKEPMLKDVSFTIEPGQMVGVVGATGAGKSTLAQLIPRLFDPQDGAIKIGGKDIREVSEGTLRKTVSIVLQRAILFSGTIADNLRQGKGNATLFEMERAANIAQASEFIHRMEKTFESPVEERGTNFSGGQKQRMSIARGIVSNPRILIFDDSTSALDAKSERLVQEALNKDLKGTTTIIIAQKISSVVHADKILVLNQGRLIGQGTHADLVANNAVYREIYETQK",
+            "sequence_from_broadstreet": "MLIQKIKTYKWQALASLLMTGLMVASSLLQPRYLQEVLGALLTGKYEAIYSIGAWLIGVAVVGLVAGGLNVVLAAYIAQGVSSDLREDAFRKIQTFSYADIEQFNAGNLVVRMTNDINQIQNVVMMTFQILFRLPLLFIGSFILAVQTLPSLWWVIVLMVVLIFGLTAVMMGMMGPRFAKFQTLLERINAIAKENLRGVRVVKSFVQEKEQFAKFTEVSDELLGQNLYIGYAFSVVEPFMMLVGYGAVFLSIWLVAGMVQSDPSVVGSIASFVNYLSQIIFTIVMVGFLGNSVSRAMISMRRIREILDAEPAMTFKDIPDEELVGSLSFENVTFTYPMDKEPMLKDVSFTIEPGQMVGVVGATGAGKSTLAQLIPRLFDPQDGAIKIGGKDIREVSEGTLRKTVSIVLQRAILFSGTIADNLRQGKGNATLFEMERAANIAQASEFIHRMEKTFESPVEERGTNFSGGQKQRMSIARGIVSNPRILIFDDSTSALDAKSERLVQEALNKDLKGTTTIIIAQKISSVVHADKILVLNQGRLIGQGTHADLVANNAVYREIYETQK",
+            "dna_sequence_from_broadstreet": "ATGCTGATTCAGAAAATAAAAACCTACAAGTGGCAGGCCCTGGCTTCGCTCCTGATGACAGGCTTGATGGTTGCTAGTTCACTTCTGCAACCGCGTTATCTGCAGGAAGTCTTAGGCGCCCTCCTTACTGGGAAATATGAAGCTATTTATAGTATCGGGGCTTGGTTGATTGGTGTGGCCGTAGTCGGTCTAGTTGCTGGTGGACTCAATGTTGTCCTCGCAGCCTATATTGCCCAAGGAGTTTCATCCGACCTTCGGGAGGATGCCTTCCGTAAAATTCAAACCTTTTCTTATGCTGATATTGAACAATTTAATGCGGGAAATCTAGTCGTTCGAATGACAAATGATATCAACCAGATTCAGAACGTTGTCATGATGACCTTCCAAATTCTTTTCAGACTTCCCCTCTTGTTCATCGGTTCGTTTATCCTAGCGGTTCAAACCTTACCTTCTCTGTGGTGGGTGATTGTTCTCATGGTAGTCTTGATTTTTGGTTTGACTGCTGTCATGATGGGAATGATGGGGCCTCGTTTTGCCAAGTTTCAAACCCTTCTTGAGCGCATCAATGCCATTGCCAAGGAAAATTTACGTGGCGTTCGTGTGGTCAAGTCCTTTGTCCAAGAAAAAGAGCAATTTGCTAAGTTTACAGAGGTCTCAGACGAGCTTCTTGGTCAAAACCTTTACATTGGTTATGCCTTTTCAGTAGTGGAACCCTTTATGATGTTGGTTGGTTACGGGGCGGTCTTCCTCTCTATTTGGCTGGTCGCGGGAATGGTTCAGTCGGATCCGTCTGTTGTTGGTTCCATCGCTTCTTTTGTTAATTACCTAAGCCAGATTATCTTTACCATTGTTATGGTTGGATTTTTGGGAAATTCTGTCAGCCGTGCCATGATTTCCATGCGTCGTATTCGAGAAATTCTTGACGCAGAGCCAGCTATGACCTTCAAGGATATCCCAGATGAAGAGTTGGTTGGAAGTCTTAGCTTTGAAAATGTGACCTTTACCTATCCAATGGACAAGGAACCGATGCTGAAAGATGTGAGCTTTACTATTGAACCTGGTCAAATGGTTGGTGTAGTTGGAGCGACTGGTGCAGGAAAGTCAACCTTGGCTCAATTGATTCCACGTCTCTTTGATCCACAGGACGGGGCCATTAAAATCGGTGGCAAGGATATTCGAGAAGTGAGTGAAGGAACCCTGCGTAAAACAGTTTCCATCGTTCTCCAACGTGCCATTCTTTTTAGTGGAACGATTGCAGATAACTTGAGACAGGGGAAGGGGAATGCTACTCTATTTGAAATGGAGCGCGCAGCCAATATTGCCCAGGCTAGTGAATTCATTCATCGTATGGAGAAAACCTTTGAAAGTCCAGTTGAAGAACGGGGAACCAATTTCTCTGGTGGACAAAAACAAAGGATGTCGATTGCGCGTGGGATTGTCAGCAATCCACGTATTCTGATTTTTGATGATTCGACCTCAGCCTTGGATGCCAAATCAGAGCGCTTGGTGCAAGAAGCTTTGAATAAGGACTTGAAGGGGACGACAACCATTATTATTGCTCAAAAAATTAGCTCGGTTGTCCATGCAGACAAGATCTTGGTTCTAAATCAAGGACGATTGATTGGTCAAGGTACGCATGCAGACTTGGTTGCCAACAATGCCGTTTACCGTGAAATCTATGAAACACAGAAATGA",
+            "partial": "0",
+            "query_start": 1975925,
+            "query_end": 1977616,
+            "hit_start": 0,
+            "hit_end": 1692,
+            "orf_dna_sequence": "ATGCTGATTCAGAAAATAAAAACCTACAAGTGGCAGGCCCTGGCTTCGCTCCTGATGACAGGCTTGATGGTTGCTAGTTCACTTCTGCAACCGCGTTATCTGCAGGAAGTCTTAGGCGCCCTCCTTACTGGGAAATATGAAGCTATTTATAGTATCGGGGCTTGGTTGATTGGTGTGGCCGTAGTCGGTCTAGTTGCTGGTGGACTCAATGTTGTCCTCGCAGCCTATATTGCCCAAGGAGTTTCATCCGACCTTCGGGAGGATGCCTTCCGTAAAATTCAAACCTTTTCTTATGCTGATATTGAACAATTTAATGCGGGAAATCTAGTCGTTCGAATGACAAATGATATCAACCAGATTCAGAACGTTGTCATGATGACCTTCCAAATTCTTTTCAGACTTCCCCTCTTGTTCATCGGTTCGTTTATCCTAGCGGTTCAAACCTTACCTTCTCTGTGGTGGGTGATTGTTCTCATGGTAGTCTTGATTTTTGGTTTGACTGCTGTCATGATGGGAATGATGGGGCCTCGTTTTGCCAAGTTTCAAACCCTTCTTGAGCGCATCAATGCCATTGCCAAGGAAAATTTACGTGGCGTTCGTGTGGTCAAGTCCTTTGTCCAAGAAAAAGAGCAATTTGCTAAGTTTACAGAGGTCTCAGACGAGCTTCTTGGTCAAAACCTTTACATTGGTTATGCCTTTTCAGTAGTGGAACCCTTTATGATGTTGGTTGGTTACGGGGCGGTCTTCCTCTCTATTTGGCTGGTCGCGGGAATGGTTCAGTCGGATCCGTCTGTTGTTGGTTCCATCGCTTCTTTTGTTAATTACCTAAGCCAGATTATCTTTACCATTGTTATGGTTGGATTTTTGGGAAATTCTGTCAGCCGTGCCATGATTTCCATGCGTCGTATTCGAGAAATTCTTGACGCAGAGCCAGCTATGACCTTCAAGGATATCCCAGATGAAGAGTTGGTTGGAAGTCTTAGCTTTGAAAATGTGACCTTTACCTATCCAATGGACAAGGAACCGATGCTGAAAGATGTGAGCTTTACTATTGAACCTGGTCAAATGGTTGGTGTAGTTGGAGCGACTGGTGCAGGAAAGTCAACCTTGGCTCAATTGATTCCACGTCTCTTTGATCCACAGGACGGGGCCATTAAAATCGGTGGCAAGGATATTCGAGAAGTGAGTGAAGGAACCCTGCGTAAAACAGTTTCCATCGTTCTCCAACGTGCCATTCTTTTTAGTGGAACGATTGCAGATAACTTGAGACAGGGGAAGGGGAATGCTACTCTATTTGAAATGGAGCGCGCAGCCAATATTGCCCAGGCTAGTGAATTCATTCATCGTATGGAGAAAACCTTTGAAAGTCCAGTTGAAGAACGGGGAACCAATTTCTCTGGTGGACAAAAACAAAGGATGTCGATTGCGCGTGGGATTGTCAGCAATCCACGTATTCTGATTTTTGATGATTCGACCTCAGCCTTGGATGCCAAATCAGAGCGCTTGGTGCAAGAAGCTTTGAATAAGGACTTGAAGGGGACGACAACCATTATTATTGCTCAAAAAATTAGCTCGGTTGTCCATGCAGACAAGATCTTGGTTCTAAATCAAGGACGATTGATTGGTCAAGGTACGCATGCAGACTTGGTTGCCAACAATGCCGTTTACCGTGAAATCTATGAAACACAGAAATGA",
+            "orf_prot_sequence": "MLIQKIKTYKWQALASLLMTGLMVASSLLQPRYLQEVLGALLTGKYEAIYSIGAWLIGVAVVGLVAGGLNVVLAAYIAQGVSSDLREDAFRKIQTFSYADIEQFNAGNLVVRMTNDINQIQNVVMMTFQILFRLPLLFIGSFILAVQTLPSLWWVIVLMVVLIFGLTAVMMGMMGPRFAKFQTLLERINAIAKENLRGVRVVKSFVQEKEQFAKFTEVSDELLGQNLYIGYAFSVVEPFMMLVGYGAVFLSIWLVAGMVQSDPSVVGSIASFVNYLSQIIFTIVMVGFLGNSVSRAMISMRRIREILDAEPAMTFKDIPDEELVGSLSFENVTFTYPMDKEPMLKDVSFTIEPGQMVGVVGATGAGKSTLAQLIPRLFDPQDGAIKIGGKDIREVSEGTLRKTVSIVLQRAILFSGTIADNLRQGKGNATLFEMERAANIAQASEFIHRMEKTFESPVEERGTNFSGGQKQRMSIARGIVSNPRILIFDDSTSALDAKSERLVQEALNKDLKGTTTIIIAQKISSVVHADKILVLNQGRLIGQGTHADLVANNAVYREIYETQK",
+            "perc_identity": 100.0
+        }
+    },
+    "NZ_CP089948.1_1981 # 2005947 # 2006795 # 1 # ID=1_1981;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.416": {
+        "gnl|BL_ORD_ID|2046|hsp_num:0": {
+            "type_match": "Strict",
+            "ast_source": "",
+            "orf_strand": "+",
+            "orf_start": 2005947,
+            "orf_end": 2006795,
+            "orf_from": "NZ_CP089948.1",
+            "model_name": "RlmA(II)",
+            "model_type": "protein homolog model",
+            "model_type_id": 40292,
+            "model_id": "2274",
+            "pass_evalue": "n/a",
+            "pass_bitscore": "550",
+            "ARO_accession": "3001301",
+            "ARO_name": "RlmA(II)",
+            "ARO_category": {
+                "37697": {
+                    "category_aro_accession": "3001298",
+                    "category_aro_cvterm_id": "37697",
+                    "category_aro_name": "non-erm 23S ribosomal RNA methyltransferase (G748)",
+                    "category_aro_description": "Non-erm 23S ribosomal RNA methyltransferases modify guanosine 748 (E. coli numbering) to confer resistance to some macrolides and lincosamides.",
+                    "category_aro_class_name": "AMR Gene Family"
+                },
+                "36284": {
+                    "category_aro_accession": "3000145",
+                    "category_aro_cvterm_id": "36284",
+                    "category_aro_name": "tylosin",
+                    "category_aro_description": "Tylosin is a 16-membered macrolide, naturally produced by Streptomyces fradiae. It interacts with the bacterial ribosome 50S subunit to inhibit protein synthesis.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "37623": {
+                    "category_aro_accession": "3001224",
+                    "category_aro_cvterm_id": "37623",
+                    "category_aro_name": "mycinamicin",
+                    "category_aro_description": "Produced by Micromonospora\u00a0griseorubida.",
+                    "category_aro_class_name": "Antibiotic"
+                },
+                "35919": {
+                    "category_aro_accession": "0000000",
+                    "category_aro_cvterm_id": "35919",
+                    "category_aro_name": "macrolide antibiotic",
+                    "category_aro_description": "Macrolides are a group of drugs (typically antibiotics) that have a large macrocyclic lactone ring of 12-16 carbons to which one or more deoxy sugars, usually cladinose and desosamine, may be attached. Macrolides bind to the 50S-subunit of bacterial ribosomes, inhibiting the synthesis of vital proteins.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35936": {
+                    "category_aro_accession": "0000017",
+                    "category_aro_cvterm_id": "35936",
+                    "category_aro_name": "lincosamide antibiotic",
+                    "category_aro_description": "Lincosamides (e.g. lincomycin, clindamycin) are a class of drugs which bind to the 23s portion of the 50S subunit of bacterial ribosomes. This interaction inhibits early elongation of peptide chains by inhibiting the transpeptidase reaction, acting similarly to macrolides.",
+                    "category_aro_class_name": "Drug Class"
+                },
+                "35997": {
+                    "category_aro_accession": "0001001",
+                    "category_aro_cvterm_id": "35997",
+                    "category_aro_name": "antibiotic target alteration",
+                    "category_aro_description": "Mutational alteration or enzymatic modification of antibiotic target which results in antibiotic resistance.",
+                    "category_aro_class_name": "Resistance Mechanism"
+                }
+            },
+            "evalue": 9.6e-160,
+            "bit_score": 557.4,
+            "max_identities": 279,
+            "cvterm_id": "35917",
+            "query": "MNTNLKPKLQRFASATAFACPICQENLTLLETNFKCCNRHSFDLAKFGYVNLVPQIKQSANYDKENFQNRQQILEAGFYQAILDAVSDLLASSKTTTTILDIGCGEGFYSRKLQESHSEKTFYAFDISKDSVQIAAKSEPNWAVNWFVGDLARLPIKDANMDILLDIFSPANYGEFRRVLSKDGILIKVIPTENHLKEIRQRVQDQLTNKEYSNQDIKEHFQEHFTILSSQTASLTKTITAEQLQALLSMTPLLFHVDQSKIDWSKLTEITIEAEILVGKAF",
+            "match": "MNTNLKPKLQRFASATAFACPICQENLTLLETNFKCCNRHSFDLAKFGYVNL PQIKQSANY+KENFQNRQQILEAGFYQAILDAVSDLLASSKTTTTILDIGCGEGFYSRKLQESHSEKTFYAFDISKDSVQIAAKSEPNWAVNWFVGDLARLPIKDANMDILLDIFSPANYGEFRRVLSKDGILIKVIPTENHLKEIRQRVQDQLTNKEYSNQDIKEHFQEHFTILSSQTASLTKTITAEQLQALLSMTPLLFHVDQSKIDWS+LTEITIEAEILVGKAF",
+            "sequence_from_db": "MNTNLKPKLQRFASATAFACPICQENLTLLETNFKCCNRHSFDLAKFGYVNLAPQIKQSANYNKENFQNRQQILEAGFYQAILDAVSDLLASSKTTTTILDIGCGEGFYSRKLQESHSEKTFYAFDISKDSVQIAAKSEPNWAVNWFVGDLARLPIKDANMDILLDIFSPANYGEFRRVLSKDGILIKVIPTENHLKEIRQRVQDQLTNKEYSNQDIKEHFQEHFTILSSQTASLTKTITAEQLQALLSMTPLLFHVDQSKIDWSQLTEITIEAEILVGKAF",
+            "sequence_from_broadstreet": "MNTNLKPKLQRFASATAFACPICQENLTLLETNFKCCNRHSFDLAKFGYVNLAPQIKQSANYNKENFQNRQQILEAGFYQAILDAVSDLLASSKTTTTILDIGCGEGFYSRKLQESHSEKTFYAFDISKDSVQIAAKSEPNWAVNWFVGDLARLPIKDANMDILLDIFSPANYGEFRRVLSKDGILIKVIPTENHLKEIRQRVQDQLTNKEYSNQDIKEHFQEHFTILSSQTASLTKTITAEQLQALLSMTPLLFHVDQSKIDWSQLTEITIEAEILVGKAF",
+            "dna_sequence_from_broadstreet": "ATGAATACAAATCTCAAGCCCAAACTTCAGCGTTTTGCTTCTGCGACTGCCTTTGCCTGTCCTATCTGTCAAGAAAATCTGACTCTGTTAGAGACTAATTTCAAGTGCTGCAACCGTCATTCTTTTGACTTGGCGAAATTTGGCTATGTCAATCTAGCACCTCAAATCAAGCAATCTGCTAACTATAACAAGGAAAATTTTCAAAACCGTCAACAAATCCTAGAAGCCGGCTTTTACCAAGCTATCTTAGATGCTGTATCTGACTTGCTTGCAAGCTCAAAAACTACCACAACAATTTTGGATATCGGTTGTGGTGAAGGATTCTATTCTCGCAAACTACAAGAAAGTCACTCTGAAAAAACTTTCTATGCCTTTGACATCTCCAAAGATTCAGTCCAAATCGCTGCTAAAAGTGAACCCAACTGGGCAGTCAATTGGTTTGTTGGCGACTTGGCACGACTTCCTATAAAAGACGCTAACATGGATATTCTGCTTGATATCTTCTCACCTGCCAACTATGGAGAATTTCGTCGCGTTTTATCCAAAGACGGTATCTTGATAAAGGTTATCCCAACTGAAAATCACCTCAAAGAAATCCGTCAAAGAGTACAGGACCAGCTGACAAACAAGGAGTATTCTAACCAAGATATCAAGGAGCATTTCCAGGAACACTTTACCATCCTATCTAGTCAAACTGCCTCTCTGACTAAGACTATCACAGCAGAACAACTCCAAGCCCTACTCAGTATGACTCCTCTCCTCTTTCACGTTGACCAGAGCAAGATTGACTGGAGCCAACTGACAGAGATTACCATCGAAGCAGAGATTTTGGTTGGGAAAGCATTCTAA",
+            "partial": "0",
+            "query_start": 2005947,
+            "query_end": 2006792,
+            "hit_start": 0,
+            "hit_end": 846,
+            "orf_dna_sequence": "ATGAATACAAATCTCAAGCCCAAACTTCAGCGTTTTGCTTCTGCGACTGCCTTTGCCTGTCCTATCTGTCAAGAAAATCTGACTCTGTTAGAGACTAATTTCAAGTGCTGCAACCGTCATTCTTTTGACTTGGCGAAATTTGGCTATGTCAATCTAGTCCCTCAAATCAAGCAATCTGCTAACTACGACAAGGAAAATTTTCAAAACCGTCAACAAATCCTAGAAGCCGGCTTTTACCAAGCTATCTTAGATGCTGTATCTGACTTGCTTGCAAGCTCAAAAACTACCACAACAATTTTGGATATCGGTTGTGGTGAAGGATTCTATTCTCGCAAACTACAAGAAAGTCACTCTGAAAAAACTTTCTATGCCTTTGACATCTCCAAAGATTCAGTCCAAATCGCTGCTAAAAGTGAACCCAACTGGGCAGTCAATTGGTTCGTTGGCGACTTGGCACGACTTCCTATAAAAGACGCTAACATGGATATTCTGCTTGATATCTTCTCACCTGCCAACTATGGAGAATTTCGTCGCGTTTTATCCAAAGACGGTATCTTGATAAAGGTTATCCCAACTGAAAATCACCTCAAAGAAATCCGTCAAAGAGTACAGGACCAGCTGACAAACAAGGAGTATTCTAACCAAGATATCAAGGAGCATTTCCAGGAACACTTTACCATCCTATCTAGTCAAACTGCCTCTCTGACTAAGACTATCACAGCAGAACAACTCCAAGCCCTACTCAGTATGACTCCTCTCCTCTTTCACGTTGACCAGAGCAAAATTGACTGGAGCAAACTGACAGAGATTACCATCGAAGCAGAGATTTTGGTTGGGAAAGCATTCTAA",
+            "orf_prot_sequence": "MNTNLKPKLQRFASATAFACPICQENLTLLETNFKCCNRHSFDLAKFGYVNLVPQIKQSANYDKENFQNRQQILEAGFYQAILDAVSDLLASSKTTTTILDIGCGEGFYSRKLQESHSEKTFYAFDISKDSVQIAAKSEPNWAVNWFVGDLARLPIKDANMDILLDIFSPANYGEFRRVLSKDGILIKVIPTENHLKEIRQRVQDQLTNKEYSNQDIKEHFQEHFTILSSQTASLTKTITAEQLQALLSMTPLLFHVDQSKIDWSKLTEITIEAEILVGKAF",
+            "perc_identity": 98.94
+        }
+    }
+}
