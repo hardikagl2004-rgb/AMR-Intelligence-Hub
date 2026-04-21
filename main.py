@@ -23,7 +23,7 @@ from reportlab.lib.units import inch
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    genai.configure(api_key="AIzaSyC8_WrSfCjJM_g2tkqlqvog2HRmPoJxMZk")
+    genai.configure(api_key="AIzaSyBMDZ-1JJlk08cAlvQk6XIAD4vkeWAadQ4")
 except ImportError:
     AI_AVAILABLE = False
 
@@ -492,7 +492,7 @@ Result: ARI = {round(ari, 3)}
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
 
-with tab4:
+    with tab4:
         st.markdown("### Interactive Mechanism Network")
         st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
