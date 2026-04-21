@@ -492,23 +492,12 @@ Result: ARI = {round(ari, 3)}
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
 
-        with tab4:
-    st.subheader("🤖 Bio-AI Chat")
-    if AI_AVAILABLE:
-        u_q = st.chat_input("Ask Bio-AI about this strain...")
-        if u_q:
-            try:
-                model = genai.GenerativeModel('gemini-1.5-flash-latest')
-                resp = model.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {u_q}")
-                st.chat_message("user").write(u_q)
-                st.chat_message("assistant").write(resp.text)
-            except Exception as e:
-                if "429" in str(e):
-                    st.error("🚀 **Bio-AI is recharging.** We've hit the free tier limit. Please wait 60 seconds.")
-                else:
-                    st.error(f"System Error: {e}")
-    else:
-        st.warning("⚠️ Bio-AI is currently offline.")
+with tab4:
+        st.markdown("### Interactive Mechanism Network")
+        st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
+        html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
+        with open(html_path, 'r', encoding='utf-8') as f:
+            components.html(f.read(), height=650)
 
     with tab5:
         colA, colB, colC = st.columns([0.6, 0.2, 0.2])
