@@ -429,113 +429,84 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     col3.metric("Total Genes", genes)
     col4.metric("Habitat", habitat)
 
-# Define all 7 tabs (including the 3D Landscape and PDF Export)
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-        "ℹ️ Pathogen Summary", 
-        "📊 6-Panel Dashboard", 
-        "🧮 Math & Data Ledger", 
-        "🕸️ Network", 
-        "🤖 Bio-AI Chat", 
-        "📄 Export Master PDF", 
-        "🌌 3D Landscape"
+# 1. Define the Tabs
+    tabs = st.tabs([
+        "ℹ️ Summary", "📊 Dashboard", "🧮 Math Ledger", 
+        "🕸️ Network", "🤖 Bio-AI", "📄 Report", "🌌 3D View"
     ])
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = tabs
 
-    # --- TAB 1: PROFESSIONAL EXECUTIVE SUMMARY ---
+    # --- TAB 1: SUMMARY ---
     with tab1:
         st.markdown("### 🦠 Executive Summary")
-        
-        # Professional Metric Row
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("Risk Level", f"{level} {icon}")
-        m2.metric("MRI Score", f"{round(mri, 3)}")
-        m3.metric("ARI Density", f"{round(ari, 3)}")
-        m4.metric("Total Genes", genes)
+        m2.metric("MRI Score", round(mri, 3))
+        m3.metric("ARI Score", round(ari, 3))
+        m4.metric("Genes", genes)
+        st.info(f"**Pathogen:** `{selected_file}` | **Gram:** {bac_info.get('gram', 'N/A')} | **Disease:** {bac_info.get('disease', 'N/A')}")
 
-        st.divider()
-
-        # Detailed Information Grid
-        col_left, col_right = st.columns(2)
-        with col_left:
-            st.markdown("#### 🧬 Pathogen Identity")
-            st.write(f"**Strain Identifier:** `{selected_file}`")
-            st.write(f"**Gram Classification:** {bac_info['gram']}")
-            st.write(f"**Primary Habitat:** {habitat}")
-            
-        with col_right:
-            st.markdown("#### 🏥 Clinical Context")
-            st.write(f"**Common Disease:** {bac_info['disease']}")
-            st.write(f"**Resistance Count:** {u_drugs} Drug Classes")
-            st.write(f"**Mechanism Diversity:** {u_mechs} Strategies")
-
-        st.info(f"**AI Prediction:** This strain is categorized as **{level} RISK**. The high MRI suggests a robust ability to pivot between defense strategies, making standard clinical protocols difficult to maintain.")
-
-    # --- TAB 2: ORIGINAL DASHBOARD ---
+    # --- TAB 2: DASHBOARD ---
     with tab2:
-        st.markdown(f"### Systems Overview: `{selected_file}`")
-        st.pyplot(plot_full_dashboard(drug, mech, mri, genes, records, selected_file))
+        try:
+            st.pyplot(plot_full_dashboard(drug, mech, mri, genes, records, selected_file))
+        except Exception as e:
+            st.error("Dashboard visualization error.")
 
-    # --- TAB 3: PROFESSIONAL MATH & DATA LEDGER ---
+    # --- TAB 3: MATH LEDGER (The fix for your crash) ---
     with tab3:
-        st.markdown("### 🧮 Exact Math Ledger")
+        st.markdown("### 🧮 Math & Data Ledger")
+        c1, c2 = st.columns(2)
+        c1.success(f"**MRI:** {round(mri, 3)}")
+        c2.info(f"**ARI:** {round(ari, 3)}")
         
-        # Calculation Layout
-        calc_col1, calc_col2 = st.columns(2)
-        
-        with calc_col1:
-            st.success(f"""
-            **MRI Calculation** *Formula:* $(Unique Drugs + Unique Mechs) / (Total Assignments + 1)$  
-            *Process:* $({u_drugs} + {u_mechs}) / ({len(drug) + len(mech)} + 1)$  
-            **Final MRI:** `{round(mri, 3)}`
-            """)
-
-        with calc_col2:
-            st.info(f"""
-            **ARI Calculation** *Formula:* $Unique Mechs / (Total Genes + 1)$  
-            *Process:* ${u_mechs} / ({genes} + 1)$  
-            **Final ARI:** `{round(ari, 3)}`
-            """)
-
-        st.divider()
-        st.markdown("### 📜 Full Genetic Record")
-        # Displaying the raw data in a clean Streamlit table
-        df_ledger = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism"])
-        st.dataframe(df_ledger, use_container_width=True)
+        try:
+            # Flexible DataFrame creation to prevent ValueErrors
+            df_ledger = pd.DataFrame(records)
+            st.dataframe(df_ledger, use_container_width=True)
+        except Exception:
+            st.warning("Data ledger table is unavailable for this specific structure.")
 
     # --- TAB 4: NETWORK ---
     with tab4:
-        st.markdown("### 🕸️ Interactive Mechanism Network")
-        html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "green")
-        with open(html_path, 'r', encoding='utf-8') as f:
-            components.html(f.read(), height=650)
+        try:
+            html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "green")
+            with open(html_path, 'r', encoding='utf-8') as f:
+                components.html(f.read(), height=600)
+        except Exception:
+            st.error("Network graph could not be rendered.")
 
-    # --- TAB 5: BIO-AI CHAT ---
+    # --- TAB 5: BIO-AI ---
     with tab5:
         st.subheader("🤖 Bio-AI Chat")
         if AI_AVAILABLE:
-            user_msg = st.chat_input("Ask Bio-AI about this genome...")
-            if user_msg:
+            u_input = st.chat_input("Ask Bio-AI...")
+            if u_input:
                 try:
                     model_ai = genai.GenerativeModel('gemini-1.5-flash-latest')
-                    resp = model_ai.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {user_msg}")
+                    resp = model_ai.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {u_input}")
                     st.chat_message("assistant").write(resp.text)
                 except Exception as e:
-                    if "429" in str(e):
-                        st.error("🚀 **Bio-AI is recharging.** Limit reached. Please wait 60s.")
-                    else:
-                        st.error(f"Error: {e}")
+                    st.error("Bio-AI is currently recharging (Quota limit).")
+        else:
+            st.warning("AI Offline.")
 
-    # --- TAB 6: PDF EXPORT ---
+    # --- TAB 6: REPORT ---
     with tab6:
-        st.subheader("📄 Export Master PDF")
-        if st.button("Generate Detailed Report", type="primary"):
-            pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, None, bac_info, habitat, "HIGH", "1.0")
-            with open(pdf_path, "rb") as f:
-                st.download_button("Download Report", f, file_name=pdf_path)
+        if st.button("Generate Master PDF", type="primary"):
+            try:
+                pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, None, bac_info, habitat, "N/A", "N/A")
+                with open(pdf_path, "rb") as f:
+                    st.download_button("Download Report", f, file_name=pdf_path)
+            except Exception:
+                st.error("PDF Generation failed.")
 
     # --- TAB 7: 3D LANDSCAPE ---
     with tab7:
-        st.subheader("🌌 Global 3D Landscape")
-        plot_3d_pca_plotly(selected_file)
+        try:
+            plot_3d_pca_plotly(selected_file)
+        except Exception:
+            st.error("3D Model could not be generated.")
         
 elif analysis_mode == "AI Predict Unknown":
     st.header("🤖 Machine Learning Risk Prediction")
