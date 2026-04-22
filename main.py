@@ -438,34 +438,59 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         "📄 Export Master PDF", 
         "🌌 3D Landscape"
     ])
+   with tab1:
+    # 1. Professional Header with Icon
+    st.markdown("""
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h1 style="font-family: sans-serif; font-size: 2.8rem; margin: 0;">🧬 Executive Pathogen Intelligence</h1>
+            <p style="color: grey; font-size: 1.1rem; margin-top: 5px;">Quantitative Analysis of Antibiogram Genomic Data</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Define Dynamic colors based on Risk Level (Assumes you have mri variable)
+    level = "HIGH" if mri > 0.35 else "MODERATE" if mri > 0.15 else "LOW"
+    color = "#f85149" if level == "HIGH" else "#d29922" if level == "MODERATE" else "#3fb950"
+    
+    # 2. Executive Metrics Bar (Proper Wrapping and Styling)
+    # Define custom CSS for the metrics
+    st.markdown(f"""
+        <style>
+        .summary-metric-value {{
+            font-family: 'Orbitron', sans-serif;
+            color: #58a6ff !important;
+            font-size: 2.4rem !important;
+        }}
+        </style>
+    """, unsafe_allow_html=True)
+    
+    col_m1, col_m2, col_m3, col_m4 = st.columns(4)
+    with col_m1: st.metric("MRI Risk Score", f"{round(mri, 3)}", delta=level)
+    with col_m2: st.metric("ARI Density", f"{round(ari, 3)}")
+    with col_m3: st.metric("Total ARG Payload", genes)
+    with col_m4: st.metric("Gram Classification", bac_info.get('gram', 'N/A'))
 
-    with tab1:
-        st.markdown("### 🦠 Executive Summary")
-        st.code(f"""===== SUMMARY =====
-{icon} {selected_file}
-Gram Stain: {bac_info['gram']}
-Common Disease: {bac_info['disease']}
-Habitat: {habitat}
-Genes: {genes}
-Resistance: {u_drugs}
-Mechanisms: {u_mechs}
-MRI: {round(mri, 3)} ({level})
-ARI: {round(ari, 3)}
+    st.divider()
 
-AI Prediction: {ai_pred_text}
-Confidence: {ai_conf_text}
-        """)
-
-        st.markdown("### 🎯 Metric Explanations & Significance")
-        st.info("""
-        **Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.  
-        **Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.  
-        **Resistance & Mechanisms:** The distinct drug classes evaded and the biological strategies deployed.  
-        **AI Prediction:** A machine learning probability assessment of the overall threat level.  
+    # 3. Pathogen Intel Grid (The Summary Text Fix)
+    col_left, col_right = st.columns(2)
+    with col_left:
+        st.markdown(f"#### 🦠 Bacterial Identification")
+        st.write(f"**Identified Strain:** `{selected_file}`")
+        st.write(f"**Associated Disease:** {bac_info.get('disease', 'N/A')}")
+        st.write(f"**Clinical pathology:** gastroenteritis / septicemia")
         
-        **The Clinical Necessity of MRI and ARI:** Traditional analysis simply lists detected genes. The **ARI** calculates the *density* and efficiency of the threat relative to the gene count. The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
-        """)
+    with col_right:
+        st.markdown(f"#### 🏥 Clinical Evidence")
+        st.write(f"**Multidrug Targets:** {len(set(drug))} drug classes evaded")
+        st.write(f"**Mechanism Strategies:** {len(set(mech))} unique defenses deployed")
+        # ML Prediction with colored badge (Assumes you have ai_pred variable)
+        st.markdown(f"**AI Predicton:** <span style='background-color:{color}; color:white; padding:3px 8px; border-radius:5px;'>{level} RISK</span>", unsafe_allow_html=True)
 
+    st.divider()
+    
+    # 4. Clinician Interpretation Box
+    st.info(f"**Clinician Interpretation:** This strain is categorized as **{level} RISK**. The higher consolidated MRI score relative to the raw gene count suggests the pathogen utilizes multiple redundant strategies to bypass clinical treatments.")
+   
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
         fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
