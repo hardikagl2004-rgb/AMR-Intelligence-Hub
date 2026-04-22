@@ -429,6 +429,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     col3.metric("Total Genes", genes)
     col4.metric("Habitat", habitat)
 
+# Define all 7 tabs (including the 3D Landscape and PDF Export)
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "ℹ️ Pathogen Summary", 
         "📊 6-Panel Dashboard", 
@@ -439,146 +440,103 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         "🌌 3D Landscape"
     ])
 
- with tab1:
-    st.markdown("### 🦠 Executive Summary")
-    
-    # Header Section with Metrics
-    m1, m2, m3, m4 = st.columns(4)
-    m1.metric("MRI Score", f"{round(mri, 3)}", delta=level)
-    m2.metric("ARI Density", f"{round(ari, 3)}")
-    m3.metric("Total Genes", genes)
-    m4.metric("AI Confidence", "100%")
-
-    st.divider()
-
-    col_left, col_right = st.columns(2)
-    with col_left:
-        st.markdown(f"#### 🧬 Pathogen Identity")
-        st.write(f"**Strain:** `{selected_file}`")
-        st.write(f"**Gram Stain:** :red[{bac_info['gram']}]")
-        st.write(f"**Habitat:** {habitat}")
+    # --- TAB 1: PROFESSIONAL EXECUTIVE SUMMARY ---
+    with tab1:
+        st.markdown("### 🦠 Executive Summary")
         
-    with col_right:
-        st.markdown(f"#### 🏥 Clinical Context")
-        st.write(f"**Common Disease:** {bac_info['disease']}")
-        st.write(f"**Resistance Classes:** {u_drugs}")
-        st.write(f"**Mechanisms Deployed:** {u_mechs}")
+        # Professional Metric Row
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Risk Level", f"{level} {icon}")
+        m2.metric("MRI Score", f"{round(mri, 3)}")
+        m3.metric("ARI Density", f"{round(ari, 3)}")
+        m4.metric("Total Genes", genes)
 
-    st.info(f"**AI Prediction:** This strain is categorized as **{level} RISK**. High MRI indicates the pathogen pivots between redundant strategies to bypass clinical treatments.")
+        st.divider()
 
+        # Detailed Information Grid
+        col_left, col_right = st.columns(2)
+        with col_left:
+            st.markdown("#### 🧬 Pathogen Identity")
+            st.write(f"**Strain Identifier:** `{selected_file}`")
+            st.write(f"**Gram Classification:** {bac_info['gram']}")
+            st.write(f"**Primary Habitat:** {habitat}")
+            
+        with col_right:
+            st.markdown("#### 🏥 Clinical Context")
+            st.write(f"**Common Disease:** {bac_info['disease']}")
+            st.write(f"**Resistance Count:** {u_drugs} Drug Classes")
+            st.write(f"**Mechanism Diversity:** {u_mechs} Strategies")
+
+        st.info(f"**AI Prediction:** This strain is categorized as **{level} RISK**. The high MRI suggests a robust ability to pivot between defense strategies, making standard clinical protocols difficult to maintain.")
+
+    # --- TAB 2: ORIGINAL DASHBOARD ---
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
-        fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
-        st.pyplot(fig)
-        
+        st.pyplot(plot_full_dashboard(drug, mech, mri, genes, records, selected_file))
+
+    # --- TAB 3: PROFESSIONAL MATH & DATA LEDGER ---
     with tab3:
-        st.markdown("### Exact Calculations")
-        st.code(f"""
--- MRI Calculation --
-Formula: (Unique Drugs + Unique Mechanisms) / (Total Drugs + Total Mechanisms + 1)
-Math: ({u_drugs} + {u_mechs}) / ({len(drug)} + {len(mech)} + 1)
-Result: MRI = {round(mri, 3)} ({level})
-
--- ARI Calculation --
-Formula: Unique Mechanisms / (Total Genes + 1)
-Math: {u_mechs} / ({genes} + 1)
-Result: ARI = {round(ari, 3)}
-        """)
+        st.markdown("### 🧮 Exact Math Ledger")
         
-        st.markdown("### Risk Reasoning")
-        st.info(get_risk_reason(level, u_drugs, u_mechs))
+        # Calculation Layout
+        calc_col1, calc_col2 = st.columns(2)
         
-        st.markdown("### Full Gene Ledger (All Genes)")
-        df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
-        st.dataframe(df, use_container_width=True)
+        with calc_col1:
+            st.success(f"""
+            **MRI Calculation** *Formula:* $(Unique Drugs + Unique Mechs) / (Total Assignments + 1)$  
+            *Process:* $({u_drugs} + {u_mechs}) / ({len(drug) + len(mech)} + 1)$  
+            **Final MRI:** `{round(mri, 3)}`
+            """)
 
+        with calc_col2:
+            st.info(f"""
+            **ARI Calculation** *Formula:* $Unique Mechs / (Total Genes + 1)$  
+            *Process:* ${u_mechs} / ({genes} + 1)$  
+            **Final ARI:** `{round(ari, 3)}`
+            """)
+
+        st.divider()
+        st.markdown("### 📜 Full Genetic Record")
+        # Displaying the raw data in a clean Streamlit table
+        df_ledger = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism"])
+        st.dataframe(df_ledger, use_container_width=True)
+
+    # --- TAB 4: NETWORK ---
     with tab4:
-        st.markdown("### Interactive Mechanism Network")
-        st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
-        html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
+        st.markdown("### 🕸️ Interactive Mechanism Network")
+        html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "green")
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
 
+    # --- TAB 5: BIO-AI CHAT ---
     with tab5:
-        colA, colB, colC = st.columns([0.6, 0.2, 0.2])
-        with colA:
-            st.session_state.current_session = st.selectbox("Active Chat Session:", list(st.session_state.chat_sessions.keys()))
-        with colB:
-            st.write("")
-            st.write("")
-            if st.button("➕ New Chat", use_container_width=True):
-                st.session_state.chat_counter += 1
-                new_chat_name = f"Chat {st.session_state.chat_counter}"
-                st.session_state.chat_sessions[new_chat_name] = []
-                st.session_state.current_session = new_chat_name
-                st.rerun()
-        with colC:
-            st.write("")
-            st.write("")
-            if st.button("🗑️ Clear This Chat", use_container_width=True):
-                st.session_state.chat_sessions[st.session_state.current_session] = []
-                st.rerun()
-        
-        for msg in st.session_state.chat_sessions[st.session_state.current_session]:
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
-                
-        user_msg = st.chat_input(f"Ask me about {selected_file}...")
-        if user_msg:
-            st.chat_message("user").markdown(user_msg)
-            st.session_state.chat_sessions[st.session_state.current_session].append({"role": "user", "content": user_msg})
-            
-            if not AI_AVAILABLE:
-                st.error("⚠️ AI Library missing. Check your terminal installation.")
-            else:
+        st.subheader("🤖 Bio-AI Chat")
+        if AI_AVAILABLE:
+            user_msg = st.chat_input("Ask Bio-AI about this genome...")
+            if user_msg:
                 try:
-                    context = f"""
-                    You are J.A.R.V.I.S., an expert Bioinformatics AI. 
-                    The user is analyzing the genome file: '{selected_file}'.
-                    Data Profile:
-                    - Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs} 
-                    - MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
-                    
-                    Answer the user's question intelligently based on this data.
-                    User Question: {user_msg}
-                    """
-                    with st.spinner("Processing genome logic..."):
-                        available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-                        if not available_models:
-                            st.error("Your API key does not have access to any text generation models.")
-                        else:
-                            target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
-                            model_ai = genai.GenerativeModel(target_model)
-                            response = model_ai.generate_content(context)
-
-                            st.chat_message("assistant").markdown(response.text)
-                            st.session_state.chat_sessions[st.session_state.current_session].append({"role": "assistant", "content": response.text})
+                    model_ai = genai.GenerativeModel('gemini-1.5-flash-latest')
+                    resp = model_ai.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {user_msg}")
+                    st.chat_message("assistant").write(resp.text)
                 except Exception as e:
-                    error_msg = str(e)
-                    if "429" in error_msg or "quota" in error_msg.lower():
-                        st.error("⚠️ **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
+                    if "429" in str(e):
+                        st.error("🚀 **Bio-AI is recharging.** Limit reached. Please wait 60s.")
                     else:
-                        st.error(f"AI Connection Error: {e}")
+                        st.error(f"Error: {e}")
 
+    # --- TAB 6: PDF EXPORT ---
     with tab6:
-        st.markdown("### 📥 Generate Complete Master Report")
-        
-        if st.button("Generate Master PDF", type="primary"):
-            with st.spinner("Compiling graphs, explanations, and data into PDF..."):
-                pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, fig, bac_info, habitat, ai_pred_text, ai_conf_text)
-                with open(pdf_path, "rb") as file:
-                    st.download_button(
-                        label="Download Detailed PDF Report",
-                        data=file,
-                        file_name=pdf_path,
-                        mime="application/pdf"
-                    )
+        st.subheader("📄 Export Master PDF")
+        if st.button("Generate Detailed Report", type="primary"):
+            pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, None, bac_info, habitat, "HIGH", "1.0")
+            with open(pdf_path, "rb") as f:
+                st.download_button("Download Report", f, file_name=pdf_path)
 
+    # --- TAB 7: 3D LANDSCAPE ---
     with tab7:
-        st.markdown("### 🌌 Interactive Global Landscape Comparison (Plotly 3D)")
-        st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
+        st.subheader("🌌 Global 3D Landscape")
         plot_3d_pca_plotly(selected_file)
-
+        
 elif analysis_mode == "AI Predict Unknown":
     st.header("🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
