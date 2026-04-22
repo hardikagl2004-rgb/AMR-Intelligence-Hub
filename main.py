@@ -36,197 +36,250 @@ st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* ── Root & Global ── */
+/* ─── Base ─── */
 html, body, [class*="css"] {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Inter', sans-serif !important;
     font-size: 15px;
-    color: #d4d8e0;
+    color: #e1e4e8;
+    background: #161b22;
 }
-/* Warm charcoal — much softer than pure black, zero blue tint */
-.main { background: #1a1c1e; }
-.block-container { padding: 2rem 2.5rem; }
+.main { background: #161b22; }
+.block-container { padding: 2rem 2.8rem !important; max-width: 1400px; }
 
-/* ── Sidebar ── */
+/* ─── Sidebar ─── */
 [data-testid="stSidebar"] {
-    background: #1f2124;
-    border-right: 1px solid #2e3138;
+    background: #0d1117;
+    border-right: 1px solid #21262d;
 }
 [data-testid="stSidebar"] .stMarkdown h1,
 [data-testid="stSidebar"] .stMarkdown h2,
-[data-testid="stSidebar"] .stMarkdown h3 { color: #a8c5da !important; }
-[data-testid="stSidebar"] label {
-    color: #9aa0aa !important;
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-/* ── Headings ── */
-h1 { font-family: 'IBM Plex Mono', monospace !important; font-size: 1.7rem !important; color: #a8c5da !important; letter-spacing: -0.01em; }
-h2 { font-family: 'IBM Plex Mono', monospace !important; font-size: 1.15rem !important; color: #8ab4c9 !important; }
-h3 { color: #9aa0aa !important; font-size: 0.95rem !important; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
-
-/* ── Metric Cards ── */
-[data-testid="metric-container"] {
-    background: #24282e;
-    border: 1px solid #2e3540;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-}
-[data-testid="metric-container"] > div > div:first-child {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.82rem !important;
-    color: #7a8290 !important;
+[data-testid="stSidebar"] .stMarkdown h3 {
+    color: #c9d1d9 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600;
+    font-size: 0.78rem !important;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
-[data-testid="metric-container"] [data-testid="stMetricValue"] {
-    font-family: 'IBM Plex Mono', monospace !important;
-    font-size: 1.55rem !important;
-    color: #a8c5da !important;
+[data-testid="stSidebar"] label {
+    color: #8b949e !important;
+    font-size: 0.82rem;
+    font-family: 'Inter', sans-serif !important;
 }
 
-/* ── Code Blocks ── */
-.stCodeBlock { background: #22262c !important; border: 1px solid #2e3540; border-radius: 6px; }
-code { font-family: 'IBM Plex Mono', monospace !important; font-size: 0.9rem; color: #b8cfe0 !important; }
+/* ─── Headings ─── */
+h1 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #f0f6fc !important;
+    letter-spacing: -0.03em;
+}
+h2 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: #c9d1d9 !important;
+}
+h3 {
+    font-family: 'Inter', sans-serif !important;
+    color: #8b949e !important;
+    font-size: 0.78rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
 
-/* ── Tabs ── */
+/* ─── Metric Cards ─── */
+[data-testid="metric-container"] {
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+}
+[data-testid="metric-container"] > div > div:first-child {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.78rem !important;
+    font-weight: 500;
+    color: #8b949e !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.7rem !important;
+    font-weight: 700 !important;
+    color: #f0f6fc !important;
+}
+
+/* ─── Tabs ─── */
 [data-testid="stTabs"] [role="tab"] {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    color: #6a7280;
-    padding: 0.55rem 1.1rem;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #8b949e;
+    padding: 0.6rem 1.2rem;
     border-bottom: 2px solid transparent;
+    letter-spacing: 0;
 }
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
-    color: #a8c5da;
-    border-bottom: 2px solid #7aafc8;
+    color: #58a6ff;
+    border-bottom: 2px solid #58a6ff;
     background: transparent;
+    font-weight: 600;
 }
 
-/* ── Buttons ── */
+/* ─── Buttons ─── */
 .stButton > button {
-    font-family: 'IBM Plex Mono', monospace;
-    background: transparent;
-    border: 1px solid #3a4250;
-    color: #a8c5da;
+    font-family: 'Inter', sans-serif !important;
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
     font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    border-radius: 5px;
-    padding: 0.4rem 1rem;
-    transition: all 0.18s ease;
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 0.45rem 1.1rem;
+    transition: all 0.15s ease;
 }
 .stButton > button:hover {
-    background: #24282e;
-    border-color: #7aafc8;
-    color: #cce0ee;
+    background: #30363d;
+    border-color: #58a6ff;
+    color: #f0f6fc;
 }
 .stButton > button[kind="primary"] {
-    background: #1e3a4a;
-    border: 1px solid #5a96b4;
-    color: #cce0ee;
+    background: #1f6feb;
+    border: 1px solid #1f6feb;
+    color: #ffffff;
+    font-weight: 600;
 }
 .stButton > button[kind="primary"]:hover {
-    background: #264a5e;
+    background: #388bfd;
+    border-color: #388bfd;
 }
 
-/* ── Selectbox / Radio ── */
-[data-testid="stSelectbox"] > div > div,
-.stRadio label { font-size: 0.95rem !important; color: #b0b8c4 !important; }
+/* ─── Code / mono ─── */
+.stCodeBlock { background: #0d1117 !important; border: 1px solid #21262d; border-radius: 8px; }
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.88rem;
+    color: #79c0ff !important;
+    background: #161b22;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
 
-/* ── Info / Success boxes ── */
+/* ─── Selectbox / Radio ─── */
+[data-testid="stSelectbox"] > div > div,
+.stRadio label {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #c9d1d9 !important;
+}
+
+/* ─── Info / Success ─── */
 .stInfo {
-    background: #1e2830;
-    border: 1px solid #2e3f50;
-    border-left: 3px solid #5a96b4;
-    color: #a8bece;
-    font-size: 0.95rem;
-    border-radius: 5px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-left: 3px solid #58a6ff;
+    color: #c9d1d9;
+    font-size: 0.93rem;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
 }
 .stSuccess {
-    background: #1a2820;
-    border: 1px solid #2e4a38;
-    border-left: 3px solid #5a9e74;
-    color: #90c4a4;
-    font-size: 0.92rem;
-    border-radius: 5px;
-}
-
-/* ── DataFrames ── */
-[data-testid="stDataFrame"] { border: 1px solid #2e3540; border-radius: 6px; overflow: hidden; }
-
-/* ── Divider ── */
-hr { border-color: #2a2e36; margin: 1.5rem 0; }
-
-/* ── Chat messages ── */
-[data-testid="stChatMessage"] {
-    background: #22262c;
-    border: 1px solid #2e3540;
+    background: #0f2b1d;
+    border: 1px solid #1a5c34;
+    border-left: 3px solid #3fb950;
+    color: #aff5b4;
+    font-size: 0.93rem;
     border-radius: 6px;
-    margin-bottom: 0.5rem;
 }
 
-/* ── Page title strip ── */
-.title-strip {
-    background: #20242a;
-    border: 1px solid #2e3540;
+/* ─── DataFrames ─── */
+[data-testid="stDataFrame"] { border: 1px solid #30363d; border-radius: 8px; overflow: hidden; }
+
+/* ─── Divider ─── */
+hr { border-color: #21262d; margin: 1.5rem 0; }
+
+/* ─── Chat ─── */
+[data-testid="stChatMessage"] {
+    background: #21262d;
+    border: 1px solid #30363d;
     border-radius: 8px;
-    padding: 1.6rem 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.6rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ─── Title strip ─── */
+.title-strip {
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 1.8rem 2.2rem;
+    margin-bottom: 1.8rem;
 }
 .title-strip h1 { margin: 0 0 0.3rem 0 !important; }
 .title-strip .subtitle {
-    color: #7aafc8;
-    font-size: 0.9rem;
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.06em;
+    color: #58a6ff;
+    font-size: 0.88rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
 }
-.title-strip .authors { color: #5a6270; font-size: 0.85rem; margin-top: 0.5rem; }
+.title-strip .authors {
+    color: #484f58;
+    font-size: 0.84rem;
+    margin-top: 0.6rem;
+    font-family: 'Inter', sans-serif;
+}
 
-/* ── Risk badges ── */
+/* ─── Risk badges ─── */
 .badge {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    padding: 0.25rem 0.7rem;
-    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
 }
-.badge-high     { background: #2e1a1a; color: #d98080; border: 1px solid #5a2a2a; }
-.badge-moderate { background: #2e2010; color: #d4a054; border: 1px solid #5a3e18; }
-.badge-low      { background: #162618; color: #72b890; border: 1px solid #2a5038; }
+.badge-high     { background: #3d1f1f; color: #f78166; border: 1px solid #6e2020; }
+.badge-moderate { background: #2d2008; color: #e3b341; border: 1px solid #5a3e10; }
+.badge-low      { background: #0f2b1d; color: #3fb950; border: 1px solid #1a5c34; }
 
-/* ── Section label ── */
+/* ─── Section label ─── */
 .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: #5a6270;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #484f58;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    border-bottom: 1px solid #2a2e36;
-    padding-bottom: 0.45rem;
-    margin-bottom: 1.1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
 }
 
-/* ── Spinner ── */
-[data-testid="stSpinner"] { color: #7aafc8; }
-
-/* ── Number input ── */
+/* ─── Inputs ─── */
 [data-testid="stNumberInput"] input {
-    font-family: 'IBM Plex Mono', monospace;
-    background: #22262c !important;
-    border: 1px solid #3a4250 !important;
-    color: #d4d8e0 !important;
+    font-family: 'Inter', sans-serif !important;
+    background: #0d1117 !important;
+    border: 1px solid #30363d !important;
+    color: #e1e4e8 !important;
     font-size: 0.95rem !important;
-    border-radius: 5px;
+    border-radius: 6px;
 }
+[data-testid="stSpinner"] { color: #58a6ff; }
 
-/* ── General paragraph / body text size boost ── */
-p, li, .stMarkdown p { font-size: 0.97rem; line-height: 1.75; }
+/* ─── Paragraph / body ─── */
+p, li, .stMarkdown p {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.96rem;
+    line-height: 1.75;
+    color: #c9d1d9;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -346,18 +399,18 @@ def train_rf_model():
 # ==========================================
 # 3. VISUALIZATION FUNCTIONS — REDESIGNED
 # ==========================================
-DARK_BG   = "#1a1c1e"
-PANEL_BG  = "#22262c"
-BORDER    = "#2e3540"
-ACCENT    = "#7aafc8"
-TEXT_PRI  = "#d4d8e0"
-TEXT_SEC  = "#7a8290"
-BLUE      = "#6a9fb8"
-CYAN      = "#6ab8b8"
-GREEN     = "#72b890"
-AMBER     = "#c49a50"
-RED       = "#c07070"
-PURPLE    = "#9a88c8"
+DARK_BG   = "#161b22"
+PANEL_BG  = "#21262d"
+BORDER    = "#30363d"
+ACCENT    = "#58a6ff"
+TEXT_PRI  = "#f0f6fc"
+TEXT_SEC  = "#8b949e"
+BLUE      = "#79c0ff"
+CYAN      = "#39d0d8"
+GREEN     = "#3fb950"
+AMBER     = "#e3b341"
+RED       = "#f78166"
+PURPLE    = "#d2a8ff"
 
 
 def risk_color(level):
@@ -680,7 +733,7 @@ with st.sidebar:
         st.rerun()
 
     json_files = [f for f in os.listdir('.') if f.endswith('.json')]
-    st.markdown(f"<span style='font-family:monospace;font-size:0.82rem;color:#5a6270;'>{len(json_files)} genome(s) indexed</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='font-family:Inter,sans-serif;font-size:0.84rem;color:#484f58;'>{len(json_files)} genome(s) indexed</span>", unsafe_allow_html=True)
     st.markdown("---")
 
     st.markdown("### ANALYSIS MODE")
@@ -689,8 +742,8 @@ with st.sidebar:
         selected_file = st.selectbox("Select genome file:", json_files)
     st.markdown("---")
     st.markdown("""
-    <div style="font-family:monospace;font-size:0.82rem;color:#72b890;padding:0.6rem 0.8rem;background:#1a2820;border:1px solid #2a5038;border-radius:5px;">
-    ● AI ENGINE ONLINE
+    <div style="font-family:'Inter',sans-serif;font-size:0.86rem;font-weight:500;color:#3fb950;padding:0.6rem 0.9rem;background:#0f2b1d;border:1px solid #1a5c34;border-radius:6px;">
+    ● &nbsp;AI Engine Online
     </div>""", unsafe_allow_html=True)
 
 
@@ -738,31 +791,64 @@ if analysis_mode == "Known Genome" and json_files:
 
         with col_a:
             st.markdown(f"""
-            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:1.2rem 1.4rem;font-family:'IBM Plex Mono',monospace;font-size:0.9rem;line-height:2.1;">
-                <div style="color:{TEXT_SEC};margin-bottom:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">Organism Profile</div>
-                <div><span style="color:{TEXT_SEC};">File       </span><span style="color:{TEXT_PRI};">{selected_file}</span></div>
-                <div><span style="color:{TEXT_SEC};">Gram Stain </span><span style="color:{ACCENT};">{bac_info['gram']}</span></div>
-                <div><span style="color:{TEXT_SEC};">Habitat    </span><span style="color:{CYAN};">{habitat}</span></div>
-                <div><span style="color:{TEXT_SEC};">Disease    </span><span style="color:{TEXT_PRI};font-size:0.88rem;">{bac_info['disease']}</span></div>
-                <hr style="border-color:{BORDER};margin:0.6rem 0;">
-                <div><span style="color:{TEXT_SEC};">Total Genes</span><span style="color:{ACCENT};"> {genes}</span></div>
-                <div><span style="color:{TEXT_SEC};">Drug Classes</span><span style="color:{BLUE};"> {u_drugs}</span></div>
-                <div><span style="color:{TEXT_SEC};">Mechanisms </span><span style="color:{PURPLE};"> {u_mechs}</span></div>
-                <hr style="border-color:{BORDER};margin:0.6rem 0;">
-                <div><span style="color:{TEXT_SEC};">MRI Score  </span><span style="color:{rc};font-weight:bold;"> {mri:.4f}</span></div>
-                <div><span style="color:{TEXT_SEC};">ARI Score  </span><span style="color:{CYAN};"> {ari:.4f}</span></div>
-                <div><span style="color:{TEXT_SEC};">Risk Level </span><span style="color:{rc};font-weight:bold;"> {level}</span></div>
-                <hr style="border-color:{BORDER};margin:0.6rem 0;">
-                <div><span style="color:{TEXT_SEC};">ML Predict </span><span style="color:{AMBER};"> {ai_pred_text}</span></div>
-                <div style="font-size:0.85rem;color:{TEXT_SEC};margin-top:0.2rem;">Confidence: {ai_conf_text}</div>
+            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1.4rem 1.6rem;font-family:'Inter',sans-serif;font-size:0.95rem;line-height:1;">
+                <div style="color:{TEXT_SEC};margin-bottom:1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;">Organism Profile</div>
+
+                <div style="margin-bottom:0.7rem;">
+                  <div style="color:{TEXT_SEC};font-size:0.76rem;font-weight:500;margin-bottom:2px;">File</div>
+                  <div style="color:{TEXT_PRI};font-size:0.88rem;word-break:break-all;">{selected_file}</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.7rem;">
+                  <div><div style="color:{TEXT_SEC};font-size:0.76rem;font-weight:500;margin-bottom:2px;">Gram Stain</div><div style="color:{ACCENT};font-weight:600;">{bac_info['gram']}</div></div>
+                  <div><div style="color:{TEXT_SEC};font-size:0.76rem;font-weight:500;margin-bottom:2px;">Habitat</div><div style="color:{CYAN};font-weight:600;">{habitat}</div></div>
+                </div>
+                <div style="margin-bottom:1rem;">
+                  <div style="color:{TEXT_SEC};font-size:0.76rem;font-weight:500;margin-bottom:2px;">Disease</div>
+                  <div style="color:{TEXT_PRI};font-size:0.9rem;">{bac_info['disease']}</div>
+                </div>
+
+                <div style="border-top:1px solid {BORDER};padding-top:1rem;margin-bottom:1rem;">
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;">
+                    <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.6rem;text-align:center;">
+                      <div style="color:{TEXT_SEC};font-size:0.7rem;font-weight:500;margin-bottom:4px;">Genes</div>
+                      <div style="color:{ACCENT};font-size:1.3rem;font-weight:700;">{genes}</div>
+                    </div>
+                    <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.6rem;text-align:center;">
+                      <div style="color:{TEXT_SEC};font-size:0.7rem;font-weight:500;margin-bottom:4px;">Drug Classes</div>
+                      <div style="color:{BLUE};font-size:1.3rem;font-weight:700;">{u_drugs}</div>
+                    </div>
+                    <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.6rem;text-align:center;">
+                      <div style="color:{TEXT_SEC};font-size:0.7rem;font-weight:500;margin-bottom:4px;">Mechanisms</div>
+                      <div style="color:{PURPLE};font-size:1.3rem;font-weight:700;">{u_mechs}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="border-top:1px solid {BORDER};padding-top:1rem;">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.6rem;">
+                    <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.6rem;">
+                      <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:500;margin-bottom:2px;">MRI Score</div>
+                      <div style="color:{rc};font-size:1.1rem;font-weight:700;">{mri:.4f}</div>
+                    </div>
+                    <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.6rem;">
+                      <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:500;margin-bottom:2px;">ARI Score</div>
+                      <div style="color:{CYAN};font-size:1.1rem;font-weight:700;">{ari:.4f}</div>
+                    </div>
+                  </div>
+                  <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:0.7rem;">
+                    <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:500;margin-bottom:4px;">ML Prediction</div>
+                    <div style="color:{AMBER};font-size:1rem;font-weight:600;">{ai_pred_text}</div>
+                    <div style="color:{TEXT_SEC};font-size:0.78rem;margin-top:4px;">{ai_conf_text}</div>
+                  </div>
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
         with col_b:
             st.markdown(f"""
-            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:1.2rem 1.4rem;">
-                <div style="color:{TEXT_SEC};font-family:monospace;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;">Why These Metrics Matter</div>
-                <div style="font-size:0.94rem;line-height:1.8;color:#b8bec8;">
+            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1.4rem 1.6rem;">
+                <div style="color:{TEXT_SEC};font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:1rem;">Why These Metrics Matter</div>
+                <div style="font-size:0.95rem;line-height:1.8;color:#c9d1d9;">
                 <p><strong style="color:{ACCENT};">Total Genes</strong> — The absolute count of Antibiotic Resistance Genes (ARGs) identified in the sequence. A higher count does not automatically mean higher danger.</p>
                 <p><strong style="color:{BLUE};">ARI (Antibiotic Resistance Index)</strong> — Calculates the <em>density</em> of the threat by normalizing unique mechanisms against total gene count. Reveals how efficiently the bacteria uses its genomic payload.</p>
                 <p><strong style="color:{rc};">MRI (Multidimensional Resistance Index)</strong> — Consolidates drug-class diversity and mechanism diversity into a single standardized risk score. Enables rapid, objective triage without deciphering raw gene ledgers.</p>
@@ -784,26 +870,29 @@ if analysis_mode == "Known Genome" and json_files:
         col_m, col_r = st.columns(2)
         with col_m:
             st.markdown(f"""
-            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:1rem 1.25rem;font-family:'IBM Plex Mono',monospace;font-size:0.92rem;line-height:2.1;">
-                <div style="color:{TEXT_SEC};font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">MRI Formula</div>
-                <div style="color:{TEXT_SEC};">(Unique Drugs + Unique Mechs)</div>
-                <div style="color:{TEXT_SEC};">────────────────────────────</div>
-                <div style="color:{TEXT_SEC};">(Total Drugs + Total Mechs + 1)</div>
-                <div style="margin-top:0.5rem;color:{TEXT_PRI};">= ({u_drugs} + {u_mechs}) / ({len(drug)} + {len(mech)} + 1)</div>
-                <div style="color:{rc};font-size:1.15rem;font-weight:bold;margin-top:0.3rem;">= {mri:.4f} [{level}]</div>
-                <hr style="border-color:{BORDER};margin:0.8rem 0;">
-                <div style="color:{TEXT_SEC};font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">ARI Formula</div>
-                <div style="color:{TEXT_SEC};">Unique Mechs / (Total Genes + 1)</div>
-                <div style="color:{TEXT_PRI};margin-top:0.3rem;">= {u_mechs} / ({genes} + 1)</div>
-                <div style="color:{CYAN};font-size:1.15rem;font-weight:bold;margin-top:0.3rem;">= {ari:.4f}</div>
+            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1.3rem 1.5rem;font-family:'Inter',sans-serif;">
+                <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:1rem;">MRI Formula</div>
+                <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:1rem;margin-bottom:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.9rem;line-height:1.9;color:{TEXT_SEC};">
+                  <div>(Unique Drugs + Unique Mechs)</div>
+                  <div style="border-top:1px solid {BORDER};border-bottom:1px solid {BORDER};padding:2px 0;margin:4px 0;">──────────────────────────</div>
+                  <div>(Total Drugs + Total Mechs + 1)</div>
+                  <div style="margin-top:0.5rem;color:{TEXT_PRI};font-size:0.88rem;">= ({u_drugs} + {u_mechs}) / ({len(drug)} + {len(mech)} + 1)</div>
+                  <div style="color:{rc};font-size:1.1rem;font-weight:700;margin-top:0.3rem;">= {mri:.4f} &nbsp;<span style="font-size:0.8rem;background:{rc}22;color:{rc};padding:2px 8px;border-radius:4px;border:1px solid {rc}44;">{level}</span></div>
+                </div>
+                <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:0.6rem;margin-top:0.8rem;">ARI Formula</div>
+                <div style="background:#0d1117;border:1px solid {BORDER};border-radius:8px;padding:1rem;font-family:'JetBrains Mono',monospace;font-size:0.9rem;line-height:1.9;color:{TEXT_SEC};">
+                  <div>Unique Mechs / (Total Genes + 1)</div>
+                  <div style="color:{TEXT_PRI};margin-top:0.3rem;font-size:0.88rem;">= {u_mechs} / ({genes} + 1)</div>
+                  <div style="color:{CYAN};font-size:1.1rem;font-weight:700;margin-top:0.3rem;">= {ari:.4f}</div>
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
         with col_r:
             st.markdown(f"""
-            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-left:3px solid {rc};border-radius:6px;padding:1rem 1.25rem;">
-                <div style="color:{TEXT_SEC};font-family:monospace;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Risk Reasoning</div>
-                <div style="font-size:0.94rem;line-height:1.8;color:#b8bec8;">{get_risk_reason(level, u_drugs, u_mechs)}</div>
+            <div style="background:{PANEL_BG};border:1px solid {BORDER};border-left:3px solid {rc};border-radius:10px;padding:1.3rem 1.5rem;font-family:'Inter',sans-serif;">
+                <div style="color:{TEXT_SEC};font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:0.8rem;">Risk Assessment</div>
+                <div style="font-size:0.96rem;line-height:1.85;color:#c9d1d9;">{get_risk_reason(level, u_drugs, u_mechs)}</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -815,7 +904,7 @@ if analysis_mode == "Known Genome" and json_files:
     # ── TAB 4: NETWORK ──
     with tab4:
         st.markdown('<div class="section-label">Gene-Mechanism Interaction Network</div>', unsafe_allow_html=True)
-        st.markdown(f'<span style="font-family:monospace;font-size:0.88rem;color:{TEXT_SEC};">Use the filter panel to isolate nodes. Hub = organism, blue = genes, purple = mechanisms.</span>', unsafe_allow_html=True)
+        st.markdown(f'<span style="font-family:Inter,sans-serif;font-size:0.92rem;color:{TEXT_SEC};">Use the filter panel to isolate nodes. Hub = organism, blue = genes, purple = mechanisms.</span>', unsafe_allow_html=True)
         html_path = generate_network_html(records, selected_file, rc)
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
@@ -883,14 +972,14 @@ User Question: {user_msg}"""
     with tab6:
         st.markdown('<div class="section-label">Export Master Report</div>', unsafe_allow_html=True)
         st.markdown(f"""
-        <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:1.2rem 1.5rem;margin-bottom:1rem;">
-            <div style="font-family:monospace;font-size:0.82rem;color:{TEXT_SEC};text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;">Report Will Include</div>
-            <div style="font-size:0.95rem;color:#b8bec8;line-height:2.1;">
-            ✦ Executive pathogen profile and AI prediction<br>
-            ✦ MRI & ARI formula derivations with exact values<br>
-            ✦ Clinical risk reasoning narrative<br>
-            ✦ Six-panel graphical dashboard (high-res)<br>
-            ✦ Complete gene ledger with mechanism table
+        <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1.3rem 1.6rem;margin-bottom:1.2rem;font-family:'Inter',sans-serif;">
+            <div style="font-size:0.72rem;font-weight:600;color:{TEXT_SEC};text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.8rem;">Report Will Include</div>
+            <div style="font-size:0.95rem;color:#c9d1d9;line-height:2.1;">
+            ✦ &nbsp;Executive pathogen profile and AI prediction<br>
+            ✦ &nbsp;MRI &amp; ARI formula derivations with exact values<br>
+            ✦ &nbsp;Clinical risk reasoning narrative<br>
+            ✦ &nbsp;Six-panel graphical dashboard (high-res)<br>
+            ✦ &nbsp;Complete gene ledger with mechanism table
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -915,7 +1004,7 @@ User Question: {user_msg}"""
     # ── TAB 7: 3D LANDSCAPE ──
     with tab7:
         st.markdown('<div class="section-label">3D PCA Resistance Landscape</div>', unsafe_allow_html=True)
-        st.markdown(f'<span style="font-family:monospace;font-size:0.88rem;color:{TEXT_SEC};">Rotate · Zoom · Hover for genome details. Your target genome is highlighted in gold.</span>', unsafe_allow_html=True)
+        st.markdown(f'<span style="font-family:Inter,sans-serif;font-size:0.92rem;color:{TEXT_SEC};">Rotate · Zoom · Hover for genome details. Your target genome is highlighted in gold.</span>', unsafe_allow_html=True)
         plot_3d_pca_plotly(selected_file)
 
 
@@ -926,7 +1015,7 @@ elif analysis_mode == "AI Predict Unknown":
     st.markdown('<div class="section-label">Machine Learning — Unknown Genome Prediction</div>', unsafe_allow_html=True)
 
     st.markdown(f"""
-    <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;font-size:0.95rem;color:#b8bec8;line-height:1.8;">
+    <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1.3rem 1.6rem;margin-bottom:1.5rem;font-family:'Inter',sans-serif;font-size:0.95rem;color:#c9d1d9;line-height:1.8;">
     Enter the three key genomic features below. The Random Forest model will predict the risk tier and output a probability breakdown across all risk classes.
     </div>
     """, unsafe_allow_html=True)
@@ -948,19 +1037,19 @@ elif analysis_mode == "AI Predict Unknown":
         badge_cls = {"HIGH": "badge-high", "MODERATE": "badge-moderate", "LOW": "badge-low"}.get(prediction, "badge-low")
 
         st.markdown(f"""
-        <div style="background:{PANEL_BG};border:1px solid {rc}40;border-left:3px solid {rc};border-radius:6px;padding:1.2rem 1.5rem;margin-top:1rem;">
-            <div style="font-family:monospace;font-size:0.7rem;color:{TEXT_SEC};text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Prediction Result</div>
-            <div style="font-family:monospace;font-size:2rem;color:{rc};font-weight:bold;">{prediction}</div>
-            <div style="margin-top:0.8rem;display:flex;gap:1rem;">
+        <div style="background:{PANEL_BG};border:1px solid {rc}55;border-left:4px solid {rc};border-radius:10px;padding:1.4rem 1.6rem;margin-top:1rem;font-family:'Inter',sans-serif;">
+            <div style="font-size:0.72rem;font-weight:600;color:{TEXT_SEC};text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.6rem;">Prediction Result</div>
+            <div style="font-size:2.2rem;font-weight:700;color:{rc};">{prediction}</div>
+        </div>
         """, unsafe_allow_html=True)
 
         prob_str = " &nbsp;·&nbsp; ".join(
-            [f'<span style="color:{risk_color(c)};font-family:monospace;font-size:0.95rem;">{c}: {p:.3f}</span>'
+            [f'<span style="color:{risk_color(c)};font-family:Inter,sans-serif;font-size:0.95rem;font-weight:600;">{c}: {p:.3f}</span>'
              for c, p in zip(classes, probs)]
         )
         st.markdown(f"""
-        <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:0.8rem 1.2rem;margin-top:0.8rem;font-size:0.94rem;">
-            <span style="color:{TEXT_SEC};font-family:monospace;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;">Class Probabilities → </span>
+        <div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:10px;padding:1rem 1.4rem;margin-top:0.8rem;font-family:'Inter',sans-serif;">
+            <span style="color:{TEXT_SEC};font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Class Probabilities &nbsp;→&nbsp; </span>
             {prob_str}
         </div>
         """, unsafe_allow_html=True)
