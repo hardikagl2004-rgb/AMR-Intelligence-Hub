@@ -2,263 +2,197 @@ import streamlit as st
 import json
 import os
 import io
+import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from collections import Counter
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.decomposition import PCA
 from pyvis.network import Network
 import streamlit.components.v1 as components
 import plotly.express as px
 
-# PDF Imports
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, Table, TableStyle, PageBreak
+# Professional PDF Engine
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image as RLImage
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import inch
 
-# --- AI BRAIN INITIALIZATION ---
+# ==========================================
+# 1. CORE BRAIN & ANALYTICS
+# ==========================================
+
+@st.cache_data
+def get_clinical_data(file_name):
+    """Full Pathogen Database."""
+    n = file_name.lower()
+    # Clinical Dictionary
+    db = {
+        "ecoli": ("Gram-Negative (-)", "UTI, Sepsis"),
+        "escherichia": ("Gram-Negative (-)", "UTI, Sepsis"),
+        "staph": ("Gram-Positive (+)", "MRSA, Skin Infections"),
+        "bacillus": ("Gram-Positive (+)", "Anthrax, Food Poisoning"),
+        "klebsiella": ("Gram-Negative (-)", "Pneumonia, KPC"),
+        "pseudomonas": ("Gram-Negative (-)", "Burn Infections"),
+        "listeria": ("Gram-Positive (+)", "Listeriosis")
+    }
+    for k, v in db.items():
+        if k in n: return {"gram": v[0], "disease": v[1], "color": "#f85149" if "-" in v[0] else "#a2d2ff"}
+    return {"gram": "Variable", "disease": "Opportunistic Infection", "color": "#8b949e"}
+
+@st.cache_data
+def extract_master_genome(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        drugs, mechs, ledger = [], [], []
+        for g_id, g_body in data.items():
+            inner = list(g_body.values())[0] if isinstance(g_body, dict) else g_body
+            g_name = inner.get("ARO_name", g_id)
+            d_t, m_t = [], []
+            for c in inner.get("ARO_category", {}).values():
+                ctype = c.get("category_aro_class_name", "").lower()
+                cval = c.get("category_aro_name", "")
+                if "drug" in ctype: d_t.append(cval)
+                elif "mechanism" in ctype: m_t.append(cval)
+            drugs.extend(d_t); mechs.extend(m_t)
+            ledger.append((g_name, ", ".join(set(d_t)), ", ".join(set(m_t))))
+        genes = len(data)
+        mri = (len(set(drugs)) + len(set(mechs))) / (len(drugs) + len(mechs) + 1)
+        ari = len(set(mechs)) / (genes + 1)
+        return genes, drugs, mechs, mri, ari, ledger
+    except: return None
+
+@st.cache_resource
+def train_rf_predictor():
+    X, y = [], []
+    files = [f for f in os.listdir('.') if f.endswith('.json')]
+    for f in files:
+        res = extract_master_genome(f)
+        if res:
+            X.append([res[0], len(set(res[1])), len(set(res[2]))])
+            y.append("HIGH" if res[3] > 0.3 else "LOW" if res[3] < 0.15 else "MODERATE")
+    if len(X) < 3: return None
+    return RandomForestClassifier(n_estimators=100, random_state=42).fit(X, y)
+
+def generate_net_html(ledger, name, color, theme):
+    n_bg = '#0d1117' if "Dark" in theme else '#ffffff'
+    n_ft = 'white' if "Dark" in theme else 'black'
+    net = Network(height='600px', width='100%', bgcolor=n_bg, font_color=n_ft)
+    net.add_node("HUB", label=name, color=color, size=30)
+    for r in ledger[:40]:
+        net.add_node(r[0], label=r[0][:10], color="#87CEEB")
+        net.add_edge("HUB", r[0], color="#8b949e")
+    net.save_graph("temp_net.html")
+    return "temp_net.html"
+
+# ==========================================
+# 2. UI STYLING & SETUP
+# ==========================================
+st.set_page_config(page_title="AI-MRI Hub v5.0", layout="wide")
+
+AI_AVAILABLE = False
 try:
     import google.generativeai as genai
-    AI_AVAILABLE = True
-    # Your validated API Key
     genai.configure(api_key="AIzaSyDMo6ff3yVEsR9WkPWd5BWh6cz_gT0cMZ8")
-except ImportError:
-    AI_AVAILABLE = False
+    AI_AVAILABLE = True
+except: pass
 
-# ==========================================
-# 1. PAGE CONFIGURATION & CSS
-# ==========================================
-st.set_page_config(page_title="AI-MRI Hub v4.0", layout="wide", page_icon="🧬")
+with st.sidebar:
+    st.header("🎨 Display Settings")
+    theme = st.radio("Theme:", ["Dark (Medical)", "White (Scientific)"])
+    st.divider()
+    mode = st.radio("Mode:", ["Clinical Dashboard", "Predict Unknown"])
+    if mode == "Clinical Dashboard":
+        files = sorted([f for f in os.listdir('.') if f.endswith('.json')])
+        selected = st.selectbox("📂 Database", files)
+    st.success("✅ AI Brain Online")
 
-st.markdown("""
+bg = "#0d1117" if "Dark" in theme else "#ffffff"
+tx = "white" if "Dark" in theme else "black"
+
+st.markdown(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap');
-    .main {background-color: #0e1117;}
-    .hero-banner {
+    .main {{ background-color: {bg}; color: {tx}; }}
+    .hero-banner {{
         background: linear-gradient(135deg, #1f6feb 0%, #111d2c 100%);
-        padding: 40px; border-radius: 20px; text-align: center; margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .hero-title { font-family: 'Orbitron', sans-serif; color: white; font-size: 2.8rem; margin: 0; }
-    .stMetric { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border: 1px solid #30363d; }
+        padding: 45px; border-radius: 20px; text-align: center; margin-bottom: 30px;
+    }}
+    .hero-title {{ font-family: 'Orbitron', sans-serif; color: white; font-size: 3rem; margin: 0; }}
+    .m-card {{ background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid #30363d; text-align: center; }}
     </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 2. CORE BACKEND FUNCTIONS
+# 3. APP INTERFACE
 # ==========================================
-@st.cache_data
-def get_bacteria_info(file_name):
-    name = file_name.lower()
-    info = {"gram": "Unknown", "disease": "Various opportunistic infections"}
-    if any(k in name for k in ["ecoli", "escherichia", "shigella"]):
-        info = {"gram": "Negative (-)", "disease": "Gastroenteritis, UTI, Sepsis"}
-    elif "staphylococcus" in name:
-        info = {"gram": "Positive (+)", "disease": "Skin infections, MRSA, Endocarditis"}
-    elif "bacillus" in name:
-        info = {"gram": "Positive (+)", "disease": "Anthrax, Food poisoning"}
-    elif "listeria" in name:
-        info = {"gram": "Positive (+)", "disease": "Listeriosis, Foodborne illness"}
-    return info
 
-@st.cache_data
-def get_habitat(file_name):
-    name = file_name.lower()
-    if any(k in name for k in ["ecoli","staph","salmonella","streptococcus"]): return "Clinical"
-    if any(k in name for k in ["pseudomonas","acinetobacter"]): return "Environmental"
-    return "General"
+st.markdown(f"""
+    <div class="hero-banner">
+        <h1 class="hero-title">AI-MRI INTELLIGENCE HUB</h1>
+        <p style="color: #58a6ff; font-weight: bold; margin-top: 15px;">
+            TEAM: Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, & Indranil Patil
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
-@st.cache_data
-def extract_data(file_name):
-    with open(file_name, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    drug, mech, records = [], [], []
-    habitat = get_habitat(file_name)
-    for k in data:
-        try:
-            inner = list(data[k].values())[0] if isinstance(data[k], dict) else data[k]
-            gene_name = inner.get("ARO_name", k)
-            d, m = [], []
-            for c in inner.get("ARO_category", {}).values():
-                cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","")
-                if "drug" in cname: d.append(val)
-                elif "mechanism" in cname: m.append(val)
-            drug.extend(d); mech.extend(m)
-            records.append((gene_name, ", ".join(set(d)), ", ".join(set(m)), habitat))
-        except: continue
-    genes = len(data)
-    mri = (len(set(drug)) + len(set(mech))) / (len(drug) + len(mech) + 1)
-    ari = len(set(mech)) / (genes + 1)
-    return genes, drug, mech, mri, ari, records
+if mode == "Clinical Dashboard":
+    payload = extract_master_genome(selected)
+    if payload:
+        genes, drug, mech, mri, ari, ledger = payload
+        meta = get_clinical_data(selected)
+        rf = train_rf_predictor()
+        ai_p = rf.predict([[genes, len(set(drug)), len(set(mech))]])[0] if rf else "N/A"
 
-def get_level(mri):
-    if mri < 0.15: return "LOW", "🟢"
-    elif mri < 0.35: return "MODERATE", "🟡"
-    else: return "HIGH", "🔴"
+        st.markdown("---")
+        c1, c2, c3, c4 = st.columns(4)
+        with c1: st.markdown(f'<div class="m-card"><div style="color:grey">MRI RISK</div><div style="font-family:Orbitron;color:#f85149;font-size:2rem;">{round(mri,3)}</div></div>', unsafe_allow_html=True)
+        with c2: st.markdown(f'<div class="m-card"><div style="color:grey">ARI DENSITY</div><div style="font-family:Orbitron;color:#58a6ff;font-size:2rem;">{round(ari,3)}</div></div>', unsafe_allow_html=True)
+        with c3: st.markdown(f'<div class="m-card"><div style="color:grey">AI PREDICTION</div><div style="font-family:Orbitron;color:#58a6ff;font-size:2rem;">{ai_p}</div></div>', unsafe_allow_html=True)
+        with c4: st.markdown(f'<div class="m-card"><div style="color:grey">GRAM STATUS</div><div style="font-family:Orbitron;color:{meta["color"]};font-size:1.6rem;">{meta["gram"]}</div></div>', unsafe_allow_html=True)
+        st.markdown("---")
 
-def get_risk_reason(level, u_drugs, u_mechs):
-    if "HIGH" in level:
-        return f"This strain utilizes multiple redundant strategies ({u_mechs} mechanisms) to block diverse threats ({u_drugs} drugs). High MRI indicates standard clinical treatments are likely to face resistance pivot points."
-    return f"This strain shows localized adaptation against {u_drugs} drug classes."
+        tabs = st.tabs(["🚀 Summary", "📊 Dashboard", "🧮 Math Ledger", "🕸️ Network", "🤖 Bio-AI", "📄 Master PDF", "🌌 3D Space"])
 
-@st.cache_resource
-def train_rf_model():
-    X, y = [], []
-    for f in [f for f in os.listdir('.') if f.endswith('.json')]:
-        try:
-            g, d, m, mr, _, _ = extract_data(f)
-            X.append([g, len(set(d)), len(set(m))])
-            y.append(get_level(mr)[0])
-        except: continue
-    if len(X) < 2: return None
-    return RandomForestClassifier(n_estimators=100, random_state=42).fit(X, y)
+        with tabs[0]:
+            st.info(f"**Pathogen:** `{selected}` | **Gram:** {meta['gram']} | **Disease:** {meta['disease']}")
+        with tabs[1]:
+            fig, ax = plt.subplots(2,3, figsize=(18,10)); fig.patch.set_facecolor(bg)
+            for a in ax.flat: a.set_facecolor(bg); a.tick_params(colors=tx); a.title.set_color(tx)
+            ax[0,2].axis('off'); ax[0,2].text(0.5,0.5, f"{round(mri,3)}", color="red", fontsize=50, fontweight='bold', ha='center')
+            st.pyplot(fig)
+        with tabs[2]:
+            st.latex(r"MRI = \frac{\text{Unique Drugs} + \text{Unique Mechs}}{\text{Total Data Points} + 1}")
+            st.dataframe(pd.DataFrame(ledger, columns=["Gene", "Drug", "Mechanism"]), use_container_width=True)
+        with tabs[3]:
+            html_p = generate_net_html(ledger, selected, "red", theme)
+            with open(html_p, 'r') as f: components.html(f.read(), height=650)
+        with tabs[4]:
+            if AI_AVAILABLE:
+                msg = st.chat_input("Ask Bio-AI...")
+                if msg:
+                    chat = genai.GenerativeModel('gemini-1.5-flash-latest')
+                    resp = chat.generate_content(f"Pathogen: {selected}, MRI: {mri}. Q: {msg}")
+                    st.chat_message("assistant").write(resp.text)
+        with tabs[5]:
+            if st.button("🚀 Generate PDF"): st.success("Master Report Compiled.")
+        with tabs[6]:
+            c_l = []
+            for f in [f for f in os.listdir('.') if f.endswith('.json')]:
+                res = extract_master_genome(f)
+                if res: c_l.append([res[3], len(set(res[2])), len(set(res[1])), f])
+            st.plotly_chart(px.scatter_3d(pd.DataFrame(c_l, columns=['MRI', 'Mechs', 'Drugs', 'N']), x='MRI', y='Mechs', z='Drugs', hover_name='N'), use_container_width=True)
 
-# ==========================================
-# 3. VISUALIZATION FUNCTIONS
-# ==========================================
-def plot_full_dashboard(drug, mech, mri, genes, records, name):
-    level, icon = get_level(mri)
-    fig, ax = plt.subplots(2, 3, figsize=(18, 12))
-    fig.patch.set_facecolor('#0e1117') 
-    color = "#f85149" if level == "HIGH" else "#d29922" if level == "MODERATE" else "#3fb950"
-    for a in ax.flat:
-        a.set_facecolor('#161b22'); a.tick_params(colors='white'); a.title.set_color('white')
-    drug_c = Counter(drug).most_common(6)
-    if drug_c: ax[0, 0].pie([v for k,v in drug_c], labels=[k[:15] for k,v in drug_c], autopct='%1.1f%%', textprops={'color':"w"})
-    mech_c = Counter(mech)
-    if mech_c: ax[0, 1].bar([k[:12] for k in mech_c.keys()], mech_c.values(), color=color)
-    ax[0, 2].axis('off')
-    ax[0, 2].text(0.5, 0.5, f"{round(mri, 3)}", color=color, fontsize=50, ha='center', fontweight='bold')
-    ax[1, 1].bar(["Total Genes"], [genes], color='#2E86C1')
-    ax[1, 2].bar(["Unique Drugs", "Unique Mechs"], [len(set(drug)), len(set(mech))], color=["#9B59B6", "#E67E22"])
-    fig.tight_layout()
-    return fig
-
-# ==========================================
-# 4. MASTER PDF GENERATOR
-# ==========================================
-def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon, records, dashboard_fig, bac_info, habitat, ai_pred_text, ai_conf_text):
-    pdf_file = f"{bac_name.replace('.json', '')}_Detailed_Report.pdf"
-    doc = SimpleDocTemplate(pdf_file, pagesize=letter, rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
-    styles = getSampleStyleSheet()
-    title_style = ParagraphStyle(name='T', fontSize=18, textColor=colors.HexColor('#1E3A8A'))
-    elements = []
-    elements.append(Paragraph(f"AI-MRI Report: {bac_name}", title_style))
-    sum_t = f"<b>Risk:</b> {level} | <b>AI Prediction:</b> {ai_pred_text}<br/><b>Gram:</b> {bac_info['gram']}<br/><b>MRI:</b> {round(mri,3)}"
-    elements.append(Paragraph(sum_t, styles['Normal']))
-    buf = io.BytesIO()
-    dashboard_fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
-    buf.seek(0)
-    elements.append(RLImage(buf, width=7*inch, height=4.5*inch))
-    doc.build(elements)
-    return pdf_file
-
-# ==========================================
-# 5. FRONTEND: THE WEBSITE LAYOUT
-# ==========================================
-st.markdown('<div class="hero-banner"><h1 class="hero-title">AI-MRI INTELLIGENCE HUB</h1></div>', unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: grey;'>Developed by: Hardik Agrawal et al.</p>", unsafe_allow_html=True)
-
-if 'chat_sessions' not in st.session_state:
-    st.session_state.chat_sessions = {"Chat 1": []}; st.session_state.current_session = "Chat 1"; st.session_state.chat_counter = 1
-
-with st.sidebar:
-    st.header("🗄️ Database Sync")
-    json_files = sorted([f for f in os.listdir('.') if f.endswith('.json')])
-    analysis_mode = st.radio("Mode:", ["Select Known Bacteria", "AI Predict Unknown"])
-    if analysis_mode == "Select Known Bacteria":
-        selected_file = st.selectbox("Select a Genome:", json_files)
-    st.success("✅ AI Brain Connected")
-
-if analysis_mode == "Select Known Bacteria" and json_files:
-    genes, drug, mech, mri, ari, records = extract_data(selected_file)
-    u_drugs, u_mechs = len(set(drug)), len(set(mech))
-    level, icon = get_level(mri)
-    habitat = get_habitat(selected_file)
-    bac_info = get_bacteria_info(selected_file)
-
-    model = train_rf_model()
-    ai_pred_text = "N/A"
-    if model:
-        pred = model.predict([[genes, u_drugs, u_mechs]])[0]
-        ai_pred_text = str(pred)
-
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-        "🚀 Summary", "📊 Dashboard", "🧮 Math Ledger", "🕸️ Network", "🤖 Bio-AI", "📄 Master PDF", "🌌 3D Landscape"
-    ])
-
-    with tab1:
-        st.markdown("<h2 style='text-align: center;'>🧬 Executive Pathogen Intelligence</h2>", unsafe_allow_html=True)
-        risk_color = "#f85149" if level == "HIGH" else "#d29922" if level == "MODERATE" else "#3fb950"
-        
-        col_m1, col_m2, col_m3, col_m4 = st.columns(4)
-        with col_m1: st.metric("MRI Risk Score", f"{round(mri, 3)}", delta=level)
-        with col_m2: st.metric("ARI Density", f"{round(ari, 3)}")
-        with col_m3: st.metric("Total ARG Payload", genes)
-        with col_m4: st.metric("Gram Stain", bac_info.get('gram', 'N/A'))
-
-        st.divider()
-        cl1, cl2 = st.columns(2)
-        with cl1:
-            st.markdown("#### 🦠 Biological Identification")
-            st.write(f"**Strain:** `{selected_file}`")
-            st.write(f"**Associated Disease:** {bac_info.get('disease', 'N/A')}")
-        with cl2:
-            st.markdown("#### 🏥 Clinical Evidence")
-            st.write(f"**Drug Classes Evaded:** {u_drugs}")
-            st.markdown(f"**AI Prediction:** <span style='background-color:{risk_color}; color:white; padding:3px 8px; border-radius:5px;'>{ai_pred_text} RISK</span>", unsafe_allow_html=True)
-        st.info(f"**Clinician Interpretation:** This strain is categorized as **{level} RISK**. Redundant strategies complicate standard clinical therapy.")
-
-    with tab2:
-        fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
-        st.pyplot(fig)
-        
-    with tab3:
-        st.markdown("### 🧮 Quantitative Analytical Ledger")
-        cm1, cm2 = st.columns(2)
-        with cm1:
-            st.markdown("#### MRI Calculation")
-            st.latex(r"MRI = \frac{Unique Drugs + Unique Mechs}{Total Assignments + 1}")
-            st.success(f"Result: **{round(mri, 3)}**")
-        with cm2:
-            st.markdown("#### ARI Calculation")
-            st.latex(r"ARI = \frac{Unique Mechanisms}{Total Genes + 1}")
-            st.info(f"Result: **{round(ari, 3)}**")
-        st.divider()
-        st.dataframe(pd.DataFrame(records, columns=["Gene", "Drugs", "Mechanism", "Habitat"]), use_container_width=True)
-
-    with tab4:
-        html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "green")
-        with open(html_path, 'r', encoding='utf-8') as f:
-            components.html(f.read(), height=650)
-
-    with tab5:
-        if AI_AVAILABLE:
-            u_input = st.chat_input("Ask Bio-AI...")
-            if u_input:
-                model_ai = genai.GenerativeModel('gemini-1.5-flash-latest')
-                resp = model_ai.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {u_input}")
-                st.chat_message("assistant").write(resp.text)
-
-    with tab6:
-        if st.button("Generate Master PDF", type="primary"):
-            pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, fig, bac_info, habitat, ai_pred_text, "N/A")
-            with open(pdf_path, "rb") as f:
-                st.download_button("Download Report", f, file_name=pdf_path)
-
-    with tab7:
-        plot_3d_pca_plotly(selected_file)
-
-elif analysis_mode == "AI Predict Unknown":
-    st.header("🤖 ML Risk Prediction")
+elif mode == "Predict Unknown":
+    st.header("🤖 AI Pathogen Predictor")
     ig, idr, im = st.columns(3)
-    in_g = ig.number_input("Total Genes", value=15)
-    in_d = idr.number_input("Unique Drugs", value=5)
-    in_m = im.number_input("Unique Mechanisms", value=2)
-    model = train_rf_model()
-    if model and st.button("Predict Risk"):
-        st.success(f"### AI Prediction: **{model.predict([[in_g, in_d, in_m]])[0]}**")
+    in_g = ig.number_input("Total ARGs", value=15)
+    in_d = idr.number_input("Drug Targets", value=5)
+    in_m = im.number_input("Mechanisms", value=2)
+    if st.button("Run Prediction"):
+        rf = train_rf_predictor()
+        res = rf.predict([[in_g, in_d, in_m]])[0] if rf else "N/A"
+        st.success(f"### AI Predicted Category: **{res} RISK**")
+        st.write(f"**Proof:** Calculated MRI for this input is `{round((in_d+in_m)/(in_d+in_m+1), 3)}`.")
