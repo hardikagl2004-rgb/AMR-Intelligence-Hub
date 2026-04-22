@@ -30,71 +30,126 @@ except ImportError:
 # ==========================================
 # 1. PAGE CONFIGURATION & CSS
 # ==========================================
-st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
+st.set_page_config(page_title="AI-MRI Hub | Bio-Intelligence", layout="wide", page_icon="🧬")
 
 st.markdown("""
     <style>
-    .main {background-color: #0e1117;}
-    h1, h2, h3 {color: #ffffff;}
+    /* Global Base Styling */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     
-    /* Professional Header Styling */
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+        background-color: #0f172a;
+    }
+
+    .main { background-color: #0f172a; }
+
+    /* Modern Glassmorphism Header */
     .main-header {
-        background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
-        padding: 2.5rem;
-        border-radius: 15px;
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.8) 100%);
+        backdrop-filter: blur(10px);
+        padding: 3rem;
+        border-radius: 20px;
         color: white;
         text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     }
-    
-    /* Metric Card Styling */
+
+    /* Enhanced Metric Cards */
     .metric-card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        padding: 1.5rem;
-        border-radius: 12px;
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1.8rem;
+        border-radius: 16px;
         text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
     }
     .metric-label {
         color: #94a3b8;
-        font-size: 0.8rem;
-        font-weight: bold;
+        font-size: 0.75rem;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.1em;
     }
     .metric-value {
-        color: #ffffff;
-        font-size: 1.8rem;
-        font-weight: 700;
+        color: #f8fafc;
+        font-size: 2rem;
+        font-weight: 800;
         margin-top: 0.5rem;
     }
 
-    /* Professional Executive Summary Card */
-    .report-card {
-        background-color: #1e293b;
-        border-left: 5px solid #3b82f6;
-        padding: 20px;
-        border-radius: 10px;
+    /* Professional Report & Math Cards */
+    .report-card, .math-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(51, 65, 85, 1);
+        border-left: 6px solid #3b82f6;
+        padding: 25px;
+        border-radius: 12px;
         margin-bottom: 25px;
     }
-    .report-header {
-        color: #3b82f6;
-        font-weight: bold;
+    
+    .math-card {
+        border-left: none;
+        border-top: 4px solid #3b82f6;
+        background: #1e293b;
+    }
+
+    .report-header, .math-card-header {
+        color: #60a5fa;
+        font-weight: 700;
         text-transform: uppercase;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
         margin-bottom: 15px;
-        border-bottom: 1px solid #334155;
-        padding-bottom: 5px;
-    }
-    .report-row {
         display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #2d3748;
+        align-items: center;
     }
-    .report-label { color: #94a3b8; font-weight: 500; }
-    .report-value { color: #ffffff; font-weight: 600; }
+
+    /* Chat Styling */
+    [data-testid="stChatMessageContent"] {
+        background-color: #1e293b !important;
+        border-radius: 12px !important;
+        border: 1px solid #334155 !important;
+    }
+
+    /* Tab Styling Customization */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background-color: transparent;
+    }
+    .stTabs [data-baseweb="tab"] {
+        height: 45px;
+        background-color: #1e293b;
+        border-radius: 8px 8px 0px 0px;
+        color: #94a3b8;
+        border: 1px solid #334155;
+        padding: 0 20px;
+        transition: all 0.2s ease;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #3b82f6 !important;
+        color: white !important;
+    }
+
+    /* Reasoning Box (Clinical Look) */
+    .reasoning-box {
+        background: rgba(59, 130, 246, 0.08);
+        border-radius: 12px;
+        border-right: 4px solid #3b82f6;
+        padding: 20px;
+        color: #cbd5e1;
+        line-height: 1.7;
+    }
+
     .ai-badge {
         background: rgba(59, 130, 246, 0.1);
         color: #60a5fa;
@@ -102,31 +157,6 @@ st.markdown("""
         border-radius: 20px;
         font-size: 0.85rem;
         border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    /* Math Ledger Cards */
-    .math-card {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        padding: 25px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-    }
-    .math-card-header {
-        color: #3b82f6;
-        font-size: 0.85rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 15px;
-    }
-    .reasoning-box {
-        background: rgba(59, 130, 246, 0.05);
-        border-left: 4px solid #3b82f6;
-        padding: 15px;
-        color: #e2e8f0;
-        line-height: 1.6;
-        font-style: italic;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -259,12 +289,12 @@ def train_rf_model():
 def plot_full_dashboard(drug, mech, mri, genes, records, name):
     level, icon = get_level(mri)
     fig, ax = plt.subplots(2, 3, figsize=(18, 12))
-    fig.patch.set_facecolor('#0e1117') 
+    fig.patch.set_facecolor('#0f172a') 
     
     color = "red" if level == "HIGH" else "orange" if level == "MODERATE" else "green"
     
     for a in ax.flat:
-        a.set_facecolor('#0e1117')
+        a.set_facecolor('#0f172a')
         a.tick_params(colors='white')
         a.title.set_color('white')
 
@@ -303,7 +333,7 @@ def plot_full_dashboard(drug, mech, mri, genes, records, name):
     return fig
 
 def generate_network_html(records, organism_name, color):
-    net = Network(height='600px', width='100%', bgcolor='#222222', font_color='white', cdn_resources="in_line", select_menu=True, filter_menu=True)
+    net = Network(height='600px', width='100%', bgcolor='#0f172a', font_color='white', cdn_resources="in_line", select_menu=True, filter_menu=True)
     net.add_node("HUB", label=organism_name, color=color, size=30)
     
     for g, d, m, h in records:
@@ -356,14 +386,10 @@ def plot_3d_pca_plotly(current_file):
 
     fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
               color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
-              opacity=0.8, size_max=10)
+              opacity=0.8, size_max=10, template="plotly_dark")
               
     fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET 🎯"))
-    fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0e1117', font_color='white', scene=dict(
-        xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-        yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-        zaxis=dict(backgroundcolor="#0e1117", gridcolor="gray")
-    ))
+    fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0f172a', font_color='white')
     
     st.plotly_chart(fig, use_container_width=True)
 
