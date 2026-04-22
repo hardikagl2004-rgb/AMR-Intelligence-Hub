@@ -103,6 +103,31 @@ st.markdown("""
         font-size: 0.85rem;
         border: 1px solid rgba(59, 130, 246, 0.3);
     }
+
+    /* Math Ledger Cards */
+    .math-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+    .math-card-header {
+        color: #3b82f6;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 15px;
+    }
+    .reasoning-box {
+        background: rgba(59, 130, 246, 0.05);
+        border-left: 4px solid #3b82f6;
+        padding: 15px;
+        color: #e2e8f0;
+        line-height: 1.6;
+        font-style: italic;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -499,7 +524,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
 
-    # Updated Professional Metric Cards
+    # Professional Metric Cards
     m1, m2, m3, m4 = st.columns(4)
     with m1:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
@@ -561,23 +586,36 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.pyplot(fig)
         
     with tab3:
-        st.markdown("### Exact Calculations")
-        st.code(f"""
--- MRI Calculation --
-Formula: (Unique Drugs + Unique Mechanisms) / (Total Drugs + Total Mechanisms + 1)
-Math: ({u_drugs} + {u_mechs}) / ({len(drug)} + {len(mech)} + 1)
-Result: MRI = {round(mri, 3)} ({level})
+        # Professional Math & Data Ledger Update
+        st.markdown("### 🧮 Mathematical Validation")
+        
+        col_m1, col_m2 = st.columns(2)
+        
+        with col_m1:
+            st.markdown('<div class="math-card">', unsafe_allow_html=True)
+            st.markdown('<div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
+            st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
+            st.markdown(f"**Current Calculation:**")
+            st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri, 3)}")
+            st.markdown('</div>', unsafe_allow_html=True)
 
--- ARI Calculation --
-Formula: Unique Mechanisms / (Total Genes + 1)
-Math: {u_mechs} / ({genes} + 1)
-Result: ARI = {round(ari, 3)}
-        """)
+        with col_m2:
+            st.markdown('<div class="math-card">', unsafe_allow_html=True)
+            st.markdown('<div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
+            st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
+            st.markdown(f"**Current Calculation:**")
+            st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari, 3)}")
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        st.markdown("### 🎯 Risk Assessment Reasoning")
+        st.markdown(f"""
+            <div class="reasoning-box">
+                {get_risk_reason(level, u_drugs, u_mechs)}
+            </div>
+        """, unsafe_allow_html=True)
         
-        st.markdown("### Risk Reasoning")
-        st.info(get_risk_reason(level, u_drugs, u_mechs))
-        
-        st.markdown("### Full Gene Ledger (All Genes)")
+        st.write("")
+        st.markdown("### 📜 Comprehensive Gene Ledger")
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
 
