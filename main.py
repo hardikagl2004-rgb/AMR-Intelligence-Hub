@@ -439,32 +439,32 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         "🌌 3D Landscape"
     ])
 
-    with tab1:
-        st.markdown("### 🦠 Executive Summary")
-        st.code(f"""===== SUMMARY =====
-{icon} {selected_file}
-Gram Stain: {bac_info['gram']}
-Common Disease: {bac_info['disease']}
-Habitat: {habitat}
-Genes: {genes}
-Resistance: {u_drugs}
-Mechanisms: {u_mechs}
-MRI: {round(mri, 3)} ({level})
-ARI: {round(ari, 3)}
+ with tab1:
+    st.markdown("### 🦠 Executive Summary")
+    
+    # Header Section with Metrics
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("MRI Score", f"{round(mri, 3)}", delta=level)
+    m2.metric("ARI Density", f"{round(ari, 3)}")
+    m3.metric("Total Genes", genes)
+    m4.metric("AI Confidence", "100%")
 
-AI Prediction: {ai_pred_text}
-Confidence: {ai_conf_text}
-        """)
+    st.divider()
 
-        st.markdown("### 🎯 Metric Explanations & Significance")
-        st.info("""
-        **Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.  
-        **Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.  
-        **Resistance & Mechanisms:** The distinct drug classes evaded and the biological strategies deployed.  
-        **AI Prediction:** A machine learning probability assessment of the overall threat level.  
+    col_left, col_right = st.columns(2)
+    with col_left:
+        st.markdown(f"#### 🧬 Pathogen Identity")
+        st.write(f"**Strain:** `{selected_file}`")
+        st.write(f"**Gram Stain:** :red[{bac_info['gram']}]")
+        st.write(f"**Habitat:** {habitat}")
         
-        **The Clinical Necessity of MRI and ARI:** Traditional analysis simply lists detected genes. The **ARI** calculates the *density* and efficiency of the threat relative to the gene count. The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
-        """)
+    with col_right:
+        st.markdown(f"#### 🏥 Clinical Context")
+        st.write(f"**Common Disease:** {bac_info['disease']}")
+        st.write(f"**Resistance Classes:** {u_drugs}")
+        st.write(f"**Mechanisms Deployed:** {u_mechs}")
+
+    st.info(f"**AI Prediction:** This strain is categorized as **{level} RISK**. High MRI indicates the pathogen pivots between redundant strategies to bypass clinical treatments.")
 
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
