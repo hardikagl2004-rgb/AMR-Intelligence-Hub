@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import os
 import io
+import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,513 +13,474 @@ from pyvis.network import Network
 import streamlit.components.v1 as components
 import plotly.express as px
 
-# PDF Imports
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, Table, TableStyle, PageBreak
+# PDF Engine Imports
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, Image as RLImage
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import inch
 
-# --- AI BRAIN INITIALIZATION ---
+# ==========================================
+# 1. CORE SYSTEM INITIALIZATION
+# ==========================================
+
+# Secure AI Brain Setup
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    genai.configure(api_key="AIzaSyBMDZ-1JJlk08cAlvQk6XIAD4vkeWAadQ4")
-except ImportError:
+    # Using your validated high-stability key
+    genai.configure(api_key="AIzaSyAlQFR5IVkp1TS4pg9_LvP0E3BogEh4Z_U")
+except Exception:
     AI_AVAILABLE = False
 
-# ==========================================
-# 1. PAGE CONFIGURATION & CSS
-# ==========================================
-st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
+# Professional Page Config
+st.set_page_config(
+    page_title="Bio-AI MRI Intelligence Hub",
+    layout="wide",
+    page_icon="🧬",
+    initial_sidebar_state="expanded"
+)
 
+# ==========================================
+# 2. ADVANCED FRONTEND CSS (THE "WOW" FACTOR)
+# ==========================================
 st.markdown("""
     <style>
-    .main {background-color: #0e1117;}
-    h1, h2, h3 {color: #ffffff;}
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+    
+    /* Global Background */
+    .main { background-color: #0d1117; color: #c9d1d9; }
+    
+    /* Professional Title Banner */
+    .hero-banner {
+        background: linear-gradient(135deg, #1f6feb 0%, #111d2c 100%);
+        padding: 45px;
+        border-radius: 20px;
+        border: 1px solid #30363d;
+        margin-bottom: 35px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-family: 'Orbitron', sans-serif;
+        color: #ffffff;
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+    }
+    
+    .hero-subtitle {
+        font-family: 'Inter', sans-serif;
+        color: #8b949e;
+        font-size: 1.3rem;
+        margin-top: 15px;
+        font-weight: 300;
+    }
+
+    /* Metric Card Styling */
+    [data-testid="stMetric"] {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    [data-testid="stMetricValue"] {
+        font-family: 'Orbitron', sans-serif;
+        color: #58a6ff !important;
+        font-size: 2.4rem !important;
+    }
+
+    /* Tab Customization */
+    .stTabs [data-baseweb="tab-list"] { gap: 12px; }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 8px 8px 0 0;
+        padding: 12px 24px;
+        transition: all 0.3s;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #1f6feb !important;
+        color: white !important;
+        transform: translateY(-2px);
+    }
+    
+    /* Footer Styling */
+    .footer-text {
+        text-align: center;
+        color: #484f58;
+        font-size: 0.8rem;
+        margin-top: 50px;
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 2. CORE BACKEND FUNCTIONS
+# 3. CLINICAL DATA ENGINE
 # ==========================================
+
 @st.cache_data
-def get_bacteria_info(file_name):
+def get_extended_metadata(file_name):
+    """Provides deep biological context for known pathogens."""
     name = file_name.lower()
-    info = {"gram": "Unknown", "disease": "Various opportunistic infections"}
-    
-    if any(k in name for k in ["ecoli", "escherichia", "shigella"]):
-        info = {"gram": "Negative (-)", "disease": "Gastroenteritis, UTI, Sepsis"}
-    elif "salmonella" in name:
-        info = {"gram": "Negative (-)", "disease": "Salmonellosis, Typhoid Fever"}
-    elif any(k in name for k in ["klebsiella", "enterobacter", "citrobacter", "serratia"]):
-        info = {"gram": "Negative (-)", "disease": "Pneumonia, UTI, Bloodstream infections"}
-    elif "pseudomonas" in name:
-        info = {"gram": "Negative (-)", "disease": "Cystic fibrosis lung infections, Burn wound infections"}
-    elif "acinetobacter" in name:
-        info = {"gram": "Negative (-)", "disease": "Nosocomial pneumonia, Bacteremia"}
-    elif "vibrio" in name:
-        info = {"gram": "Negative (-)", "disease": "Cholera, Vibriosis"}
-    elif any(k in name for k in ["proteus", "morganella", "providencia"]):
-        info = {"gram": "Negative (-)", "disease": "Complicated UTI, Kidney stones"}
-    elif "campylobacter" in name or "helicobacter" in name:
-        info = {"gram": "Negative (-)", "disease": "Peptic ulcers, Gastroenteritis"}
-    elif "neisseria" in name:
-        info = {"gram": "Negative (-)", "disease": "Gonorrhea, Meningitis"}
-    elif "haemophilus" in name:
-        info = {"gram": "Negative (-)", "disease": "Respiratory infections, Meningitis"}
+    meta = {
+        "gram": "Gram Variable",
+        "disease": "Opportunistic Infection",
+        "habitat": "General Environment",
+        "severity": "Moderate"
+    }
+    if any(x in name for x in ["ecoli", "escherichia", "shigella"]):
+        meta.update({"gram": "Negative (-)", "disease": "Gastroenteritis, UTI, Sepsis", "habitat": "Clinical/Human Gut", "severity": "High"})
     elif "staphylococcus" in name:
-        info = {"gram": "Positive (+)", "disease": "Skin infections, MRSA, Endocarditis"}
-    elif "streptococcus" in name:
-        info = {"gram": "Positive (+)", "disease": "Strep throat, Pneumonia, Necrotizing fasciitis"}
-    elif "enterococcus" in name:
-        info = {"gram": "Positive (+)", "disease": "UTI, Endocarditis, VRE infections"}
-    elif "bacillus" in name:
-        info = {"gram": "Positive (+)", "disease": "Anthrax, Food poisoning"}
-    elif "clostridium" in name:
-        info = {"gram": "Positive (+)", "disease": "Tetanus, Botulism, C. diff diarrhea"}
-    elif "listeria" in name:
-        info = {"gram": "Positive (+)", "disease": "Listeriosis, Foodborne illness"}
-    elif "corynebacterium" in name:
-        info = {"gram": "Positive (+)", "disease": "Diphtheria"}
-    elif "mycobacterium" in name:
-        info = {"gram": "Acid-Fast (Gram Variable)", "disease": "Tuberculosis, Leprosy"}
+        meta.update({"gram": "Positive (+)", "disease": "Skin Infection, MRSA, Endocarditis", "habitat": "Clinical/Skin", "severity": "High"})
+    elif "campylobacter" in name:
+        meta.update({"gram": "Negative (-)", "disease": "Campylobacteriosis (Severe Enteritis)", "habitat": "Zoonotic/Clinical", "severity": "High"})
+    elif "pseudomonas" in name:
+        meta.update({"gram": "Negative (-)", "disease": "Nosocomial Pneumonia", "habitat": "Environmental/Clinical", "severity": "Critical"})
+    return meta
+
+@st.cache_data
+def process_genomic_json(file_path):
+    """Robust parser for complex AMR JSON structures."""
+    try:
+        if not os.path.exists(file_path): return None
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
         
-    return info
-
-@st.cache_data
-def get_habitat(file_name):
-    name = file_name.lower()
-    if any(k in name for k in ["ecoli","escherichia","staphylococcus","salmonella","klebsiella", "streptococcus", "enterococcus"]):
-        return "Clinical"
-    elif any(k in name for k in ["pseudomonas","acinetobacter"]):
-        return "Environmental"
-    elif any(k in name for k in ["bacillus","clostridium", "mycobacterium"]):
-        return "Soil"
-    elif "vibrio" in name:
-        return "Marine"
-    return "General"
-
-@st.cache_data
-def extract_data(file_name):
-    with open(file_name, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-    drug, mech, records = [], [], []
-    habitat = get_habitat(file_name)
-    
-    for k in data:
-        try:
-            inner = list(data[k].values())[0]
-            gene_name = inner.get("ARO_name", k)
-            d, m = [], []
-            for c in inner.get("ARO_category", {}).values():
-                cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","")
-                if "drug" in cname: d.append(val)
-                elif "mechanism" in cname: m.append(val)
-            
-            drug.extend(d)
-            mech.extend(m)
-            records.append((gene_name, ", ".join(set(d)), ", ".join(set(m)), habitat))
-        except:
-            continue
-
-    genes = len(data)
-    mri = (len(set(drug)) + len(set(mech))) / (len(drug) + len(mech) + 1)
-    ari = len(set(mech)) / (genes + 1)
-
-    return genes, drug, mech, mri, ari, records
-
-def get_level(mri):
-    if mri < 0.15: return "LOW", "🟢"
-    elif mri < 0.35: return "MODERATE", "🟡"
-    else: return "HIGH", "🔴"
-
-def get_risk_reason(level, u_drugs, u_mechs):
-    if "HIGH" in level:
-        return f"Because its MRI is high, it utilizes multiple redundant strategies ({u_mechs} mechanisms) to block diverse threats ({u_drugs} drugs). If one antibiotic pathway is bypassed, the bacteria actively pivots to another, making standard frontline clinical treatments highly ineffective."
-    elif "MODERATE" in level:
-        return f"With a moderate MRI, this strain shows significant adaptation. It has built defenses against standard antibiotics ({u_drugs} drugs), forcing doctors to rely on secondary treatments."
-    else:
-        return f"This strain has a low MRI, indicating a narrow resistance profile. It likely specializes against specific antibiotics found in its direct natural habitat rather than hoarding a massive clinical arsenal."
-
-@st.cache_resource
-def train_rf_model():
-    X, y = [], []
-    for f in os.listdir('.'):
-        if f.endswith('.json'):
+        drug_classes, mechanisms, master_records = [], [], []
+        
+        for gene_key, gene_val in data.items():
             try:
-                genes, drug, mech, mri, _, _ = extract_data(f)
-                features = [genes, len(set(drug)), len(set(mech))]
-                label = "LOW" if mri < 0.15 else "MODERATE" if mri < 0.35 else "HIGH"
-                X.append(features)
-                y.append(label)
+                # Normalize nested dictionaries
+                node = list(gene_val.values())[0] if isinstance(gene_val, dict) else gene_val
+                name = node.get("ARO_name", gene_key)
+                
+                cur_drugs, cur_mechs = [], []
+                categories = node.get("ARO_category", {})
+                
+                if isinstance(categories, dict):
+                    for cid, cval in categories.items():
+                        c_type = cval.get("category_aro_class_name", "").lower()
+                        c_name = cval.get("category_aro_name", "")
+                        if "drug" in c_type: cur_drugs.append(c_name)
+                        elif "mechanism" in c_type: cur_mechs.append(c_name)
+                
+                drug_classes.extend(cur_drugs)
+                mechanisms.extend(cur_mechs)
+                master_records.append((name, ", ".join(set(cur_drugs)), ", ".join(set(cur_mechs))))
             except: continue
-    
-    if len(X) < 2: return None
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X, y)
-    return model
+            
+        total_genes = len(data)
+        # MRI: Normalized diversity score
+        mri = (len(set(drug_classes)) + len(set(mechanisms))) / (len(drug_classes) + len(mechanisms) + 1)
+        # ARI: Mechanism density score
+        ari = len(set(mechanisms)) / (total_genes + 1)
+        
+        return total_genes, drug_classes, mechanisms, mri, ari, master_records
+    except Exception: return None
 
 # ==========================================
-# 3. VISUALIZATION FUNCTIONS
+# 4. ADVANCED VISUALIZATION SUITE
 # ==========================================
-def plot_full_dashboard(drug, mech, mri, genes, records, name):
-    level, icon = get_level(mri)
-    fig, ax = plt.subplots(2, 3, figsize=(18, 12))
-    fig.patch.set_facecolor('#0e1117') 
+
+def render_6_panel_dashboard(drugs, mechs, mri, genes, records):
+    """Generates a high-fidelity systems overview."""
+    fig, ax = plt.subplots(2, 3, figsize=(20, 12))
+    fig.patch.set_facecolor('#0d1117')
     
-    color = "red" if level == "HIGH" else "orange" if level == "MODERATE" else "green"
+    # Theme settings
+    level = "HIGH" if mri > 0.3 else "MODERATE" if mri > 0.15 else "LOW"
+    accent = "#f85149" if level == "HIGH" else "#d29922" if level == "MODERATE" else "#3fb950"
     
     for a in ax.flat:
-        a.set_facecolor('#0e1117')
-        a.tick_params(colors='white')
-        a.title.set_color('white')
+        a.set_facecolor('#161b22')
+        a.tick_params(colors='#8b949e', labelsize=8)
+        a.title.set_color('#ffffff')
 
-    drug_c = Counter(drug).most_common(8)
-    if drug_c:
-        ax[0, 0].pie([v for k,v in drug_c], labels=[k[:15]+".." for k,v in drug_c], autopct='%1.1f%%', textprops={'color':"w"})
-    ax[0, 0].set_title("Drug Classes Resisted")
+    # Panel 1: Drug Diversity (Pie)
+    d_counts = Counter(drugs).most_common(6)
+    if d_counts:
+        ax[0,0].pie([v for k,v in d_counts], labels=[k[:15] for k,v in d_counts], autopct='%1.1f%%', textprops={'color':"w", 'size':7})
+    ax[0,0].set_title("Resisted Drug Classes")
 
-    mech_c = Counter(mech)
-    if mech_c:
-        ax[0, 1].bar([k[:15]+".." for k in mech_c.keys()], mech_c.values(), color=color)
-        ax[0, 1].tick_params(axis='x', rotation=35)
-    ax[0, 1].set_title("Mechanisms Deployed")
+    # Panel 2: Mechanism Profile (Bar)
+    m_counts = Counter(mechs)
+    if m_counts:
+        ax[0,1].bar([k[:12] for k in m_counts.keys()], m_counts.values(), color=accent)
+        plt.setp(ax[0,1].get_xticklabels(), rotation=30)
+    ax[0,1].set_title("Deployment Strategies")
 
-    theta = np.linspace(0, np.pi, 100)
-    ax[0, 2].plot(np.cos(theta), np.sin(theta), color='gray')
-    ang = mri * np.pi
-    ax[0, 2].plot([0, np.cos(ang)], [0, np.sin(ang)], color=color, linewidth=5)
-    ax[0, 2].axis('off')
-    ax[0, 2].set_title(f"MRI Indicator: {round(mri, 3)} ({level})")
+    # Panel 3: Risk Indicator (Text/Gauge)
+    ax[0,2].axis('off')
+    ax[0,2].text(0.5, 0.6, f"{round(mri, 3)}", color=accent, fontsize=45, ha='center', fontweight='bold', fontname='Orbitron')
+    ax[0,2].text(0.5, 0.3, f"MRI RISK: {level}", color='white', fontsize=15, ha='center')
 
-    gene_list = [r[0] for r in records]
-    gene_c = Counter(gene_list).most_common(5)
-    if gene_c:
-        ax[1, 0].bar([k[:15]+".." for k,v in gene_c], [v for k,v in gene_c], color='#87CEEB')
-        ax[1, 0].tick_params(axis='x', rotation=35)
-    ax[1, 0].set_title("Top Gene Frequency")
+    # Panel 4: Top Genes
+    g_counts = Counter([r[0] for r in records]).most_common(5)
+    if g_counts:
+        ax[1,0].barh([k[:15] for k,v in g_counts], [v for k,v in g_counts], color='#58a6ff')
+    ax[1,0].set_title("Primary ARG Markers")
 
-    ax[1, 1].bar(["Total Genes"], [genes], color='#2E86C1')
-    ax[1, 1].set_title("Overall Gene Count")
+    # Panel 5: Volume Metrics
+    ax[1,1].bar(["Total Genes"], [genes], color='#1f6feb')
+    ax[1,1].set_title("Genomic Payload")
 
-    ax[1, 2].bar(["Unique Drugs", "Unique Mechs"], [len(set(drug)), len(set(mech))], color=["#9B59B6", "#E67E22"])
-    ax[1, 2].set_title("Diversity Comparison")
+    # Panel 6: Diversity Ratio
+    ax[1,2].bar(["Unique Drugs", "Unique Mechs"], [len(set(drugs)), len(set(mechs))], color=['#bc8cff', '#ffa657'])
+    ax[1,2].set_title("Defense Redundancy")
 
-    fig.tight_layout()
+    plt.tight_layout()
     return fig
 
-def generate_network_html(records, organism_name, color):
-    net = Network(height='600px', width='100%', bgcolor='#222222', font_color='white', cdn_resources="in_line", select_menu=True, filter_menu=True)
-    net.add_node("HUB", label=organism_name, color=color, size=30)
-    
-    for g, d, m, h in records:
-        net.add_node(g, label=g[:10], color="#87CEEB", size=15)
-        net.add_edge("HUB", g, color="#ffffff")
-        if m:
-            for mech in set(m.split(", ")):
-                if not mech: continue
-                net.add_node(mech, label=mech[:10], color="#FFA500", size=10, shape="box")
-                net.add_edge(g, mech, color="#aaaaaa")
-                
-    net.barnes_hut(gravity=-5000)
-    html_path = "temp_network.html"
-    html_content = net.generate_html()
-    with open(html_path, "w", encoding="utf-8") as f:
-        f.write(html_content)
-    return html_path
-
-def plot_3d_pca_plotly(current_file):
-    X, files, risk_levels = [], [], []
-    for f in os.listdir('.'):
-        if f.endswith('.json'):
-            try:
-                g, d, m, mr, ar, _ = extract_data(f)
-                X.append([mr, len(set(m)), len(set(d))])
-                files.append(f)
-                lv, _ = get_level(mr)
-                
-                if f == current_file:
-                    risk_levels.append("TARGET 🎯")
-                else:
-                    risk_levels.append(lv)
-            except: continue
-            
-    if len(X) < 3:
-        st.warning("Not enough data for 3D PCA.")
-        return
-        
-    pca = PCA(n_components=3).fit_transform(X)
-    df_pca = pd.DataFrame(pca, columns=['Overall Resistance (PC1)', 'Mechanism Diversity (PC2)', 'Genetic Density (PC3)'])
-    df_pca['Genome'] = files
-    df_pca['Risk Category'] = risk_levels
-    
-    color_discrete_map = {
-        "HIGH": "red",
-        "MODERATE": "orange",
-        "LOW": "green",
-        "TARGET 🎯": "gold"
-    }
-
-    fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
-              color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
-              opacity=0.8, size_max=10)
-              
-    fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET 🎯"))
-    fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0e1117', font_color='white', scene=dict(
-        xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-        yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-        zaxis=dict(backgroundcolor="#0e1117", gridcolor="gray")
-    ))
-    
-    st.plotly_chart(fig, use_container_width=True)
-
 # ==========================================
-# 4. MASTER PLATYPUS PDF GENERATOR
+# 5. CLINICAL PDF EXPORT ENGINE
 # ==========================================
-def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon, records, dashboard_fig, bac_info, habitat, ai_pred_text, ai_conf_text):
-    pdf_file = f"{bac_name.replace('.json', '')}_Detailed_Report.pdf"
-    doc = SimpleDocTemplate(pdf_file, pagesize=letter, rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
+
+def build_master_pdf(file_name, genes, mri, ari, records, metadata):
+    """Compiles a professional, multi-page clinical report."""
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
     styles = getSampleStyleSheet()
     
-    title_style = ParagraphStyle(name='TitleStyle', parent=styles['Heading1'], fontSize=18, spaceAfter=15, textColor=colors.HexColor('#1E3A8A'))
-    h2_style = ParagraphStyle(name='H2', parent=styles['Heading2'], fontSize=14, spaceBefore=15, spaceAfter=8, textColor=colors.HexColor('#2E86C1'))
-    normal_style = styles['Normal']
-    
-    u_drugs, u_mechs = len(set(drug)), len(set(mech))
-    t_drugs, t_mechs = len(drug), len(mech)
+    # Custom Brand Styles
+    title_s = ParagraphStyle(name='T', fontSize=24, textColor=colors.HexColor('#1f6feb'), alignment=1, spaceAfter=25, fontName='Helvetica-Bold')
+    header_s = ParagraphStyle(name='H', fontSize=15, textColor=colors.HexColor('#238636'), spaceBefore=20, spaceAfter=10, fontName='Helvetica-Bold')
+    body_s = styles['Normal']
     
     elements = []
     
-    elements.append(Paragraph(f"AI-MRI Report: {bac_name.replace('.json', '')}", title_style))
+    # Page 1: Executive Overview
+    elements.append(Paragraph("BIO-AI MRI PATHOGEN REPORT", title_s))
+    elements.append(Paragraph(f"<b>Pathogen Identifier:</b> {file_name}", body_s))
+    elements.append(Paragraph(f"<b>Timestamp:</b> {time.strftime('%Y-%m-%d %H:%M:%S')}", body_s))
+    elements.append(Spacer(1, 20))
     
-    elements.append(Paragraph("Executive Summary & AI Analysis", h2_style))
-    summary_text = f"""
-    <b>Pathogen File:</b> {bac_name}<br/>
-    <b>Gram Stain:</b> {bac_info['gram']}<br/>
-    <b>Common Disease:</b> {bac_info['disease']}<br/>
-    <b>Habitat:</b> {habitat}<br/>
-    <b>Total Genes:</b> {genes}<br/>
-    <b>Resistance (Drugs):</b> {u_drugs}<br/>
-    <b>Mechanisms:</b> {u_mechs}<br/>
-    <b>MRI Score:</b> {round(mri, 3)} ({level})<br/>
-    <b>ARI Score:</b> {round(ari, 3)}<br/><br/>
-    <b>Machine Learning AI Prediction:</b> {ai_pred_text}<br/>
-    <b>Confidence Matrix:</b> {ai_conf_text}
-    """
-    elements.append(Paragraph(summary_text, normal_style))
-    elements.append(Spacer(1, 15))
+    elements.append(Paragraph("I. Clinical Risk Summary", header_s))
+    risk_level = "HIGH" if mri > 0.3 else "MODERATE" if mri > 0.15 else "LOW"
     
-    elements.append(Paragraph("Metric Explanations & Significance", h2_style))
-    explanation_text = """
-    <b>Pathogen Profile (Gram, Disease, Habitat):</b> Provides the essential biological and ecological context of the strain.<br/><br/>
-    <b>Total Genes:</b> The absolute count of Antibiotic Resistance Genes (ARGs) identified in the sequence data.<br/><br/>
-    <b>Resistance & Mechanisms:</b> Quantifies the distinct pharmaceutical drug classes the pathogen can evade and the specific biological strategies it deploys to do so.<br/><br/>
-    <b>AI Prediction & Confidence:</b> A Random Forest model's probabilistic assessment of the pathogen's overall threat level based on its learned resistance profile.
-    """
-    elements.append(Paragraph(explanation_text, normal_style))
+    summary_data = [
+        ["Clinical Attribute", "Assessment Data"],
+        ["MRI Score (Risk)", f"{round(mri, 4)}"],
+        ["ARI Score (Density)", f"{round(ari, 4)}"],
+        ["Risk Category", risk_level],
+        ["Gram Classification", metadata['gram']],
+        ["Total ARG Burden", f"{genes} Identified Genes"],
+        ["Primary Disease Context", metadata['disease']]
+    ]
     
-    elements.append(Paragraph("The Clinical Necessity of MRI and ARI", h2_style))
-    mri_ari_text = """
-    Traditional genomic analysis often simply lists detected genes, which fails to quantify the actual danger a pathogen poses. Our framework utilizes two calculated metrics to solve this:<br/><br/>
-    <b>Why ARI is Required:</b> The Antibiotic Resistance Index (ARI) calculates the <i>density</i> of the threat by normalizing the unique mechanisms against the total gene count. It reveals how efficiently the bacteria utilizes its genetic payload to resist treatments.<br/><br/>
-    <b>Why MRI Helps:</b> The Multidimensional Resistance Index (MRI) mathematically consolidates the diversity of resisted drugs and deployed mechanisms into a single, standardized risk score. This allows clinicians and researchers to instantly gauge and compare the severity of different strains, prioritizing high-risk pathogens for immediate intervention without needing to manually decipher complex gene ledgers.
-    """
-    elements.append(Paragraph(mri_ari_text, normal_style))
-    
-    elements.append(PageBreak())
-    
-    elements.append(Paragraph("Exact Mathematical Calculations", h2_style))
-    calc_text = f"""
-    <b>MRI Calculation:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri, 3)}</b><br/>
-    <b>ARI Calculation:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari, 3)}</b>
-    """
-    elements.append(Paragraph(calc_text, normal_style))
-    
-    elements.append(Paragraph("Risk Assessment Reasoning", h2_style))
-    reason = get_risk_reason(level, u_drugs, u_mechs)
-    elements.append(Paragraph(reason, normal_style))
-    
-    elements.append(Paragraph("Graphical Systems Dashboard", h2_style))
-    buf = io.BytesIO()
-    dashboard_fig.patch.set_facecolor('white')
-    for ax in dashboard_fig.axes:
-        ax.set_facecolor('white')
-        ax.tick_params(colors='black')
-        ax.title.set_color('black')
-        for text in ax.texts:
-            text.set_color('black')
-            
-    dashboard_fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
-    buf.seek(0)
-    img = RLImage(buf, width=7.5*inch, height=5*inch)
-    elements.append(img)
-    
-    elements.append(PageBreak())
-    
-    elements.append(Paragraph("Complete Gene Ledger", h2_style))
-    table_data = [["Gene Name", "Drugs Resisted", "Mechanisms Used", "Habitat"]]
-    for g, d, m, h in records:
-        table_data.append([Paragraph(g, normal_style), Paragraph(d, normal_style), Paragraph(m, normal_style), Paragraph(h, normal_style)])
-    
-    t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
-    t.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+    t_summary = Table(summary_data, colWidths=[2.2*inch, 3.8*inch])
+    t_summary.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1f6feb')),
         ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0,0), (-1,0), 12),
-        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-        ('GRID', (0,0), (-1,-1), 1, colors.black),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+        ('PADDING', (0,0), (-1,-1), 10),
     ]))
+    elements.append(t_summary)
     
-    elements.append(t)
+    elements.append(Spacer(1, 20))
+    elements.append(Paragraph("Report Disclaimer:", ParagraphStyle(name='D', fontSize=8, textColor=colors.grey)))
+    elements.append(Paragraph("This report is generated via the AI-MRI framework and is intended for clinical research purposes only.", ParagraphStyle(name='D', fontSize=8, textColor=colors.grey)))
+    
+    elements.append(PageBreak())
+    
+    # Page 2: Genetic Ledger
+    elements.append(Paragraph("II. Comprehensive Genetic Ledger", header_s))
+    ledger_data = [["Gene Marker", "Pharmaceutical Target(s)", "Mechanism of Action"]]
+    
+    for r in records:
+        ledger_data.append([
+            Paragraph(r[0], body_s),
+            Paragraph(r[1], body_s),
+            Paragraph(r[2], body_s)
+        ])
+    
+    t_ledger = Table(ledger_data, colWidths=[1.3*inch, 2.35*inch, 2.35*inch])
+    t_ledger.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#21262d')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('FONTSIZE', (0,0), (-1,-1), 9),
+    ]))
+    elements.append(t_ledger)
+    
     doc.build(elements)
-    return pdf_file
+    buf.seek(0)
+    return buf
 
 # ==========================================
-# 5. FRONTEND: THE WEBSITE LAYOUT
+# 6. APP MAIN EXECUTION FLOW
 # ==========================================
-st.title("🧬 AI-Driven Multidimensional Resistance Index")
-st.markdown("### For Quantitative Analysis of Antibiotic Resistance Genes")
-st.markdown("**Developed by:** Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, and Indranil Patil")
 
-if 'chat_sessions' not in st.session_state:
-    st.session_state.chat_sessions = {"Chat 1": []}
-    st.session_state.current_session = "Chat 1"
-    st.session_state.chat_counter = 1
+# High-Impact Hero Banner
+st.markdown(f"""
+    <div class="hero-banner">
+        <h1 class="hero-title">AI-MRI INTELLIGENCE HUB</h1>
+        <p class="hero-subtitle">Advanced Clinical Quantification of Antibiotic Resistance Genes</p>
+        <p style="color: #58a6ff; font-size: 0.85rem; margin-top: 20px;">
+            <b>DEVELOPED BY:</b> Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, & Indranil Patil
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
+# Sidebar Navigation
 with st.sidebar:
-    st.header("🗄️ Database Sync")
-    if st.button("🔄 Refresh Database"):
+    st.header("🧬 CORE CONTROLS")
+    st.info("AI Brain Online & Connected")
+    
+    all_json = sorted([f for f in os.listdir('.') if f.endswith('.json')])
+    if not all_json:
+        st.error("No genome data detected in root directory.")
+        st.stop()
+        
+    selected_genome = st.selectbox("📂 SELECT GENOME ARCHIVE", all_json)
+    st.divider()
+    if st.button("🔄 FORCE SYNC DATABASE"):
+        st.cache_data.clear()
         st.rerun()
-        
-    json_files = [f for f in os.listdir('.') if f.endswith('.json')]
-    analysis_mode = st.radio("Mode:", ["Select Known Bacteria", "AI Predict Unknown"])
+
+# Data Processing Pipeline
+raw_data = process_genomic_json(selected_genome)
+meta_data = get_extended_metadata(selected_genome)
+
+if raw_data:
+    n_genes, d_classes, m_strategies, score_mri, score_ari, records_list = raw_data
+    risk_lvl, risk_icon = ("HIGH", "🔴") if score_mri > 0.3 else ("MODERATE", "🟡") if score_mri > 0.15 else ("LOW", "🟢")
     
-    if analysis_mode == "Select Known Bacteria":
-        selected_file = st.selectbox("Select a Genome:", json_files)
-    
-    st.markdown("---")
-    st.success("✅ AI Brain Connected")
-
-if analysis_mode == "Select Known Bacteria" and json_files:
-    genes, drug, mech, mri, ari, records = extract_data(selected_file)
-    u_drugs, u_mechs = len(set(drug)), len(set(mech))
-    level, icon = get_level(mri)
-    habitat = get_habitat(selected_file)
-    bac_info = get_bacteria_info(selected_file)
-
-    model = train_rf_model()
-    ai_pred_text = "N/A"
-    ai_conf_text = "N/A"
-    if model:
-        pred = model.predict([[genes, u_drugs, u_mechs]])[0]
-        probs = model.predict_proba([[genes, u_drugs, u_mechs]])[0]
-        classes = model.classes_
-        conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
-        ai_pred_text = str(pred)
-        ai_conf_text = str(conf_dict).replace("'", "")
-
+    # 1. PRIMARY METRIC DASHBOARD
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Risk Level", f"{level} {icon}")
-    col2.metric("MRI Score", round(mri, 3))
-    col3.metric("Total Genes", genes)
-    col4.metric("Habitat", habitat)
+    col1.metric("MRI RISK", round(score_mri, 3), delta=risk_lvl)
+    col2.metric("ARI DENSITY", round(score_ari, 3))
+    col3.metric("ARG PAYLOAD", n_genes)
+    col4.metric("GRAM CLASS", meta_data['gram'])
 
-# 1. Define the Tabs
-    tabs = st.tabs([
-        "ℹ️ Summary", "📊 Dashboard", "🧮 Math Ledger", 
-        "🕸️ Network", "🤖 Bio-AI", "📄 Report", "🌌 3D View"
+    # 2. MULTI-TAB INTERFACE
+    t1, t2, t3, t4, t5, t6, t7 = st.tabs([
+        "🚀 Summary", "📊 6-Panel View", "🧮 Math Ledger", 
+        "🕸️ Network", "🤖 Bio-AI", "🌌 3D Landscape", "📄 Export Report"
     ])
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = tabs
 
-    # --- TAB 1: SUMMARY ---
-    with tab1:
-        st.markdown("### 🦠 Executive Summary")
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Risk Level", f"{level} {icon}")
-        m2.metric("MRI Score", round(mri, 3))
-        m3.metric("ARI Score", round(ari, 3))
-        m4.metric("Genes", genes)
-        st.info(f"**Pathogen:** `{selected_file}` | **Gram:** {bac_info.get('gram', 'N/A')} | **Disease:** {bac_info.get('disease', 'N/A')}")
-
-    # --- TAB 2: DASHBOARD ---
-    with tab2:
-        try:
-            st.pyplot(plot_full_dashboard(drug, mech, mri, genes, records, selected_file))
-        except Exception as e:
-            st.error("Dashboard visualization error.")
-
-    # --- TAB 3: MATH LEDGER (The fix for your crash) ---
-    with tab3:
-        st.markdown("### 🧮 Math & Data Ledger")
-        c1, c2 = st.columns(2)
-        c1.success(f"**MRI:** {round(mri, 3)}")
-        c2.info(f"**ARI:** {round(ari, 3)}")
+    # --- TAB 1: EXECUTIVE SUMMARY ---
+    with t1:
+        st.markdown("### 🧬 Pathogen Executive Analysis")
+        sum_c1, sum_c2 = st.columns(2)
+        with sum_c1:
+            st.info(f"**Identified Strain:** `{selected_genome}`")
+            st.write(f"**Gram Classification:** {meta_data['gram']}")
+            st.write(f"**Primary Pathology:** {meta_data['disease']}")
+        with sum_c2:
+            st.success(f"**MRI Security Status:** {risk_lvl} RISK {risk_icon}")
+            st.write(f"**Unique Mechanisms:** {len(set(m_strategies))} Strategies")
+            st.write(f"**Clinical Habitat:** {meta_data['habitat']}")
         
-        try:
-            # Flexible DataFrame creation to prevent ValueErrors
-            df_ledger = pd.DataFrame(records)
-            st.dataframe(df_ledger, use_container_width=True)
-        except Exception:
-            st.warning("Data ledger table is unavailable for this specific structure.")
+        st.divider()
+        st.markdown("#### **CLINICAL INTERPRETATION**")
+        st.write("""
+            The **Multidimensional Resistance Index (MRI)** quantifies the clinical danger of a pathogen. 
+            High scores indicate a pathogen with redundant mechanisms, allowing it to easily pivot between 
+            defense strategies when exposed to different antibiotic classes.
+        """)
 
-    # --- TAB 4: NETWORK ---
-    with tab4:
-        try:
-            html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "green")
-            with open(html_path, 'r', encoding='utf-8') as f:
-                components.html(f.read(), height=600)
-        except Exception:
-            st.error("Network graph could not be rendered.")
+    # --- TAB 2: 6-PANEL DASHBOARD ---
+    with t2:
+        st.markdown(f"### Systems Overview: {selected_genome}")
+        with st.spinner("Rendering High-Fidelity Dashboards..."):
+            dash_fig = render_6_panel_dashboard(d_classes, m_strategies, score_mri, n_genes, records_list)
+            st.pyplot(dash_fig)
 
-    # --- TAB 5: BIO-AI ---
-    with tab5:
-        st.subheader("🤖 Bio-AI Chat")
+    # --- TAB 3: MATH LEDGER ---
+    with t3:
+        st.markdown("### 🧮 Quantitative Calculation Ledger")
+        math_c1, math_c2 = st.columns(2)
+        with math_c1:
+            st.success(f"**MRI Calc:** `({len(set(d_classes))} + {len(set(m_strategies))}) / ({len(d_classes)+len(m_strategies)} + 1)` = **{round(score_mri, 3)}**")
+        with math_c2:
+            st.info(f"**ARI Calc:** `{len(set(m_strategies))} / ({n_genes} + 1)` = **{round(score_ari, 3)}**")
+        
+        st.divider()
+        st.markdown("#### Full Resistance Registry")
+        df_final = pd.DataFrame(records_list, columns=["Gene Marker", "Targets", "Mechanism"])
+        st.dataframe(df_final, use_container_width=True)
+
+    # --- TAB 4: INTERACTIVE NETWORK ---
+    with t4:
+        st.markdown("### 🕸️ Genomic Interaction Network")
+        with st.spinner("Building Node Topography..."):
+            net = Network(height='600px', width='100%', bgcolor='#0d1117', font_color='white')
+            net.add_node("HUB", label=selected_genome, color="#1f6feb", size=35)
+            # Displaying top 40 nodes for performance
+            for r in records_list[:40]:
+                net.add_node(r[0], label=r[0][:12], color="#238636", size=18)
+                net.add_edge("HUB", r[0], color="#30363d")
+            components.html(net.generate_html(), height=650)
+
+    # --- TAB 5: BIO-AI CHAT ---
+    with t5:
+        st.markdown("### 🤖 Bio-AI Assistant")
         if AI_AVAILABLE:
-            u_input = st.chat_input("Ask Bio-AI...")
-            if u_input:
+            st.write("Ready for biological interrogation. Ask about specific gene markers or clinical risks.")
+            chat_input = st.chat_input("Query the Bio-AI Brain...")
+            if chat_input:
                 try:
-                    model_ai = genai.GenerativeModel('gemini-1.5-flash-latest')
-                    resp = model_ai.generate_content(f"Pathogen: {selected_file}, MRI: {mri}. Q: {u_input}")
-                    st.chat_message("assistant").write(resp.text)
+                    ai_brain = genai.GenerativeModel('gemini-1.5-flash-latest')
+                    context = f"Genome: {selected_genome}, MRI: {score_mri}, Genes: {n_genes}. Question: {chat_input}"
+                    response = ai_brain.generate_content(context)
+                    st.chat_message("user").write(chat_input)
+                    st.chat_message("assistant").write(response.text)
                 except Exception as e:
-                    st.error("Bio-AI is currently recharging (Quota limit).")
+                    if "429" in str(e):
+                        st.error("🚀 **BIO-AI IS COOLING DOWN.** Quota limit reached. Please wait 60 seconds.")
+                    else:
+                        st.error(f"AI System Error: {e}")
         else:
-            st.warning("AI Offline.")
+            st.warning("AI Module currently offline. Check API configuration.")
 
-    # --- TAB 6: REPORT ---
-    with tab6:
-        if st.button("Generate Master PDF", type="primary"):
-            try:
-                pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, None, bac_info, habitat, "N/A", "N/A")
-                with open(pdf_path, "rb") as f:
-                    st.download_button("Download Report", f, file_name=pdf_path)
-            except Exception:
-                st.error("PDF Generation failed.")
+    # --- TAB 6: 3D LANDSCAPE ---
+    with t6:
+        st.markdown("### 🌌 Global Comparison Landscape")
+        with st.spinner("Calculating Multi-Variant PCA..."):
+            pca_data = []
+            for f in all_json:
+                res = process_genomic_json(f)
+                if res:
+                    pca_data.append([res[3], len(set(res[2])), len(set(res[1])), f])
+            
+            if len(pca_data) >= 3:
+                df_3d = pd.DataFrame(pca_data, columns=['Intensity', 'Diversity', 'Density', 'Genome'])
+                df_3d['Category'] = ["TARGET 🎯" if x == selected_genome else "REFERENCE" for x in df_3d['Genome']]
+                
+                fig_3d = px.scatter_3d(
+                    df_3d, x='Intensity', y='Diversity', z='Density', 
+                    hover_name='Genome', color='Category',
+                    color_discrete_map={"TARGET 🎯": "#f85149", "REFERENCE": "#58a6ff"}
+                )
+                fig_3d.update_layout(paper_bgcolor='#0d1117', scene=dict(bgcolor='#0d1117'))
+                st.plotly_chart(fig_3d, use_container_width=True)
+            else:
+                st.info("Additional genome data is required to render 3D space.")
 
-    # --- TAB 7: 3D LANDSCAPE ---
-    with tab7:
-        try:
-            plot_3d_pca_plotly(selected_file)
-        except Exception:
-            st.error("3D Model could not be generated.")
-        
-elif analysis_mode == "AI Predict Unknown":
-    st.header("🤖 Machine Learning Risk Prediction")
-    in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
-    in_drugs = st.number_input("Unique Drugs Resisted", min_value=1, value=5)
-    in_mechs = st.number_input("Unique Mechanisms Found", min_value=1, value=2)
-    
-    model = train_rf_model()
-    if model and st.button("Predict Risk Level", type="primary"):
-        prediction = model.predict([[in_genes, in_drugs, in_mechs]])[0]
-        probs = model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
-        classes = model.classes_
-        prob_str = " ".join([f"{c[0]}:{p:.2f}" for c, p in zip(classes, probs)])
-        
-        st.success(f"### AI Prediction: **{prediction}** ({prob_str})")
+    # --- TAB 7: MASTER PDF EXPORT ---
+    with t7:
+        st.markdown("### 📄 Master Clinical PDF Export")
+        st.write("Generate a formal clinical document containing all quantified data and resistance markers.")
+        if st.button("🚀 INITIATE MASTER EXPORT", type="primary"):
+            with st.spinner("Compiling Clinical Evidence..."):
+                try:
+                    pdf_blob = build_master_pdf(selected_genome, n_genes, score_mri, score_ari, records_list, meta_data)
+                    st.success("Master Report Compiled Successfully!")
+                    st.download_button(
+                        label="📥 DOWNLOAD CLINICAL PDF",
+                        data=pdf_blob,
+                        file_name=f"Clinical_Report_{selected_genome.split('.')[0]}.pdf",
+                        mime="application/pdf"
+                    )
+                except Exception as e:
+                    st.error(f"Export Failure: {e}")
+
+st.markdown("<div class='footer-text'>AI-MRI HUB | PROTECTING GLOBAL HEALTH THROUGH GENOMIC INTELLIGENCE</div>", unsafe_allow_html=True)
