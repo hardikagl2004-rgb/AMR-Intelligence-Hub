@@ -32,10 +32,47 @@ except ImportError:
 # ==========================================
 st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
 
+# Professional Branding CSS
 st.markdown("""
     <style>
     .main {background-color: #0e1117;}
     h1, h2, h3 {color: #ffffff;}
+    
+    .main-header {
+        background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+        padding: 2.5rem;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .metric-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.2s;
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+    }
+    .metric-label {
+        color: #94a3b8;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .metric-value {
+        color: #ffffff;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -382,9 +419,18 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
 # ==========================================
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
-st.title("🧬 AI-Driven Multidimensional Resistance Index")
-st.markdown("### For Quantitative Analysis of Antibiotic Resistance Genes")
-st.markdown("**Developed by:** Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, and Indranil Patil")
+
+# Modern Professional Header
+st.markdown("""
+    <div class="main-header">
+        <h1 style='margin:0; font-size: 2.8rem;'>🧬 AI-Driven Multidimensional Resistance Index</h1>
+        <p style='font-size: 1.3rem; opacity: 0.9; margin-top: 10px;'>Quantitative Bio-Analysis of Antibiotic Resistance Genes</p>
+        <hr style='border: 0.5px solid rgba(255,255,255,0.2); margin: 20px auto; width: 80%;'>
+        <p style='font-size: 0.95rem; font-weight: 300;'>
+            <b>Developed by:</b> Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, and Indranil Patil
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
 if 'chat_sessions' not in st.session_state:
     st.session_state.chat_sessions = {"Chat 1": []}
@@ -423,11 +469,18 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
 
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Risk Level", f"{level} {icon}")
-    col2.metric("MRI Score", round(mri, 3))
-    col3.metric("Total Genes", genes)
-    col4.metric("Habitat", habitat)
+    # Professional Metric Cards
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
+    with m2:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">MRI Score</div><div class="metric-value">{round(mri, 3)}</div></div>''', unsafe_allow_html=True)
+    with m3:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
+    with m4:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
+
+    st.write(" ") # Padding
 
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "ℹ️ Pathogen Summary", 
