@@ -32,12 +32,12 @@ except ImportError:
 # ==========================================
 st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
 
-# Professional Branding CSS
 st.markdown("""
     <style>
     .main {background-color: #0e1117;}
     h1, h2, h3 {color: #ffffff;}
     
+    /* Professional Header Styling */
     .main-header {
         background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
         padding: 2.5rem;
@@ -48,17 +48,13 @@ st.markdown("""
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     }
     
+    /* Metric Card Styling */
     .metric-card {
         background-color: #1e293b;
         border: 1px solid #334155;
         padding: 1.5rem;
         border-radius: 12px;
         text-align: center;
-        transition: transform 0.2s;
-    }
-    .metric-card:hover {
-        transform: translateY(-5px);
-        border-color: #3b82f6;
     }
     .metric-label {
         color: #94a3b8;
@@ -72,6 +68,40 @@ st.markdown("""
         font-size: 1.8rem;
         font-weight: 700;
         margin-top: 0.5rem;
+    }
+
+    /* Professional Executive Summary Card */
+    .report-card {
+        background-color: #1e293b;
+        border-left: 5px solid #3b82f6;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+    }
+    .report-header {
+        color: #3b82f6;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #334155;
+        padding-bottom: 5px;
+    }
+    .report-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #2d3748;
+    }
+    .report-label { color: #94a3b8; font-weight: 500; }
+    .report-value { color: #ffffff; font-weight: 600; }
+    .ai-badge {
+        background: rgba(59, 130, 246, 0.1);
+        color: #60a5fa;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        border: 1px solid rgba(59, 130, 246, 0.3);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -420,7 +450,7 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
 
-# Modern Professional Header
+# Modern Professional Header Update
 st.markdown("""
     <div class="main-header">
         <h1 style='margin:0; font-size: 2.8rem;'>🧬 AI-Driven Multidimensional Resistance Index</h1>
@@ -469,7 +499,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
 
-    # Professional Metric Cards
+    # Updated Professional Metric Cards
     m1, m2, m3, m4 = st.columns(4)
     with m1:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
@@ -480,7 +510,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
 
-    st.write(" ") # Padding
+    st.write(" ")
 
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "ℹ️ Pathogen Summary", 
@@ -493,21 +523,27 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     ])
 
     with tab1:
-        st.markdown("### 🦠 Executive Summary")
-        st.code(f"""===== SUMMARY =====
-{icon} {selected_file}
-Gram Stain: {bac_info['gram']}
-Common Disease: {bac_info['disease']}
-Habitat: {habitat}
-Genes: {genes}
-Resistance: {u_drugs}
-Mechanisms: {u_mechs}
-MRI: {round(mri, 3)} ({level})
-ARI: {round(ari, 3)}
-
-AI Prediction: {ai_pred_text}
-Confidence: {ai_conf_text}
-        """)
+        # Professional Executive Summary Card Update
+        st.markdown("### 🦠 Detailed Pathogen Profile")
+        st.markdown(f"""
+            <div class="report-card">
+                <div class="report-header">Bacterial Identification Ledger</div>
+                <div class="report-row"><span class="report-label">Target Genome</span><span class="report-value" style="color:#60a5fa;">{selected_file}</span></div>
+                <div class="report-row"><span class="report-label">Gram Classification</span><span class="report-value">{bac_info['gram']}</span></div>
+                <div class="report-row"><span class="report-label">Associated Pathology</span><span class="report-value">{bac_info['disease']}</span></div>
+                <div class="report-row"><span class="report-label">Ecological Habitat</span><span class="report-value">{habitat}</span></div>
+                <div class="report-row"><span class="report-label">Genomic ARG Count</span><span class="report-value">{genes} Genes</span></div>
+                <div class="report-row"><span class="report-label">Resistance Breadth</span><span class="report-value">{u_drugs} Drug Classes</span></div>
+                <div class="report-row"><span class="report-label">Deployed Mechanisms</span><span class="report-value">{u_mechs} Strategies</span></div>
+                <div class="report-row"><span class="report-label">Calculated MRI / ARI</span><span class="report-value">{round(mri, 3)} ({level}) / {round(ari, 3)}</span></div>
+                <div style="margin-top:20px; padding-top:10px;">
+                    <span class="report-label">AI Predictive Verdict:</span> 
+                    <span class="ai-badge">{ai_pred_text} Risk</span>
+                    <br><br>
+                    <small style="color:#64748b;">Confidence Matrix: {ai_conf_text}</small>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
 
         st.markdown("### 🎯 Metric Explanations & Significance")
         st.info("""
