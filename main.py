@@ -546,3 +546,50 @@ Result: ARI = {round(ari, 3)}
                         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
                             st.error("Your API key does not have access to any text generation models.")
+                        else:
+                            target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
+                            model_ai = genai.GenerativeModel(target_model)
+                            response = model_ai.generate_content(context)
+
+                            st.chat_message("assistant").markdown(response.text)
+                            st.session_state.chat_sessions[st.session_state.current_session].append({"role": "assistant", "content": response.text})
+                except Exception as e:
+                    error_msg = str(e)
+                    if "429" in error_msg or "quota" in error_msg.lower():
+                        st.error("⚠️ **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
+                    else:
+                        st.error(f"AI Connection Error: {e}")
+
+    with tab6:
+        st.markdown("### 📥 Generate Complete Master Report")
+        
+        if st.button("Generate Master PDF", type="primary"):
+            with st.spinner("Compiling graphs, explanations, and data into PDF..."):
+                pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, fig, bac_info, habitat, ai_pred_text, ai_conf_text)
+                with open(pdf_path, "rb") as file:
+                    st.download_button(
+                        label="Download Detailed PDF Report",
+                        data=file,
+                        file_name=pdf_path,
+                        mime="application/pdf"
+                    )
+
+    with tab7:
+        st.markdown("### 🌌 Interactive Global Landscape Comparison (Plotly 3D)")
+        st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
+        plot_3d_pca_plotly(selected_file)
+
+elif analysis_mode == "AI Predict Unknown":
+    st.header("🤖 Machine Learning Risk Prediction")
+    in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
+    in_drugs = st.number_input("Unique Drugs Resisted", min_value=1, value=5)
+    in_mechs = st.number_input("Unique Mechanisms Found", min_value=1, value=2)
+    
+    model = train_rf_model()
+    if model and st.button("Predict Risk Level", type="primary"):
+        prediction = model.predict([[in_genes, in_drugs, in_mechs]])[0]
+        probs = model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
+        classes = model.classes_
+        prob_str = " ".join([f"{c[0]}:{p:.2f}" for c, p in zip(classes, probs)])
+        
+        st.success(f"### AI Prediction: **{prediction}** ({prob_str})")
