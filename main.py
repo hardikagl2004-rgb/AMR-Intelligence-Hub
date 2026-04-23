@@ -48,14 +48,32 @@ margin-bottom: 2rem;
 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-/* Welcome Hero Section */
+/* Updated Welcome Hero Section: Tech-Blue Gradient for high impact */
 .welcome-hero {
-    background: rgba(30, 41, 59, 0.5);
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
     border-radius: 15px;
-    padding: 30px;
-    border: 1px solid #334155;
+    padding: 45px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
     margin-bottom: 30px;
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Welcome Title Styling */
+.welcome-hero h2 {
+    color: #60a5fa !important; /* Electric Blue */
+    font-size: 2.8rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 12px !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Welcome Sub-text */
+.welcome-hero p {
+    color: #e2e8f0 !important; /* Bright Contrast Off-White */
+    font-size: 1.25rem !important;
+    letter-spacing: 0.8px;
+    opacity: 1.0;
 }
 
 /* High-Risk Alert Banner */
@@ -262,12 +280,12 @@ def extract_data(file_name):
     for k in data:
         try:
             inner = list(data[k].values())[0]
-            # PROFESSIONAL UPDATE: Formatting Capitalization for Gene Data 
+            # PROFESSIONAL DATA ENHANCEMENT: Uppercase and Title Case for clinical data
             gene_name = inner.get("ARO_name", k).upper()
             d, m = [], []
             for c in inner.get("ARO_category", {}).values():
                 cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","").title() # Professional Title Case
+                val = c.get("category_aro_name","").title() 
                 if "drug" in cname: d.append(val)
                 elif "mechanism" in cname: m.append(val)
 
@@ -511,20 +529,19 @@ This allows clinicians and researchers to instantly gauge and compare the severi
 
     t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
     t.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0,0), (-1,0), 12),
-        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-        ('GRID', (0,0), (-1,-1), 1, colors.black),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+    ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+    ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+    ('BOTTOMPADDING', (0,0), (-1,0), 12),
+    ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
+    ('GRID', (0,0), (-1,-1), 1, colors.black),
+    ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
 
     elements.append(t)
     doc.build(elements)
     return pdf_file
-
 # ==========================================
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
@@ -539,12 +556,10 @@ st.markdown("""
 </p>
 </div>
 """, unsafe_allow_html=True)
-
 if 'chat_sessions' not in st.session_state:
     st.session_state.chat_sessions = {"Chat 1": []}
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
-
 with st.sidebar:
     st.header(" 🗄️  Database Sync")
     if st.button(" 🔄  Refresh Database"):
@@ -558,20 +573,20 @@ with st.sidebar:
 
     st.markdown("---")
     st.success(" ✅  AI Brain Connected")
-
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
     level, icon = get_level(mri)
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
-    
-    # ALERT UPDATE: High-risk pulsing banner
+
+    # NEW UPDATE: Pulsing Superbug Alert
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
 
     model = train_rf_model()
-    ai_pred_text, ai_conf_text = "N/A", "N/A"
+    ai_pred_text = "N/A"
+    ai_conf_text = "N/A"
     if model:
         pred = model.predict([[genes, u_drugs, u_mechs]])[0]
         probs = model.predict_proba([[genes, u_drugs, u_mechs]])[0]
@@ -579,7 +594,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
-    
     # Professional Metric Cards
     m1, m2, m3, m4 = st.columns(4)
     with m1:
@@ -590,36 +604,34 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
-    
     st.write(" ")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-        " ℹ️  Pathogen Summary",
-        " 📊  6-Panel Dashboard",
-        " 🧮  Math & Data Ledger",
-        " 🕸️  Network",
-        " 🤖  Bio-AI Chat",
-        " 🩺  Clinical Insight",
-        " 📄  Export Master PDF",
-        " 🌌  3D Landscape"
+    " ℹ️  Pathogen Summary",
+    " 📊  6-Panel Dashboard",
+    " 🧮  Math & Data Ledger",
+    " 🕸️  Network",
+    " 🤖  Bio-AI Chat",
+    " 🩺  Clinical Insight",
+    " 📄  Export Master PDF",
+    " 🌌  3D Landscape"
     ])
-
     with tab1:
-        # PROFESSIONAL UPDATE: Welcome Hero and System Description 
+        # PROFESSIONAL UPDATE: Welcome Hero and System Description
         st.markdown("""
         <div class="welcome-hero">
-            <h2 style='color: #60a5fa;'>Welcome to the World of Bio-Intelligence</h2>
-            <p style='font-size: 1.1rem; color: #94a3b8;'>Advanced Genomic Analysis Platform for Antimicrobial Resistance (AMR)</p>
+            <h2 style='text-shadow: 0 2px 4px rgba(0,0,0,0.5);'>Welcome to the World of Bio-Intelligence</h2>
+            <p style='color: #e2e8f0;'>Advanced Genomic Analysis Platform for Antimicrobial Resistance (AMR)</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("###  🦠  System Overview & Intelligence Capabilities")
+        st.markdown("###  🧬  System Overview & Intelligence Capabilities")
         st.info("""
         **The AI-MRI Hub provides a state-of-the-art multidimensional analysis suite:**
-        * **Genomic ARG Profiling:** Absolute identification of Antibiotic Resistance Genes from sequence data.
+        * **Genomic ARG Profiling:** Absolute identification and Title-Case formatting of Antibiotic Resistance Genes from sequence data.
         * **Multidimensional Resistance Index (MRI):** A unified clinical risk score consolidating drug evasion and mechanism diversity.
-        * **Random Forest Risk Prediction:** Machine learning-driven threat classification based on population benchmarks.
-        * **Safe-Zone Susceptibility Analysis:** Predictive clinical exclusion logic identifying effective antibiotic classes.
-        * **Interactive Landscape Mapping:** 3D and 2D spatial visualizations of mechanism diversity and evolutionary drift.
+        * **Random Forest Risk Prediction:** Machine learning-driven threat classification based on global population benchmarks.
+        * **Safe-Zone Susceptibility Analysis:** Clinical exclusion logic identifying drug classes with zero resistance markers.
+        * **Interactive Landscape Mapping:** 3D and 2D spatial visualizations of mechanism diversity and genetic density.
         """)
 
         st.markdown("###  🦠  Detailed Pathogen Profile")
@@ -653,7 +665,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 The **ARI** calculates the *density* and efficiency of the threat relative to the gene count.
 The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
 """)
-
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
         fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
@@ -695,44 +706,21 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("###  🎯  Risk Assessment Reasoning")
         st.markdown(f"""
-<div class="reasoning-box">
-{get_risk_reason(level, u_drugs, u_mechs)}
-</div>
-""", unsafe_allow_html=True)
+        <div class="reasoning-box">
+        {get_risk_reason(level, u_drugs, u_mechs)}
+        </div>
+        """, unsafe_allow_html=True)
 
         st.write("")
         st.markdown("###  📜  Comprehensive Gene Ledger")
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
-
     with tab4:
         st.markdown("### Interactive Mechanism Network")
         st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
-
-    with tab6:
-        st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
-        DRUGS = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
-        resisted = set([d.lower() for d in drug])
-        safe_zones = [d for d in DRUGS if d.lower() not in resisted]
-        st.write("Based on genomic exclusion, the following drug classes show **Zero Resistance Markers** in this sample:")
-        st.markdown(f'<div class="susceptibility-card">🛡️ Recommended Target Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
-        
-        st.write("---")
-        st.markdown("### 📈 Population Benchmark")
-        all_mris = []
-        for f in json_files:
-            try:
-                _, _, _, f_mri, _, _ = extract_data(f)
-                all_mris.append(f_mri)
-            except: continue
-        if all_mris:
-            avg_mri = sum(all_mris) / len(all_mris)
-            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Global Average"])
-            st.bar_chart(comparison_df)
-
     with tab5:
         colA, colB, colC = st.columns([0.6, 0.2, 0.2])
         with colA:
@@ -767,15 +755,15 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             else:
                 try:
                     context = f"""
-You are J.A.R.V.I.S., an expert Bioinformatics AI.
-The user is analyzing the genome file: '{selected_file}'.
-Data Profile:
-- Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs}
-- MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
+                    You are J.A.R.V.I.S., an expert Bioinformatics AI.
+                    The user is analyzing the genome file: '{selected_file}'.
+                    Data Profile:
+                    - Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs}
+                    - MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
 
-Answer the user's question intelligently based on this data.
-User Question: {user_msg}
-"""
+                    Answer the user's question intelligently based on this data.
+                    User Question: {user_msg}
+                    """
                     with st.spinner("Processing genome logic..."):
                         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
@@ -783,7 +771,6 @@ User Question: {user_msg}
                         else:
                             target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
                             model_ai = genai.GenerativeModel(target_model)
-                            # response = model_ai.generate_content(context) # Fixed spacing
                             response = model_ai.generate_content(context)
                             st.chat_message("assistant").markdown(response.text)
                             st.session_state.chat_sessions[st.session_state.current_session].append({"role": "assistant", "content": response.text})
@@ -793,6 +780,27 @@ User Question: {user_msg}
                         st.error(" ⚠️  **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
                     else:
                         st.error(f"AI Connection Error: {e}")
+    
+    with tab6: # NEW UPDATE: Clinical Insight Feature
+        st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
+        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", 
+                         "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
+        resisted_norm = set([d.lower() for d in drug])
+        safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
+        st.write("Based on genomic exclusion, the following drug classes show **Zero Resistance Markers** in this sample:")
+        st.markdown(f'<div class="susceptibility-card">🛡️ Recommended Target Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
+        st.write("---")
+        st.markdown("### 📈 Population Benchmark")
+        all_mris = []
+        for f in json_files:
+            try:
+                _, _, _, f_mri, _, _ = extract_data(f)
+                all_mris.append(f_mri)
+            except: continue
+        if all_mris:
+            avg_mri = sum(all_mris) / len(all_mris)
+            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Global Average"])
+            st.bar_chart(comparison_df)
 
     with tab7:
         st.markdown("###  📥  Generate Complete Master Report")
