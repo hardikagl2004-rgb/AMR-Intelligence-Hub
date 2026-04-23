@@ -48,6 +48,16 @@ margin-bottom: 2rem;
 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
+/* Welcome Hero Section */
+.welcome-hero {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #334155;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 /* High-Risk Alert Banner */
 .alert-banner {
 background: rgba(239, 68, 68, 0.2);
@@ -252,17 +262,18 @@ def extract_data(file_name):
     for k in data:
         try:
             inner = list(data[k].values())[0]
-            gene_name = inner.get("ARO_name", k)
+            # PROFESSIONAL UPDATE: Formatting Capitalization for Gene Data 
+            gene_name = inner.get("ARO_name", k).upper()
             d, m = [], []
             for c in inner.get("ARO_category", {}).values():
                 cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","")
+                val = c.get("category_aro_name","").title() # Professional Title Case
                 if "drug" in cname: d.append(val)
                 elif "mechanism" in cname: m.append(val)
 
             drug.extend(d)
             mech.extend(m)
-            records.append((gene_name, ", ".join(set(d)), ", ".join(set(m)), habitat))
+            records.append((gene_name, ", ".join(set(d)), ", ".join(set(m)), habitat.title()))
         except:
             continue
     genes = len(data)
@@ -395,17 +406,18 @@ def plot_3d_pca_plotly(current_file):
     "TARGET  🎯 ": "gold"
     }
     fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
-    color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
-    opacity=0.8, size_max=10)
+                      color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
+                      opacity=0.8, size_max=10)
 
     fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET  🎯 "))
     fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0e1117', font_color='white', scene=dict(
-    xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-    yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
-    zaxis=dict(backgroundcolor="#0e1117", gridcolor="gray")
+        xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
+        yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
+        zaxis=dict(backgroundcolor="#0e1117", gridcolor="gray")
     ))
 
     st.plotly_chart(fig, use_container_width=True)
+
 # ==========================================
 # 4. MASTER PLATYPUS PDF GENERATOR
 # ==========================================
@@ -427,48 +439,48 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
 
     elements.append(Paragraph("Executive Summary & AI Analysis", h2_style))
     summary_text = f"""
-    <b>Pathogen File:</b> {bac_name}<br/>
-    <b>Gram Stain:</b> {bac_info['gram']}<br/>
-    <b>Common Disease:</b> {bac_info['disease']}<br/>
-    <b>Habitat:</b> {habitat}<br/>
-    <b>Total Genes:</b> {genes}<br/>
-    <b>Resistance (Drugs):</b> {u_drugs}<br/>
-    <b>Mechanisms:</b> {u_mechs}<br/>
-    <b>MRI Score:</b> {round(mri, 3)} ({level})<br/>
-    <b>ARI Score:</b> {round(ari, 3)}<br/><br/>
-    <b>Machine Learning AI Prediction:</b> {ai_pred_text}<br/>
-    <b>Confidence Matrix:</b> {ai_conf_text}
-    """
+<b>Pathogen File:</b> {bac_name}<br/>
+<b>Gram Stain:</b> {bac_info['gram']}<br/>
+<b>Common Disease:</b> {bac_info['disease']}<br/>
+<b>Habitat:</b> {habitat}<br/>
+<b>Total Genes:</b> {genes}<br/>
+<b>Resistance (Drugs):</b> {u_drugs}<br/>
+<b>Mechanisms:</b> {u_mechs}<br/>
+<b>MRI Score:</b> {round(mri, 3)} ({level})<br/>
+<b>ARI Score:</b> {round(ari, 3)}<br/><br/>
+<b>Machine Learning AI Prediction:</b> {ai_pred_text}<br/>
+<b>Confidence Matrix:</b> {ai_conf_text}
+"""
     elements.append(Paragraph(summary_text, normal_style))
     elements.append(Spacer(1, 15))
 
     elements.append(Paragraph("Metric Explanations & Significance", h2_style))
     explanation_text = """
-    <b>Pathogen Profile (Gram, Disease, Habitat):</b> Provides the essential biological and ecological context of the strain.<br/><br/>
-    <b>Total Genes:</b> The absolute count of Antibiotic Resistance Genes (ARGs) identified in the sequence data.<br/><br/>
-    <b>Resistance & Mechanisms:</b> Quantifies the distinct pharmaceutical drug classes the pathogen can evade and the specific biological strategies it deploys to do so.<br/><br/>
-    <b>AI Prediction & Confidence:</b> A Random Forest model's probabilistic assessment of the pathogen's overall threat level based on its learned resistance profile.
-    """
+<b>Pathogen Profile (Gram, Disease, Habitat):</b> Provides the essential biological and ecological context of the strain.<br/><br/>
+<b>Total Genes:</b> The absolute count of Antibiotic Resistance Genes (ARGs) identified in the sequence data.<br/><br/>
+<b>Resistance & Mechanisms:</b> Quantifies the distinct pharmaceutical drug classes the pathogen can evade and the specific biological strategies it deploys to do so.<br/><br/>
+<b>AI Prediction & Confidence:</b> A Random Forest model's probabilistic assessment of the pathogen's overall threat level based on its learned resistance profile.
+"""
     elements.append(Paragraph(explanation_text, normal_style))
 
     elements.append(Paragraph("The Clinical Necessity of MRI and ARI", h2_style))
     mri_ari_text = """
-    Traditional genomic analysis often simply lists detected genes, which fails to quantify the actual danger a pathogen poses.
-    Our framework utilizes two calculated metrics to solve this:<br/><br/>
-    <b>Why ARI is Required:</b> The Antibiotic Resistance Index (ARI) calculates the <i>density</i> of the threat by normalizing the unique mechanisms against the total gene count.
-    It reveals how efficiently the bacteria utilizes its genetic payload to resist treatments.<br/><br/>
-    <b>Why MRI Helps:</b> The Multidimensional Resistance Index (MRI) mathematically consolidates the diversity of resisted drugs and deployed mechanisms into a single, standardized risk score.
-    This allows clinicians and researchers to instantly gauge and compare the severity of different strains, prioritizing high-risk pathogens for immediate intervention without needing to manually decipher complex gene ledgers.
-    """
+Traditional genomic analysis often simply lists detected genes, which fails to quantify the actual danger a pathogen poses.
+Our framework utilizes two calculated metrics to solve this:<br/><br/>
+<b>Why ARI is Required:</b> The Antibiotic Resistance Index (ARI) calculates the <i>density</i> of the threat by normalizing the unique mechanisms against the total gene count.
+It reveals how efficiently the bacteria utilizes its genetic payload to resist treatments.<br/><br/>
+<b>Why MRI Helps:</b> The Multidimensional Resistance Index (MRI) mathematically consolidates the diversity of resisted drugs and deployed mechanisms into a single, standardized risk score.
+This allows clinicians and researchers to instantly gauge and compare the severity of different strains, prioritizing high-risk pathogens for immediate intervention without needing to manually decipher complex gene ledgers.
+"""
     elements.append(Paragraph(mri_ari_text, normal_style))
 
     elements.append(PageBreak())
 
     elements.append(Paragraph("Exact Mathematical Calculations", h2_style))
     calc_text = f"""
-    <b>MRI Calculation:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri, 3)}</b><br/>
-    <b>ARI Calculation:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari, 3)}</b>
-    """
+<b>MRI Calculation:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri, 3)}</b><br/>
+<b>ARI Calculation:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari, 3)}</b>
+"""
     elements.append(Paragraph(calc_text, normal_style))
 
     elements.append(Paragraph("Risk Assessment Reasoning", h2_style))
@@ -499,19 +511,20 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
 
     t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
     t.setStyle(TableStyle([
-    ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-    ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('BOTTOMPADDING', (0,0), (-1,0), 12),
-    ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-    ('GRID', (0,0), (-1,-1), 1, colors.black),
-    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0,0), (-1,0), 12),
+        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
+        ('GRID', (0,0), (-1,-1), 1, colors.black),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
 
     elements.append(t)
     doc.build(elements)
     return pdf_file
+
 # ==========================================
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
@@ -526,10 +539,12 @@ st.markdown("""
 </p>
 </div>
 """, unsafe_allow_html=True)
+
 if 'chat_sessions' not in st.session_state:
     st.session_state.chat_sessions = {"Chat 1": []}
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
+
 with st.sidebar:
     st.header(" 🗄️  Database Sync")
     if st.button(" 🔄  Refresh Database"):
@@ -543,20 +558,20 @@ with st.sidebar:
 
     st.markdown("---")
     st.success(" ✅  AI Brain Connected")
+
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
     level, icon = get_level(mri)
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
-
-    # NEW UPDATE: Pulsing Superbug Alert
+    
+    # ALERT UPDATE: High-risk pulsing banner
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
 
     model = train_rf_model()
-    ai_pred_text = "N/A"
-    ai_conf_text = "N/A"
+    ai_pred_text, ai_conf_text = "N/A", "N/A"
     if model:
         pred = model.predict([[genes, u_drugs, u_mechs]])[0]
         probs = model.predict_proba([[genes, u_drugs, u_mechs]])[0]
@@ -564,6 +579,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
+    
     # Professional Metric Cards
     m1, m2, m3, m4 = st.columns(4)
     with m1:
@@ -574,50 +590,70 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
+    
     st.write(" ")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-    " ℹ️  Pathogen Summary",
-    " 📊  6-Panel Dashboard",
-    " 🧮  Math & Data Ledger",
-    " 🕸️  Network",
-    " 🤖  Bio-AI Chat",
-    " 🩺  Clinical Insight",
-    " 📄  Export Master PDF",
-    " 🌌  3D Landscape"
+        " ℹ️  Pathogen Summary",
+        " 📊  6-Panel Dashboard",
+        " 🧮  Math & Data Ledger",
+        " 🕸️  Network",
+        " 🤖  Bio-AI Chat",
+        " 🩺  Clinical Insight",
+        " 📄  Export Master PDF",
+        " 🌌  3D Landscape"
     ])
+
     with tab1:
-        # Professional Executive Summary Card Update
-        st.markdown("###  🦠  Detailed Pathogen Profile")
-        st.markdown(f"""
-        <div class="report-card">
-        <div class="report-header">Bacterial Identification Ledger</div>
-        <div class="report-row"><span class="report-label">Target Genome</span><span class="report-value" style="color:#60a5fa;">{selected_file}</span></div>
-        <div class="report-row"><span class="report-label">Gram Classification</span><span class="report-value">{bac_info['gram']}</span></div>
-        <div class="report-row"><span class="report-label">Associated Pathology</span><span class="report-value">{bac_info['disease']}</span></div>
-        <div class="report-row"><span class="report-label">Ecological Habitat</span><span class="report-value">{habitat}</span></div>
-        <div class="report-row"><span class="report-label">Genomic ARG Count</span><span class="report-value">{genes} Genes</span></div>
-        <div class="report-row"><span class="report-label">Resistance Breadth</span><span class="report-value">{u_drugs} Drug Classes</span></div>
-        <div class="report-row"><span class="report-label">Deployed Mechanisms</span><span class="report-value">{u_mechs} Strategies</span></div>
-        <div class="report-row"><span class="report-label">Calculated MRI / ARI</span><span class="report-value">{round(mri, 3)} ({level}) / {round(ari, 3)}</span></div>
-        <div style="margin-top:20px; padding-top:10px;">
-        <span class="report-label">AI Predictive Verdict:</span>
-        <span class="ai-badge">{ai_pred_text} Risk</span>
-        <br><br>
-        <small style="color:#64748b;">Confidence Matrix: {ai_conf_text}</small>
-        </div>
+        # PROFESSIONAL UPDATE: Welcome Hero and System Description 
+        st.markdown("""
+        <div class="welcome-hero">
+            <h2 style='color: #60a5fa;'>Welcome to the World of Bio-Intelligence</h2>
+            <p style='font-size: 1.1rem; color: #94a3b8;'>Advanced Genomic Analysis Platform for Antimicrobial Resistance (AMR)</p>
         </div>
         """, unsafe_allow_html=True)
+        
+        st.markdown("###  🦠  System Overview & Intelligence Capabilities")
+        st.info("""
+        **The AI-MRI Hub provides a state-of-the-art multidimensional analysis suite:**
+        * **Genomic ARG Profiling:** Absolute identification of Antibiotic Resistance Genes from sequence data.
+        * **Multidimensional Resistance Index (MRI):** A unified clinical risk score consolidating drug evasion and mechanism diversity.
+        * **Random Forest Risk Prediction:** Machine learning-driven threat classification based on population benchmarks.
+        * **Safe-Zone Susceptibility Analysis:** Predictive clinical exclusion logic identifying effective antibiotic classes.
+        * **Interactive Landscape Mapping:** 3D and 2D spatial visualizations of mechanism diversity and evolutionary drift.
+        """)
+
+        st.markdown("###  🦠  Detailed Pathogen Profile")
+        st.markdown(f"""
+<div class="report-card">
+<div class="report-header">Bacterial Identification Ledger</div>
+<div class="report-row"><span class="report-label">Target Genome</span><span class="report-value" style="color:#60a5fa;">{selected_file}</span></div>
+<div class="report-row"><span class="report-label">Gram Classification</span><span class="report-value">{bac_info['gram']}</span></div>
+<div class="report-row"><span class="report-label">Associated Pathology</span><span class="report-value">{bac_info['disease']}</span></div>
+<div class="report-row"><span class="report-label">Ecological Habitat</span><span class="report-value">{habitat}</span></div>
+<div class="report-row"><span class="report-label">Genomic ARG Count</span><span class="report-value">{genes} Genes</span></div>
+<div class="report-row"><span class="report-label">Resistance Breadth</span><span class="report-value">{u_drugs} Drug Classes</span></div>
+<div class="report-row"><span class="report-label">Deployed Mechanisms</span><span class="report-value">{u_mechs} Strategies</span></div>
+<div class="report-row"><span class="report-label">Calculated MRI / ARI</span><span class="report-value">{round(mri, 3)} ({level}) / {round(ari, 3)}</span></div>
+<div style="margin-top:20px; padding-top:10px;">
+<span class="report-label">AI Predictive Verdict:</span>
+<span class="ai-badge">{ai_pred_text} Risk</span>
+<br><br>
+<small style="color:#64748b;">Confidence Matrix: {ai_conf_text}</small>
+</div>
+</div>
+""", unsafe_allow_html=True)
         st.markdown("###  🎯  Metric Explanations & Significance")
         st.info("""
-        **Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.
-        **Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.
-        **Resistance & Mechanisms:** The distinct drug classes evaded and the biological strategies deployed.
-        **AI Prediction:** A machine learning probability assessment of the overall threat level.
+**Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.
+**Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.
+**Resistance & Mechanisms:** The distinct drug classes evaded and the biological strategies deployed.
+**AI Prediction:** A machine learning probability assessment of the overall threat level.
 
-        **The Clinical Necessity of MRI and ARI:** Traditional analysis simply lists detected genes.
-        The **ARI** calculates the *density* and efficiency of the threat relative to the gene count.
-        The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
-        """)
+**The Clinical Necessity of MRI and ARI:** Traditional analysis simply lists detected genes.
+The **ARI** calculates the *density* and efficiency of the threat relative to the gene count.
+The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
+""")
+
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
         fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
@@ -659,21 +695,44 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("###  🎯  Risk Assessment Reasoning")
         st.markdown(f"""
-        <div class="reasoning-box">
-        {get_risk_reason(level, u_drugs, u_mechs)}
-        </div>
-        """, unsafe_allow_html=True)
+<div class="reasoning-box">
+{get_risk_reason(level, u_drugs, u_mechs)}
+</div>
+""", unsafe_allow_html=True)
 
         st.write("")
         st.markdown("###  📜  Comprehensive Gene Ledger")
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
+
     with tab4:
         st.markdown("### Interactive Mechanism Network")
         st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
+
+    with tab6:
+        st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
+        DRUGS = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
+        resisted = set([d.lower() for d in drug])
+        safe_zones = [d for d in DRUGS if d.lower() not in resisted]
+        st.write("Based on genomic exclusion, the following drug classes show **Zero Resistance Markers** in this sample:")
+        st.markdown(f'<div class="susceptibility-card">🛡️ Recommended Target Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
+        
+        st.write("---")
+        st.markdown("### 📈 Population Benchmark")
+        all_mris = []
+        for f in json_files:
+            try:
+                _, _, _, f_mri, _, _ = extract_data(f)
+                all_mris.append(f_mri)
+            except: continue
+        if all_mris:
+            avg_mri = sum(all_mris) / len(all_mris)
+            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Global Average"])
+            st.bar_chart(comparison_df)
+
     with tab5:
         colA, colB, colC = st.columns([0.6, 0.2, 0.2])
         with colA:
@@ -708,15 +767,15 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             else:
                 try:
                     context = f"""
-                    You are J.A.R.V.I.S., an expert Bioinformatics AI.
-                    The user is analyzing the genome file: '{selected_file}'.
-                    Data Profile:
-                    - Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs}
-                    - MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
+You are J.A.R.V.I.S., an expert Bioinformatics AI.
+The user is analyzing the genome file: '{selected_file}'.
+Data Profile:
+- Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs}
+- MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
 
-                    Answer the user's question intelligently based on this data.
-                    User Question: {user_msg}
-                    """
+Answer the user's question intelligently based on this data.
+User Question: {user_msg}
+"""
                     with st.spinner("Processing genome logic..."):
                         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
@@ -724,6 +783,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
                         else:
                             target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
                             model_ai = genai.GenerativeModel(target_model)
+                            # response = model_ai.generate_content(context) # Fixed spacing
                             response = model_ai.generate_content(context)
                             st.chat_message("assistant").markdown(response.text)
                             st.session_state.chat_sessions[st.session_state.current_session].append({"role": "assistant", "content": response.text})
@@ -733,30 +793,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
                         st.error(" ⚠️  **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
                     else:
                         st.error(f"AI Connection Error: {e}")
-    
-    with tab6: # NEW UPDATE: Clinical Insight Feature
-        st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
-        # Universal antibiotic classes for exclusion logic
-        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", 
-                         "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
-        # Identify classes with zero detected resistance markers
-        resisted_norm = set([d.lower() for d in drug])
-        safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
-        st.write("Based on genomic exclusion, the following drug classes show **Zero Resistance Markers** in this sample:")
-        st.markdown(f'<div class="susceptibility-card">🛡️ Recommended Target Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
-        st.write("---")
-        st.markdown("### 📈 Population Benchmark")
-        # Comparative benchmark against all genomes in database
-        all_mris = []
-        for f in json_files:
-            try:
-                _, _, _, f_mri, _, _ = extract_data(f)
-                all_mris.append(f_mri)
-            except: continue
-        if all_mris:
-            avg_mri = sum(all_mris) / len(all_mris)
-            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Global Average"])
-            st.bar_chart(comparison_df)
 
     with tab7:
         st.markdown("###  📥  Generate Complete Master Report")
