@@ -120,13 +120,38 @@ st.markdown("""
         letter-spacing: 0.1em;
         margin-bottom: 15px;
     }
+    
+    /* Formula Annotation Legend */
+    .annotation-box {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px dashed #334155;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: #94a3b8;
+    }
+    .annotation-item { margin-bottom: 4px; }
+    .annotation-key { color: #60a5fa; font-weight: bold; font-family: monospace; }
+
+    /* Risk Assessment Text Visibility Update */
     .reasoning-box {
-        background: rgba(59, 130, 246, 0.05);
-        border-left: 4px solid #3b82f6;
-        padding: 15px;
-        color: #e2e8f0;
-        line-height: 1.6;
-        font-style: italic;
+        background: rgba(30, 41, 59, 0.8);
+        border-radius: 12px;
+        border-left: 5px solid #3b82f6;
+        padding: 20px;
+        color: #ffffff; /* Highly visible pure white */
+        line-height: 1.7;
+        font-size: 1.05rem;
+        font-weight: 400;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    /* Professional Table Styling */
+    [data-testid="stDataFrame"] {
+        border: 1px solid #334155;
+        border-radius: 10px;
+        overflow: hidden;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -595,6 +620,14 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
             st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
+            # Legend for MRI annotation
+            st.markdown('<div class="annotation-box">'
+                        '<div class="annotation-item"><span class="annotation-key">U_drugs</span>: Unique Drug Classes Resisted</div>'
+                        '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
+                        '<div class="annotation-item"><span class="annotation-key">T_drugs</span>: Total Drug Records Found in sequence</div>'
+                        '<div class="annotation-item"><span class="annotation-key">T_mechs</span>: Total Mechanism Records Found in sequence</div>'
+                        '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
+                        '</div>', unsafe_allow_html=True)
             st.markdown(f"**Current Calculation:**")
             st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
@@ -603,6 +636,12 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
             st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
+            # Legend for ARI annotation
+            st.markdown('<div class="annotation-box">'
+                        '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
+                        '<div class="annotation-item"><span class="annotation-key">G_total</span>: Total Genomic Gene count</div>'
+                        '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
+                        '</div>', unsafe_allow_html=True)
             st.markdown(f"**Current Calculation:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
