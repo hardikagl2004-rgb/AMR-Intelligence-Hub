@@ -837,13 +837,13 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("## 👥 The Intelligence Behind AI-MRI Hub")
         st.write("---")
         team = [
-            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "team_photos/poorva.jpg"},
-            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "team_photos/hardik.jpg"},
+            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "team_photos/Poorva.jpg"},
+            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "team_photos/Hardik.jpg"},
             {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "team_photos/zeel.jpg"},
-            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "team_photos/avani.jpg"},
-            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "team_photos/aayushi.jpg"},
-            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "team_photos/indranil.jpg"},
-            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "team_photos/yashraj.jpg"}
+            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "team_photos/Avani.jpg"},
+            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "team_photos/Aayushi.jpg"},
+            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "team_photos/Indranil.jpg"},
+            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "team_photos/Yashraj.jpg"}
         ]
         for i in range(0, len(team), 3):
             cols = st.columns(3)
