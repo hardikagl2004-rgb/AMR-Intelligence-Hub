@@ -837,26 +837,38 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("## 👥 The Intelligence Behind AI-MRI Hub")
         st.write("---")
         team = [
-            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "team_photos/Poorva.jpg"},
-            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "team_photos/Hardik.jpg"},
-            {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "team_photos/zeel.jpg"},
-            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "team_photos/Avani.jpg"},
-            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "team_photos/Aayushi.jpg"},
-            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "team_photos/Indranil.jpg"},
-            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "team_photos/Yashraj.jpg"}
+            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "Poorva.jpg"},
+            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "Hardik.jpg"},
+            {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "zeel.jpg"},
+            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "Avani.jpg"},
+            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "Aayushi.jpg"},
+            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "Indranil.jpg"},
+            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "Yashraj.jpg"}
         ]
-        for i in range(0, len(team), 3):
-            cols = st.columns(3)
-            for j in range(3):
+# Use a container to apply professional circular styling ONLY to team photos
+        st.markdown('<div class="team-container">', unsafe_allow_html=True)
+        
+        # Display in 4 columns for a cleaner, professional look
+        for i in range(0, len(team), 4):
+            cols = st.columns(4)
+            for j in range(4):
                 if i + j < len(team):
                     member = team[i + j]
                     with cols[j]:
                         try:
-                            st.image(member["img"], use_container_width=True)
+                            # Check if file exists to prevent placeholders if possible
+                            if os.path.exists(member["img"]):
+                                st.image(member["img"], use_container_width=True)
+                            else:
+                                st.image("https://via.placeholder.com/300x300.png?text=Photo+Missing", use_container_width=True)
                         except:
-                            st.image("https://via.placeholder.com/300x300.png?text=Photo", use_container_width=True)
+                            st.image("https://via.placeholder.com/300x300.png?text=Error", use_container_width=True)
+                        
+                        # Professional readable text
                         st.markdown(f"**{member['name']}**")
                         st.caption(member["desc"])
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
