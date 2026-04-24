@@ -25,7 +25,7 @@ try:
     AI_AVAILABLE = True
     
     # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
+    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyDyA1BTMwE4T3iNcL98LNZCFUjPZQgobo8"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
