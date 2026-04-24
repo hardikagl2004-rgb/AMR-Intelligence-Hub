@@ -25,7 +25,7 @@ try:
     AI_AVAILABLE = True
     
     # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyDyA1BTMwE4T3iNcL98LNZCFUjPZQgobo8"
+    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
@@ -214,12 +214,6 @@ border: 1px solid #334155;
 border-radius: 10px;
 overflow: hidden;
 }
-
-/* Team Section Circular Photo Styling */
-[data-testid="stImage"] img {
-    border-radius: 50%;
-    border: 3px solid #3b82f6;
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -348,55 +342,106 @@ def train_rf_model():
 def plot_full_dashboard(drug, mech, mri, genes, records, name):
     level, icon = get_level(mri)
     fig, ax = plt.subplots(2, 3, figsize=(18, 12))
-    
-    # CORRECTION: Set to 'none' to stop the blue background mismatch
-    fig.patch.set_facecolor('none') 
+    fig.patch.set_facecolor('#0e1117')
 
     color = "red" if level == "HIGH" else "orange" if level == "MODERATE" else "green"
 
     for a in ax.flat:
-        # CORRECTION: Set to 'none' for transparency
-        a.set_facecolor('none') 
+        a.set_facecolor('#0e1117')
         a.tick_params(colors='white')
         a.title.set_color('white')
-        
     drug_c = Counter(drug).most_common(8)
     if drug_c:
-        # CORRECTION: Shortened label length to k[:12] to fit pie
-        ax[0, 0].pie([v for k,v in drug_c], labels=[k[:12]+".." for k,v in drug_c], autopct='%1.1f%%', textprops={'color':"w"})
+        ax[0, 0].pie([v for k,v in drug_c], labels=[k[:15]+".." for k,v in drug_c], autopct='%1.1f%%', textprops={'color':"w"})
     ax[0, 0].set_title("Drug Classes Resisted")
-    
     mech_c = Counter(mech)
     if mech_c:
-        ax[0, 1].bar([k[:12]+".." for k in mech_c.keys()], mech_c.values(), color=color)
-        # CORRECTION: Increased rotation to 45 to prevent text overlap
-        ax[0, 1].tick_params(axis='x', rotation=45) 
+        ax[0, 1].bar([k[:15]+".." for k in mech_c.keys()], mech_c.values(), color=color)
+        ax[0, 1].tick_params(axis='x', rotation=35)
     ax[0, 1].set_title("Mechanisms Deployed")
-    
     theta = np.linspace(0, np.pi, 100)
     ax[0, 2].plot(np.cos(theta), np.sin(theta), color='gray')
     ang = mri * np.pi
     ax[0, 2].plot([0, np.cos(ang)], [0, np.sin(ang)], color=color, linewidth=5)
     ax[0, 2].axis('off')
     ax[0, 2].set_title(f"MRI Indicator: {round(mri, 3)} ({level})")
-    
     gene_list = [r[0] for r in records]
     gene_c = Counter(gene_list).most_common(5)
     if gene_c:
-        ax[1, 0].bar([k[:12]+".." for k,v in gene_c], [v for k,v in gene_c], color='#87CEEB')
-        # CORRECTION: Increased rotation to 45
-        ax[1, 0].tick_params(axis='x', rotation=45) 
+        ax[1, 0].bar([k[:15]+".." for k,v in gene_c], [v for k,v in gene_c], color='#87CEEB')
+        ax[1, 0].tick_params(axis='x', rotation=35)
     ax[1, 0].set_title("Top Gene Frequency")
-    
     ax[1, 1].bar(["Total Genes"], [genes], color='#2E86C1')
     ax[1, 1].set_title("Overall Gene Count")
-    
     ax[1, 2].bar(["Unique Drugs", "Unique Mechs"], [len(set(drug)), len(set(mech))], color=["#9B59B6", "#E67E22"])
     ax[1, 2].set_title("Diversity Comparison")
-    
-    # CORRECTION: Added pad=3.0 to provide room and prevent the 'oval' cutoff
-    fig.tight_layout(pad=3.0) 
+    fig.tight_layout()
     return fig
+
+def generate_network_html(records, organism_name, color):
+    net = Network(height='600px', width='100%', bgcolor='#222222', font_color='white', cdn_resources="in_line", select_menu=True, filter_menu=True)
+    net.add_node("HUB", label=organism_name, color=color, size=30)
+
+    for g, d, m, h in records:
+        net.add_node(g, label=g[:10], color="#87CEEB", size=15)
+        net.add_edge("HUB", g, color="#ffffff")
+        if m:
+            for mech in set(m.split(", ")):
+                if not mech: continue
+                net.add_node(mech, label=mech[:10], color="#FFA500", size=10, shape="box")
+                net.add_edge(g, mech, color="#aaaaaa")
+
+    net.barnes_hut(gravity=-5000)
+    html_path = "temp_network.html"
+    html_content = net.generate_html()
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    return html_path
+
+def plot_3d_pca_plotly(current_file):
+    X, files, risk_levels = [], [], []
+    for f in os.listdir('.'):
+        if f.endswith('.json'):
+            try:
+                g, d, m, mr, ar, _ = extract_data(f)
+                X.append([mr, len(set(m)), len(set(d))])
+                files.append(f)
+                lv, _ = get_level(mr)
+
+                if f == current_file:
+                    risk_levels.append("TARGET 🎯")
+                else:
+                    risk_levels.append(lv)
+            except: continue
+
+    if len(X) < 3:
+        st.warning("Not enough data for 3D PCA.")
+        return
+
+    pca = PCA(n_components=3).fit_transform(X)
+    df_pca = pd.DataFrame(pca, columns=['Overall Resistance (PC1)', 'Mechanism Diversity (PC2)', 'Genetic Density (PC3)'])
+    df_pca['Genome'] = files
+    df_pca['Risk Category'] = risk_levels
+
+    color_discrete_map = {
+    "HIGH": "red",
+    "MODERATE": "orange",
+    "LOW": "green",
+    "TARGET 🎯": "gold"
+    }
+    fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
+                      color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
+                      opacity=0.8, size_max=10)
+
+    fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET 🎯"))
+    fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0e1117', font_color='white', scene=dict(
+        xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
+        yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
+        zaxis=dict(backgroundcolor="#0e1117", gridcolor="gray")
+    ))
+
+    st.plotly_chart(fig, use_container_width=True)
+
 # ==========================================
 # 4. MASTER PLATYPUS PDF GENERATOR
 # ==========================================
@@ -566,7 +611,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
     st.write(" ")
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     " ℹ️ Pathogen Summary",
     " 📊 6-Panel Dashboard",
     " 🧮 Math & Data Ledger",
@@ -574,8 +619,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     " 🤖 Bio-AI Chat",
     " 🩺 Clinical Insight",
     " 📄 Export Master PDF",
-    " 🌌 3D Landscape",
-    " 👥 Project Team"
+    " 🌌 3D Landscape"
     ])
     with tab1:
         # Welcome Hero and System Description
@@ -781,32 +825,6 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
         st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
         plot_3d_pca_plotly(selected_file)
-
-    with tab9:
-        st.markdown("## 👥 The Intelligence Behind AI-MRI Hub")
-        st.write("---")
-        team = [
-            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "Poorva.jpg"},
-            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "Hardik.jpg"},
-            {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "zeel.jpg"},
-            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "Avani.jpg"},
-            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "Aayushi.jpg"},
-            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "Indranil.jpg"},
-            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "Yashraj.jpg"}
-        ]
-        for i in range(0, len(team), 3):
-            cols = st.columns(3)
-            for j in range(3):
-                if i + j < len(team):
-                    member = team[i + j]
-                    with cols[j]:
-                        try:
-                            st.image(member["img"], use_container_width=True)
-                        except:
-                            st.image("https://via.placeholder.com/300x300.png?text=Photo", use_container_width=True)
-                        st.markdown(f"**{member['name']}**")
-                        st.caption(member["desc"])
-
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
