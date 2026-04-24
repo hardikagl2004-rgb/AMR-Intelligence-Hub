@@ -214,6 +214,12 @@ border: 1px solid #334155;
 border-radius: 10px;
 overflow: hidden;
 }
+
+/* Team Section Circular Photo Styling */
+[data-testid="stImage"] img {
+    border-radius: 50%;
+    border: 3px solid #3b82f6;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -611,7 +617,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
     st.write(" ")
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
     " ℹ️ Pathogen Summary",
     " 📊 6-Panel Dashboard",
     " 🧮 Math & Data Ledger",
@@ -619,7 +625,8 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     " 🤖 Bio-AI Chat",
     " 🩺 Clinical Insight",
     " 📄 Export Master PDF",
-    " 🌌 3D Landscape"
+    " 🌌 3D Landscape",
+    " 👥 Project Team"
     ])
     with tab1:
         # Welcome Hero and System Description
@@ -825,6 +832,32 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
         st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
         plot_3d_pca_plotly(selected_file)
+
+    with tab9:
+        st.markdown("## 👥 The Intelligence Behind AI-MRI Hub")
+        st.write("---")
+        team = [
+            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "team_photos/poorva.jpg"},
+            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "team_photos/hardik.jpg"},
+            {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "team_photos/zeel.jpg"},
+            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "team_photos/avani.jpg"},
+            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "team_photos/aayushi.jpg"},
+            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "team_photos/indranil.jpg"},
+            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "team_photos/yashraj.jpg"}
+        ]
+        for i in range(0, len(team), 3):
+            cols = st.columns(3)
+            for j in range(3):
+                if i + j < len(team):
+                    member = team[i + j]
+                    with cols[j]:
+                        try:
+                            st.image(member["img"], use_container_width=True)
+                        except:
+                            st.image("https://via.placeholder.com/300x300.png?text=Photo", use_container_width=True)
+                        st.markdown(f"**{member['name']}**")
+                        st.caption(member["desc"])
+
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
