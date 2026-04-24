@@ -25,7 +25,7 @@ try:
     AI_AVAILABLE = True
     
     # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyDyA1BTMwE4T3iNcL98LNZCFUjPZQgobo8"
+    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
@@ -213,12 +213,6 @@ box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 border: 1px solid #334155;
 border-radius: 10px;
 overflow: hidden;
-}
-
-/* Team Section Circular Photo Styling */
-[data-testid="stImage"] img {
-    border-radius: 50%;
-    border: 3px solid #3b82f6;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -447,7 +441,8 @@ def plot_3d_pca_plotly(current_file):
     ))
 
     st.plotly_chart(fig, use_container_width=True)
- 
+
+# ==========================================
 # 4. MASTER PLATYPUS PDF GENERATOR
 # ==========================================
 def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon, records, dashboard_fig, bac_info, habitat, ai_pred_text, ai_conf_text):
@@ -616,7 +611,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
     st.write(" ")
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     " ℹ️ Pathogen Summary",
     " 📊 6-Panel Dashboard",
     " 🧮 Math & Data Ledger",
@@ -624,8 +619,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     " 🤖 Bio-AI Chat",
     " 🩺 Clinical Insight",
     " 📄 Export Master PDF",
-    " 🌌 3D Landscape",
-    " 👥 Project Team"
+    " 🌌 3D Landscape"
     ])
     with tab1:
         # Welcome Hero and System Description
@@ -831,32 +825,6 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
         st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
         plot_3d_pca_plotly(selected_file)
-
-    with tab9:
-        st.markdown("## 👥 The Intelligence Behind AI-MRI Hub")
-        st.write("---")
-        team = [
-            {"name": "Poorva Dongarkar", "desc": "Project Lead & Lead Strategist", "img": "Poorva.jpg"},
-            {"name": "Hardik Agrawal", "desc": "Lead Systems Architect & Full-Stack Developer", "img": "Hardik.jpg"},
-            {"name": "Zeel Bhanushali", "desc": "Technical Communications Specialist", "img": "zeel.jpg"},
-            {"name": "Avani Laswante", "desc": "Data Visualization Specialist", "img": "Avani.jpg"},
-            {"name": "Aayushi Wasnik", "desc": "Bioinformatics Research Analyst", "img": "Aayushi.jpg"},
-            {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "Indranil.jpg"},
-            {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "Yashraj.jpg"}
-        ]
-        for i in range(0, len(team), 3):
-            cols = st.columns(3)
-            for j in range(3):
-                if i + j < len(team):
-                    member = team[i + j]
-                    with cols[j]:
-                        try:
-                            st.image(member["img"], use_container_width=True)
-                        except:
-                            st.image("https://via.placeholder.com/300x300.png?text=Photo", use_container_width=True)
-                        st.markdown(f"**{member['name']}**")
-                        st.caption(member["desc"])
-
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
