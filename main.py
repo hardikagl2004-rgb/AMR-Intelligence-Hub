@@ -845,30 +845,18 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             {"name": "Indranil Patil", "desc": "Scientific Documentation Lead", "img": "Indranil.jpg"},
             {"name": "Yashraj Patil", "desc": "Technical Report Lead", "img": "Yashraj.jpg"}
         ]
-# Use a container to apply professional circular styling ONLY to team photos
-        st.markdown('<div class="team-container">', unsafe_allow_html=True)
-        
-        # Display in 4 columns for a cleaner, professional look
-        for i in range(0, len(team), 4):
-            cols = st.columns(4)
-            for j in range(4):
+        for i in range(0, len(team), 3):
+            cols = st.columns(3)
+            for j in range(3):
                 if i + j < len(team):
                     member = team[i + j]
                     with cols[j]:
                         try:
-                            # Check if file exists to prevent placeholders if possible
-                            if os.path.exists(member["img"]):
-                                st.image(member["img"], use_container_width=True)
-                            else:
-                                st.image("https://via.placeholder.com/300x300.png?text=Photo+Missing", use_container_width=True)
+                            st.image(member["img"], use_container_width=True)
                         except:
-                            st.image("https://via.placeholder.com/300x300.png?text=Error", use_container_width=True)
-                        
-                        # Professional readable text
+                            st.image("https://via.placeholder.com/300x300.png?text=Photo", use_container_width=True)
                         st.markdown(f"**{member['name']}**")
                         st.caption(member["desc"])
-        
-        st.markdown('</div>', unsafe_allow_html=True)
 
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
