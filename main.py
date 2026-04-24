@@ -19,11 +19,18 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import inch
 
-# --- AI BRAIN INITIALIZATION ---
+# --- AI BRAIN INITIALIZATION (SECURE UPDATE) ---
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    genai.configure(api_key="AIzaSyDc784lEYwqlmLs5pjUU1DGxTF6C8zGlVg")
+    
+    # Securely fetches the key from your Streamlit Cloud Secrets dashboard
+    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
+    if "GENAI_API_KEY" in st.secrets:
+        genai.configure(api_key=st.secrets["GENAI_API_KEY"])
+    else:
+        AI_AVAILABLE = False
+        st.error("🔑 API Key Missing: Please add 'GENAI_API_KEY' to your Streamlit Cloud Secrets.")
 except ImportError:
     AI_AVAILABLE = False
 
@@ -280,7 +287,6 @@ def extract_data(file_name):
     for k in data:
         try:
             inner = list(data[k].values())[0]
-            # PROFESSIONAL DATA ENHANCEMENT: Uppercase and Title Case for clinical data
             gene_name = inner.get("ARO_name", k).upper()
             d, m = [], []
             for c in inner.get("ARO_category", {}).values():
@@ -403,7 +409,7 @@ def plot_3d_pca_plotly(current_file):
                 lv, _ = get_level(mr)
 
                 if f == current_file:
-                    risk_levels.append("TARGET  🎯 ")
+                    risk_levels.append("TARGET 🎯")
                 else:
                     risk_levels.append(lv)
             except: continue
@@ -421,13 +427,13 @@ def plot_3d_pca_plotly(current_file):
     "HIGH": "red",
     "MODERATE": "orange",
     "LOW": "green",
-    "TARGET  🎯 ": "gold"
+    "TARGET 🎯": "gold"
     }
     fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
                       color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
                       opacity=0.8, size_max=10)
 
-    fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET  🎯 "))
+    fig.update_traces(marker=dict(size=5, line=dict(width=2, color='DarkSlateGrey')), selector=dict(name="TARGET 🎯"))
     fig.update_layout(margin=dict(l=0, r=0, b=0, t=0), paper_bgcolor='#0e1117', font_color='white', scene=dict(
         xaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
         yaxis=dict(backgroundcolor="#0e1117", gridcolor="gray"),
@@ -561,8 +567,8 @@ if 'chat_sessions' not in st.session_state:
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
 with st.sidebar:
-    st.header(" 🗄️  Database Sync")
-    if st.button(" 🔄  Refresh Database"):
+    st.header(" 🗄️ Database Sync")
+    if st.button(" 🔄 Refresh Database"):
         st.rerun()
 
     json_files = [f for f in os.listdir('.') if f.endswith('.json')]
@@ -572,7 +578,7 @@ with st.sidebar:
         selected_file = st.selectbox("Select a Genome:", json_files)
 
     st.markdown("---")
-    st.success(" ✅  AI Brain Connected")
+    st.success(" ✅ AI Brain Connected")
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
@@ -580,7 +586,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
 
-    # NEW UPDATE: Pulsing Superbug Alert
+    # Pulsing Superbug Alert
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
 
@@ -606,17 +612,17 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
     st.write(" ")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-    " ℹ️  Pathogen Summary",
-    " 📊  6-Panel Dashboard",
-    " 🧮  Math & Data Ledger",
-    " 🕸️  Network",
-    " 🤖  Bio-AI Chat",
-    " 🩺  Clinical Insight",
-    " 📄  Export Master PDF",
-    " 🌌  3D Landscape"
+    " ℹ️ Pathogen Summary",
+    " 📊 6-Panel Dashboard",
+    " 🧮 Math & Data Ledger",
+    " 🕸️ Network",
+    " 🤖 Bio-AI Chat",
+    " 🩺 Clinical Insight",
+    " 📄 Export Master PDF",
+    " 🌌 3D Landscape"
     ])
     with tab1:
-        # PROFESSIONAL UPDATE: Welcome Hero and System Description
+        # Welcome Hero and System Description
         st.markdown("""
         <div class="welcome-hero">
             <h2 style='text-shadow: 0 2px 4px rgba(0,0,0,0.5);'>Welcome to the World of Bio-Intelligence</h2>
@@ -624,7 +630,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("###  🧬  System Overview & Intelligence Capabilities")
+        st.markdown("###  🧬 System Overview & Intelligence Capabilities")
         st.info("""
         **The AI-MRI Hub provides a state-of-the-art multidimensional analysis suite:**
         * **Genomic ARG Profiling:** Absolute identification and Title-Case formatting of Antibiotic Resistance Genes from sequence data.
@@ -634,7 +640,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         * **Interactive Landscape Mapping:** 3D and 2D spatial visualizations of mechanism diversity and genetic density.
         """)
 
-        st.markdown("###  🦠  Detailed Pathogen Profile")
+        st.markdown("###  🦠 Detailed Pathogen Profile")
         st.markdown(f"""
 <div class="report-card">
 <div class="report-header">Bacterial Identification Ledger</div>
@@ -654,7 +660,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 </div>
 </div>
 """, unsafe_allow_html=True)
-        st.markdown("###  🎯  Metric Explanations & Significance")
+        st.markdown("###  🎯 Metric Explanations & Significance")
         st.info("""
 **Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.
 **Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.
@@ -672,7 +678,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
 
     with tab3:
         # Professional Math & Data Ledger Update
-        st.markdown("###  🧮  Mathematical Validation")
+        st.markdown("###  🧮 Mathematical Validation")
 
         col_m1, col_m2 = st.columns(2)
 
@@ -704,7 +710,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.markdown(f"**Current Calculation:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown("###  🎯  Risk Assessment Reasoning")
+        st.markdown("###  🎯 Risk Assessment Reasoning")
         st.markdown(f"""
         <div class="reasoning-box">
         {get_risk_reason(level, u_drugs, u_mechs)}
@@ -712,7 +718,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         """, unsafe_allow_html=True)
 
         st.write("")
-        st.markdown("###  📜  Comprehensive Gene Ledger")
+        st.markdown("###  📜 Comprehensive Gene Ledger")
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
     with tab4:
@@ -728,7 +734,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         with colB:
             st.write("")
             st.write("")
-            if st.button(" ➕  New Chat", use_container_width=True):
+            if st.button(" ➕ New Chat", use_container_width=True):
                 st.session_state.chat_counter += 1
                 new_chat_name = f"Chat {st.session_state.chat_counter}"
                 st.session_state.chat_sessions[new_chat_name] = []
@@ -737,7 +743,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         with colC:
             st.write("")
             st.write("")
-            if st.button(" 🗑️  Clear This Chat", use_container_width=True):
+            if st.button(" 🗑️ Clear This Chat", use_container_width=True):
                 st.session_state.chat_sessions[st.session_state.current_session] = []
                 st.rerun()
 
@@ -751,7 +757,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.session_state.chat_sessions[st.session_state.current_session].append({"role": "user", "content": user_msg})
 
             if not AI_AVAILABLE:
-                st.error(" ⚠️  AI Library missing. Check your terminal installation.")
+                st.error(" ⚠️ AI Library missing. Check your terminal installation.")
             else:
                 try:
                     context = f"""
@@ -777,11 +783,11 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
                 except Exception as e:
                     error_msg = str(e)
                     if "429" in error_msg or "quota" in error_msg.lower():
-                        st.error(" ⚠️  **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
+                        st.error(" ⚠️ **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
                     else:
                         st.error(f"AI Connection Error: {e}")
     
-    with tab6: # NEW UPDATE: Clinical Insight Feature
+    with tab6: # Clinical Insight Feature
         st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
         DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", 
                          "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
@@ -803,7 +809,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.bar_chart(comparison_df)
 
     with tab7:
-        st.markdown("###  📥  Generate Complete Master Report")
+        st.markdown("###  📥 Generate Complete Master Report")
 
         if st.button("Generate Master PDF", type="primary"):
             with st.spinner("Compiling graphs, explanations, and data into PDF..."):
@@ -816,11 +822,11 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
                         mime="application/pdf"
                     )
     with tab8:
-        st.markdown("###  🌌  Interactive Global Landscape Comparison (Plotly 3D)")
+        st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
         st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
         plot_3d_pca_plotly(selected_file)
 elif analysis_mode == "AI Predict Unknown":
-    st.header(" 🤖  Machine Learning Risk Prediction")
+    st.header(" 🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
     in_drugs = st.number_input("Unique Drugs Resisted", min_value=1, value=5)
     in_mechs = st.number_input("Unique Mechanisms Found", min_value=1, value=2)
