@@ -23,7 +23,7 @@ from reportlab.lib.units import inch
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    genai.configure(api_key="AIzaSyDKjDzaYOYcKoeUSPNtiwpTZT9jfbnEhHM")
+    genai.configure(api_key="AIzaSyDc784lEYwqlmLs5pjUU1DGxTF6C8zGlVg")
 except ImportError:
     AI_AVAILABLE = False
 
