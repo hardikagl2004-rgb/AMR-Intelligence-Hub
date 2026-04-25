@@ -25,7 +25,7 @@ try:
     AI_AVAILABLE = True
     
     # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyCySR7maXrnHTahqJExJEqPZNTFaQWMFNg"
+    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
@@ -562,92 +562,55 @@ st.markdown("""
 </p>
 </div>
 """, unsafe_allow_html=True)
+if 'chat_sessions' not in st.session_state:
+    st.session_state.chat_sessions = {"Chat 1": []}
+    st.session_state.current_session = "Chat 1"
+    st.session_state.chat_counter = 1
+with st.sidebar:
+    st.header(" 🗄️ Database Sync")
+    if st.button(" 🔄 Refresh Database"):
+        st.rerun()
 
-# ==========================================
-# 🚀 NEW INTRO + TEAM SECTION (ADDED)
-# ==========================================
+    json_files = [f for f in os.listdir('.') if f.endswith('.json')]
+    analysis_mode = st.radio("Mode:", ["Select Known Bacteria", "AI Predict Unknown"])
 
-st.markdown("""
-<style>
-.fade-in {animation: fadeIn 2s ease-in;}
-@keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
+    if analysis_mode == "Select Known Bacteria":
+        selected_file = st.selectbox("Select a Genome:", json_files)
 
-.team-card {
-    text-align:center;
-    padding:15px;
-    background:#1e293b;
-    border-radius:12px;
-    transition:0.3s;
-}
-.team-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
+    st.markdown("---")
+    st.success(" ✅ AI Brain Connected")
+if analysis_mode == "Select Known Bacteria" and json_files:
+    genes, drug, mech, mri, ari, records = extract_data(selected_file)
+    u_drugs, u_mechs = len(set(drug)), len(set(mech))
+    level, icon = get_level(mri)
+    habitat = get_habitat(selected_file)
+    bac_info = get_bacteria_info(selected_file)
 
-.team-img {
-    border-radius:50%;
-    width:120px;
-    height:120px;
-    object-fit:cover;
-    margin-bottom:10px;
-    border: 2px solid #3b82f6;
-}
-</style>
-""", unsafe_allow_html=True)
+    # Pulsing Superbug Alert
+    if mri > 0.6:
+        st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
 
-# --- Animated Intro ---
-st.markdown("""
-<div class="fade-in">
-<h2 style='text-align:center; color:#60a5fa;'>🚀 Welcome to AI-MRI Platform</h2>
-<p style='text-align:center; font-size:1.1rem; color:#e2e8f0; max-width:800px; margin:auto;'>
-A next-generation bioinformatics intelligence system designed to detect, analyze, and predict
-antimicrobial resistance using AI-powered genomic insights.
-<br><br>
-Integrating machine learning, resistance indexing (MRI/ARI), and interactive visualization,
-this platform transforms raw genomic data into actionable clinical intelligence.
-</p>
-</div>
-""", unsafe_allow_html=True)
-
-st.write("")
-
-# --- Features ---
-st.markdown("### ⚙️ Platform Capabilities")
-st.info("""
-• 🧬 ARG Detection  
-• 📊 Multidimensional Resistance Index (MRI)  
-• 🤖 AI-based Risk Prediction  
-• 🌐 Network Visualization  
-• 📈 3D PCA Resistance Landscape  
-• 📄 Automated Clinical PDF Reports  
-""")
-
-# --- Team Section ---
-st.markdown("### 👨‍🔬 Meet the Team")
-
-team = [
-    ("Hardik Agrawal", "Hardik.jpg"),
-    ("Poorva Dongarkar", "Poorva.jpg"),
-    ("Yashraj Patil", "Yashraj.jpg"),
-    ("Avani Laswante", "Avani.jpg"),
-    ("Zeel Bhanushali", "zeel.jpg"),
-    ("Aayushi Wasnik", "Aayushi.jpg"),
-    ("Indranil Patil", "Indranil.jpg"),
-]
-
-cols = st.columns(len(team))
-
-for col, (name, img) in zip(cols, team):
-    with col:
-        st.markdown(f"""
-        <div class="team-card">
-            <img src="{img}" class="team-img">
-            <h4 style="color:white;">{name}</h4>
-        </div>
-        """, unsafe_allow_html=True)
-
-st.markdown("---")
-
+    model = train_rf_model()
+    ai_pred_text = "N/A"
+    ai_conf_text = "N/A"
+    if model:
+        pred = model.predict([[genes, u_drugs, u_mechs]])[0]
+        probs = model.predict_proba([[genes, u_drugs, u_mechs]])[0]
+        classes = model.classes_
+        conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
+        ai_pred_text = str(pred)
+        ai_conf_text = str(conf_dict).replace("'", "")
+    # Professional Metric Cards
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
+    with m2:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">MRI Score</div><div class="metric-value">{round(mri, 3)}</div></div>''', unsafe_allow_html=True)
+    with m3:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
+    with m4:
+        st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
+    st.write(" ")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     " ℹ️ Pathogen Summary",
     " 📊 6-Panel Dashboard",
