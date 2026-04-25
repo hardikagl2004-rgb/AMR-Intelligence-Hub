@@ -23,9 +23,6 @@ from reportlab.lib.units import inch
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    
-    # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
@@ -44,7 +41,6 @@ st.markdown("""
 .main {background-color: #0e1117;}
 h1, h2, h3 {color: #ffffff;}
 
-/* Professional Header Styling */
 .main-header {
 background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
 padding: 2.5rem;
@@ -55,7 +51,6 @@ margin-bottom: 2rem;
 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-/* Updated Welcome Hero Section: Tech-Blue Gradient for high impact */
 .welcome-hero {
     background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
     border-radius: 15px;
@@ -66,24 +61,21 @@ box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Welcome Title Styling */
 .welcome-hero h2 {
-    color: #60a5fa !important; /* Electric Blue */
+    color: #60a5fa !important;
     font-size: 2.8rem !important;
     font-weight: 800 !important;
     margin-bottom: 12px !important;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* Welcome Sub-text */
 .welcome-hero p {
-    color: #e2e8f0 !important; /* Bright Contrast Off-White */
+    color: #e2e8f0 !important;
     font-size: 1.25rem !important;
     letter-spacing: 0.8px;
     opacity: 1.0;
 }
 
-/* High-Risk Alert Banner */
 .alert-banner {
 background: rgba(239, 68, 68, 0.2);
 border: 1px solid #ef4444;
@@ -101,7 +93,6 @@ animation: pulse 2s infinite;
 100% { opacity: 1; }
 }
 
-/* Metric Card Styling */
 .metric-card {
 background-color: #1e293b;
 border: 1px solid #334155;
@@ -122,7 +113,7 @@ font-size: 1.8rem;
 font-weight: 700;
 margin-top: 0.5rem;
 }
-/* Professional Executive Summary Card */
+
 .report-card {
 background-color: #1e293b;
 border-left: 5px solid #3b82f6;
@@ -155,7 +146,7 @@ border-radius: 20px;
 font-size: 0.85rem;
 border: 1px solid rgba(59, 130, 246, 0.3);
 }
-/* Math Ledger Cards */
+
 .math-card {
 background-color: #1e293b;
 border: 1px solid #334155;
@@ -172,7 +163,6 @@ letter-spacing: 0.1em;
 margin-bottom: 15px;
 }
 
-/* Formula Annotation Legend */
 .annotation-box {
 background: rgba(15, 23, 42, 0.6);
 border: 1px dashed #334155;
@@ -185,7 +175,6 @@ color: #94a3b8;
 .annotation-item { margin-bottom: 4px; }
 .annotation-key { color: #60a5fa; font-weight: bold; font-family: monospace; }
 
-/* Clinical Insight Styling */
 .susceptibility-card {
 background: rgba(16, 185, 129, 0.1);
 border: 1px solid #10b981;
@@ -195,20 +184,18 @@ color: #10b981;
 font-weight: 600;
 }
 
-/* Risk Assessment Text Visibility Update */
 .reasoning-box {
 background: rgba(30, 41, 59, 0.8);
 border-radius: 12px;
 border-left: 5px solid #3b82f6;
 padding: 20px;
-color: #ffffff; /* Highly visible pure white */
+color: #ffffff;
 line-height: 1.7;
 font-size: 1.05rem;
 font-weight: 400;
 box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Professional Table Styling */
 [data-testid="stDataFrame"] {
 border: 1px solid #334155;
 border-radius: 10px;
@@ -216,6 +203,493 @@ overflow: hidden;
 }
 </style>
 """, unsafe_allow_html=True)
+
+# ==========================================
+# LANDING PAGE
+# ==========================================
+if 'show_landing' not in st.session_state:
+    st.session_state.show_landing = True
+
+if st.session_state.show_landing:
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
+    [data-testid="stSidebar"] { display: none !important; }
+    [data-testid="stHeader"] { display: none !important; }
+
+    body, .main, .block-container {
+        background: #000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    #landing-canvas {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 0;
+        background: radial-gradient(ellipse at 50% 30%, #001a2e 0%, #000510 60%, #000 100%);
+    }
+
+    .landing-wrap {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+    .logo-ring {
+        width: 110px; height: 110px;
+        border-radius: 50%;
+        border: 2px solid rgba(59,130,246,0.4);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 28px;
+        position: relative;
+        animation: ringPulse 3s ease-in-out infinite;
+        box-shadow: 0 0 40px rgba(59,130,246,0.2), inset 0 0 40px rgba(59,130,246,0.05);
+    }
+    .logo-ring::before {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px solid rgba(59,130,246,0.15);
+        animation: ringPulse 3s ease-in-out infinite 0.5s;
+    }
+    .logo-ring::after {
+        content: '';
+        position: absolute;
+        inset: -18px;
+        border-radius: 50%;
+        border: 1px solid rgba(59,130,246,0.07);
+        animation: ringPulse 3s ease-in-out infinite 1s;
+    }
+    .logo-emoji { font-size: 52px; line-height: 1; animation: floatIcon 4s ease-in-out infinite; }
+
+    @keyframes ringPulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.04); opacity: 0.85; }
+    }
+    @keyframes floatIcon {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+    }
+
+    .landing-title {
+        font-family: 'Orbitron', monospace;
+        font-weight: 900;
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        text-align: center;
+        background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #34d399 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0 0 12px;
+        letter-spacing: 0.04em;
+        animation: titleSlide 0.9s cubic-bezier(.22,1,.36,1) both;
+    }
+    .landing-subtitle {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        color: #7dd3fc;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0 0 40px;
+        animation: titleSlide 1.1s cubic-bezier(.22,1,.36,1) both 0.1s;
+    }
+    @keyframes titleSlide {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .landing-divider {
+        width: 200px; height: 1px;
+        background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        margin: 0 auto 48px;
+        animation: fadeIn 1.4s ease both 0.3s;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; } to { opacity: 1; }
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 960px;
+        width: 100%;
+        margin-bottom: 48px;
+        animation: fadeIn 1.2s ease both 0.5s;
+    }
+    .about-card {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(59,130,246,0.2);
+        border-radius: 16px;
+        padding: 28px 24px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .about-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .about-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(59,130,246,0.5);
+        box-shadow: 0 20px 40px rgba(59,130,246,0.15);
+    }
+    .about-card:hover::before { opacity: 1; }
+    .about-card-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .about-card-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #60a5fa;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    .about-card-text {
+        font-size: 0.95rem;
+        color: #cbd5e1;
+        line-height: 1.7;
+        font-weight: 300;
+    }
+
+    .pipeline-wrap {
+        max-width: 960px; width: 100%;
+        margin-bottom: 48px;
+        animation: fadeIn 1.2s ease both 0.7s;
+    }
+    .section-label {
+        font-family: 'Orbitron', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+        color: #3b82f6;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    .pipeline {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .pipe-step {
+        flex: 1; min-width: 140px; max-width: 180px;
+        background: rgba(15,23,42,0.8);
+        border: 1px solid rgba(59,130,246,0.2);
+        border-radius: 12px;
+        padding: 20px 16px;
+        text-align: center;
+        position: relative;
+        margin: 6px;
+        transition: all 0.3s ease;
+    }
+    .pipe-step:hover { border-color: #3b82f6; background: rgba(30,58,138,0.3); }
+    .pipe-num {
+        font-family: 'Orbitron', monospace;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: rgba(59,130,246,0.3);
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+    .pipe-step:hover .pipe-num { color: rgba(59,130,246,0.7); }
+    .pipe-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .pipe-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        letter-spacing: 0.05em;
+        line-height: 1.4;
+    }
+
+    .team-wrap {
+        max-width: 960px; width: 100%;
+        margin-bottom: 52px;
+        animation: fadeIn 1.2s ease both 0.9s;
+    }
+    .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+    }
+    .team-pill {
+        background: rgba(15,23,42,0.9);
+        border: 1px solid rgba(59,130,246,0.25);
+        border-radius: 40px;
+        padding: 10px 20px;
+        display: flex; align-items: center; gap: 10px;
+        transition: all 0.3s ease;
+    }
+    .team-pill:hover {
+        background: rgba(30,58,138,0.5);
+        border-color: #60a5fa;
+        transform: scale(1.04);
+    }
+    .team-avatar {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.7rem; font-weight: 700;
+        color: white; letter-spacing: 0.02em;
+        flex-shrink: 0;
+    }
+    .team-name { font-size: 0.9rem; color: #e2e8f0; font-weight: 600; }
+
+    .enter-btn-wrap {
+        animation: fadeIn 1.3s ease both 1.1s;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .enter-btn-sub {
+        font-size: 0.75rem;
+        color: #475569;
+        margin-top: 10px;
+        letter-spacing: 0.1em;
+        font-family: 'Orbitron', monospace;
+    }
+
+    .particle {
+        position: fixed;
+        border-radius: 50%;
+        background: rgba(59,130,246,0.6);
+        animation: particleDrift linear infinite;
+        pointer-events: none;
+        z-index: 1;
+    }
+    @keyframes particleDrift {
+        0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+        10% { opacity: 1; transform: translateY(80vh) translateX(10px) scale(1); }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-20vh) translateX(-30px) scale(0.3); opacity: 0; }
+    }
+
+    .scanline {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent);
+        animation: scanDown 6s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
+    @keyframes scanDown {
+        0% { top: -2px; } 100% { top: 100vh; }
+    }
+
+    .version-tag {
+        font-size: 0.7rem;
+        color: rgba(71,85,105,0.8);
+        letter-spacing: 0.15em;
+        text-align: center;
+        animation: fadeIn 1.5s ease both 1.3s;
+        font-family: 'Orbitron', monospace;
+    }
+    </style>
+
+    <div class="scanline"></div>
+    <canvas id="landing-canvas"></canvas>
+
+    <div class="particle" style="left:8%;width:3px;height:3px;animation-duration:8s;animation-delay:0s;"></div>
+    <div class="particle" style="left:18%;width:2px;height:2px;animation-duration:11s;animation-delay:2s;"></div>
+    <div class="particle" style="left:35%;width:4px;height:4px;animation-duration:9s;animation-delay:1s;background:rgba(167,139,250,0.5);"></div>
+    <div class="particle" style="left:55%;width:2px;height:2px;animation-duration:13s;animation-delay:3s;"></div>
+    <div class="particle" style="left:72%;width:3px;height:3px;animation-duration:10s;animation-delay:0.5s;background:rgba(52,211,153,0.5);"></div>
+    <div class="particle" style="left:88%;width:2px;height:2px;animation-duration:7s;animation-delay:4s;"></div>
+    <div class="particle" style="left:45%;width:5px;height:5px;animation-duration:14s;animation-delay:1.5s;background:rgba(59,130,246,0.3);"></div>
+
+    <div class="landing-wrap">
+
+        <div class="logo-ring">
+            <span class="logo-emoji">🧬</span>
+        </div>
+
+        <h1 class="landing-title">AI-MRI HUB</h1>
+        <p class="landing-subtitle">Multidimensional Resistance Intelligence Platform</p>
+        <div class="landing-divider"></div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <span class="about-card-icon">🎯</span>
+                <div class="about-card-title">What is AI-MRI Hub?</div>
+                <p class="about-card-text">
+                    A state-of-the-art genomic analysis platform that quantifies antibiotic resistance using the
+                    <strong style="color:#60a5fa;">Multidimensional Resistance Index (MRI)</strong> —
+                    transforming raw gene data into actionable clinical risk scores.
+                </p>
+            </div>
+            <div class="about-card">
+                <span class="about-card-icon">🤖</span>
+                <div class="about-card-title">AI-Powered Engine</div>
+                <p class="about-card-text">
+                    Powered by a <strong style="color:#a78bfa;">Random Forest classifier</strong> trained on
+                    resistance gene populations, paired with <strong style="color:#34d399;">Gemini AI (J.A.R.V.I.S.)</strong>
+                    for natural-language genomic reasoning and clinical Q&amp;A.
+                </p>
+            </div>
+            <div class="about-card">
+                <span class="about-card-icon">📊</span>
+                <div class="about-card-title">Why It Matters</div>
+                <p class="about-card-text">
+                    Traditional tools simply list genes. AI-MRI Hub <strong style="color:#60a5fa;">computes,
+                    visualizes, and explains</strong> resistance density, mechanism diversity, and clinical
+                    susceptibility zones — enabling smarter treatment prioritization.
+                </p>
+            </div>
+        </div>
+
+        <div class="pipeline-wrap">
+            <p class="section-label">⬡ How It Works</p>
+            <div class="pipeline">
+                <div class="pipe-step">
+                    <div class="pipe-num">01</div>
+                    <span class="pipe-icon">📂</span>
+                    <div class="pipe-label">Upload JSON Genome File</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">02</div>
+                    <span class="pipe-icon">🔬</span>
+                    <div class="pipe-label">Extract ARGs &amp; Resistance Genes</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">03</div>
+                    <span class="pipe-icon">🧮</span>
+                    <div class="pipe-label">Compute MRI &amp; ARI Scores</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">04</div>
+                    <span class="pipe-icon">🤖</span>
+                    <div class="pipe-label">AI Risk Classification</div>
+                </div>
+                <div class="pipe-step">
+                    <div class="pipe-num">05</div>
+                    <span class="pipe-icon">📋</span>
+                    <div class="pipe-label">Generate PDF Clinical Report</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-wrap">
+            <p class="section-label">⬡ Research &amp; Development Team</p>
+            <div class="team-grid">
+                <div class="team-pill"><div class="team-avatar">HA</div><span class="team-name">Hardik Agrawal</span></div>
+                <div class="team-pill"><div class="team-avatar">PD</div><span class="team-name">Poorva Dongarkar</span></div>
+                <div class="team-pill"><div class="team-avatar">YP</div><span class="team-name">Yashraj Patil</span></div>
+                <div class="team-pill"><div class="team-avatar">AL</div><span class="team-name">Avani Laswante</span></div>
+                <div class="team-pill"><div class="team-avatar">ZB</div><span class="team-name">Zeel Bhanushali</span></div>
+                <div class="team-pill"><div class="team-avatar">AW</div><span class="team-name">Aayushi Wasnik</span></div>
+                <div class="team-pill"><div class="team-avatar">IP</div><span class="team-name">Indranil Patil</span></div>
+            </div>
+        </div>
+
+        <div class="enter-btn-wrap">
+            <p class="enter-btn-sub">🔬 READY TO ANALYZE</p>
+        </div>
+
+        <p class="version-tag">AI-MRI HUB &nbsp;|&nbsp; v2.0 Quantum Edition &nbsp;|&nbsp; Bioinformatics Intelligence Suite</p>
+    </div>
+
+    <script>
+    const canvas = document.getElementById('landing-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, t = 0;
+
+    function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function drawHelix() {
+        ctx.clearRect(0, 0, W, H);
+        const cx = W / 2;
+        const amplitude = Math.min(W * 0.12, 120);
+        const freq = 0.018;
+        const speed = 0.02;
+
+        for (let strand = 0; strand < 2; strand++) {
+            const phaseOffset = strand * Math.PI;
+            ctx.beginPath();
+            for (let y = -28; y < H + 28; y += 2) {
+                const x = cx + amplitude * Math.sin(freq * y + t + phaseOffset);
+                if (y === -28) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            const grad = ctx.createLinearGradient(0, 0, 0, H);
+            grad.addColorStop(0, 'rgba(59,130,246,0)');
+            grad.addColorStop(0.3, strand === 0 ? 'rgba(59,130,246,0.35)' : 'rgba(167,139,250,0.25)');
+            grad.addColorStop(0.7, strand === 0 ? 'rgba(59,130,246,0.35)' : 'rgba(52,211,153,0.2)');
+            grad.addColorStop(1, 'rgba(59,130,246,0)');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        for (let y = 40; y < H; y += 40) {
+            const x1 = cx + amplitude * Math.sin(freq * y + t);
+            const x2 = cx + amplitude * Math.sin(freq * y + t + Math.PI);
+            const alpha = 0.08 + 0.06 * Math.sin(y * 0.03 + t * 2);
+            ctx.beginPath();
+            ctx.moveTo(x1, y);
+            ctx.lineTo(x2, y);
+            ctx.strokeStyle = `rgba(59,130,246,${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(x1, y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(96,165,250,${alpha * 2.5})`;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x2, y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(167,139,250,${alpha * 2.5})`;
+            ctx.fill();
+        }
+
+        for (let gx = 60; gx < W; gx += 90) {
+            for (let gy = 60; gy < H; gy += 90) {
+                ctx.beginPath();
+                ctx.arc(gx, gy, 0.8, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(59,130,246,0.12)';
+                ctx.fill();
+            }
+        }
+
+        t += speed;
+        requestAnimationFrame(drawHelix);
+    }
+    drawHelix();
+    </script>
+    """, unsafe_allow_html=True)
+
+    col_c = st.columns([1, 2, 1])[1]
+    with col_c:
+        if st.button("⬡  ENTER THE PLATFORM  ⬡", type="primary", use_container_width=True):
+            st.session_state.show_landing = False
+            st.rerun()
+
+    st.stop()
 
 # ==========================================
 # 2. CORE BACKEND FUNCTIONS
@@ -291,7 +765,7 @@ def extract_data(file_name):
             d, m = [], []
             for c in inner.get("ARO_category", {}).values():
                 cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","").title() 
+                val = c.get("category_aro_name","").title()
                 if "drug" in cname: d.append(val)
                 elif "mechanism" in cname: m.append(val)
 
@@ -424,10 +898,10 @@ def plot_3d_pca_plotly(current_file):
     df_pca['Risk Category'] = risk_levels
 
     color_discrete_map = {
-    "HIGH": "red",
-    "MODERATE": "orange",
-    "LOW": "green",
-    "TARGET 🎯": "gold"
+        "HIGH": "red",
+        "MODERATE": "orange",
+        "LOW": "green",
+        "TARGET 🎯": "gold"
     }
     fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
                       color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
@@ -535,23 +1009,23 @@ This allows clinicians and researchers to instantly gauge and compare the severi
 
     t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
     t.setStyle(TableStyle([
-    ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-    ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('BOTTOMPADDING', (0,0), (-1,0), 12),
-    ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-    ('GRID', (0,0), (-1,-1), 1, colors.black),
-    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0,0), (-1,0), 12),
+        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
+        ('GRID', (0,0), (-1,-1), 1, colors.black),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
 
     elements.append(t)
     doc.build(elements)
     return pdf_file
+
 # ==========================================
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
-# Modern Professional Header Update
 st.markdown("""
 <div class="main-header">
 <h1 style='margin:0; font-size: 2.8rem;'> 🧬  AI-Driven Multidimensional Resistance Index</h1>
@@ -562,10 +1036,12 @@ st.markdown("""
 </p>
 </div>
 """, unsafe_allow_html=True)
+
 if 'chat_sessions' not in st.session_state:
     st.session_state.chat_sessions = {"Chat 1": []}
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
+
 with st.sidebar:
     st.header(" 🗄️ Database Sync")
     if st.button(" 🔄 Refresh Database"):
@@ -579,6 +1055,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.success(" ✅ AI Brain Connected")
+
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
@@ -586,7 +1063,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
 
-    # Pulsing Superbug Alert
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
 
@@ -600,7 +1076,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
-    # Professional Metric Cards
+
     m1, m2, m3, m4 = st.columns(4)
     with m1:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
@@ -610,26 +1086,27 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
+
     st.write(" ")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
-    " ℹ️ Pathogen Summary",
-    " 📊 6-Panel Dashboard",
-    " 🧮 Math & Data Ledger",
-    " 🕸️ Network",
-    " 🤖 Bio-AI Chat",
-    " 🩺 Clinical Insight",
-    " 📄 Export Master PDF",
-    " 🌌 3D Landscape"
+        " ℹ️ Pathogen Summary",
+        " 📊 6-Panel Dashboard",
+        " 🧮 Math & Data Ledger",
+        " 🕸️ Network",
+        " 🤖 Bio-AI Chat",
+        " 🩺 Clinical Insight",
+        " 📄 Export Master PDF",
+        " 🌌 3D Landscape"
     ])
+
     with tab1:
-        # Welcome Hero and System Description
         st.markdown("""
         <div class="welcome-hero">
             <h2 style='text-shadow: 0 2px 4px rgba(0,0,0,0.5);'>Welcome to the World of Bio-Intelligence</h2>
             <p style='color: #e2e8f0;'>Advanced Genomic Analysis Platform for Antimicrobial Resistance (AMR)</p>
         </div>
         """, unsafe_allow_html=True)
-        
+
         st.markdown("###  🧬 System Overview & Intelligence Capabilities")
         st.info("""
         **The AI-MRI Hub provides a state-of-the-art multidimensional analysis suite:**
@@ -660,6 +1137,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 </div>
 </div>
 """, unsafe_allow_html=True)
+
         st.markdown("###  🎯 Metric Explanations & Significance")
         st.info("""
 **Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.
@@ -671,13 +1149,13 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 The **ARI** calculates the *density* and efficiency of the threat relative to the gene count.
 The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
 """)
+
     with tab2:
         st.markdown(f"### Systems Overview: `{selected_file}`")
         fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
         st.pyplot(fig)
 
     with tab3:
-        # Professional Math & Data Ledger Update
         st.markdown("###  🧮 Mathematical Validation")
 
         col_m1, col_m2 = st.columns(2)
@@ -686,30 +1164,30 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
             st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
-            # Legend for MRI annotation
             st.markdown('<div class="annotation-box">'
-            '<div class="annotation-item"><span class="annotation-key">U_drugs</span>: Unique Drug Classes Resisted</div>'
-            '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
-            '<div class="annotation-item"><span class="annotation-key">T_drugs</span>: Total Drug Records Found in sequence</div>'
-            '<div class="annotation-item"><span class="annotation-key">T_mechs</span>: Total Mechanism Records Found in sequence</div>'
-            '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
-            '</div>', unsafe_allow_html=True)
+                '<div class="annotation-item"><span class="annotation-key">U_drugs</span>: Unique Drug Classes Resisted</div>'
+                '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
+                '<div class="annotation-item"><span class="annotation-key">T_drugs</span>: Total Drug Records Found in sequence</div>'
+                '<div class="annotation-item"><span class="annotation-key">T_mechs</span>: Total Mechanism Records Found in sequence</div>'
+                '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
+                '</div>', unsafe_allow_html=True)
             st.markdown(f"**Current Calculation:**")
             st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
+
         with col_m2:
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
             st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
-            # Legend for ARI annotation
             st.markdown('<div class="annotation-box">'
-            '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
-            '<div class="annotation-item"><span class="annotation-key">G_total</span>: Total Genomic Gene count</div>'
-            '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
-            '</div>', unsafe_allow_html=True)
+                '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
+                '<div class="annotation-item"><span class="annotation-key">G_total</span>: Total Genomic Gene count</div>'
+                '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
+                '</div>', unsafe_allow_html=True)
             st.markdown(f"**Current Calculation:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
+
         st.markdown("###  🎯 Risk Assessment Reasoning")
         st.markdown(f"""
         <div class="reasoning-box">
@@ -721,12 +1199,14 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         st.markdown("###  📜 Comprehensive Gene Ledger")
         df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
         st.dataframe(df, use_container_width=True)
+
     with tab4:
         st.markdown("### Interactive Mechanism Network")
         st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
+
     with tab5:
         colA, colB, colC = st.columns([0.6, 0.2, 0.2])
         with colA:
@@ -786,10 +1266,10 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
                         st.error(" ⚠️ **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
                     else:
                         st.error(f"AI Connection Error: {e}")
-    
-    with tab6: # Clinical Insight Feature
+
+    with tab6:
         st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
-        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", 
+        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside",
                          "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
         resisted_norm = set([d.lower() for d in drug])
         safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
@@ -821,10 +1301,12 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
                         file_name=pdf_path,
                         mime="application/pdf"
                     )
+
     with tab8:
         st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
         st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
         plot_3d_pca_plotly(selected_file)
+
 elif analysis_mode == "AI Predict Unknown":
     st.header(" 🤖 Machine Learning Risk Prediction")
     in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
