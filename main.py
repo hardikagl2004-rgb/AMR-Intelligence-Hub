@@ -46,14 +46,25 @@ h1, h2, h3 {color: #ffffff;}
 
 /* Professional Header Styling */
 .main-header {
-background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+background: linear-gradient(120deg, #020b18 0%, #0c1f3f 30%, #06304a 60%, #0f2a1a 100%);
+border: 1px solid rgba(0,212,255,0.2);
 padding: 2.5rem;
 border-radius: 15px;
 color: white;
 text-align: center;
 margin-bottom: 2rem;
-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+box-shadow: 0 10px 40px rgba(0,212,255,0.1);
+position: relative;
+overflow: hidden;
 }
+.main-header::before {
+  content:'';
+  position:absolute; top:0;left:0;right:0; height:3px;
+  background: linear-gradient(90deg, #00d4ff, #7c3aed, #10b981, #00d4ff);
+  background-size:300% auto;
+  animation: headerBar 4s linear infinite;
+}
+@keyframes headerBar { 0%{background-position:0% center} 100%{background-position:300% center} }
 
 /* Updated Welcome Hero Section: Tech-Blue Gradient for high impact */
 .welcome-hero {
@@ -103,18 +114,23 @@ animation: pulse 2s infinite;
 
 /* Metric Card Styling */
 .metric-card {
-background-color: #1e293b;
-border: 1px solid #334155;
+background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
+border: 1px solid rgba(0,212,255,0.15);
 padding: 1.5rem;
 border-radius: 12px;
 text-align: center;
+transition: all 0.3s ease;
+}
+.metric-card:hover {
+border-color: rgba(0,212,255,0.4);
+box-shadow: 0 8px 25px rgba(0,212,255,0.1);
 }
 .metric-label {
-color: #94a3b8;
-font-size: 0.8rem;
+color: #00d4ff;
+font-size: 0.75rem;
 font-weight: bold;
 text-transform: uppercase;
-letter-spacing: 0.05em;
+letter-spacing: 0.1em;
 }
 .metric-value {
 color: #ffffff;
@@ -124,14 +140,14 @@ margin-top: 0.5rem;
 }
 /* Professional Executive Summary Card */
 .report-card {
-background-color: #1e293b;
-border-left: 5px solid #3b82f6;
+background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
+border-left: 5px solid #00d4ff;
 padding: 20px;
 border-radius: 10px;
 margin-bottom: 25px;
 }
 .report-header {
-color: #3b82f6;
+color: #00d4ff;
 font-weight: bold;
 text-transform: uppercase;
 font-size: 0.9rem;
@@ -148,23 +164,23 @@ border-bottom: 1px solid #2d3748;
 .report-label { color: #94a3b8; font-weight: 500; }
 .report-value { color: #ffffff; font-weight: 600; }
 .ai-badge {
-background: rgba(59, 130, 246, 0.1);
-color: #60a5fa;
+background: rgba(0,212,255,0.1);
+color: #00d4ff;
 padding: 4px 12px;
 border-radius: 20px;
 font-size: 0.85rem;
-border: 1px solid rgba(59, 130, 246, 0.3);
+border: 1px solid rgba(0,212,255,0.3);
 }
 /* Math Ledger Cards */
 .math-card {
-background-color: #1e293b;
-border: 1px solid #334155;
+background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
+border: 1px solid rgba(0,212,255,0.15);
 padding: 25px;
 border-radius: 12px;
 margin-bottom: 20px;
 }
 .math-card-header {
-color: #3b82f6;
+color: #00d4ff;
 font-size: 0.85rem;
 font-weight: bold;
 text-transform: uppercase;
@@ -197,9 +213,9 @@ font-weight: 600;
 
 /* Risk Assessment Text Visibility Update */
 .reasoning-box {
-background: rgba(30, 41, 59, 0.8);
+background: rgba(6,30,50,0.85);
 border-radius: 12px;
-border-left: 5px solid #3b82f6;
+border-left: 5px solid #00d4ff;
 padding: 20px;
 color: #ffffff; /* Highly visible pure white */
 line-height: 1.7;
@@ -1047,6 +1063,463 @@ This allows clinicians and researchers to instantly gauge and compare the severi
 # ==========================================
 # 5. FRONTEND: THE WEBSITE LAYOUT
 # ==========================================
+
+# ---- SPLASH SCREEN GATE ----
+if 'show_splash' not in st.session_state:
+    st.session_state.show_splash = True
+
+if st.session_state.show_splash:
+    st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+    /* Hide default Streamlit chrome on splash */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    [data-testid="stSidebar"] {display: none !important;}
+    .block-container {padding: 0 !important; max-width: 100% !important;}
+
+    /* Full-viewport animated background */
+    .splash-root {
+      min-height: 100vh;
+      background: #020b18;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,212,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(124,58,237,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(16,185,129,0.05) 0%, transparent 70%);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Animated grid overlay */
+    .splash-root::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridDrift 20s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes gridDrift {
+      0%   { transform: translate(0,0); }
+      100% { transform: translate(60px,60px); }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: particleFloat linear infinite;
+      z-index: 1;
+    }
+    @keyframes particleFloat {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+
+    .splash-content { position: relative; z-index: 2; }
+
+    /* ========= HERO SECTION ========= */
+    .sp-hero {
+      padding: 80px 60px 60px 60px;
+      text-align: center;
+      position: relative;
+    }
+    .sp-dna-ring {
+      display: inline-block;
+      font-size: 5.5rem;
+      animation: dnaFloat 4s ease-in-out infinite, dnaGlow 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(0,212,255,0.6));
+      margin-bottom: 20px;
+    }
+    @keyframes dnaFloat {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-15px) scale(1.05); }
+    }
+    @keyframes dnaGlow {
+      0%,100% { filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); }
+      50%      { filter: drop-shadow(0 0 50px rgba(124,58,237,0.8)) drop-shadow(0 0 20px rgba(0,212,255,0.6)); }
+    }
+
+    .sp-title {
+      font-family: 'Orbitron', monospace !important;
+      font-size: 4.5rem !important;
+      font-weight: 900 !important;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 40%, #10b981 70%, #00d4ff 100%);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleShimmer 5s linear infinite, titleReveal 1.2s ease forwards;
+      margin-bottom: 8px !important;
+      opacity: 0;
+    }
+    @keyframes titleShimmer { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+    @keyframes titleReveal  { 0% { opacity:0; transform:translateY(-30px); } 100% { opacity:1; transform:translateY(0); } }
+
+    .sp-tagline {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem !important;
+      letter-spacing: 6px;
+      color: #00d4ff !important;
+      text-transform: uppercase;
+      margin-bottom: 20px !important;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+    .sp-desc {
+      color: #94a3b8 !important;
+      font-size: 1.15rem !important;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto 45px auto !important;
+      animation: fadeInUp 1.8s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(25px); } 100% { opacity:1; transform:translateY(0); } }
+
+    /* Stats bar */
+    .sp-stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+      animation: fadeInUp 2s ease forwards;
+      opacity: 0;
+    }
+    .sp-stat {
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 16px;
+      padding: 22px 32px;
+      min-width: 120px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .sp-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+      animation: scanTop 2s linear infinite;
+    }
+    @keyframes scanTop { 0% { transform:scaleX(0); } 50% { transform:scaleX(1); } 100% { transform:scaleX(0); } }
+    .sp-stat:hover { transform:translateY(-5px); border-color:rgba(0,212,255,0.5); box-shadow:0 10px 30px rgba(0,212,255,0.15); }
+    .sp-stat-num { font-family:'Orbitron',monospace; font-size:2.2rem; font-weight:900; color:#00d4ff; display:block; }
+    .sp-stat-lbl { font-size:0.7rem; color:#64748b; letter-spacing:2px; text-transform:uppercase; }
+
+    /* ========= FEATURES SECTION ========= */
+    .sp-section-title {
+      font-family: 'Orbitron', monospace !important;
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      color: #f1f5f9 !important;
+      text-align: center;
+      margin-bottom: 10px !important;
+      letter-spacing: 2px;
+    }
+    .sp-section-sub {
+      text-align: center;
+      color: #475569 !important;
+      font-size: 0.9rem !important;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 35px !important;
+    }
+    .sp-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #00d4ff, #7c3aed);
+      margin: 0 auto 40px auto;
+      border-radius: 3px;
+    }
+
+    .sp-feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      padding: 0 60px 60px 60px;
+    }
+    .sp-feat-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 22px;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .sp-feat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.03), rgba(124,58,237,0.03));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sp-feat-card:hover { transform:translateY(-6px); border-color:rgba(0,212,255,0.25); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+    .sp-feat-card:hover::after { opacity:1; }
+    .sp-feat-icon { font-size:2.2rem; display:block; margin-bottom:14px; }
+    .sp-feat-title { color:#00d4ff !important; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+    .sp-feat-desc { color:#64748b; font-size:0.88rem; line-height:1.65; }
+
+    /* ========= WHY UNIQUE SECTION ========= */
+    .sp-unique-section { padding: 0 60px 70px 60px; }
+    .sp-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .sp-comp-card { border-radius: 18px; padding: 30px; }
+    .sp-comp-old {
+      background: rgba(239,68,68,0.04);
+      border: 1px solid rgba(239,68,68,0.18);
+    }
+    .sp-comp-new {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.22);
+      position: relative;
+    }
+    .sp-comp-new::before {
+      content: '★ EXCLUSIVE';
+      position: absolute; top:-13px; right:20px;
+      background: linear-gradient(90deg, #00d4ff, #10b981);
+      color: #020b18;
+      font-size: 0.65rem; font-weight:800; padding:4px 14px;
+      border-radius:20px; letter-spacing:1.5px;
+      font-family:'Orbitron',monospace;
+    }
+    .sp-comp-title { font-size:1rem; font-weight:700; margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .sp-comp-old .sp-comp-title { color:#f87171; }
+    .sp-comp-new .sp-comp-title { color:#00d4ff; }
+    .sp-comp-item { display:flex; gap:10px; margin-bottom:12px; color:#94a3b8; font-size:0.88rem; line-height:1.5; }
+    .sp-chk { flex-shrink:0; }
+
+    .sp-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 18px;
+    }
+    .sp-pillar {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 26px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .sp-pillar::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; }
+    .sp-pillar.c1::before { background:linear-gradient(90deg,#00d4ff,#10b981); }
+    .sp-pillar.c2::before { background:linear-gradient(90deg,#7c3aed,#a78bfa); }
+    .sp-pillar.c3::before { background:linear-gradient(90deg,#f59e0b,#fbbf24); }
+    .sp-pillar.c4::before { background:linear-gradient(90deg,#f43f5e,#fb7185); }
+    .sp-pillar.c5::before { background:linear-gradient(90deg,#10b981,#34d399); }
+    .sp-pillar.c6::before { background:linear-gradient(90deg,#06b6d4,#67e8f9); }
+    .sp-pillar:hover { transform:translateY(-6px); border-color:rgba(0,212,255,0.3); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+    .sp-pillar-icon { font-size:2.3rem; display:block; margin-bottom:12px; }
+    .sp-pillar-title { color:#f1f5f9 !important; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px; }
+    .sp-pillar-desc { color:#475569; font-size:0.82rem; line-height:1.6; }
+
+    /* ========= TEAM SECTION ========= */
+    .sp-team-section { padding: 0 60px 70px 60px; }
+    .sp-team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .sp-team-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 32px 22px;
+      text-align: center;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .sp-team-card::before {
+      content:''; position:absolute; top:0;left:0;right:0; height:3px;
+      background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981);
+      background-size:200% auto; animation:titleShimmer 4s linear infinite;
+    }
+    .sp-team-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.3); box-shadow:0 25px 50px rgba(0,212,255,0.1); }
+    .sp-avatar {
+      width:80px;height:80px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.2rem; margin:0 auto 16px auto;
+      border:2px solid rgba(0,212,255,0.3);
+    }
+    .sp-tname { color:#f1f5f9 !important; font-size:1.1rem; font-weight:700; margin-bottom:4px !important; }
+    .sp-trole { color:#00d4ff !important; font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
+    .sp-tdesc { color:#475569; font-size:0.82rem; line-height:1.6; margin-bottom:14px; }
+    .sp-ttags { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; }
+    .sp-ttag { background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.2); color:#67e8f9; padding:3px 9px; border-radius:20px; font-size:0.68rem; }
+
+    .sp-mission-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
+    .sp-mission-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius:14px; padding:28px 22px; text-align:center;
+    }
+    .sp-mission-title { color:#00d4ff !important; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
+    .sp-mission-text { color:#64748b; font-size:0.85rem; line-height:1.7; }
+
+    /* ========= CTA BUTTON SECTION ========= */
+    .sp-cta-section {
+      padding: 60px;
+      text-align: center;
+      background: linear-gradient(180deg, transparent, rgba(0,212,255,0.04), transparent);
+      border-top: 1px solid rgba(0,212,255,0.08);
+    }
+    .sp-cta-label {
+      font-family:'Orbitron',monospace;
+      font-size:0.8rem; letter-spacing:5px; text-transform:uppercase;
+      color:#475569 !important; margin-bottom:20px !important;
+    }
+    .sp-cta-headline {
+      font-size:2.4rem !important; font-weight:700 !important;
+      color:#f1f5f9 !important; margin-bottom:12px !important;
+      line-height:1.3;
+    }
+    .sp-cta-sub { color:#64748b !important; font-size:1rem !important; margin-bottom:40px !important; }
+
+    /* Stagger animation delays */
+    .sp-title  { animation-delay: 0.2s; }
+    .sp-tagline{ animation-delay: 0.6s; }
+    .sp-desc   { animation-delay: 0.9s; }
+    .sp-stats  { animation-delay: 1.2s; }
+    </style>
+
+    <div class="splash-root">
+    <div class="splash-content">
+
+      <!-- ===== HERO ===== -->
+      <div class="sp-hero">
+        <span class="sp-dna-ring">🧬</span>
+        <h1 class="sp-title">AI-MRI HUB</h1>
+        <p class="sp-tagline">Antimicrobial Resistance Intelligence Platform</p>
+        <p class="sp-desc">
+          The world's most advanced quantitative framework for decoding antibiotic resistance genes.
+          We transform raw genomic data into actionable clinical intelligence — instantly, accurately, and at scale.
+        </p>
+        <div class="sp-stats">
+          <div class="sp-stat"><span class="sp-stat-num">2</span><span class="sp-stat-lbl">Novel Indices</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">8</span><span class="sp-stat-lbl">Analysis Modules</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">100+</span><span class="sp-stat-lbl">Genomes Supported</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">7</span><span class="sp-stat-lbl">Researchers</span></div>
+        </div>
+      </div>
+
+      <!-- ===== PLATFORM FEATURES ===== -->
+      <div style="padding:0 60px; margin-bottom:20px;">
+        <div class="sp-section-title">Platform Features</div>
+        <div class="sp-divider"></div>
+      </div>
+      <div class="sp-feat-grid">
+        <div class="sp-feat-card"><span class="sp-feat-icon">🦠</span><div class="sp-feat-title">Genomic ARG Profiling</div><div class="sp-feat-desc">Deep extraction and classification of all Antibiotic Resistance Genes from CARD-format data. Every gene, every drug class, every mechanism — catalogued precisely.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">📐</span><div class="sp-feat-title">MRI &amp; ARI Calculation</div><div class="sp-feat-desc">Our proprietary indices transform complex gene counts into a single, instantly interpretable risk score using Laplace-smoothed mathematics.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">🤖</span><div class="sp-feat-title">Random Forest AI Prediction</div><div class="sp-feat-desc">Machine learning classifies any pathogen as LOW, MODERATE, or HIGH risk with full probability confidence scores — even for novel strains.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">🕸️</span><div class="sp-feat-title">Interactive Gene Network</div><div class="sp-feat-desc">Visualize the full resistance topology as a live, draggable network graph with filter and selection menus.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">🌌</span><div class="sp-feat-title">3D Landscape PCA</div><div class="sp-feat-desc">Rotate a 3-dimensional scatter map comparing your target genome against every pathogen in the database across resistance axes.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers — providing an instant safe-zone shortlist for clinical treatment consideration.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Ask questions about any genome in plain English. Gemini-powered AI with full genomic context automatically loaded.</div></div>
+        <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, and gene ledgers in one click.</div></div>
+      </div>
+
+      <!-- ===== WHY WE'RE UNIQUE ===== -->
+      <div class="sp-unique-section">
+        <div class="sp-section-title">Why We Stand Apart</div>
+        <div class="sp-divider"></div>
+
+        <div class="sp-compare">
+          <div class="sp-comp-card sp-comp-old">
+            <div class="sp-comp-title">❌ Traditional AMR Tools</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> Output raw gene lists — clinicians must manually interpret hundreds of genes.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> No unified index to compare pathogen severity across species.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> Require bioinformatics expertise — inaccessible to clinical staff.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> Static reports with no interactivity or network exploration.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> No AI chatbot for natural language genomic queries.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> No ML prediction for unknown or novel strains.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✗</span> Cannot identify safe drug zones automatically.</div>
+          </div>
+          <div class="sp-comp-card sp-comp-new">
+            <div class="sp-comp-title">✅ AI-MRI Hub</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Proprietary MRI and ARI compress all genomic data into a single, instantly readable risk number.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Cross-species, cross-habitat standardized scoring enables true pathogen comparison.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Live interactive networks and 3D PCA landscape for spatial resistance topology.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
+            <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
+          </div>
+        </div>
+
+        <div class="sp-pillars">
+          <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks. No published tool uses both simultaneously.</div></div>
+          <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions — a spatial view no standard AMR tool offers.</div></div>
+          <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores, gene counts into every query — real data, not generic biology.</div></div>
+          <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
+          <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
+          <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, and ledgers into a professional document with one click.</div></div>
+        </div>
+      </div>
+
+      <!-- ===== TEAM ===== -->
+      <div class="sp-team-section">
+        <div class="sp-section-title">Meet the Team</div>
+        <div class="sp-divider"></div>
+        <div class="sp-team-grid">
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
+          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF & Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
+        </div>
+
+        <div class="sp-mission-row">
+          <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
+          <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
+          <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
+        </div>
+      </div>
+
+      <!-- ===== CTA ===== -->
+      <div class="sp-cta-section">
+        <p class="sp-cta-label">Ready to Analyze</p>
+        <h2 class="sp-cta-headline">Begin Your Genomic Analysis</h2>
+        <p class="sp-cta-sub">Click below to enter the AI-MRI Hub platform and start analyzing antibiotic resistance genomes.</p>
+      </div>
+
+    </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_left, col_center, col_right = st.columns([2, 1, 2])
+    with col_center:
+        if st.button("🚀  ENTER AI-MRI HUB", type="primary", use_container_width=True):
+            st.session_state.show_splash = False
+            st.rerun()
+    st.stop()
+
+# ---- END SPLASH SCREEN GATE ----
+
 # Modern Professional Header Update
 st.markdown("""
 <div class="main-header">
