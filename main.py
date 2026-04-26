@@ -583,6 +583,8 @@ This enables standardized inter-species comparison and rapid triage — allowing
 # ==========================================
 if 'show_splash' not in st.session_state:
     st.session_state.show_splash = True
+if 'show_team_page' not in st.session_state:
+    st.session_state.show_team_page = False
 
 if st.session_state.show_splash:
     st.markdown("""
@@ -683,7 +685,7 @@ if st.session_state.show_splash:
     .sp-comp-old { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.18); }
     .sp-comp-new { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.22); position: relative; }
     .sp-comp-new::before {
-      content: '★ EXCLUSIVE'; position: absolute; top:-13px; right:20px;
+      content: 'EXCLUSIVE'; position: absolute; top:-13px; right:20px;
       background: linear-gradient(90deg, #00d4ff, #10b981); color: #020b18;
       font-size: 0.65rem; font-weight:800; padding:4px 14px; border-radius:20px; letter-spacing:1.5px; font-family:'Orbitron',monospace;
     }
@@ -707,23 +709,6 @@ if st.session_state.show_splash:
     .sp-pillar-title { color:#f1f5f9 !important; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px; }
     .sp-pillar-desc { color:#475569; font-size:0.82rem; line-height:1.6; }
 
-    .sp-team-section { padding: 0 60px 70px 60px; }
-    .sp-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; margin-bottom: 40px; }
-    .sp-team-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 32px 22px; text-align: center; transition: all 0.35s ease; position: relative; overflow: hidden; }
-    .sp-team-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981); background-size:200% auto; animation:titleShimmer 4s linear infinite; }
-    .sp-team-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.3); box-shadow:0 25px 50px rgba(0,212,255,0.1); }
-    .sp-avatar { width:80px;height:80px;border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:2.2rem; margin:0 auto 16px auto; border:2px solid rgba(0,212,255,0.3); }
-    .sp-tname { color:#f1f5f9 !important; font-size:1.1rem; font-weight:700; margin-bottom:4px !important; }
-    .sp-trole { color:#00d4ff !important; font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
-    .sp-tdesc { color:#475569; font-size:0.82rem; line-height:1.6; margin-bottom:14px; }
-    .sp-ttags { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; }
-    .sp-ttag { background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.2); color:#67e8f9; padding:3px 9px; border-radius:20px; font-size:0.68rem; }
-
-    .sp-mission-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
-    .sp-mission-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius:14px; padding:28px 22px; text-align:center; }
-    .sp-mission-title { color:#00d4ff !important; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
-    .sp-mission-text { color:#64748b; font-size:0.85rem; line-height:1.7; }
-
     .sp-cta-section { padding: 60px; text-align: center; background: linear-gradient(180deg, transparent, rgba(0,212,255,0.04), transparent); border-top: 1px solid rgba(0,212,255,0.08); }
     .sp-cta-label { font-family:'Orbitron',monospace; font-size:0.8rem; letter-spacing:5px; text-transform:uppercase; color:#475569 !important; margin-bottom:20px !important; }
     .sp-cta-headline { font-size:2.4rem !important; font-weight:700 !important; color:#f1f5f9 !important; margin-bottom:12px !important; line-height:1.3; }
@@ -733,6 +718,42 @@ if st.session_state.show_splash:
     .sp-tagline { animation-delay: 0.6s; }
     .sp-desc { animation-delay: 0.9s; }
     .sp-stats { animation-delay: 1.2s; }
+
+    /* ── TEAM PAGE STYLES ── */
+    .team-page-root { background: #020b18; padding: 60px 60px 80px 60px; }
+    .team-page-title {
+      font-family: 'Orbitron', monospace !important; font-size: 2.2rem !important; font-weight: 900 !important;
+      text-align: center;
+      background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #10b981 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px !important; letter-spacing: 3px;
+    }
+    .team-page-sub { text-align:center; color:#475569 !important; font-size:0.85rem !important; letter-spacing:4px; text-transform:uppercase; margin-bottom:10px !important; }
+    .team-page-desc { text-align:center; color:#94a3b8 !important; font-size:1rem !important; max-width:780px; margin:0 auto 40px auto !important; line-height:1.8; }
+    .tp-divider { width:80px; height:3px; background:linear-gradient(90deg,#00d4ff,#7c3aed); margin:0 auto 40px auto; border-radius:3px; }
+    .tp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:22px; margin-bottom:50px; }
+    .tp-card {
+      background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07);
+      border-radius:20px; padding:34px 24px 28px 24px; text-align:center;
+      transition:all 0.35s ease; position:relative; overflow:hidden;
+    }
+    .tp-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,#00d4ff,#7c3aed,#10b981); background-size:200% auto;
+      animation:titleShimmer 4s linear infinite;
+    }
+    .tp-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.3); box-shadow:0 25px 50px rgba(0,212,255,0.1); }
+    .tp-avatar { width:86px; height:86px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.4rem; margin:0 auto 18px auto; border:2px solid rgba(0,212,255,0.3); }
+    .tp-name { color:#f1f5f9 !important; font-size:1.15rem; font-weight:800; margin-bottom:4px !important; }
+    .tp-role-primary { color:#00d4ff !important; font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:3px !important; font-family:'Orbitron',monospace; font-weight:700; }
+    .tp-role-secondary { color:#a78bfa !important; font-size:0.68rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:14px !important; font-family:'Orbitron',monospace; }
+    .tp-desc { color:#64748b; font-size:0.85rem; line-height:1.7; margin-bottom:16px; }
+    .tp-tags { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
+    .tp-tag { background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.2); color:#67e8f9; padding:4px 11px; border-radius:20px; font-size:0.68rem; }
+    .tp-mission-row { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:20px; }
+    .tp-mission-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:30px 22px; text-align:center; }
+    .tp-mission-title { color:#00d4ff !important; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
+    .tp-mission-text { color:#64748b; font-size:0.86rem; line-height:1.7; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -815,42 +836,125 @@ if st.session_state.show_splash:
     </div>
     """, unsafe_allow_html=True)
 
-    # --- TEAM ---
-    st.markdown("""
-    <div class="sp-team-section" style="background:#020b18;">
-      <div class="sp-section-title">Meet the Team</div>
-      <div class="sp-divider"></div>
-      <div class="sp-team-grid">
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF &amp; Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
-      </div>
-      <div class="sp-mission-row">
-        <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
-        <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
-        <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # --- CTA ---
+    # --- CTA with TWO BUTTONS ---
     st.markdown("""
     <div class="sp-cta-section" style="background:#020b18;">
-      <p class="sp-cta-label">Ready to Analyze</p>
-      <h2 class="sp-cta-headline">Begin Your Genomic Analysis</h2>
-      <p class="sp-cta-sub">Click below to enter the AI-MRI Hub platform and start analyzing antibiotic resistance genomes.</p>
+      <p class="sp-cta-label">Ready to Begin</p>
+      <h2 class="sp-cta-headline">Enter the Platform or Meet the Team</h2>
+      <p class="sp-cta-sub">Launch the AI-MRI Hub to start your genomic analysis, or learn about the researchers who built it.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    col_left, col_center, col_right = st.columns([2, 1, 2])
-    with col_center:
+    col_left, col_c1, col_gap, col_c2, col_right = st.columns([1.5, 1, 0.2, 1, 1.5])
+    with col_c1:
         if st.button("🚀  ENTER AI-MRI HUB", type="primary", use_container_width=True):
             st.session_state.show_splash = False
+            st.session_state.show_team_page = False
             st.rerun()
+    with col_c2:
+        team_btn_label = "✖  CLOSE TEAM PAGE" if st.session_state.show_team_page else "👥  MEET THE TEAM"
+        if st.button(team_btn_label, use_container_width=True):
+            st.session_state.show_team_page = not st.session_state.show_team_page
+            st.rerun()
+
+    # --- TEAM PAGE (toggled below CTA) ---
+    if st.session_state.show_team_page:
+        st.markdown("""
+        <div class="team-page-root">
+          <div class="team-page-title">Meet The Team</div>
+          <div class="team-page-sub">The Minds Behind AI-MRI Hub</div>
+          <div class="tp-divider"></div>
+          <p class="team-page-desc">
+            AI-MRI Hub was built by a multidisciplinary team of seven researchers, developers, and scientists united by a
+            shared mission — to make antibiotic resistance genomics instantly accessible, intelligible, and actionable for
+            clinicians and researchers worldwide. Each member brought a distinct expertise to architect a platform that is
+            greater than the sum of its parts.
+          </p>
+
+          <div class="tp-grid">
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div>
+              <div class="tp-name">Poorva Dongarkar</div>
+              <div class="tp-role-primary">Project Lead</div>
+              <div class="tp-role-secondary">Genomics Architect</div>
+              <div class="tp-desc">Directed end-to-end project execution and overall technical vision. Spearheaded CARD database integration, ARG extraction logic, and the bacterial classification system that powers the platform's core analytics.</div>
+              <div class="tp-tags"><span class="tp-tag">Leadership</span><span class="tp-tag">Genomics</span><span class="tp-tag">AMR</span><span class="tp-tag">Data</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div>
+              <div class="tp-name">Hardik Agrawal</div>
+              <div class="tp-role-primary">Lead Developer</div>
+              <div class="tp-role-secondary">AI & Systems Engineer</div>
+              <div class="tp-desc">Architected the full-stack Streamlit platform from the ground up. Designed the proprietary MRI/ARI mathematical framework and built the Random Forest AI prediction pipeline at the heart of the system.</div>
+              <div class="tp-tags"><span class="tp-tag">Python</span><span class="tp-tag">ML</span><span class="tp-tag">Streamlit</span><span class="tp-tag">Backend</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div>
+              <div class="tp-name">Avani Laswante</div>
+              <div class="tp-role-primary">Presentation Lead</div>
+              <div class="tp-role-secondary">UI/UX Designer</div>
+              <div class="tp-desc">Crafted and delivered all project presentations and the visual narrative strategy. Also responsible for the complete CSS design system, dark-mode aesthetic, and the platform's animated visual identity.</div>
+              <div class="tp-tags"><span class="tp-tag">Presentation</span><span class="tp-tag">CSS</span><span class="tp-tag">UI/UX</span><span class="tp-tag">Design</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div>
+              <div class="tp-name">Zeel Bhanushali</div>
+              <div class="tp-role-primary">Presentation Specialist</div>
+              <div class="tp-role-secondary">Clinical Research Lead</div>
+              <div class="tp-desc">Co-led project presentations with scientific depth and clarity. Developed the clinical susceptibility logic, drug-class universe mapping, and conducted MRI clinical validation research.</div>
+              <div class="tp-tags"><span class="tp-tag">Presentation</span><span class="tp-tag">Microbiology</span><span class="tp-tag">Pharmacology</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div>
+              <div class="tp-name">Aayushi Wasnik</div>
+              <div class="tp-role-primary">Research Lead</div>
+              <div class="tp-role-secondary">AI Integration Specialist</div>
+              <div class="tp-desc">Led the scientific research underpinning the platform's clinical and genomic frameworks. Implemented the J.A.R.V.I.S. AI chatbot, Gemini API integration, context injection pipeline, and multi-session state management.</div>
+              <div class="tp-tags"><span class="tp-tag">Research</span><span class="tp-tag">Gemini API</span><span class="tp-tag">LLM</span><span class="tp-tag">Prompt Eng.</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div>
+              <div class="tp-name">Indranil Patil</div>
+              <div class="tp-role-primary">Documentation Lead</div>
+              <div class="tp-role-secondary">PDF & Technical Writer</div>
+              <div class="tp-desc">Authored all technical documentation, mathematical write-ups, and the academic framework. Built the ReportLab PDF pipeline that compiles analysis into publication-ready reports with a single click.</div>
+              <div class="tp-tags"><span class="tp-tag">Documentation</span><span class="tp-tag">ReportLab</span><span class="tp-tag">LaTeX</span><span class="tp-tag">Writing</span></div>
+            </div>
+
+            <div class="tp-card">
+              <div class="tp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div>
+              <div class="tp-name">Yashraj Patil</div>
+              <div class="tp-role-primary">Documentation Specialist</div>
+              <div class="tp-role-secondary">Visualization Engineer</div>
+              <div class="tp-desc">Co-authored technical documentation and visual reference guides. Engineered the PyVis network graphs, Plotly 3D PCA landscape, and the Matplotlib 6-panel analysis dashboard.</div>
+              <div class="tp-tags"><span class="tp-tag">Documentation</span><span class="tp-tag">PyVis</span><span class="tp-tag">Plotly</span><span class="tp-tag">Matplotlib</span></div>
+            </div>
+
+          </div>
+
+          <div class="tp-mission-row">
+            <div class="tp-mission-card">
+              <div class="tp-mission-title">🎯 Mission</div>
+              <div class="tp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div>
+            </div>
+            <div class="tp-mission-card">
+              <div class="tp-mission-title">🔬 Methods</div>
+              <div class="tp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div>
+            </div>
+            <div class="tp-mission-card">
+              <div class="tp-mission-title">🌍 Vision</div>
+              <div class="tp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div>
+            </div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
     st.stop()
 
 # ==========================================
@@ -920,7 +1024,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 
     st.write(" ")
 
-    # ── TABS: Welcome/Unique/Team tabs REMOVED from main analysis area ──
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "ℹ️ Pathogen Summary",
         "📊 6-Panel Dashboard",
