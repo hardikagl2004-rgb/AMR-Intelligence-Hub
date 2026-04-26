@@ -23,9 +23,6 @@ from reportlab.lib.units import inch
 try:
     import google.generativeai as genai
     AI_AVAILABLE = True
-    
-    # Securely fetches the key from your Streamlit Cloud Secrets dashboard
-    # DASHBOARD SETUP: GENAI_API_KEY = "AIzaSyAJwT7rWxIsYr4tEX4126HdTMHeNlSDjUQ"
     if "GENAI_API_KEY" in st.secrets:
         genai.configure(api_key=st.secrets["GENAI_API_KEY"])
     else:
@@ -37,14 +34,13 @@ except ImportError:
 # ==========================================
 # 1. PAGE CONFIGURATION & CSS
 # ==========================================
-st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon=" 🧬 ")
+st.set_page_config(page_title="AI-MRI Hub", layout="wide", page_icon="🧬")
 
 st.markdown("""
 <style>
 .main {background-color: #0e1117;}
 h1, h2, h3 {color: #ffffff;}
 
-/* Professional Header Styling */
 .main-header {
 background: linear-gradient(120deg, #020b18 0%, #0c1f3f 30%, #06304a 60%, #0f2a1a 100%);
 border: 1px solid rgba(0,212,255,0.2);
@@ -66,7 +62,6 @@ overflow: hidden;
 }
 @keyframes headerBar { 0%{background-position:0% center} 100%{background-position:300% center} }
 
-/* Updated Welcome Hero Section: Tech-Blue Gradient for high impact */
 .welcome-hero {
     background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
     border-radius: 15px;
@@ -76,25 +71,20 @@ overflow: hidden;
     text-align: center;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
-
-/* Welcome Title Styling */
 .welcome-hero h2 {
-    color: #60a5fa !important; /* Electric Blue */
+    color: #60a5fa !important;
     font-size: 2.8rem !important;
     font-weight: 800 !important;
     margin-bottom: 12px !important;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
-
-/* Welcome Sub-text */
 .welcome-hero p {
-    color: #e2e8f0 !important; /* Bright Contrast Off-White */
+    color: #e2e8f0 !important;
     font-size: 1.25rem !important;
     letter-spacing: 0.8px;
     opacity: 1.0;
 }
 
-/* High-Risk Alert Banner */
 .alert-banner {
 background: rgba(239, 68, 68, 0.2);
 border: 1px solid #ef4444;
@@ -112,7 +102,6 @@ animation: pulse 2s infinite;
 100% { opacity: 1; }
 }
 
-/* Metric Card Styling */
 .metric-card {
 background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
 border: 1px solid rgba(0,212,255,0.15);
@@ -138,7 +127,6 @@ font-size: 1.8rem;
 font-weight: 700;
 margin-top: 0.5rem;
 }
-/* Professional Executive Summary Card */
 .report-card {
 background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
 border-left: 5px solid #00d4ff;
@@ -171,7 +159,6 @@ border-radius: 20px;
 font-size: 0.85rem;
 border: 1px solid rgba(0,212,255,0.3);
 }
-/* Math Ledger Cards */
 .math-card {
 background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
 border: 1px solid rgba(0,212,255,0.15);
@@ -187,8 +174,6 @@ text-transform: uppercase;
 letter-spacing: 0.1em;
 margin-bottom: 15px;
 }
-
-/* Formula Annotation Legend */
 .annotation-box {
 background: rgba(15, 23, 42, 0.6);
 border: 1px dashed #334155;
@@ -201,7 +186,6 @@ color: #94a3b8;
 .annotation-item { margin-bottom: 4px; }
 .annotation-key { color: #60a5fa; font-weight: bold; font-family: monospace; }
 
-/* Clinical Insight Styling */
 .susceptibility-card {
 background: rgba(16, 185, 129, 0.1);
 border: 1px solid #10b981;
@@ -210,30 +194,23 @@ padding: 15px;
 color: #10b981;
 font-weight: 600;
 }
-
-/* Risk Assessment Text Visibility Update */
 .reasoning-box {
 background: rgba(6,30,50,0.85);
 border-radius: 12px;
 border-left: 5px solid #00d4ff;
 padding: 20px;
-color: #ffffff; /* Highly visible pure white */
+color: #ffffff;
 line-height: 1.7;
 font-size: 1.05rem;
 font-weight: 400;
 box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
 }
-
-/* Professional Table Styling */
 [data-testid="stDataFrame"] {
 border: 1px solid #334155;
 border-radius: 10px;
 overflow: hidden;
 }
 
-/* =============================================
-   NEW: ANIMATED WELCOME PAGE STYLES
-   ============================================= */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-40px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -265,466 +242,6 @@ overflow: hidden;
 @keyframes countUp {
   from { opacity: 0; transform: scale(0.5); }
   to   { opacity: 1; transform: scale(1); }
-}
-
-.welcome-splash {
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 20% 50%, rgba(30,58,138,0.6) 0%, rgba(15,23,42,0.98) 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.3) 0%, transparent 50%);
-  border: 1px solid rgba(59,130,246,0.3);
-  border-radius: 20px;
-  padding: 60px 50px;
-  margin-bottom: 40px;
-  text-align: center;
-  animation: borderPulse 3s ease-in-out infinite;
-}
-.welcome-splash::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #3b82f6, #60a5fa, transparent);
-  animation: scanline 4s linear infinite;
-  opacity: 0.5;
-}
-.splash-dna {
-  font-size: 5rem;
-  animation: float 3s ease-in-out infinite;
-  display: block;
-  margin-bottom: 10px;
-}
-.splash-title {
-  font-size: 3.2rem !important;
-  font-weight: 900 !important;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #34d399 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: fadeInDown 1s ease forwards, shimmer 4s linear infinite;
-  margin-bottom: 8px !important;
-  letter-spacing: -1px;
-}
-.splash-subtitle {
-  color: #94a3b8 !important;
-  font-size: 1.1rem !important;
-  animation: fadeInUp 1.2s ease forwards;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 30px !important;
-}
-.splash-desc {
-  color: #e2e8f0 !important;
-  font-size: 1.15rem !important;
-  line-height: 1.8;
-  max-width: 750px;
-  margin: 0 auto 35px auto !important;
-  animation: fadeIn 1.5s ease forwards;
-}
-.splash-stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 35px;
-  animation: fadeInUp 1.8s ease forwards;
-}
-.splash-stat {
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.3);
-  border-radius: 14px;
-  padding: 18px 28px;
-  min-width: 130px;
-  animation: countUp 0.6s ease forwards;
-}
-.splash-stat-num {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #60a5fa;
-  display: block;
-}
-.splash-stat-label {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 35px;
-  animation: fadeInUp 2s ease forwards;
-}
-.feature-card {
-  background: rgba(30,41,59,0.8);
-  border: 1px solid #334155;
-  border-radius: 14px;
-  padding: 25px;
-  text-align: left;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.feature-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-.feature-card:hover::after { transform: scaleX(1); }
-.feature-card:hover {
-  border-color: rgba(59,130,246,0.6);
-  background: rgba(30,58,138,0.4);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(59,130,246,0.15);
-}
-.feature-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-.feature-title {
-  color: #60a5fa !important;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.feature-desc { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
-
-/* HOW WE NAVIGATE section */
-.steps-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  animation: fadeInUp 2.2s ease forwards;
-}
-.step-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  background: rgba(15,23,42,0.6);
-  border: 1px solid #1e293b;
-  border-radius: 12px;
-  padding: 18px 22px;
-}
-.step-num {
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  color: white;
-  font-weight: 800;
-  font-size: 1.1rem;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.step-text { color: #e2e8f0; font-size: 0.95rem; line-height: 1.6; }
-.step-text strong { color: #60a5fa; }
-
-/* =============================================
-   NEW: WHY WE'RE UNIQUE STYLES
-   ============================================= */
-.unique-hero {
-  background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(15,23,42,0.98) 50%, rgba(139,92,246,0.1) 100%);
-  border: 1px solid rgba(16,185,129,0.3);
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  margin-bottom: 40px;
-  position: relative;
-  overflow: hidden;
-}
-.unique-hero-title {
-  font-size: 2.6rem !important;
-  font-weight: 900 !important;
-  background: linear-gradient(135deg, #34d399, #60a5fa, #a78bfa);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-  margin-bottom: 10px !important;
-}
-.unique-hero-sub {
-  color: #94a3b8 !important;
-  font-size: 1.05rem !important;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.comparison-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-bottom: 35px;
-}
-.comparison-card {
-  border-radius: 16px;
-  padding: 30px;
-}
-.others-card {
-  background: rgba(239,68,68,0.06);
-  border: 1px solid rgba(239,68,68,0.25);
-}
-.us-card {
-  background: rgba(16,185,129,0.06);
-  border: 1px solid rgba(16,185,129,0.35);
-  position: relative;
-}
-.us-card::before {
-  content: '★ EXCLUSIVE';
-  position: absolute;
-  top: -12px; right: 20px;
-  background: linear-gradient(90deg, #10b981, #34d399);
-  color: #0f172a;
-  font-size: 0.7rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 1px;
-}
-.comparison-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.others-title { color: #f87171; }
-.us-title { color: #34d399; }
-.comparison-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
-  color: #cbd5e1;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-.check-x { flex-shrink: 0; font-size: 1rem; }
-
-.unique-pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-  margin-bottom: 35px;
-}
-.pillar-card {
-  background: rgba(15,23,42,0.8);
-  border: 1px solid #1e293b;
-  border-radius: 16px;
-  padding: 28px 22px;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.pillar-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-.pillar-card.green::before  { background: linear-gradient(90deg, #10b981, #34d399); }
-.pillar-card.blue::before   { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-.pillar-card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-.pillar-card.amber::before  { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.pillar-card.rose::before   { background: linear-gradient(90deg, #f43f5e, #fb7185); }
-.pillar-card.cyan::before   { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
-.pillar-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(96,165,250,0.4);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-.pillar-icon { font-size: 2.5rem; display: block; margin-bottom: 14px; }
-.pillar-title {
-  color: #f1f5f9 !important;
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.pillar-desc { color: #64748b; font-size: 0.85rem; line-height: 1.6; }
-
-.quote-banner {
-  background: linear-gradient(135deg, rgba(30,58,138,0.5), rgba(139,92,246,0.2));
-  border: 1px solid rgba(59,130,246,0.4);
-  border-radius: 16px;
-  padding: 35px 40px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-.quote-text {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: #e2e8f0 !important;
-  font-style: italic;
-  line-height: 1.7;
-  margin-bottom: 15px !important;
-}
-.quote-author {
-  color: #60a5fa !important;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* =============================================
-   NEW: TEAM PAGE STYLES
-   ============================================= */
-.team-hero {
-  background: radial-gradient(ellipse at center, rgba(59,130,246,0.15) 0%, rgba(15,23,42,0.98) 70%);
-  border: 1px solid rgba(59,130,246,0.2);
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-.team-hero-title {
-  font-size: 2.6rem !important;
-  font-weight: 900 !important;
-  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% auto;
-  animation: shimmer 4s linear infinite;
-  margin-bottom: 10px !important;
-}
-.team-hero-sub {
-  color: #94a3b8 !important;
-  font-size: 1rem !important;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  margin-bottom: 40px;
-}
-.team-card {
-  background: rgba(15,23,42,0.85);
-  border: 1px solid #1e293b;
-  border-radius: 20px;
-  padding: 35px 25px;
-  text-align: center;
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
-}
-.team-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-  animation: shimmer 3s linear infinite;
-  background-size: 200% auto;
-}
-.team-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(96,165,250,0.5);
-  box-shadow: 0 25px 50px rgba(59,130,246,0.15);
-  background: rgba(30,41,59,0.9);
-}
-.team-avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.4rem;
-  margin: 0 auto 18px auto;
-  border: 3px solid rgba(59,130,246,0.4);
-  position: relative;
-}
-.team-avatar::after {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  animation: float 3s ease-in-out infinite;
-}
-.team-name {
-  color: #f1f5f9 !important;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 5px !important;
-}
-.team-role {
-  color: #60a5fa !important;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 12px !important;
-}
-.team-desc {
-  color: #64748b;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-.team-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
-.team-tag {
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.25);
-  color: #93c5fd;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.72rem;
-  font-weight: 500;
-}
-.collab-banner {
-  background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(59,130,246,0.15));
-  border: 1px solid rgba(139,92,246,0.3);
-  border-radius: 16px;
-  padding: 35px;
-  text-align: center;
-  margin-bottom: 25px;
-}
-.collab-title {
-  color: #a78bfa !important;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 12px !important;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.collab-text {
-  color: #cbd5e1 !important;
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-.institution-badge {
-  display: inline-block;
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.3);
-  color: #60a5fa;
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-top: 15px;
-  letter-spacing: 0.5px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -803,7 +320,7 @@ def extract_data(file_name):
             d, m = [], []
             for c in inner.get("ARO_category", {}).values():
                 cname = c.get("category_aro_class_name","").lower()
-                val = c.get("category_aro_name","").title() 
+                val = c.get("category_aro_name","").title()
                 if "drug" in cname: d.append(val)
                 elif "mechanism" in cname: m.append(val)
 
@@ -818,17 +335,17 @@ def extract_data(file_name):
     return genes, drug, mech, mri, ari, records
 
 def get_level(mri):
-    if mri < 0.15: return "LOW", " 🟢 "
-    elif mri < 0.35: return "MODERATE", " 🟡 "
-    else: return "HIGH", " 🔴 "
+    if mri < 0.15: return "LOW", "🟢"
+    elif mri < 0.35: return "MODERATE", "🟡"
+    else: return "HIGH", "🔴"
 
 def get_risk_reason(level, u_drugs, u_mechs):
     if "HIGH" in level:
-        return f"Because its MRI is high, it utilizes multiple redundant strategies ({u_mechs} mechanisms) to block diverse threats ({u_drugs} drugs). If one antibiotic pathway is bypassed, the bacteria actively pivots to another, making standard frontline clinical treatments highly ineffective."
+        return f"This pathogen's elevated MRI score reflects a sophisticated and redundant resistance architecture. Deploying {u_mechs} distinct biological mechanisms against {u_drugs} drug classes, the organism exhibits the capacity to dynamically bypass standard frontline therapeutics. When one resistance pathway is circumvented, alternative mechanisms compensate — a hallmark of high-priority clinical threats."
     elif "MODERATE" in level:
-        return f"With a moderate MRI, this strain shows significant adaptation. It has built defenses against standard antibiotics ({u_drugs} drugs), forcing doctors to rely on secondary treatments."
+        return f"This strain demonstrates a clinically significant, though not maximal, resistance burden. Resistance determinants spanning {u_drugs} drug classes have been identified, necessitating careful antibiogram-guided therapy selection. Secondary and combination treatment regimens should be considered to achieve effective clinical outcomes."
     else:
-        return f"This strain has a low MRI, indicating a narrow resistance profile. It likely specializes against specific antibiotics found in its direct natural habitat rather than hoarding a massive clinical arsenal."
+        return f"The calculated MRI indicates a restricted resistance profile, suggestive of ecological specialization rather than broad clinical adaptation. With resistance distributed across {u_drugs} drug classes via {u_mechs} mechanisms, standard empirical treatment protocols remain viable. Continued genomic surveillance is recommended to monitor for resistance acquisition."
 
 @st.cache_resource
 def train_rf_model():
@@ -927,7 +444,7 @@ def plot_3d_pca_plotly(current_file):
             except: continue
 
     if len(X) < 3:
-        st.warning("Not enough data for 3D PCA.")
+        st.warning("Insufficient data points for 3D PCA rendering. A minimum of three genomic profiles are required.")
         return
 
     pca = PCA(n_components=3).fit_transform(X)
@@ -936,10 +453,10 @@ def plot_3d_pca_plotly(current_file):
     df_pca['Risk Category'] = risk_levels
 
     color_discrete_map = {
-    "HIGH": "red",
-    "MODERATE": "orange",
-    "LOW": "green",
-    "TARGET 🎯": "gold"
+        "HIGH": "red",
+        "MODERATE": "orange",
+        "LOW": "green",
+        "TARGET 🎯": "gold"
     }
     fig = px.scatter_3d(df_pca, x='Overall Resistance (PC1)', y='Mechanism Diversity (PC2)', z='Genetic Density (PC3)',
                       color='Risk Category', hover_name='Genome', color_discrete_map=color_discrete_map,
@@ -955,7 +472,7 @@ def plot_3d_pca_plotly(current_file):
     st.plotly_chart(fig, use_container_width=True)
 
 # ==========================================
-# 4. MASTER PLATYPUS PDF GENERATOR
+# 4. PDF GENERATOR
 # ==========================================
 def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon, records, dashboard_fig, bac_info, habitat, ai_pred_text, ai_conf_text):
     pdf_file = f"{bac_name.replace('.json', '')}_Detailed_Report.pdf"
@@ -977,53 +494,53 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
     summary_text = f"""
 <b>Pathogen File:</b> {bac_name}<br/>
 <b>Gram Stain:</b> {bac_info['gram']}<br/>
-<b>Common Disease:</b> {bac_info['disease']}<br/>
-<b>Habitat:</b> {habitat}<br/>
-<b>Total Genes:</b> {genes}<br/>
-<b>Resistance (Drugs):</b> {u_drugs}<br/>
-<b>Mechanisms:</b> {u_mechs}<br/>
+<b>Associated Pathology:</b> {bac_info['disease']}<br/>
+<b>Ecological Habitat:</b> {habitat}<br/>
+<b>Total Resistance Genes:</b> {genes}<br/>
+<b>Drug Classes Resisted:</b> {u_drugs}<br/>
+<b>Resistance Mechanisms:</b> {u_mechs}<br/>
 <b>MRI Score:</b> {round(mri, 3)} ({level})<br/>
 <b>ARI Score:</b> {round(ari, 3)}<br/><br/>
-<b>Machine Learning AI Prediction:</b> {ai_pred_text}<br/>
-<b>Confidence Matrix:</b> {ai_conf_text}
+<b>Machine Learning Prediction:</b> {ai_pred_text} Risk<br/>
+<b>Confidence Distribution:</b> {ai_conf_text}
 """
     elements.append(Paragraph(summary_text, normal_style))
     elements.append(Spacer(1, 15))
 
-    elements.append(Paragraph("Metric Explanations & Significance", h2_style))
+    elements.append(Paragraph("Metric Definitions & Clinical Significance", h2_style))
     explanation_text = """
-<b>Pathogen Profile (Gram, Disease, Habitat):</b> Provides the essential biological and ecological context of the strain.<br/><br/>
-<b>Total Genes:</b> The absolute count of Antibiotic Resistance Genes (ARGs) identified in the sequence data.<br/><br/>
-<b>Resistance & Mechanisms:</b> Quantifies the distinct pharmaceutical drug classes the pathogen can evade and the specific biological strategies it deploys to do so.<br/><br/>
-<b>AI Prediction & Confidence:</b> A Random Forest model's probabilistic assessment of the pathogen's overall threat level based on its learned resistance profile.
+<b>Pathogen Profile (Gram Classification, Pathology, Habitat):</b> Establishes the essential biological and ecological context required for accurate clinical interpretation of resistance data.<br/><br/>
+<b>Total Resistance Genes:</b> The absolute count of Antibiotic Resistance Genes (ARGs) identified within the sequenced genomic data, sourced from the CARD database annotation framework.<br/><br/>
+<b>Drug Classes Resisted & Mechanisms Deployed:</b> Enumerates the distinct pharmaceutical classes the pathogen can evade and the specific molecular strategies it employs to achieve resistance.<br/><br/>
+<b>AI Prediction & Confidence Distribution:</b> A Random Forest ensemble model's probabilistic classification of the pathogen's aggregate threat level, trained on a population of reference genomic profiles.
 """
     elements.append(Paragraph(explanation_text, normal_style))
 
-    elements.append(Paragraph("The Clinical Necessity of MRI and ARI", h2_style))
+    elements.append(Paragraph("Clinical Rationale for MRI and ARI Frameworks", h2_style))
     mri_ari_text = """
-Traditional genomic analysis often simply lists detected genes, which fails to quantify the actual danger a pathogen poses.
-Our framework utilizes two calculated metrics to solve this:<br/><br/>
-<b>Why ARI is Required:</b> The Antibiotic Resistance Index (ARI) calculates the <i>density</i> of the threat by normalizing the unique mechanisms against the total gene count.
-It reveals how efficiently the bacteria utilizes its genetic payload to resist treatments.<br/><br/>
-<b>Why MRI Helps:</b> The Multidimensional Resistance Index (MRI) mathematically consolidates the diversity of resisted drugs and deployed mechanisms into a single, standardized risk score.
-This allows clinicians and researchers to instantly gauge and compare the severity of different strains, prioritizing high-risk pathogens for immediate intervention without needing to manually decipher complex gene ledgers.
+Conventional genomic analysis outputs raw gene inventories, which fail to quantify the actual clinical danger a pathogen poses in a standardized, comparable format.
+The AI-MRI Hub addresses this gap through two validated computational metrics:<br/><br/>
+<b>Antibiotic Resistance Index (ARI):</b> Quantifies the <i>density</i> of resistance by normalizing unique mechanism count against total gene count with Laplace smoothing.
+This reveals how efficiently the organism converts its genetic payload into functional resistance.<br/><br/>
+<b>Multidimensional Resistance Index (MRI):</b> Consolidates resistance breadth (drug class diversity) and resistance depth (mechanism diversity) into a single normalized score.
+This enables standardized inter-species comparison and rapid triage — allowing clinicians to immediately stratify pathogen severity without manually interpreting complex gene ledgers.
 """
     elements.append(Paragraph(mri_ari_text, normal_style))
 
     elements.append(PageBreak())
 
-    elements.append(Paragraph("Exact Mathematical Calculations", h2_style))
+    elements.append(Paragraph("Mathematical Derivations", h2_style))
     calc_text = f"""
 <b>MRI Calculation:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri, 3)}</b><br/>
 <b>ARI Calculation:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari, 3)}</b>
 """
     elements.append(Paragraph(calc_text, normal_style))
 
-    elements.append(Paragraph("Risk Assessment Reasoning", h2_style))
+    elements.append(Paragraph("Risk Assessment Interpretation", h2_style))
     reason = get_risk_reason(level, u_drugs, u_mechs)
     elements.append(Paragraph(reason, normal_style))
 
-    elements.append(Paragraph("Graphical Systems Dashboard", h2_style))
+    elements.append(Paragraph("Systems Analysis Dashboard", h2_style))
     buf = io.BytesIO()
     dashboard_fig.patch.set_facecolor('white')
     for ax in dashboard_fig.axes:
@@ -1040,31 +557,30 @@ This allows clinicians and researchers to instantly gauge and compare the severi
 
     elements.append(PageBreak())
 
-    elements.append(Paragraph("Complete Gene Ledger", h2_style))
-    table_data = [["Gene Name", "Drugs Resisted", "Mechanisms Used", "Habitat"]]
+    elements.append(Paragraph("Complete Gene Resistance Ledger", h2_style))
+    table_data = [["Gene Name", "Drug Classes Resisted", "Mechanisms Deployed", "Habitat"]]
     for g, d, m, h in records:
         table_data.append([Paragraph(g, normal_style), Paragraph(d, normal_style), Paragraph(m, normal_style), Paragraph(h, normal_style)])
 
     t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
     t.setStyle(TableStyle([
-    ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-    ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-    ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-    ('BOTTOMPADDING', (0,0), (-1,0), 12),
-    ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-    ('GRID', (0,0), (-1,-1), 1, colors.black),
-    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0,0), (-1,0), 12),
+        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
+        ('GRID', (0,0), (-1,-1), 1, colors.black),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
     ]))
 
     elements.append(t)
     doc.build(elements)
     return pdf_file
-# ==========================================
-# 5. FRONTEND: THE WEBSITE LAYOUT
-# ==========================================
 
-# ---- SPLASH SCREEN GATE ----
+# ==========================================
+# 5. SPLASH SCREEN
+# ==========================================
 if 'show_splash' not in st.session_state:
     st.session_state.show_splash = True
 
@@ -1072,14 +588,11 @@ if st.session_state.show_splash:
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
-
-    /* Hide default Streamlit chrome on splash */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     [data-testid="stSidebar"] {display: none !important;}
     .block-container {padding: 0 !important; max-width: 100% !important;}
 
-    /* Full-viewport animated background */
     .splash-root {
       min-height: 100vh;
       background: #020b18;
@@ -1090,8 +603,6 @@ if st.session_state.show_splash:
       font-family: 'Rajdhani', sans-serif;
       overflow-x: hidden;
     }
-
-    /* Animated grid overlay */
     .splash-root::before {
       content: '';
       position: fixed;
@@ -1104,202 +615,77 @@ if st.session_state.show_splash:
       pointer-events: none;
       z-index: 0;
     }
-    @keyframes gridDrift {
-      0%   { transform: translate(0,0); }
-      100% { transform: translate(60px,60px); }
-    }
-
-    /* Floating particles */
-    .particle {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: particleFloat linear infinite;
-      z-index: 1;
-    }
-    @keyframes particleFloat {
-      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
-    }
-
+    @keyframes gridDrift { 0% { transform: translate(0,0); } 100% { transform: translate(60px,60px); } }
     .splash-content { position: relative; z-index: 2; }
 
-    /* ========= HERO SECTION ========= */
-    .sp-hero {
-      padding: 80px 60px 60px 60px;
-      text-align: center;
-      position: relative;
-    }
+    .sp-hero { padding: 80px 60px 60px 60px; text-align: center; }
     .sp-dna-ring {
-      display: inline-block;
-      font-size: 5.5rem;
+      display: inline-block; font-size: 5.5rem;
       animation: dnaFloat 4s ease-in-out infinite, dnaGlow 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 30px rgba(0,212,255,0.6));
-      margin-bottom: 20px;
+      filter: drop-shadow(0 0 30px rgba(0,212,255,0.6)); margin-bottom: 20px;
     }
-    @keyframes dnaFloat {
-      0%,100% { transform: translateY(0) scale(1); }
-      50%      { transform: translateY(-15px) scale(1.05); }
-    }
-    @keyframes dnaGlow {
-      0%,100% { filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); }
-      50%      { filter: drop-shadow(0 0 50px rgba(124,58,237,0.8)) drop-shadow(0 0 20px rgba(0,212,255,0.6)); }
-    }
+    @keyframes dnaFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.05); } }
+    @keyframes dnaGlow { 0%,100% { filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); } 50% { filter: drop-shadow(0 0 50px rgba(124,58,237,0.8)) drop-shadow(0 0 20px rgba(0,212,255,0.6)); } }
 
     .sp-title {
-      font-family: 'Orbitron', monospace !important;
-      font-size: 4.5rem !important;
-      font-weight: 900 !important;
-      letter-spacing: 4px;
+      font-family: 'Orbitron', monospace !important; font-size: 4.5rem !important; font-weight: 900 !important; letter-spacing: 4px;
       background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 40%, #10b981 70%, #00d4ff 100%);
-      background-size: 300% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: titleShimmer 5s linear infinite, titleReveal 1.2s ease forwards;
-      margin-bottom: 8px !important;
-      opacity: 0;
+      background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: titleShimmer 5s linear infinite, titleReveal 1.2s ease forwards; margin-bottom: 8px !important; opacity: 0;
     }
     @keyframes titleShimmer { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
-    @keyframes titleReveal  { 0% { opacity:0; transform:translateY(-30px); } 100% { opacity:1; transform:translateY(0); } }
+    @keyframes titleReveal { 0% { opacity:0; transform:translateY(-30px); } 100% { opacity:1; transform:translateY(0); } }
 
     .sp-tagline {
-      font-family: 'Orbitron', monospace;
-      font-size: 0.85rem !important;
-      letter-spacing: 6px;
-      color: #00d4ff !important;
-      text-transform: uppercase;
-      margin-bottom: 20px !important;
-      animation: fadeInUp 1.5s ease forwards;
-      opacity: 0;
+      font-family: 'Orbitron', monospace; font-size: 0.85rem !important; letter-spacing: 6px;
+      color: #00d4ff !important; text-transform: uppercase; margin-bottom: 20px !important;
+      animation: fadeInUp 1.5s ease forwards; opacity: 0;
     }
     .sp-desc {
-      color: #94a3b8 !important;
-      font-size: 1.15rem !important;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: 0 auto 45px auto !important;
-      animation: fadeInUp 1.8s ease forwards;
-      opacity: 0;
+      color: #94a3b8 !important; font-size: 1.15rem !important; line-height: 1.8;
+      max-width: 700px; margin: 0 auto 45px auto !important;
+      animation: fadeInUp 1.8s ease forwards; opacity: 0;
     }
     @keyframes fadeInUp { 0% { opacity:0; transform:translateY(25px); } 100% { opacity:1; transform:translateY(0); } }
 
-    /* Stats bar */
     .sp-stats {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-      animation: fadeInUp 2s ease forwards;
-      opacity: 0;
+      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 50px; animation: fadeInUp 2s ease forwards; opacity: 0;
     }
     .sp-stat {
-      background: rgba(0,212,255,0.05);
-      border: 1px solid rgba(0,212,255,0.2);
-      border-radius: 16px;
-      padding: 22px 32px;
-      min-width: 120px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 16px; padding: 22px 32px; min-width: 120px; transition: all 0.3s ease;
     }
-    .sp-stat::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-      animation: scanTop 2s linear infinite;
-    }
-    @keyframes scanTop { 0% { transform:scaleX(0); } 50% { transform:scaleX(1); } 100% { transform:scaleX(0); } }
     .sp-stat:hover { transform:translateY(-5px); border-color:rgba(0,212,255,0.5); box-shadow:0 10px 30px rgba(0,212,255,0.15); }
     .sp-stat-num { font-family:'Orbitron',monospace; font-size:2.2rem; font-weight:900; color:#00d4ff; display:block; }
     .sp-stat-lbl { font-size:0.7rem; color:#64748b; letter-spacing:2px; text-transform:uppercase; }
 
-    /* ========= FEATURES SECTION ========= */
     .sp-section-title {
-      font-family: 'Orbitron', monospace !important;
-      font-size: 1.8rem !important;
-      font-weight: 700 !important;
-      color: #f1f5f9 !important;
-      text-align: center;
-      margin-bottom: 10px !important;
-      letter-spacing: 2px;
+      font-family: 'Orbitron', monospace !important; font-size: 1.8rem !important; font-weight: 700 !important;
+      color: #f1f5f9 !important; text-align: center; margin-bottom: 10px !important; letter-spacing: 2px;
     }
-    .sp-section-sub {
-      text-align: center;
-      color: #475569 !important;
-      font-size: 0.9rem !important;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 35px !important;
-    }
-    .sp-divider {
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, #00d4ff, #7c3aed);
-      margin: 0 auto 40px auto;
-      border-radius: 3px;
-    }
+    .sp-section-sub { text-align: center; color: #475569 !important; font-size: 0.9rem !important; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 35px !important; }
+    .sp-divider { width: 80px; height: 3px; background: linear-gradient(90deg, #00d4ff, #7c3aed); margin: 0 auto 40px auto; border-radius: 3px; }
 
-    .sp-feat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      padding: 0 60px 60px 60px;
-    }
+    .sp-feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; padding: 0 60px 60px 60px; }
     .sp-feat-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 28px 22px;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .sp-feat-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,212,255,0.03), rgba(124,58,237,0.03));
-      opacity: 0;
-      transition: opacity 0.3s;
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 28px 22px; transition: all 0.35s ease;
     }
     .sp-feat-card:hover { transform:translateY(-6px); border-color:rgba(0,212,255,0.25); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
-    .sp-feat-card:hover::after { opacity:1; }
     .sp-feat-icon { font-size:2.2rem; display:block; margin-bottom:14px; }
     .sp-feat-title { color:#00d4ff !important; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
     .sp-feat-desc { color:#64748b; font-size:0.88rem; line-height:1.65; }
 
-    /* ========= WHY UNIQUE SECTION ========= */
     .sp-unique-section { padding: 0 60px 70px 60px; }
-    .sp-compare {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-bottom: 40px;
-    }
+    .sp-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
     .sp-comp-card { border-radius: 18px; padding: 30px; }
-    .sp-comp-old {
-      background: rgba(239,68,68,0.04);
-      border: 1px solid rgba(239,68,68,0.18);
-    }
-    .sp-comp-new {
-      background: rgba(0,212,255,0.04);
-      border: 1px solid rgba(0,212,255,0.22);
-      position: relative;
-    }
+    .sp-comp-old { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.18); }
+    .sp-comp-new { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.22); position: relative; }
     .sp-comp-new::before {
-      content: '★ EXCLUSIVE';
-      position: absolute; top:-13px; right:20px;
-      background: linear-gradient(90deg, #00d4ff, #10b981);
-      color: #020b18;
-      font-size: 0.65rem; font-weight:800; padding:4px 14px;
-      border-radius:20px; letter-spacing:1.5px;
-      font-family:'Orbitron',monospace;
+      content: '★ EXCLUSIVE'; position: absolute; top:-13px; right:20px;
+      background: linear-gradient(90deg, #00d4ff, #10b981); color: #020b18;
+      font-size: 0.65rem; font-weight:800; padding:4px 14px; border-radius:20px; letter-spacing:1.5px; font-family:'Orbitron',monospace;
     }
     .sp-comp-title { font-size:1rem; font-weight:700; margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
     .sp-comp-old .sp-comp-title { color:#f87171; }
@@ -1307,21 +693,8 @@ if st.session_state.show_splash:
     .sp-comp-item { display:flex; gap:10px; margin-bottom:12px; color:#94a3b8; font-size:0.88rem; line-height:1.5; }
     .sp-chk { flex-shrink:0; }
 
-    .sp-pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-      gap: 18px;
-    }
-    .sp-pillar {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 26px 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+    .sp-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 18px; }
+    .sp-pillar { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 26px 20px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
     .sp-pillar::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; }
     .sp-pillar.c1::before { background:linear-gradient(90deg,#00d4ff,#10b981); }
     .sp-pillar.c2::before { background:linear-gradient(90deg,#7c3aed,#a78bfa); }
@@ -1334,36 +707,12 @@ if st.session_state.show_splash:
     .sp-pillar-title { color:#f1f5f9 !important; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px; }
     .sp-pillar-desc { color:#475569; font-size:0.82rem; line-height:1.6; }
 
-    /* ========= TEAM SECTION ========= */
     .sp-team-section { padding: 0 60px 70px 60px; }
-    .sp-team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .sp-team-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px;
-      padding: 32px 22px;
-      text-align: center;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .sp-team-card::before {
-      content:''; position:absolute; top:0;left:0;right:0; height:3px;
-      background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981);
-      background-size:200% auto; animation:titleShimmer 4s linear infinite;
-    }
+    .sp-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; margin-bottom: 40px; }
+    .sp-team-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 32px 22px; text-align: center; transition: all 0.35s ease; position: relative; overflow: hidden; }
+    .sp-team-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981); background-size:200% auto; animation:titleShimmer 4s linear infinite; }
     .sp-team-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.3); box-shadow:0 25px 50px rgba(0,212,255,0.1); }
-    .sp-avatar {
-      width:80px;height:80px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:2.2rem; margin:0 auto 16px auto;
-      border:2px solid rgba(0,212,255,0.3);
-    }
+    .sp-avatar { width:80px;height:80px;border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:2.2rem; margin:0 auto 16px auto; border:2px solid rgba(0,212,255,0.3); }
     .sp-tname { color:#f1f5f9 !important; font-size:1.1rem; font-weight:700; margin-bottom:4px !important; }
     .sp-trole { color:#00d4ff !important; font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
     .sp-tdesc { color:#475569; font-size:0.82rem; line-height:1.6; margin-bottom:14px; }
@@ -1371,143 +720,129 @@ if st.session_state.show_splash:
     .sp-ttag { background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.2); color:#67e8f9; padding:3px 9px; border-radius:20px; font-size:0.68rem; }
 
     .sp-mission-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
-    .sp-mission-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius:14px; padding:28px 22px; text-align:center;
-    }
+    .sp-mission-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius:14px; padding:28px 22px; text-align:center; }
     .sp-mission-title { color:#00d4ff !important; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
     .sp-mission-text { color:#64748b; font-size:0.85rem; line-height:1.7; }
 
-    /* ========= CTA BUTTON SECTION ========= */
-    .sp-cta-section {
-      padding: 60px;
-      text-align: center;
-      background: linear-gradient(180deg, transparent, rgba(0,212,255,0.04), transparent);
-      border-top: 1px solid rgba(0,212,255,0.08);
-    }
-    .sp-cta-label {
-      font-family:'Orbitron',monospace;
-      font-size:0.8rem; letter-spacing:5px; text-transform:uppercase;
-      color:#475569 !important; margin-bottom:20px !important;
-    }
-    .sp-cta-headline {
-      font-size:2.4rem !important; font-weight:700 !important;
-      color:#f1f5f9 !important; margin-bottom:12px !important;
-      line-height:1.3;
-    }
+    .sp-cta-section { padding: 60px; text-align: center; background: linear-gradient(180deg, transparent, rgba(0,212,255,0.04), transparent); border-top: 1px solid rgba(0,212,255,0.08); }
+    .sp-cta-label { font-family:'Orbitron',monospace; font-size:0.8rem; letter-spacing:5px; text-transform:uppercase; color:#475569 !important; margin-bottom:20px !important; }
+    .sp-cta-headline { font-size:2.4rem !important; font-weight:700 !important; color:#f1f5f9 !important; margin-bottom:12px !important; line-height:1.3; }
     .sp-cta-sub { color:#64748b !important; font-size:1rem !important; margin-bottom:40px !important; }
 
-    /* Stagger animation delays */
-    .sp-title  { animation-delay: 0.2s; }
-    .sp-tagline{ animation-delay: 0.6s; }
-    .sp-desc   { animation-delay: 0.9s; }
-    .sp-stats  { animation-delay: 1.2s; }
+    .sp-title { animation-delay: 0.2s; }
+    .sp-tagline { animation-delay: 0.6s; }
+    .sp-desc { animation-delay: 0.9s; }
+    .sp-stats { animation-delay: 1.2s; }
     </style>
+    """, unsafe_allow_html=True)
 
+    # --- HERO ---
+    st.markdown("""
     <div class="splash-root">
     <div class="splash-content">
-
-      <!-- ===== HERO ===== -->
-      <div class="sp-hero">
-        <span class="sp-dna-ring">🧬</span>
-        <h1 class="sp-title">AI-MRI HUB</h1>
-        <p class="sp-tagline">Antimicrobial Resistance Intelligence Platform</p>
-        <p class="sp-desc">
-          The world's most advanced quantitative framework for decoding antibiotic resistance genes.
-          We transform raw genomic data into actionable clinical intelligence — instantly, accurately, and at scale.
-        </p>
-        <div class="sp-stats">
-          <div class="sp-stat"><span class="sp-stat-num">2</span><span class="sp-stat-lbl">Novel Indices</span></div>
-          <div class="sp-stat"><span class="sp-stat-num">8</span><span class="sp-stat-lbl">Analysis Modules</span></div>
-          <div class="sp-stat"><span class="sp-stat-num">100+</span><span class="sp-stat-lbl">Genomes Supported</span></div>
-          <div class="sp-stat"><span class="sp-stat-num">7</span><span class="sp-stat-lbl">Researchers</span></div>
-        </div>
+    <div class="sp-hero">
+      <span class="sp-dna-ring">🧬</span>
+      <h1 class="sp-title">AI-MRI HUB</h1>
+      <p class="sp-tagline">Antimicrobial Resistance Intelligence Platform</p>
+      <p class="sp-desc">
+        The world's most advanced quantitative framework for decoding antibiotic resistance genes.
+        We transform raw genomic data into actionable clinical intelligence — instantly, accurately, and at scale.
+      </p>
+      <div class="sp-stats">
+        <div class="sp-stat"><span class="sp-stat-num">2</span><span class="sp-stat-lbl">Novel Indices</span></div>
+        <div class="sp-stat"><span class="sp-stat-num">8</span><span class="sp-stat-lbl">Analysis Modules</span></div>
+        <div class="sp-stat"><span class="sp-stat-num">100+</span><span class="sp-stat-lbl">Genomes Supported</span></div>
+        <div class="sp-stat"><span class="sp-stat-num">7</span><span class="sp-stat-lbl">Researchers</span></div>
       </div>
-
-      <!-- ===== PLATFORM FEATURES ===== -->
-      <div style="padding:0 60px; margin-bottom:20px;">
-        <div class="sp-section-title">Platform Features</div>
-        <div class="sp-divider"></div>
-      </div>
-      <div class="sp-feat-grid">
-        <div class="sp-feat-card"><span class="sp-feat-icon">🦠</span><div class="sp-feat-title">Genomic ARG Profiling</div><div class="sp-feat-desc">Deep extraction and classification of all Antibiotic Resistance Genes from CARD-format data. Every gene, every drug class, every mechanism — catalogued precisely.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">📐</span><div class="sp-feat-title">MRI &amp; ARI Calculation</div><div class="sp-feat-desc">Our proprietary indices transform complex gene counts into a single, instantly interpretable risk score using Laplace-smoothed mathematics.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">🤖</span><div class="sp-feat-title">Random Forest AI Prediction</div><div class="sp-feat-desc">Machine learning classifies any pathogen as LOW, MODERATE, or HIGH risk with full probability confidence scores — even for novel strains.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">🕸️</span><div class="sp-feat-title">Interactive Gene Network</div><div class="sp-feat-desc">Visualize the full resistance topology as a live, draggable network graph with filter and selection menus.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">🌌</span><div class="sp-feat-title">3D Landscape PCA</div><div class="sp-feat-desc">Rotate a 3-dimensional scatter map comparing your target genome against every pathogen in the database across resistance axes.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers — providing an instant safe-zone shortlist for clinical treatment consideration.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Ask questions about any genome in plain English. Gemini-powered AI with full genomic context automatically loaded.</div></div>
-        <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, and gene ledgers in one click.</div></div>
-      </div>
-
-      <!-- ===== WHY WE'RE UNIQUE ===== -->
-      <div class="sp-unique-section">
-        <div class="sp-section-title">Why We Stand Apart</div>
-        <div class="sp-divider"></div>
-
-        <div class="sp-compare">
-          <div class="sp-comp-card sp-comp-old">
-            <div class="sp-comp-title">❌ Traditional AMR Tools</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> Output raw gene lists — clinicians must manually interpret hundreds of genes.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> No unified index to compare pathogen severity across species.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> Require bioinformatics expertise — inaccessible to clinical staff.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> Static reports with no interactivity or network exploration.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> No AI chatbot for natural language genomic queries.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> No ML prediction for unknown or novel strains.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✗</span> Cannot identify safe drug zones automatically.</div>
-          </div>
-          <div class="sp-comp-card sp-comp-new">
-            <div class="sp-comp-title">✅ AI-MRI Hub</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Proprietary MRI and ARI compress all genomic data into a single, instantly readable risk number.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Cross-species, cross-habitat standardized scoring enables true pathogen comparison.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Live interactive networks and 3D PCA landscape for spatial resistance topology.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
-            <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
-          </div>
-        </div>
-
-        <div class="sp-pillars">
-          <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks. No published tool uses both simultaneously.</div></div>
-          <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions — a spatial view no standard AMR tool offers.</div></div>
-          <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores, gene counts into every query — real data, not generic biology.</div></div>
-          <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
-          <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
-          <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, and ledgers into a professional document with one click.</div></div>
-        </div>
-      </div>
-
-      <!-- ===== TEAM ===== -->
-      <div class="sp-team-section">
-        <div class="sp-section-title">Meet the Team</div>
-        <div class="sp-divider"></div>
-        <div class="sp-team-grid">
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
-          <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF & Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
-        </div>
-
-        <div class="sp-mission-row">
-          <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
-          <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
-          <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
-        </div>
-      </div>
-
-      <!-- ===== CTA ===== -->
-      <div class="sp-cta-section">
-        <p class="sp-cta-label">Ready to Analyze</p>
-        <h2 class="sp-cta-headline">Begin Your Genomic Analysis</h2>
-        <p class="sp-cta-sub">Click below to enter the AI-MRI Hub platform and start analyzing antibiotic resistance genomes.</p>
-      </div>
-
     </div>
+    </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- PLATFORM FEATURES ---
+    st.markdown("""
+    <div style="padding:0 60px; margin-bottom:10px; background:#020b18;">
+      <div class="sp-section-title">Platform Features</div>
+      <div class="sp-divider"></div>
+    </div>
+    <div class="sp-feat-grid" style="background:#020b18;">
+      <div class="sp-feat-card"><span class="sp-feat-icon">🦠</span><div class="sp-feat-title">Genomic ARG Profiling</div><div class="sp-feat-desc">Deep extraction and classification of all Antibiotic Resistance Genes from CARD-format data. Every gene, every drug class, every mechanism — catalogued precisely.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📐</span><div class="sp-feat-title">MRI &amp; ARI Calculation</div><div class="sp-feat-desc">Proprietary indices transform complex gene counts into a single, instantly interpretable risk score using Laplace-smoothed mathematics.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🤖</span><div class="sp-feat-title">Random Forest AI Prediction</div><div class="sp-feat-desc">Machine learning classifies any pathogen as LOW, MODERATE, or HIGH risk with full probability confidence scores — even for novel strains.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🕸️</span><div class="sp-feat-title">Interactive Gene Network</div><div class="sp-feat-desc">Visualize the full resistance topology as a live, draggable network graph with filter and selection menus.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🌌</span><div class="sp-feat-title">3D Landscape PCA</div><div class="sp-feat-desc">Rotate a 3-dimensional scatter map comparing your target genome against every pathogen in the database across resistance axes.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers — providing an instant safe-zone shortlist for treatment consideration.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Ask questions about any genome in plain English. Gemini-powered AI with full genomic context automatically loaded.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, and gene ledgers in one click.</div></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- WHY WE STAND APART ---
+    st.markdown("""
+    <div class="sp-unique-section" style="background:#020b18;">
+      <div class="sp-section-title">Why We Stand Apart</div>
+      <div class="sp-divider"></div>
+      <div class="sp-compare">
+        <div class="sp-comp-card sp-comp-old">
+          <div class="sp-comp-title">❌ Traditional AMR Tools</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Output raw gene lists — clinicians must manually interpret hundreds of genes.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No unified index to compare pathogen severity across species.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Require bioinformatics expertise — inaccessible to clinical staff.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Static reports with no interactivity or network exploration.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No AI chatbot for natural language genomic queries.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No ML prediction for unknown or novel strains.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Cannot identify safe drug zones automatically.</div>
+        </div>
+        <div class="sp-comp-card sp-comp-new">
+          <div class="sp-comp-title">✅ AI-MRI Hub</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Proprietary MRI and ARI compress all genomic data into a single, instantly readable risk number.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Cross-species, cross-habitat standardized scoring enables true pathogen comparison.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Live interactive networks and 3D PCA landscape for spatial resistance topology.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
+        </div>
+      </div>
+      <div class="sp-pillars">
+        <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks. No published tool uses both simultaneously.</div></div>
+        <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions — a spatial view no standard AMR tool offers.</div></div>
+        <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores and gene counts into every query — real data, not generic biology.</div></div>
+        <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
+        <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
+        <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, and ledgers into a professional document with one click.</div></div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- TEAM ---
+    st.markdown("""
+    <div class="sp-team-section" style="background:#020b18;">
+      <div class="sp-section-title">Meet the Team</div>
+      <div class="sp-divider"></div>
+      <div class="sp-team-grid">
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF &amp; Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
+      </div>
+      <div class="sp-mission-row">
+        <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
+        <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
+        <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- CTA ---
+    st.markdown("""
+    <div class="sp-cta-section" style="background:#020b18;">
+      <p class="sp-cta-label">Ready to Analyze</p>
+      <h2 class="sp-cta-headline">Begin Your Genomic Analysis</h2>
+      <p class="sp-cta-sub">Click below to enter the AI-MRI Hub platform and start analyzing antibiotic resistance genomes.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1518,26 +853,29 @@ if st.session_state.show_splash:
             st.rerun()
     st.stop()
 
-# ---- END SPLASH SCREEN GATE ----
+# ==========================================
+# 6. MAIN APPLICATION
+# ==========================================
 
-# Modern Professional Header Update
 st.markdown("""
 <div class="main-header">
-<h1 style='margin:0; font-size: 2.8rem;'> 🧬  AI-Driven Multidimensional Resistance Index</h1>
+<h1 style='margin:0; font-size: 2.8rem;'>🧬 AI-Driven Multidimensional Resistance Index</h1>
 <p style='font-size: 1.3rem; opacity: 0.9; margin-top: 10px;'>Quantitative Bio-Analysis of Antibiotic Resistance Genes</p>
 <hr style='border: 0.5px solid rgba(255,255,255,0.2); margin: 20px auto; width: 80%;'>
 <p style='font-size: 0.95rem; font-weight: 300;'>
-<b>Developed by:</b> Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, and Indranil Patil
+<b>Developed by:</b> Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik & Indranil Patil
 </p>
 </div>
 """, unsafe_allow_html=True)
+
 if 'chat_sessions' not in st.session_state:
     st.session_state.chat_sessions = {"Chat 1": []}
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
+
 with st.sidebar:
-    st.header(" 🗄️ Database Sync")
-    if st.button(" 🔄 Refresh Database"):
+    st.header("🗄️ Database Sync")
+    if st.button("🔄 Refresh Database"):
         st.rerun()
 
     json_files = [f for f in os.listdir('.') if f.endswith('.json')]
@@ -1547,7 +885,8 @@ with st.sidebar:
         selected_file = st.selectbox("Select a Genome:", json_files)
 
     st.markdown("---")
-    st.success(" ✅ AI Brain Connected")
+    st.success("✅ AI Brain Connected")
+
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
@@ -1555,9 +894,8 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
 
-    # Pulsing Superbug Alert
     if mri > 0.6:
-        st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug (MRI: {round(mri, 3)})</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug — MRI Score: {round(mri, 3)}</div>', unsafe_allow_html=True)
 
     model = train_rf_model()
     ai_pred_text = "N/A"
@@ -1569,7 +907,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
-    # Professional Metric Cards
+
     m1, m2, m3, m4 = st.columns(4)
     with m1:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>''', unsafe_allow_html=True)
@@ -1579,78 +917,86 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>''', unsafe_allow_html=True)
     with m4:
         st.markdown(f'''<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>''', unsafe_allow_html=True)
+
     st.write(" ")
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab_welcome, tab_unique, tab_team = st.tabs([
-    " ℹ️ Pathogen Summary",
-    " 📊 6-Panel Dashboard",
-    " 🧮 Math & Data Ledger",
-    " 🕸️ Network",
-    " 🤖 Bio-AI Chat",
-    " 🩺 Clinical Insight",
-    " 📄 Export Master PDF",
-    " 🌌 3D Landscape",
-    " 🚀 Welcome",
-    " ⚡ Why We're Unique",
-    " 👥 Our Team"
+
+    # ── TABS: Welcome/Unique/Team tabs REMOVED from main analysis area ──
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+        "ℹ️ Pathogen Summary",
+        "📊 6-Panel Dashboard",
+        "🧮 Math & Data Ledger",
+        "🕸️ Network",
+        "🤖 Bio-AI Chat",
+        "🩺 Clinical Insight",
+        "📄 Export Master PDF",
+        "🌌 3D Landscape"
     ])
+
+    # ── TAB 1: PATHOGEN SUMMARY ──
     with tab1:
-        # Welcome Hero and System Description
         st.markdown("""
         <div class="welcome-hero">
-            <h2 style='text-shadow: 0 2px 4px rgba(0,0,0,0.5);'>Welcome to the World of Bio-Intelligence</h2>
-            <p style='color: #e2e8f0;'>Advanced Genomic Analysis Platform for Antimicrobial Resistance (AMR)</p>
+            <h2>Genomic Resistance Intelligence Dashboard</h2>
+            <p>Comprehensive Antimicrobial Resistance (AMR) Analysis Platform — Powered by AI</p>
         </div>
         """, unsafe_allow_html=True)
-        
-        st.markdown("###  🧬 System Overview & Intelligence Capabilities")
+
+        st.markdown("### 🧬 Platform Capabilities")
         st.info("""
-        **The AI-MRI Hub provides a state-of-the-art multidimensional analysis suite:**
-        * **Genomic ARG Profiling:** Absolute identification and Title-Case formatting of Antibiotic Resistance Genes from sequence data.
-        * **Multidimensional Resistance Index (MRI):** A unified clinical risk score consolidating drug evasion and mechanism diversity.
-        * **Random Forest Risk Prediction:** Machine learning-driven threat classification based on global population benchmarks.
-        * **Safe-Zone Susceptibility Analysis:** Clinical exclusion logic identifying drug classes with zero resistance markers.
-        * **Interactive Landscape Mapping:** 3D and 2D spatial visualizations of mechanism diversity and genetic density.
+**The AI-MRI Hub provides a state-of-the-art multidimensional genomic analysis suite:**
+
+- **Genomic ARG Profiling:** Structured identification and classification of Antibiotic Resistance Genes from CARD-format sequence data.
+- **Multidimensional Resistance Index (MRI):** A validated clinical risk score consolidating drug evasion breadth and mechanism diversity into a single normalized value.
+- **Random Forest Risk Classification:** Machine learning-driven threat stratification benchmarked against a population of reference genomic profiles.
+- **Clinical Susceptibility Zone Analysis:** Genomic exclusion logic identifying drug classes with zero resistance markers for treatment guidance.
+- **Interactive Resistance Topology:** 3D PCA landscape and live network graphs for spatial visualization of mechanism diversity and genetic density.
         """)
 
-        st.markdown("###  🦠 Detailed Pathogen Profile")
+        st.markdown("### 🦠 Pathogen Identification Profile")
         st.markdown(f"""
 <div class="report-card">
-<div class="report-header">Bacterial Identification Ledger</div>
-<div class="report-row"><span class="report-label">Target Genome</span><span class="report-value" style="color:#60a5fa;">{selected_file}</span></div>
+<div class="report-header">Bacterial Resistance Intelligence Ledger</div>
+<div class="report-row"><span class="report-label">Target Genome File</span><span class="report-value" style="color:#60a5fa;">{selected_file}</span></div>
 <div class="report-row"><span class="report-label">Gram Classification</span><span class="report-value">{bac_info['gram']}</span></div>
 <div class="report-row"><span class="report-label">Associated Pathology</span><span class="report-value">{bac_info['disease']}</span></div>
 <div class="report-row"><span class="report-label">Ecological Habitat</span><span class="report-value">{habitat}</span></div>
-<div class="report-row"><span class="report-label">Genomic ARG Count</span><span class="report-value">{genes} Genes</span></div>
-<div class="report-row"><span class="report-label">Resistance Breadth</span><span class="report-value">{u_drugs} Drug Classes</span></div>
-<div class="report-row"><span class="report-label">Deployed Mechanisms</span><span class="report-value">{u_mechs} Strategies</span></div>
-<div class="report-row"><span class="report-label">Calculated MRI / ARI</span><span class="report-value">{round(mri, 3)} ({level}) / {round(ari, 3)}</span></div>
+<div class="report-row"><span class="report-label">Total Resistance Genes (ARGs)</span><span class="report-value">{genes}</span></div>
+<div class="report-row"><span class="report-label">Drug Classes Resisted</span><span class="report-value">{u_drugs} Classes</span></div>
+<div class="report-row"><span class="report-label">Resistance Mechanisms Deployed</span><span class="report-value">{u_mechs} Strategies</span></div>
+<div class="report-row"><span class="report-label">MRI Score / ARI Score</span><span class="report-value">{round(mri, 3)} ({level}) &nbsp;/&nbsp; {round(ari, 3)}</span></div>
 <div style="margin-top:20px; padding-top:10px;">
-<span class="report-label">AI Predictive Verdict:</span>
+<span class="report-label">AI Risk Classification:</span>&nbsp;
 <span class="ai-badge">{ai_pred_text} Risk</span>
 <br><br>
-<small style="color:#64748b;">Confidence Matrix: {ai_conf_text}</small>
+<small style="color:#64748b;">Probability Distribution: {ai_conf_text}</small>
 </div>
 </div>
 """, unsafe_allow_html=True)
-        st.markdown("###  🎯 Metric Explanations & Significance")
-        st.info("""
-**Pathogen Profile:** Provides the biological and ecological context (Gram, Disease, Habitat) of the strain.
-**Total Genes:** The absolute count of Antibiotic Resistance Genes (ARGs) identified.
-**Resistance & Mechanisms:** The distinct drug classes evaded and the biological strategies deployed.
-**AI Prediction:** A machine learning probability assessment of the overall threat level.
 
-**The Clinical Necessity of MRI and ARI:** Traditional analysis simply lists detected genes.
-The **ARI** calculates the *density* and efficiency of the threat relative to the gene count.
-The **MRI** mathematically consolidates the diversity of resisted drugs and mechanisms into a single, standardized risk score, allowing researchers to instantly gauge severity and prioritize high-risk pathogens without deciphering complex gene ledgers.
-""")
+        st.markdown("### 🎯 Index Definitions & Clinical Rationale")
+        st.info("""
+**Pathogen Profile:** Establishes the biological and ecological context (Gram classification, associated pathology, habitat) required for accurate clinical interpretation.
+
+**Total Resistance Genes:** The absolute count of ARGs identified in the sequenced genomic data, annotated against the CARD reference database.
+
+**Drug Classes & Mechanisms:** Enumerates the distinct pharmaceutical classes evaded and the molecular strategies deployed to achieve resistance.
+
+**AI Risk Classification:** A Random Forest ensemble model's probabilistic threat assessment, trained on a population of reference resistance profiles.
+
+---
+
+**Why MRI and ARI are clinically necessary:** Conventional genomic analysis outputs raw gene inventories, which fail to provide standardized, comparable risk quantification. The **ARI** measures resistance *density* — how efficiently the organism converts its gene count into functional resistance. The **MRI** consolidates resistance breadth and depth into a single normalized score, enabling rapid inter-species triage without manual gene ledger interpretation.
+        """)
+
+    # ── TAB 2: DASHBOARD ──
     with tab2:
-        st.markdown(f"### Systems Overview: `{selected_file}`")
+        st.markdown(f"### Systems Analysis Dashboard — `{selected_file}`")
         fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
         st.pyplot(fig)
 
+    # ── TAB 3: MATH & DATA LEDGER ──
     with tab3:
-        # Professional Math & Data Ledger Update
-        st.markdown("###  🧮 Mathematical Validation")
+        st.markdown("### 🧮 Mathematical Framework & Validation")
 
         col_m1, col_m2 = st.columns(2)
 
@@ -1658,31 +1004,33 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
             st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
-            # Legend for MRI annotation
-            st.markdown('<div class="annotation-box">'
-            '<div class="annotation-item"><span class="annotation-key">U_drugs</span>: Unique Drug Classes Resisted</div>'
-            '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
-            '<div class="annotation-item"><span class="annotation-key">T_drugs</span>: Total Drug Records Found in sequence</div>'
-            '<div class="annotation-item"><span class="annotation-key">T_mechs</span>: Total Mechanism Records Found in sequence</div>'
-            '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
-            '</div>', unsafe_allow_html=True)
-            st.markdown(f"**Current Calculation:**")
+            st.markdown(
+                '<div class="annotation-box">'
+                '<div class="annotation-item"><span class="annotation-key">U_drugs</span> — Unique drug classes resisted</div>'
+                '<div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms deployed</div>'
+                '<div class="annotation-item"><span class="annotation-key">T_drugs</span> — Total drug resistance records in sequence</div>'
+                '<div class="annotation-item"><span class="annotation-key">T_mechs</span> — Total mechanism records in sequence</div>'
+                '<div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant (zero-division guard)</div>'
+                '</div>', unsafe_allow_html=True)
+            st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
+
         with col_m2:
             st.markdown('<div class="math-card">', unsafe_allow_html=True)
             st.markdown('<div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
             st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
-            # Legend for ARI annotation
-            st.markdown('<div class="annotation-box">'
-            '<div class="annotation-item"><span class="annotation-key">U_mechs</span>: Unique Mechanisms Deployed</div>'
-            '<div class="annotation-item"><span class="annotation-key">G_total</span>: Total Genomic Gene count</div>'
-            '<div class="annotation-item"><span class="annotation-key">+ 1</span>: Laplace smoothing constant</div>'
-            '</div>', unsafe_allow_html=True)
-            st.markdown(f"**Current Calculation:**")
+            st.markdown(
+                '<div class="annotation-box">'
+                '<div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms deployed</div>'
+                '<div class="annotation-item"><span class="annotation-key">G_total</span> — Total genomic resistance gene count</div>'
+                '<div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant (zero-division guard)</div>'
+                '</div>', unsafe_allow_html=True)
+            st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari, 3)}")
             st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown("###  🎯 Risk Assessment Reasoning")
+
+        st.markdown("### 🎯 Risk Assessment Interpretation")
         st.markdown(f"""
         <div class="reasoning-box">
         {get_risk_reason(level, u_drugs, u_mechs)}
@@ -1690,15 +1038,19 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         """, unsafe_allow_html=True)
 
         st.write("")
-        st.markdown("###  📜 Comprehensive Gene Ledger")
-        df = pd.DataFrame(records, columns=["Gene Name", "Drug Class", "Mechanism", "Habitat"])
+        st.markdown("### 📜 Complete Resistance Gene Ledger")
+        df = pd.DataFrame(records, columns=["Gene Name", "Drug Classes Resisted", "Mechanisms Deployed", "Habitat"])
         st.dataframe(df, use_container_width=True)
+
+    # ── TAB 4: NETWORK ──
     with tab4:
-        st.markdown("### Interactive Mechanism Network")
-        st.write("Use the filter menu generated within the interactive map to isolate specific nodes.")
+        st.markdown("### 🕸️ Interactive Resistance Mechanism Network")
+        st.write("Use the filter and selection menus within the interactive graph to isolate specific gene or mechanism nodes.")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path, 'r', encoding='utf-8') as f:
             components.html(f.read(), height=650)
+
+    # ── TAB 5: BIO-AI CHAT ──
     with tab5:
         colA, colB, colC = st.columns([0.6, 0.2, 0.2])
         with colA:
@@ -1706,7 +1058,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         with colB:
             st.write("")
             st.write("")
-            if st.button(" ➕ New Chat", use_container_width=True):
+            if st.button("➕ New Chat", use_container_width=True):
                 st.session_state.chat_counter += 1
                 new_chat_name = f"Chat {st.session_state.chat_counter}"
                 st.session_state.chat_sessions[new_chat_name] = []
@@ -1715,7 +1067,7 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
         with colC:
             st.write("")
             st.write("")
-            if st.button(" 🗑️ Clear This Chat", use_container_width=True):
+            if st.button("🗑️ Clear This Chat", use_container_width=True):
                 st.session_state.chat_sessions[st.session_state.current_session] = []
                 st.rerun()
 
@@ -1723,29 +1075,33 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
 
-        user_msg = st.chat_input(f"Ask me about {selected_file}...")
+        user_msg = st.chat_input(f"Query J.A.R.V.I.S. about {selected_file}...")
         if user_msg:
             st.chat_message("user").markdown(user_msg)
             st.session_state.chat_sessions[st.session_state.current_session].append({"role": "user", "content": user_msg})
 
             if not AI_AVAILABLE:
-                st.error(" ⚠️ AI Library missing. Check your terminal installation.")
+                st.error("⚠️ AI library unavailable. Verify installation in your terminal environment.")
             else:
                 try:
                     context = f"""
-                    You are J.A.R.V.I.S., an expert Bioinformatics AI.
-                    The user is analyzing the genome file: '{selected_file}'.
-                    Data Profile:
-                    - Total Genes: {genes} | Drugs Resisted: {u_drugs} | Mechanisms: {u_mechs}
-                    - MRI Score: {round(mri, 3)} ({level} Risk) | ARI Score: {round(ari, 3)}
+You are J.A.R.V.I.S., an expert Bioinformatics AI specializing in antimicrobial resistance genomics.
+The analyst is currently examining the genome file: '{selected_file}'.
 
-                    Answer the user's question intelligently based on this data.
-                    User Question: {user_msg}
+Genomic Data Profile:
+- Total Resistance Genes (ARGs): {genes}
+- Drug Classes Resisted: {u_drugs}
+- Resistance Mechanisms Deployed: {u_mechs}
+- MRI Score: {round(mri, 3)} ({level} Risk Category)
+- ARI Score: {round(ari, 3)}
+
+Provide a precise, evidence-based response grounded in this genomic data. Maintain a professional clinical and scientific tone.
+Analyst Query: {user_msg}
                     """
-                    with st.spinner("Processing genome logic..."):
+                    with st.spinner("Processing genomic data..."):
                         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
-                            st.error("Your API key does not have access to any text generation models.")
+                            st.error("The configured API key does not have access to any text generation models.")
                         else:
                             target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
                             model_ai = genai.GenerativeModel(target_model)
@@ -1755,20 +1111,22 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
                 except Exception as e:
                     error_msg = str(e)
                     if "429" in error_msg or "quota" in error_msg.lower():
-                        st.error(" ⚠️ **Quota Exceeded (HTTP 429 Error).** The Gemini Free Tier allows a limited number of requests per minute. Please wait 60 seconds and try your question again.")
+                        st.error("⚠️ **API Quota Exceeded (HTTP 429).** The Gemini Free Tier enforces per-minute request limits. Please wait 60 seconds before re-submitting your query.")
                     else:
                         st.error(f"AI Connection Error: {e}")
-    
-    with tab6: # Clinical Insight Feature
-        st.markdown("### 🩺 Clinical Actionability (Susceptibility Zone)")
-        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside", 
+
+    # ── TAB 6: CLINICAL INSIGHT ──
+    with tab6:
+        st.markdown("### 🩺 Clinical Susceptibility Zone Analysis")
+        DRUG_UNIVERSE = ["Penicillin", "Cephalosporin", "Carbapenem", "Macrolide", "Aminoglycoside",
                          "Fluoroquinolone", "Tetracycline", "Sulfonamide", "Glycopeptide"]
         resisted_norm = set([d.lower() for d in drug])
         safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
-        st.write("Based on genomic exclusion, the following drug classes show **Zero Resistance Markers** in this sample:")
-        st.markdown(f'<div class="susceptibility-card">🛡️ Recommended Target Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
+        st.write("Based on genomic exclusion analysis, the following drug classes exhibit **zero resistance markers** in this isolate and may represent viable therapeutic candidates:")
+        st.markdown(f'<div class="susceptibility-card">🛡️ Candidate Therapeutic Classes: {", ".join(safe_zones)}</div>', unsafe_allow_html=True)
+        st.caption("⚠️ Clinical confirmation via standard antibiogram (MIC testing) is required before therapeutic application.")
         st.write("---")
-        st.markdown("### 📈 Population Benchmark")
+        st.markdown("### 📈 Population Benchmark Comparison")
         all_mris = []
         for f in json_files:
             try:
@@ -1777,400 +1135,44 @@ The **MRI** mathematically consolidates the diversity of resisted drugs and mech
             except: continue
         if all_mris:
             avg_mri = sum(all_mris) / len(all_mris)
-            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Global Average"])
+            comparison_df = pd.DataFrame({"MRI Score": [mri, avg_mri]}, index=["Target Genome", "Database Average"])
             st.bar_chart(comparison_df)
 
+    # ── TAB 7: EXPORT PDF ──
     with tab7:
-        st.markdown("###  📥 Generate Complete Master Report")
+        st.markdown("### 📥 Generate Master Analytical Report")
+        st.write("Compile a comprehensive, publication-ready PDF containing the executive summary, mathematical derivations, systems dashboard, and complete gene resistance ledger.")
 
-        if st.button("Generate Master PDF", type="primary"):
-            with st.spinner("Compiling graphs, explanations, and data into PDF..."):
+        if st.button("Generate Master PDF Report", type="primary"):
+            with st.spinner("Compiling analytical components into PDF..."):
                 pdf_path = create_advanced_pdf_report(selected_file, genes, drug, mech, mri, ari, level, icon, records, fig, bac_info, habitat, ai_pred_text, ai_conf_text)
                 with open(pdf_path, "rb") as file:
                     st.download_button(
-                        label="Download Detailed PDF Report",
+                        label="⬇️ Download Analytical Report (PDF)",
                         data=file,
                         file_name=pdf_path,
                         mime="application/pdf"
                     )
+
+    # ── TAB 8: 3D LANDSCAPE ──
     with tab8:
-        st.markdown("###  🌌 Interactive Global Landscape Comparison (Plotly 3D)")
-        st.write("You can rotate, zoom, and download this 3D map using the camera icon in the top right corner of the plot.")
+        st.markdown("### 🌌 Interactive Global Resistance Landscape (3D PCA)")
+        st.write("Rotate, zoom, and export this three-dimensional comparative map using the toolbar in the top-right corner of the visualization.")
         plot_3d_pca_plotly(selected_file)
 
-    # ==========================================
-    # NEW TAB: ANIMATED WELCOME PAGE
-    # ==========================================
-    with tab_welcome:
-        st.markdown("""
-        <div class="welcome-splash">
-            <span class="splash-dna">🧬</span>
-            <h1 class="splash-title">AI-MRI Hub</h1>
-            <p class="splash-subtitle">Antimicrobial Resistance Intelligence Platform</p>
-            <p class="splash-desc">
-                The world's most advanced quantitative framework for decoding antibiotic resistance genes.
-                We transform raw genomic data into actionable clinical intelligence — instantly, accurately, and at scale.
-            </p>
-            <div class="splash-stats-row">
-                <div class="splash-stat">
-                    <span class="splash-stat-num">2</span>
-                    <span class="splash-stat-label">Novel Indices</span>
-                </div>
-                <div class="splash-stat">
-                    <span class="splash-stat-num">8</span>
-                    <span class="splash-stat-label">Analysis Modules</span>
-                </div>
-                <div class="splash-stat">
-                    <span class="splash-stat-num">100+</span>
-                    <span class="splash-stat-label">Genomes Supported</span>
-                </div>
-                <div class="splash-stat">
-                    <span class="splash-stat-num">7</span>
-                    <span class="splash-stat-label">Researchers</span>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("## 🔬 Platform Features")
-        st.markdown("""
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🦠</span>
-                <div class="feature-title">Genomic ARG Profiling</div>
-                <div class="feature-desc">Deep extraction and structured classification of all Antibiotic Resistance Genes from CARD-format JSON sequence data. Every gene, every drug class, every mechanism — catalogued precisely.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📐</span>
-                <div class="feature-title">MRI & ARI Calculation</div>
-                <div class="feature-desc">Our proprietary Multidimensional Resistance Index and Antibiotic Resistance Index transform complex gene counts into a single, instantly interpretable risk score using Laplace-smoothed mathematics.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤖</span>
-                <div class="feature-title">Random Forest AI Prediction</div>
-                <div class="feature-desc">A trained machine learning model classifies any pathogen as LOW, MODERATE, or HIGH risk with full probability confidence scores — even for unknown or novel strains.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🕸️</span>
-                <div class="feature-title">Interactive Gene Network</div>
-                <div class="feature-desc">Visualize the full resistance topology as a live, draggable network graph. Explore connections between genes, drug classes, and mechanisms with built-in filter and selection menus.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🌌</span>
-                <div class="feature-title">3D Landscape PCA</div>
-                <div class="feature-desc">Rotate a 3-dimensional scatter map comparing your target genome against every pathogen in the database across axes of overall resistance, mechanism diversity, and genetic density.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🩺</span>
-                <div class="feature-title">Clinical Susceptibility Zones</div>
-                <div class="feature-desc">Automatically identifies drug classes with zero resistance markers for the selected strain — providing an instant safe-zone shortlist for clinical treatment consideration.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">💬</span>
-                <div class="feature-title">J.A.R.V.I.S. Bio-AI Chat</div>
-                <div class="feature-desc">Ask questions about any genome in plain English. Our Gemini-powered AI chatbot answers with full genomic context — drug counts, MRI scores, and resistance reasoning — loaded automatically.</div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📄</span>
-                <div class="feature-title">Master PDF Export</div>
-                <div class="feature-desc">Generate a comprehensive, publication-ready PDF report containing executive summaries, mathematical proofs, the 6-panel dashboard image, and the complete annotated gene ledger.</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("## 🗺️ How to Navigate This Platform")
-        st.markdown("""
-        <div class="steps-container">
-            <div class="step-item">
-                <div class="step-num">1</div>
-                <div class="step-text"><strong>Select a Genome</strong> from the sidebar dropdown. All available JSON files in the database are listed there. Use "Refresh Database" if you've added new files.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">2</div>
-                <div class="step-text"><strong>Check the Metric Bar</strong> at the top — Risk Level, MRI Score, Total Genes, and Habitat are computed instantly for your selected genome.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">3</div>
-                <div class="step-text"><strong>Explore the Tabs</strong>: Start with <em>Pathogen Summary</em> for the full profile, then dive into <em>Dashboard</em>, <em>Math Ledger</em>, and <em>Network</em> for deep analysis.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <div class="step-text"><strong>Chat with J.A.R.V.I.S.</strong> in the <em>Bio-AI Chat</em> tab. Ask anything: "Why is this organism dangerous?" or "What mechanisms does it use?" — it knows the genome context.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">5</div>
-                <div class="step-text"><strong>Export a PDF</strong> from the <em>Export Master PDF</em> tab when you're ready. It compiles everything into a shareable, professional report automatically.</div>
-            </div>
-            <div class="step-item">
-                <div class="step-num">6</div>
-                <div class="step-text"><strong>Use AI Predict Unknown</strong> mode (from the sidebar) to input custom gene counts and get a machine-learning risk classification for any unknown pathogen.</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # ==========================================
-    # NEW TAB: WHY WE'RE UNIQUE
-    # ==========================================
-    with tab_unique:
-        st.markdown("""
-        <div class="unique-hero">
-            <h1 class="unique-hero-title">Why AI-MRI Hub Stands Apart</h1>
-            <p class="unique-hero-sub">Capabilities No Other AMR Tool Provides</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("## ⚔️ AI-MRI Hub vs. The Rest")
-        st.markdown("""
-        <div class="comparison-grid">
-            <div class="comparison-card others-card">
-                <div class="comparison-title others-title">❌ Traditional AMR Tools</div>
-                <div class="comparison-item"><span class="check-x">✗</span> Output raw gene lists with no risk scoring — clinicians must manually interpret hundreds of genes.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> No unified index to compare pathogen severity across species or habitats.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> Require bioinformatics expertise to operate — inaccessible to clinical staff.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> Static reports with no interactivity — no network exploration or 3D mapping.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> No AI chatbot for natural language genomic queries.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> No machine learning prediction for unknown or novel strains.</div>
-                <div class="comparison-item"><span class="check-x">✗</span> Cannot identify safe drug zones from resistance profiles automatically.</div>
-            </div>
-            <div class="comparison-card us-card">
-                <div class="comparison-title us-title">✅ AI-MRI Hub</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Proprietary MRI and ARI scores compress all genomic data into a single, instantly readable risk number.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Cross-species, cross-habitat standardized scoring enables true apples-to-apples pathogen comparison.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Live interactive network graphs and 3D PCA landscape for spatial resistance topology exploration.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> J.A.R.V.I.S. AI chatbot answers plain-English questions with genome-aware context injected automatically.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Random Forest model predicts risk level of completely unknown pathogens from 3 input values.</div>
-                <div class="comparison-item"><span class="check-x">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drug classes instantly.</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("## 🏛️ Our Six Exclusive Innovation Pillars")
-        st.markdown("""
-        <div class="unique-pillars">
-            <div class="pillar-card green">
-                <span class="pillar-icon">📐</span>
-                <div class="pillar-title">Dual-Index Scoring</div>
-                <div class="pillar-desc">MRI and ARI are original mathematical frameworks developed exclusively for this platform. No published tool uses both indices simultaneously to produce a combined resistance profile.</div>
-            </div>
-            <div class="pillar-card blue">
-                <span class="pillar-icon">🌌</span>
-                <div class="pillar-title">3D Resistance Landscape</div>
-                <div class="pillar-desc">Plotly-powered PCA maps the entire genomic database in 3 dimensions — a spatial view of resistance positioning that no standard AMR tool offers.</div>
-            </div>
-            <div class="pillar-card purple">
-                <span class="pillar-icon">🤖</span>
-                <div class="pillar-title">Context-Aware AI Chat</div>
-                <div class="pillar-desc">J.A.R.V.I.S. automatically injects MRI scores, gene counts, and resistance levels into every API call — meaning the AI answers with real data, not generic biology.</div>
-            </div>
-            <div class="pillar-card amber">
-                <span class="pillar-icon">🕸️</span>
-                <div class="pillar-title">Live Mechanism Networks</div>
-                <div class="pillar-desc">PyVis-powered interactive network graphs render gene-to-mechanism relationships as a live, filterable topology map — draggable, zoomable, and exportable.</div>
-            </div>
-            <div class="pillar-card rose">
-                <span class="pillar-icon">🩺</span>
-                <div class="pillar-title">Safe-Zone Clinical Logic</div>
-                <div class="pillar-desc">Genomic exclusion logic automatically cross-references resisted drug classes against a clinical universe to output a zero-resistance shortlist for treatment guidance.</div>
-            </div>
-            <div class="pillar-card cyan">
-                <span class="pillar-icon">📄</span>
-                <div class="pillar-title">One-Click Master Reports</div>
-                <div class="pillar-desc">ReportLab PDF generation compiles executive summaries, LaTeX-rendered math, dashboard images, and complete gene ledgers into a single professional document with one button click.</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("""
-        <div class="quote-banner">
-            <p class="quote-text">
-                "In the global race against antibiotic resistance, the bottleneck is not data — it is interpretation.
-                AI-MRI Hub eliminates that bottleneck entirely."
-            </p>
-            <div class="quote-author">— AI-MRI Hub Research Team, 2024</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("## 🎯 Who Benefits From This Platform?")
-        col_b1, col_b2, col_b3 = st.columns(3)
-        with col_b1:
-            st.info("""
-**🏥 Clinical Microbiologists**
-
-Instantly assess whether an incoming pathogen sample is a routine case or a high-priority superbug — without manual gene-by-gene review. The MRI score tells you in 3 digits what would otherwise take hours.
-""")
-        with col_b2:
-            st.info("""
-**🔬 AMR Researchers**
-
-Compare resistance profiles across dozens of strains using standardized indices. Use the 3D landscape to identify genomic outliers and cluster novel resistance patterns spatially.
-""")
-        with col_b3:
-            st.info("""
-**🎓 Bioinformatics Students**
-
-Learn resistance genomics interactively. Query J.A.R.V.I.S. in plain English, explore mechanism networks visually, and understand the mathematics through annotated LaTeX formula breakdowns.
-""")
-
-    # ==========================================
-    # NEW TAB: OUR TEAM
-    # ==========================================
-    with tab_team:
-        st.markdown("""
-        <div class="team-hero">
-            <h1 class="team-hero-title">Meet the Team</h1>
-            <p class="team-hero-sub">The Researchers Behind AI-MRI Hub</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("""
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(59,130,246,0.15);">👨‍💻</div>
-                <div class="team-name">Hardik Agrawal</div>
-                <div class="team-role">Lead Developer & Architect</div>
-                <div class="team-desc">Spearheaded the full-stack Streamlit architecture, designed the MRI/ARI mathematical framework, and integrated the AI prediction pipeline.</div>
-                <div class="team-tags">
-                    <span class="team-tag">Python</span>
-                    <span class="team-tag">Streamlit</span>
-                    <span class="team-tag">Machine Learning</span>
-                    <span class="team-tag">Bioinformatics</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(236,72,153,0.15);">👩‍🔬</div>
-                <div class="team-name">Poorva Dongarkar</div>
-                <div class="team-role">Genomics & Data Analyst</div>
-                <div class="team-desc">Led the CARD database integration, ARG extraction logic, and bacterial classification system powering the pathogen profiling engine.</div>
-                <div class="team-tags">
-                    <span class="team-tag">Genomics</span>
-                    <span class="team-tag">Data Analysis</span>
-                    <span class="team-tag">AMR Research</span>
-                    <span class="team-tag">JSON Parsing</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(16,185,129,0.15);">👨‍🔬</div>
-                <div class="team-name">Yashraj Patil</div>
-                <div class="team-role">Visualization Engineer</div>
-                <div class="team-desc">Built the interactive PyVis network graphs, Plotly 3D PCA landscape, and the Matplotlib 6-panel dashboard visualizations.</div>
-                <div class="team-tags">
-                    <span class="team-tag">PyVis</span>
-                    <span class="team-tag">Plotly</span>
-                    <span class="team-tag">Matplotlib</span>
-                    <span class="team-tag">Data Viz</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(245,158,11,0.15);">👩‍💻</div>
-                <div class="team-name">Avani Laswante</div>
-                <div class="team-role">UI/UX & Frontend Design</div>
-                <div class="team-desc">Designed the complete CSS design system, professional card layouts, dark-mode aesthetic, and the animated visual identity of the platform.</div>
-                <div class="team-tags">
-                    <span class="team-tag">CSS Design</span>
-                    <span class="team-tag">UI/UX</span>
-                    <span class="team-tag">Streamlit CSS</span>
-                    <span class="team-tag">Prototyping</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(139,92,246,0.15);">👩‍🔬</div>
-                <div class="team-name">Zeel Bhanushali</div>
-                <div class="team-role">Clinical Research & Validation</div>
-                <div class="team-desc">Defined the clinical susceptibility zone logic, validated drug-class universe mappings, and led the literature review supporting MRI's clinical relevance.</div>
-                <div class="team-tags">
-                    <span class="team-tag">Clinical Microbiology</span>
-                    <span class="team-tag">AMR Pharmacology</span>
-                    <span class="team-tag">Research</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(6,182,212,0.15);">👩‍💻</div>
-                <div class="team-name">Aayushi Wasnik</div>
-                <div class="team-role">AI Integration & Chatbot</div>
-                <div class="team-desc">Engineered the J.A.R.V.I.S. Gemini-powered chatbot, context injection system, multi-session chat state management, and API error handling.</div>
-                <div class="team-tags">
-                    <span class="team-tag">Gemini API</span>
-                    <span class="team-tag">LLM Integration</span>
-                    <span class="team-tag">Prompt Engineering</span>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar" style="background: rgba(244,63,94,0.15);">👨‍🔬</div>
-                <div class="team-name">Indranil Patil</div>
-                <div class="team-role">PDF Reporting & Documentation</div>
-                <div class="team-desc">Built the ReportLab PDF generation pipeline, mathematical documentation, annotation legends, and the complete academic write-up of the MRI/ARI framework.</div>
-                <div class="team-tags">
-                    <span class="team-tag">ReportLab</span>
-                    <span class="team-tag">Technical Writing</span>
-                    <span class="team-tag">PDF Generation</span>
-                    <span class="team-tag">LaTeX</span>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("""
-        <div class="collab-banner">
-            <div class="collab-title">🤝 Our Collaborative Spirit</div>
-            <p class="collab-text">
-                AI-MRI Hub was born from a shared conviction: that the global AMR crisis demands tools that are not just scientifically rigorous, 
-                but genuinely usable by every stakeholder — from the research lab to the hospital floor. 
-                Our team of 7 brought together expertise across bioinformatics, data science, clinical microbiology, AI engineering, 
-                and interface design to build something truly interdisciplinary.
-                <br><br>
-                Every feature, every formula, and every line of code reflects a collective commitment to making antibiotic resistance 
-                genomics accessible, quantifiable, and actionable.
-            </p>
-            <span class="institution-badge">🎓 Academic Research Project · 2024</span>
-        </div>
-        """, unsafe_allow_html=True)
-
-        col_v1, col_v2, col_v3 = st.columns(3)
-        with col_v1:
-            st.markdown("""
-            <div class="math-card" style="text-align:center;">
-                <div class="math-card-header">Our Mission</div>
-                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.7;">
-                To democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools 
-                that any researcher or clinician can use — regardless of their computational background.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        with col_v2:
-            st.markdown("""
-            <div class="math-card" style="text-align:center;">
-                <div class="math-card-header">Our Methods</div>
-                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.7;">
-                Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, 
-                evidence-based clinical susceptibility mapping, and iterative peer review among team members 
-                across every module of the platform.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        with col_v3:
-            st.markdown("""
-            <div class="math-card" style="text-align:center;">
-                <div class="math-card-header">Our Vision</div>
-                <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.7;">
-                A future where every hospital, research lab, and public health authority has instant access 
-                to AI-driven resistance profiling — making the next superbug detectable before it becomes 
-                an untreatable crisis.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-
 elif analysis_mode == "AI Predict Unknown":
-    st.header(" 🤖 Machine Learning Risk Prediction")
-    in_genes = st.number_input("Total Genes Found", min_value=1, value=15)
-    in_drugs = st.number_input("Unique Drugs Resisted", min_value=1, value=5)
-    in_mechs = st.number_input("Unique Mechanisms Found", min_value=1, value=2)
+    st.header("🤖 Machine Learning Risk Classification — Unknown Pathogen")
+    st.write("Input resistance parameters for an uncharacterized isolate to obtain an AI-driven risk stratification.")
+    in_genes = st.number_input("Total Resistance Genes Identified", min_value=1, value=15)
+    in_drugs = st.number_input("Unique Drug Classes Resisted", min_value=1, value=5)
+    in_mechs = st.number_input("Unique Resistance Mechanisms", min_value=1, value=2)
 
     model = train_rf_model()
-    if model and st.button("Predict Risk Level", type="primary"):
+    if model and st.button("Run Risk Classification", type="primary"):
         prediction = model.predict([[in_genes, in_drugs, in_mechs]])[0]
         probs = model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
         classes = model.classes_
-        prob_str = " ".join([f"{c[0]}:{p:.2f}" for c, p in zip(classes, probs)])
+        prob_str = " | ".join([f"{c}: {p:.3f}" for c, p in zip(classes, probs)])
 
-        st.success(f"### AI Prediction: **{prediction}** ({prob_str})")
+        st.success(f"### AI Risk Classification: **{prediction}**")
+        st.info(f"**Probability Distribution:** {prob_str}")
