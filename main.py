@@ -579,16 +579,11 @@ This enables standardized inter-species comparison and rapid triage — allowing
     return pdf_file
 
 # ==========================================
-# 5. SESSION STATE INITIALIZATION
+# 5. SPLASH SCREEN
 # ==========================================
 if 'show_splash' not in st.session_state:
     st.session_state.show_splash = True
-if 'show_team' not in st.session_state:
-    st.session_state.show_team = False
 
-# ==========================================
-# 6. SPLASH SCREEN
-# ==========================================
 if st.session_state.show_splash:
     st.markdown("""
     <style>
@@ -682,6 +677,53 @@ if st.session_state.show_splash:
     .sp-feat-title { color:#00d4ff !important; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
     .sp-feat-desc { color:#64748b; font-size:0.88rem; line-height:1.65; }
 
+    .sp-unique-section { padding: 0 60px 70px 60px; }
+    .sp-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
+    .sp-comp-card { border-radius: 18px; padding: 30px; }
+    .sp-comp-old { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.18); }
+    .sp-comp-new { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.22); position: relative; }
+    .sp-comp-new::before {
+      content: '★ EXCLUSIVE'; position: absolute; top:-13px; right:20px;
+      background: linear-gradient(90deg, #00d4ff, #10b981); color: #020b18;
+      font-size: 0.65rem; font-weight:800; padding:4px 14px; border-radius:20px; letter-spacing:1.5px; font-family:'Orbitron',monospace;
+    }
+    .sp-comp-title { font-size:1rem; font-weight:700; margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .sp-comp-old .sp-comp-title { color:#f87171; }
+    .sp-comp-new .sp-comp-title { color:#00d4ff; }
+    .sp-comp-item { display:flex; gap:10px; margin-bottom:12px; color:#94a3b8; font-size:0.88rem; line-height:1.5; }
+    .sp-chk { flex-shrink:0; }
+
+    .sp-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 18px; }
+    .sp-pillar { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 26px 20px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .sp-pillar::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; }
+    .sp-pillar.c1::before { background:linear-gradient(90deg,#00d4ff,#10b981); }
+    .sp-pillar.c2::before { background:linear-gradient(90deg,#7c3aed,#a78bfa); }
+    .sp-pillar.c3::before { background:linear-gradient(90deg,#f59e0b,#fbbf24); }
+    .sp-pillar.c4::before { background:linear-gradient(90deg,#f43f5e,#fb7185); }
+    .sp-pillar.c5::before { background:linear-gradient(90deg,#10b981,#34d399); }
+    .sp-pillar.c6::before { background:linear-gradient(90deg,#06b6d4,#67e8f9); }
+    .sp-pillar:hover { transform:translateY(-6px); border-color:rgba(0,212,255,0.3); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+    .sp-pillar-icon { font-size:2.3rem; display:block; margin-bottom:12px; }
+    .sp-pillar-title { color:#f1f5f9 !important; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px; }
+    .sp-pillar-desc { color:#475569; font-size:0.82rem; line-height:1.6; }
+
+    .sp-team-section { padding: 0 60px 70px 60px; }
+    .sp-team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; margin-bottom: 40px; }
+    .sp-team-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 32px 22px; text-align: center; transition: all 0.35s ease; position: relative; overflow: hidden; }
+    .sp-team-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981); background-size:200% auto; animation:titleShimmer 4s linear infinite; }
+    .sp-team-card:hover { transform:translateY(-8px); border-color:rgba(0,212,255,0.3); box-shadow:0 25px 50px rgba(0,212,255,0.1); }
+    .sp-avatar { width:80px;height:80px;border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:2.2rem; margin:0 auto 16px auto; border:2px solid rgba(0,212,255,0.3); }
+    .sp-tname { color:#f1f5f9 !important; font-size:1.1rem; font-weight:700; margin-bottom:4px !important; }
+    .sp-trole { color:#00d4ff !important; font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
+    .sp-tdesc { color:#475569; font-size:0.82rem; line-height:1.6; margin-bottom:14px; }
+    .sp-ttags { display:flex; flex-wrap:wrap; gap:5px; justify-content:center; }
+    .sp-ttag { background:rgba(0,212,255,0.07); border:1px solid rgba(0,212,255,0.2); color:#67e8f9; padding:3px 9px; border-radius:20px; font-size:0.68rem; }
+
+    .sp-mission-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
+    .sp-mission-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius:14px; padding:28px 22px; text-align:center; }
+    .sp-mission-title { color:#00d4ff !important; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px !important; font-family:'Orbitron',monospace; }
+    .sp-mission-text { color:#64748b; font-size:0.85rem; line-height:1.7; }
+
     .sp-cta-section { padding: 60px; text-align: center; background: linear-gradient(180deg, transparent, rgba(0,212,255,0.04), transparent); border-top: 1px solid rgba(0,212,255,0.08); }
     .sp-cta-label { font-family:'Orbitron',monospace; font-size:0.8rem; letter-spacing:5px; text-transform:uppercase; color:#475569 !important; margin-bottom:20px !important; }
     .sp-cta-headline { font-size:2.4rem !important; font-weight:700 !important; color:#f1f5f9 !important; margin-bottom:12px !important; line-height:1.3; }
@@ -735,354 +777,84 @@ if st.session_state.show_splash:
     </div>
     """, unsafe_allow_html=True)
 
+    # --- WHY WE STAND APART ---
+    st.markdown("""
+    <div class="sp-unique-section" style="background:#020b18;">
+      <div class="sp-section-title">Why We Stand Apart</div>
+      <div class="sp-divider"></div>
+      <div class="sp-compare">
+        <div class="sp-comp-card sp-comp-old">
+          <div class="sp-comp-title">❌ Traditional AMR Tools</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Output raw gene lists — clinicians must manually interpret hundreds of genes.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No unified index to compare pathogen severity across species.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Require bioinformatics expertise — inaccessible to clinical staff.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Static reports with no interactivity or network exploration.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No AI chatbot for natural language genomic queries.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> No ML prediction for unknown or novel strains.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✗</span> Cannot identify safe drug zones automatically.</div>
+        </div>
+        <div class="sp-comp-card sp-comp-new">
+          <div class="sp-comp-title">✅ AI-MRI Hub</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Proprietary MRI and ARI compress all genomic data into a single, instantly readable risk number.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Cross-species, cross-habitat standardized scoring enables true pathogen comparison.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Live interactive networks and 3D PCA landscape for spatial resistance topology.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
+        </div>
+      </div>
+      <div class="sp-pillars">
+        <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks. No published tool uses both simultaneously.</div></div>
+        <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions — a spatial view no standard AMR tool offers.</div></div>
+        <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores and gene counts into every query — real data, not generic biology.</div></div>
+        <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
+        <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
+        <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, and ledgers into a professional document with one click.</div></div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- TEAM ---
+    st.markdown("""
+    <div class="sp-team-section" style="background:#020b18;">
+      <div class="sp-section-title">Meet the Team</div>
+      <div class="sp-divider"></div>
+      <div class="sp-team-grid">
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF &amp; Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
+      </div>
+      <div class="sp-mission-row">
+        <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
+        <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
+        <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     # --- CTA ---
     st.markdown("""
     <div class="sp-cta-section" style="background:#020b18;">
       <p class="sp-cta-label">Ready to Analyze</p>
       <h2 class="sp-cta-headline">Begin Your Genomic Analysis</h2>
-      <p class="sp-cta-sub">Enter the platform or explore the team behind AI-MRI Hub.</p>
+      <p class="sp-cta-sub">Click below to enter the AI-MRI Hub platform and start analyzing antibiotic resistance genomes.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    col_left, col_c1, col_gap, col_c2, col_right = st.columns([2, 1, 0.2, 1, 2])
-    with col_c1:
+    col_left, col_center, col_right = st.columns([2, 1, 2])
+    with col_center:
         if st.button("🚀  ENTER AI-MRI HUB", type="primary", use_container_width=True):
             st.session_state.show_splash = False
-            st.session_state.show_team = False
-            st.rerun()
-    with col_c2:
-        if st.button("👥  MEET THE TEAM", use_container_width=True):
-            st.session_state.show_splash = False
-            st.session_state.show_team = True
             st.rerun()
     st.stop()
 
 # ==========================================
-# 7. TEAM PAGE
-# ==========================================
-if st.session_state.show_team:
-    st.markdown("""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    [data-testid="stSidebar"] {display: none !important;}
-    .block-container {padding: 2rem 3rem !important; max-width: 100% !important;}
-
-    .team-page-root {
-      background: #020b18;
-      font-family: 'Rajdhani', sans-serif;
-    }
-
-    /* Animated grid background */
-    .team-bg-grid {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: gridDrift 20s linear infinite;
-    }
-    @keyframes gridDrift { 0% { transform: translate(0,0); } 100% { transform: translate(60px,60px); } }
-    @keyframes titleShimmer { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
-    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(25px); } 100% { opacity:1; transform:translateY(0); } }
-    @keyframes dnaFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
-    .team-hero {
-      text-align: center;
-      padding: 50px 20px 30px 20px;
-      position: relative; z-index: 2;
-    }
-    .team-hero-icon {
-      font-size: 4rem;
-      display: inline-block;
-      animation: dnaFloat 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(0,212,255,0.5));
-      margin-bottom: 16px;
-    }
-    .team-hero-title {
-      font-family: 'Orbitron', monospace !important;
-      font-size: 3rem !important;
-      font-weight: 900 !important;
-      letter-spacing: 3px;
-      background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 40%, #10b981 70%, #00d4ff 100%);
-      background-size: 300% auto;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: titleShimmer 5s linear infinite;
-      margin-bottom: 10px !important;
-    }
-    .team-hero-sub {
-      color: #64748b !important;
-      font-size: 1rem !important;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-family: 'Orbitron', monospace;
-    }
-    .team-divider {
-      width: 80px; height: 3px;
-      background: linear-gradient(90deg, #00d4ff, #7c3aed);
-      margin: 20px auto 40px auto; border-radius: 3px;
-    }
-
-    /* Team Cards */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-      margin-bottom: 50px;
-      position: relative; z-index: 2;
-    }
-    .team-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 20px;
-      padding: 34px 24px 28px 24px;
-      text-align: center;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 0.8s ease both;
-    }
-    .team-card::before {
-      content:''; position:absolute; top:0;left:0;right:0; height:3px;
-      background: linear-gradient(90deg,#00d4ff,#7c3aed,#10b981);
-      background-size:200% auto; animation:titleShimmer 4s linear infinite;
-    }
-    .team-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(0,212,255,0.35);
-      box-shadow: 0 25px 60px rgba(0,212,255,0.12), 0 0 0 1px rgba(0,212,255,0.1);
-    }
-    .team-avatar {
-      width: 90px; height: 90px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.6rem;
-      margin: 0 auto 18px auto;
-      border: 2px solid rgba(0,212,255,0.3);
-      position: relative;
-    }
-    .team-avatar::after {
-      content:''; position:absolute; inset:-4px; border-radius:50%;
-      border: 1px solid rgba(0,212,255,0.15);
-      animation: borderPing 3s ease-in-out infinite;
-    }
-    @keyframes borderPing {
-      0%,100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.08); opacity: 0.5; }
-    }
-    .team-name {
-      color: #f1f5f9 !important;
-      font-size: 1.2rem !important;
-      font-weight: 700 !important;
-      margin-bottom: 4px !important;
-    }
-    .team-role {
-      color: #00d4ff !important;
-      font-size: 0.7rem !important;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      margin-bottom: 14px !important;
-      font-family: 'Orbitron', monospace;
-    }
-    .team-desc {
-      color: #64748b;
-      font-size: 0.88rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-    .team-tags {
-      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
-    }
-    .team-tag {
-      background: rgba(0,212,255,0.07);
-      border: 1px solid rgba(0,212,255,0.22);
-      color: #67e8f9;
-      padding: 4px 11px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      letter-spacing: 0.5px;
-    }
-
-    /* Mission Row */
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 50px;
-      position: relative; z-index: 2;
-    }
-    .mission-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 30px 22px;
-      text-align: center;
-    }
-    .mission-title {
-      color: #00d4ff !important;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px !important;
-      font-family: 'Orbitron', monospace;
-    }
-    .mission-text { color: #64748b; font-size: 0.88rem; line-height: 1.75; }
-
-    /* Section header */
-    .section-label {
-      font-family: 'Orbitron', monospace !important;
-      font-size: 1.3rem !important;
-      font-weight: 700 !important;
-      color: #f1f5f9 !important;
-      text-align: center;
-      margin-bottom: 8px !important;
-      letter-spacing: 2px;
-    }
-    .section-divider { width: 60px; height: 2px; background: linear-gradient(90deg, #00d4ff, #7c3aed); margin: 0 auto 30px auto; border-radius: 2px; }
-
-    /* Back button area */
-    .back-bar {
-      display: flex; justify-content: center; gap: 16px;
-      padding: 20px 0 40px 0;
-      position: relative; z-index: 2;
-    }
-    </style>
-
-    <div class="team-bg-grid"></div>
-    """, unsafe_allow_html=True)
-
-    # Hero
-    st.markdown("""
-    <div class="team-hero">
-      <span class="team-hero-icon">👥</span>
-      <div class="team-hero-title">Meet the Team</div>
-      <div class="team-hero-sub">The Researchers Behind AI-MRI Hub</div>
-      <div class="team-divider"></div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Team members data
-    team_members = [
-        {
-            "emoji": "👨‍💻",
-            "bg": "rgba(0,212,255,0.1)",
-            "name": "Hardik Agrawal",
-            "role": "Lead Developer",
-            "desc": "Full-stack Streamlit architecture, MRI/ARI mathematical framework design, and the AI prediction pipeline. The central engineering force driving the platform.",
-            "tags": ["Python", "ML", "Streamlit", "Architecture"]
-        },
-        {
-            "emoji": "👩‍🔬",
-            "bg": "rgba(236,72,153,0.1)",
-            "name": "Poorva Dongarkar",
-            "role": "Genomics Analyst",
-            "desc": "CARD database integration, ARG extraction logic, and the bacterial classification system. Ensures every resistance gene is parsed and categorized accurately.",
-            "tags": ["Genomics", "AMR", "CARD DB", "Data"]
-        },
-        {
-            "emoji": "👨‍🔬",
-            "bg": "rgba(16,185,129,0.1)",
-            "name": "Yashraj Patil",
-            "role": "Visualization Engineer",
-            "desc": "PyVis interactive networks, Plotly 3D PCA resistance landscape, and the Matplotlib 6-panel systems dashboard — turning raw numbers into visual intelligence.",
-            "tags": ["PyVis", "Plotly", "Matplotlib", "3D PCA"]
-        },
-        {
-            "emoji": "👩‍💻",
-            "bg": "rgba(245,158,11,0.1)",
-            "name": "Avani Laswante",
-            "role": "UI/UX Designer",
-            "desc": "Complete CSS design system, dark-mode aesthetic, animated splash experience, and the visual identity of the AI-MRI Hub platform.",
-            "tags": ["CSS", "UI/UX", "Design", "Animation"]
-        },
-        {
-            "emoji": "👩‍🔬",
-            "bg": "rgba(139,92,246,0.1)",
-            "name": "Zeel Bhanushali",
-            "role": "Clinical Research",
-            "desc": "Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation. Bridges the gap between genomic data and bedside treatment decisions.",
-            "tags": ["Microbiology", "Pharmacology", "Clinical"]
-        },
-        {
-            "emoji": "👩‍💻",
-            "bg": "rgba(6,182,212,0.1)",
-            "name": "Aayushi Wasnik",
-            "role": "AI Integration",
-            "desc": "J.A.R.V.I.S. chatbot architecture, Gemini API integration, context injection pipeline, and multi-session state management for persistent AI conversations.",
-            "tags": ["Gemini API", "LLM", "Prompt Eng.", "State"]
-        },
-        {
-            "emoji": "👨‍🔬",
-            "bg": "rgba(244,63,94,0.1)",
-            "name": "Indranil Patil",
-            "role": "PDF & Documentation",
-            "desc": "ReportLab PDF pipeline, mathematical documentation, and the academic framework write-up — ensuring every analysis is publication-ready.",
-            "tags": ["ReportLab", "LaTeX", "Writing", "Docs"]
-        },
-    ]
-
-    # Render team grid — 4 then 3
-    row1 = team_members[:4]
-    row2 = team_members[4:]
-
-    def render_card(m, delay_ms):
-        return f"""
-        <div class="team-card" style="animation-delay:{delay_ms}ms;">
-          <div class="team-avatar" style="background:{m['bg']};">{m['emoji']}</div>
-          <div class="team-name">{m['name']}</div>
-          <div class="team-role">{m['role']}</div>
-          <div class="team-desc">{m['desc']}</div>
-          <div class="team-tags">{''.join(f'<span class="team-tag">{t}</span>' for t in m['tags'])}</div>
-        </div>
-        """
-
-    # Row 1 — 4 members
-    cards_row1 = "".join(render_card(m, i * 100) for i, m in enumerate(row1))
-    st.markdown(f'<div class="team-grid" style="grid-template-columns: repeat(4, 1fr);">{cards_row1}</div>', unsafe_allow_html=True)
-
-    # Row 2 — 3 members centred
-    cards_row2 = "".join(render_card(m, (i + 4) * 100) for i, m in enumerate(row2))
-    st.markdown(f'<div class="team-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto;">{cards_row2}</div>', unsafe_allow_html=True)
-
-    # Mission section
-    st.markdown("""
-    <div class="section-label" style="margin-top: 20px;">Our Mission</div>
-    <div class="section-divider"></div>
-    <div class="mission-grid">
-      <div class="mission-card">
-        <div class="mission-title">🎯 Mission</div>
-        <div class="mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div>
-      </div>
-      <div class="mission-card">
-        <div class="mission-title">🔬 Methods</div>
-        <div class="mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div>
-      </div>
-      <div class="mission-card">
-        <div class="mission-title">🌍 Vision</div>
-        <div class="mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Navigation buttons
-    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
-    col_l, col_back, col_gap, col_enter, col_r = st.columns([2, 1, 0.3, 1, 2])
-    with col_back:
-        if st.button("← Back to Splash", use_container_width=True):
-            st.session_state.show_team = False
-            st.session_state.show_splash = True
-            st.rerun()
-    with col_enter:
-        if st.button("🚀 Enter AI-MRI Hub", type="primary", use_container_width=True):
-            st.session_state.show_team = False
-            st.session_state.show_splash = False
-            st.rerun()
-
-    st.stop()
-
-# ==========================================
-# 8. MAIN APPLICATION
+# 6. MAIN APPLICATION
 # ==========================================
 
 st.markdown("""
@@ -1114,12 +886,6 @@ with st.sidebar:
 
     st.markdown("---")
     st.success("✅ AI Brain Connected")
-
-    # Team page shortcut in sidebar
-    st.markdown("---")
-    if st.button("👥 Meet the Team", use_container_width=True):
-        st.session_state.show_team = True
-        st.rerun()
 
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
@@ -1154,6 +920,7 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 
     st.write(" ")
 
+    # ── TABS: Welcome/Unique/Team tabs REMOVED from main analysis area ──
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "ℹ️ Pathogen Summary",
         "📊 6-Panel Dashboard",
