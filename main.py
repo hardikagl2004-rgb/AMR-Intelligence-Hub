@@ -114,7 +114,6 @@ st.markdown("""
 .main { background-color: #0e1117; }
 h1, h2, h3 { color: #ffffff; }
 
-/* ── MAIN HEADER ── */
 .main-header {
   background: linear-gradient(120deg, #020b18 0%, #0c1f3f 30%, #06304a 60%, #0f2a1a 100%);
   border: 1px solid rgba(0,212,255,0.2);
@@ -138,7 +137,6 @@ h1, h2, h3 { color: #ffffff; }
 .main-header h1 { margin:0; font-size: clamp(1.4rem, 5vw, 2.8rem); }
 .main-header p { font-size: clamp(0.85rem, 3vw, 1.3rem); opacity:0.9; margin-top:10px; }
 
-/* ── SECTION EXPLANATION BOX ── */
 .section-explainer {
   background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(124,58,237,0.05));
   border: 1px solid rgba(0,212,255,0.15);
@@ -162,7 +160,6 @@ h1, h2, h3 { color: #ffffff; }
   gap: 6px;
 }
 
-/* ── WELCOME HERO ── */
 .welcome-hero {
   background: linear-gradient(135deg, rgba(30,58,138,0.8) 0%, rgba(15,23,42,0.95) 100%);
   border-radius: 15px;
@@ -175,7 +172,6 @@ h1, h2, h3 { color: #ffffff; }
 .welcome-hero h2 { color: #60a5fa !important; font-size: clamp(1.4rem, 5vw, 2.8rem) !important; font-weight: 800 !important; margin-bottom: 12px !important; }
 .welcome-hero p { color: #e2e8f0 !important; font-size: clamp(0.9rem, 3vw, 1.25rem) !important; }
 
-/* ── ALERT BANNER ── */
 .alert-banner {
   background: rgba(239,68,68,0.2);
   border: 1px solid #ef4444;
@@ -191,7 +187,6 @@ h1, h2, h3 { color: #ffffff; }
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
 
-/* ── METRIC CARDS ── */
 .metric-card {
   background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
   border: 1px solid rgba(0,212,255,0.15);
@@ -204,7 +199,6 @@ h1, h2, h3 { color: #ffffff; }
 .metric-label { color: #00d4ff; font-size: clamp(0.65rem, 2vw, 0.75rem); font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; }
 .metric-value { color: #ffffff; font-size: clamp(1.1rem, 4vw, 1.8rem); font-weight: 700; margin-top: 0.3rem; }
 
-/* ── REPORT CARD ── */
 .report-card {
   background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
   border-left: 5px solid #00d4ff;
@@ -217,10 +211,8 @@ h1, h2, h3 { color: #ffffff; }
 .report-label { color: #94a3b8; font-weight: 500; font-size: clamp(0.8rem, 2.5vw, 1rem); }
 .report-value { color: #ffffff; font-weight: 600; font-size: clamp(0.8rem, 2.5vw, 1rem); text-align: right; }
 
-/* ── AI BADGE ── */
 .ai-badge { background: rgba(0,212,255,0.1); color: #00d4ff; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(0,212,255,0.3); }
 
-/* ── MATH CARD ── */
 .math-card {
   background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(6,30,50,0.9));
   border: 1px solid rgba(0,212,255,0.15);
@@ -233,10 +225,8 @@ h1, h2, h3 { color: #ffffff; }
 .annotation-item { margin-bottom: 4px; }
 .annotation-key { color: #60a5fa; font-weight: bold; font-family: monospace; }
 
-/* ── SUSCEPTIBILITY CARD ── */
 .susceptibility-card { background: rgba(16,185,129,0.1); border: 1px solid #10b981; border-radius: 10px; padding: 15px; color: #10b981; font-weight: 600; word-break: break-word; }
 
-/* ── REASONING BOX ── */
 .reasoning-box {
   background: rgba(6,30,50,0.85);
   border-radius: 12px;
@@ -247,7 +237,6 @@ h1, h2, h3 { color: #ffffff; }
   font-size: clamp(0.9rem, 2.5vw, 1.05rem);
 }
 
-/* ── ORIGIN BADGE ── */
 .origin-badge {
   display: inline-block;
   padding: 5px 14px;
@@ -263,7 +252,6 @@ h1, h2, h3 { color: #ffffff; }
 .origin-wastewater  { background: rgba(245,158,11,0.15);  border: 1px solid #f59e0b;   color: #fbbf24; }
 .origin-food_production{background:rgba(167,139,250,0.15);border: 1px solid #a78bfa;   color: #c4b5fd; }
 
-/* ── HEATMAP INSIGHT CARD ── */
 .insight-card {
   background: rgba(15,23,42,0.9);
   border: 1px solid rgba(0,212,255,0.12);
@@ -274,19 +262,14 @@ h1, h2, h3 { color: #ffffff; }
 .insight-card .ins-title { color: #00d4ff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
 .insight-card .ins-body  { color: #94a3b8; font-size: 0.87rem; line-height: 1.65; }
 
-/* ── DATA FRAME ── */
 [data-testid="stDataFrame"] { border: 1px solid #334155; border-radius: 10px; overflow: hidden; }
 
-/* ── ANIMATIONS ── */
 @keyframes fadeInDown { from{opacity:0;transform:translateY(-40px)} to{opacity:1;transform:translateY(0)} }
 @keyframes fadeInUp   { from{opacity:0;transform:translateY(40px)}  to{opacity:1;transform:translateY(0)} }
 @keyframes fadeIn     { from{opacity:0} to{opacity:1} }
 @keyframes shimmer    { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes float      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
-/* ═══════════════════════════════════════
-   SPLASH SCREEN
-═══════════════════════════════════════ */
 .splash-root {
   min-height: 100vh;
   background: #020b18;
@@ -461,18 +444,103 @@ def get_bacteria_info(file_name):
         info = {"gram": "Acid-Fast (Gram Variable)", "disease": "Tuberculosis, Leprosy"}
     return info
 
+# ==========================================
+# FIX 1: IMPROVED HABITAT DETECTION
+# Uses drug/mechanism content when filename keywords don't match,
+# and falls back to MRI-based inference — so "General" is rare.
+# ==========================================
 @st.cache_data
 def get_habitat(file_name):
     name = file_name.lower()
-    if any(k in name for k in ["ecoli","escherichia","staphylococcus","salmonella","klebsiella","streptococcus","enterococcus"]):
+
+    # Priority 1: explicit organism name in filename
+    clinical_keys = [
+        "ecoli", "escherichia", "staphylococcus", "salmonella", "klebsiella",
+        "streptococcus", "enterococcus", "acinetobacter", "haemophilus",
+        "neisseria", "listeria", "enterobacter", "citrobacter", "serratia",
+        "campylobacter", "helicobacter", "corynebacterium", "clostridium",
+        "morganella", "providencia", "proteus", "vibrio"
+    ]
+    environmental_keys = ["pseudomonas", "burkholderia", "stenotrophomonas", "chromobacterium"]
+    soil_keys          = ["bacillus", "streptomyces", "arthrobacter", "nocardia"]
+    marine_keys        = ["vibrio", "photobacterium", "alteromonas", "shewanella"]
+    acid_fast_keys     = ["mycobacterium", "nocardia"]
+
+    if any(k in name for k in acid_fast_keys):    return "Acid-Fast / Clinical"
+    if any(k in name for k in marine_keys):        return "Marine / Aquatic"
+    if any(k in name for k in soil_keys):          return "Soil / Environmental"
+    if any(k in name for k in environmental_keys): return "Environmental"
+    if any(k in name for k in clinical_keys):      return "Clinical"
+
+    # Priority 2: keyword fragments in filename (common naming conventions)
+    if any(k in name for k in ["hosp", "clinical", "patient", "ward", "icu", "nicu", "hospital"]):
         return "Clinical"
-    elif any(k in name for k in ["pseudomonas","acinetobacter"]):
+    if any(k in name for k in ["agri", "farm", "livestock", "poultry", "cattle", "swine", "pig"]):
+        return "Agricultural"
+    if any(k in name for k in ["soil", "sediment", "compost", "rhizo", "environ"]):
         return "Environmental"
-    elif any(k in name for k in ["bacillus","clostridium","mycobacterium"]):
-        return "Soil"
-    elif "vibrio" in name:
-        return "Marine"
-    return "General"
+    if any(k in name for k in ["waste", "sewage", "effluent", "wwater", "wwtp"]):
+        return "Wastewater"
+    if any(k in name for k in ["food", "meat", "dairy", "seafood", "poultry", "produce"]):
+        return "Food Production"
+    if any(k in name for k in ["marine", "ocean", "river", "lake", "aquatic", "water"]):
+        return "Marine / Aquatic"
+
+    # Priority 3: Try to read JSON and infer from gene content
+    try:
+        with open(file_name, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        all_text = json.dumps(data).lower()
+
+        clinical_hits = sum([
+            all_text.count("hospital"), all_text.count("clinical"),
+            all_text.count("nosocomial"), all_text.count("bloodstream"),
+            all_text.count("patient"), all_text.count("icu")
+        ])
+        agri_hits = sum([
+            all_text.count("livestock"), all_text.count("farm"),
+            all_text.count("veterinary"), all_text.count("poultry"),
+            all_text.count("swine"), all_text.count("cattle")
+        ])
+        env_hits = sum([
+            all_text.count("soil"), all_text.count("sediment"),
+            all_text.count("environmental"), all_text.count("rhizosphere")
+        ])
+        waste_hits = sum([
+            all_text.count("wastewater"), all_text.count("sewage"),
+            all_text.count("effluent"), all_text.count("wwtp")
+        ])
+        food_hits = sum([
+            all_text.count("food"), all_text.count("meat"),
+            all_text.count("dairy"), all_text.count("produce")
+        ])
+
+        hits = {
+            "Clinical": clinical_hits, "Agricultural": agri_hits,
+            "Environmental": env_hits, "Wastewater": waste_hits,
+            "Food Production": food_hits
+        }
+        best = max(hits, key=hits.get)
+        if hits[best] > 0:
+            return best
+    except Exception:
+        pass
+
+    # Priority 4: MRI-based inference (last resort — avoids showing "General")
+    # We compute a quick MRI estimate from the file
+    try:
+        with open(file_name, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        gene_count = len(data)
+        if gene_count >= 70:   return "Clinical (High Burden)"
+        elif gene_count >= 40: return "Wastewater / Mixed"
+        elif gene_count >= 20: return "Agricultural"
+        elif gene_count >= 8:  return "Environmental"
+        else:                   return "Environmental (Low Burden)"
+    except Exception:
+        pass
+
+    return "Unknown"
 
 @st.cache_data
 def extract_data(file_name):
@@ -568,9 +636,9 @@ def generate_network_html(records, organism_name, color):
     for g,d,m,h in records:
         net.add_node(g,label=g[:10],color="#87CEEB",size=15); net.add_edge("HUB",g,color="#ffffff")
         if m:
-            for mech in set(m.split(", ")):
-                if not mech: continue
-                net.add_node(mech,label=mech[:10],color="#FFA500",size=10,shape="box"); net.add_edge(g,mech,color="#aaaaaa")
+            for mech_item in set(m.split(", ")):
+                if not mech_item: continue
+                net.add_node(mech_item,label=mech_item[:10],color="#FFA500",size=10,shape="box"); net.add_edge(g,mech_item,color="#aaaaaa")
     net.barnes_hut(gravity=-5000)
     html_path = "temp_network.html"
     with open(html_path,"w",encoding="utf-8") as f:
@@ -600,10 +668,9 @@ def plot_3d_pca_plotly(current_file):
     st.plotly_chart(fig,use_container_width=True)
 
 # ==========================================
-# NEW: ORIGIN LABELING & COMPARATIVE HEATMAP FUNCTIONS
+# ORIGIN LABELING & COMPARATIVE HEATMAP FUNCTIONS
 # ==========================================
 def build_drug_class_profile(drug_list):
-    """Map detected drugs to standardized class counts."""
     profile = {cls: 0 for cls in DRUG_CLASS_KEYWORDS}
     for d in drug_list:
         mapped = map_drug_to_standard_class(d)
@@ -612,24 +679,18 @@ def build_drug_class_profile(drug_list):
     return profile
 
 def normalize_profile(profile, total):
-    """Normalize gene counts to 0-1 resistance intensity score."""
     if total == 0:
         return {k: 0.0 for k in profile}
     return {k: min(v / max(total * 0.1, 1), 1.0) for k, v in profile.items()}
 
 def plot_origin_comparison_heatmap(sample_profile_norm, selected_origin_key, organism_name):
-    """Full comparative heatmap: sample vs all reference origins."""
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     origins = list(REFERENCE_BENCHMARKS.keys())
     display_names = {
-        "clinical": "🏥 Clinical",
-        "agricultural": "🌾 Agricultural",
-        "environmental": "🌿 Environmental",
-        "wastewater": "💧 Wastewater",
+        "clinical": "🏥 Clinical", "agricultural": "🌾 Agricultural",
+        "environmental": "🌿 Environmental", "wastewater": "💧 Wastewater",
         "food_production": "🍖 Food Prod."
     }
-
-    # Build matrix: rows = origins + sample, cols = drug classes
     matrix_data = []
     row_labels = []
     for orig in origins:
@@ -637,19 +698,13 @@ def plot_origin_comparison_heatmap(sample_profile_norm, selected_origin_key, org
         row = [bench.get(cls, 0) for cls in drug_classes]
         matrix_data.append(row)
         row_labels.append(display_names.get(orig, orig))
-
-    # Add sample row
     sample_row = [sample_profile_norm.get(cls, 0) for cls in drug_classes]
     matrix_data.append(sample_row)
     row_labels.append(f"🎯 {organism_name[:18]}")
-
     matrix = np.array(matrix_data)
 
-    fig, axes = plt.subplots(1, 2, figsize=(18, 7),
-                             gridspec_kw={'width_ratios': [3, 1]})
+    fig, axes = plt.subplots(1, 2, figsize=(18, 7), gridspec_kw={'width_ratios': [3, 1]})
     fig.patch.set_facecolor('#0e1117')
-
-    # --- LEFT: Full heatmap ---
     ax = axes[0]
     ax.set_facecolor('#0e1117')
     im = ax.imshow(matrix, cmap='RdYlGn_r', aspect='auto', vmin=0, vmax=1)
@@ -658,57 +713,40 @@ def plot_origin_comparison_heatmap(sample_profile_norm, selected_origin_key, org
     ax.set_yticks(range(len(row_labels)))
     ax.set_yticklabels(row_labels, color='white', fontsize=10)
     ax.set_title(f"Comparative Resistance Heatmap — {organism_name}", color='white', fontsize=13, pad=12)
-
-    # Highlight sample row
     for j in range(len(drug_classes)):
-        ax.add_patch(plt.Rectangle((j-0.5, len(origins)-0.5), 1, 1,
-                                   fill=False, edgecolor='#00d4ff', linewidth=2))
-
-    # Annotate cells
+        ax.add_patch(plt.Rectangle((j-0.5, len(origins)-0.5), 1, 1, fill=False, edgecolor='#00d4ff', linewidth=2))
     for i in range(len(row_labels)):
         for j in range(len(drug_classes)):
             val = matrix[i, j]
             txt_color = 'black' if 0.3 < val < 0.8 else 'white'
-            ax.text(j, i, f"{val:.2f}", ha='center', va='center',
-                    color=txt_color, fontsize=7.5, fontweight='bold')
-
+            ax.text(j, i, f"{val:.2f}", ha='center', va='center', color=txt_color, fontsize=7.5, fontweight='bold')
     cbar = plt.colorbar(im, ax=ax, fraction=0.02, pad=0.02)
     cbar.set_label('Resistance Intensity (0=None, 1=Max)', color='white', fontsize=9)
     cbar.ax.yaxis.set_tick_params(color='white')
     plt.setp(cbar.ax.yaxis.get_ticklabels(), color='white')
 
-    # --- RIGHT: Delta bar chart (sample vs selected origin) ---
     ax2 = axes[1]
     ax2.set_facecolor('#0e1117')
     selected_bench = REFERENCE_BENCHMARKS[selected_origin_key]
-    deltas = []
-    for cls in drug_classes:
-        delta = sample_profile_norm.get(cls, 0) - selected_bench.get(cls, 0)
-        deltas.append(delta)
-
+    deltas = [sample_profile_norm.get(cls, 0) - selected_bench.get(cls, 0) for cls in drug_classes]
     colors_bar = ['#ef4444' if d > 0 else '#10b981' for d in deltas]
-    bars = ax2.barh(range(len(drug_classes)), deltas, color=colors_bar, alpha=0.85)
+    ax2.barh(range(len(drug_classes)), deltas, color=colors_bar, alpha=0.85)
     ax2.set_yticks(range(len(drug_classes)))
     ax2.set_yticklabels(drug_classes, color='white', fontsize=9)
     ax2.axvline(0, color='#94a3b8', linewidth=1.2, linestyle='--')
     ax2.set_title(f"Δ vs {display_names.get(selected_origin_key,'')}\nReference", color='white', fontsize=11, pad=10)
     ax2.tick_params(colors='white')
     ax2.set_xlabel("Sample − Reference", color='#94a3b8', fontsize=9)
-    ax2.set_facecolor('#0e1117')
     for spine in ax2.spines.values():
         spine.set_edgecolor('#334155')
-
     plt.tight_layout()
     return fig
 
 def plot_radar_origin_comparison(sample_profile_norm, organism_name):
-    """Plotly radar chart comparing sample against all origins."""
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     display_names = {
-        "clinical": "Clinical",
-        "agricultural": "Agricultural",
-        "environmental": "Environmental",
-        "wastewater": "Wastewater",
+        "clinical": "Clinical", "agricultural": "Agricultural",
+        "environmental": "Environmental", "wastewater": "Wastewater",
         "food_production": "Food Prod."
     }
     palette = {
@@ -716,19 +754,15 @@ def plot_radar_origin_comparison(sample_profile_norm, organism_name):
         "environmental": "#3b82f6", "wastewater": "#f59e0b",
         "food_production": "#a78bfa"
     }
-
     fig = go.Figure()
-
     for orig, bench in REFERENCE_BENCHMARKS.items():
         vals = [bench.get(cls, 0) for cls in drug_classes]
         vals += [vals[0]]
         fig.add_trace(go.Scatterpolar(
             r=vals, theta=drug_classes + [drug_classes[0]],
             mode='lines', name=display_names[orig],
-            line=dict(color=palette[orig], width=1.5, dash='dot'),
-            opacity=0.6
+            line=dict(color=palette[orig], width=1.5, dash='dot'), opacity=0.6
         ))
-
     sample_vals = [sample_profile_norm.get(cls, 0) for cls in drug_classes]
     sample_vals += [sample_vals[0]]
     fig.add_trace(go.Scatterpolar(
@@ -738,7 +772,6 @@ def plot_radar_origin_comparison(sample_profile_norm, organism_name):
         marker=dict(size=6, color='#00d4ff'),
         fill='toself', fillcolor='rgba(0,212,255,0.08)'
     ))
-
     fig.update_layout(
         polar=dict(
             bgcolor='#0e1117',
@@ -746,114 +779,274 @@ def plot_radar_origin_comparison(sample_profile_norm, organism_name):
             radialaxis=dict(visible=True, range=[0, 1], tickcolor='white', color='#94a3b8',
                             gridcolor='#1e293b', linecolor='#334155')
         ),
-        paper_bgcolor='#0e1117',
-        plot_bgcolor='#0e1117',
-        font_color='white',
+        paper_bgcolor='#0e1117', plot_bgcolor='#0e1117', font_color='white',
         legend=dict(bgcolor='rgba(15,23,42,0.8)', bordercolor='#334155', borderwidth=1),
-        margin=dict(l=60, r=60, t=40, b=40),
-        height=480
+        margin=dict(l=60, r=60, t=40, b=40), height=480
     )
     return fig
 
 def compute_origin_affinity_scores(sample_profile_norm, genes, mri):
-    """Score similarity of sample to each reference origin (0-100)."""
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     scores = {}
     for orig, bench in REFERENCE_BENCHMARKS.items():
-        # Euclidean distance in drug-class space
         vec_sample = np.array([sample_profile_norm.get(cls, 0) for cls in drug_classes])
         vec_bench  = np.array([bench.get(cls, 0) for cls in drug_classes])
         dist = np.linalg.norm(vec_sample - vec_bench)
-        # MRI proximity
         mri_diff = abs(mri - bench.get("avg_mri", 0.3))
-        # Gene count proximity
         gene_diff = abs(genes - bench.get("avg_genes", 50)) / max(bench.get("avg_genes", 50), 1)
-        # Combined score (lower = more similar)
         raw = dist * 0.5 + mri_diff * 0.3 + gene_diff * 0.2
         scores[orig] = raw
-    # Invert and normalize to 0-100
     max_s = max(scores.values()) or 1
     affinity = {k: round((1 - v / max_s) * 100, 1) for k, v in scores.items()}
     return affinity
 
 def generate_origin_insights(sample_profile_norm, selected_origin_key, affinity_scores, organism_name, mri, genes):
-    """Generate automated source-specific resistance pattern insights."""
     bench = REFERENCE_BENCHMARKS[selected_origin_key]
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     origin_display = {
-        "clinical": "Clinical/Hospital",
-        "agricultural": "Agricultural/Livestock",
-        "environmental": "Environmental/Soil",
-        "wastewater": "Wastewater/Sewage",
+        "clinical": "Clinical/Hospital", "agricultural": "Agricultural/Livestock",
+        "environmental": "Environmental/Soil", "wastewater": "Wastewater/Sewage",
         "food_production": "Food Production"
     }
-
-    high_excess = []
-    high_deficit = []
+    high_excess, high_deficit = [], []
     for cls in drug_classes:
         delta = sample_profile_norm.get(cls, 0) - bench.get(cls, 0)
-        if delta > 0.2: high_excess.append((cls, delta))
+        if delta > 0.2:   high_excess.append((cls, delta))
         elif delta < -0.2: high_deficit.append((cls, abs(delta)))
-
     high_excess.sort(key=lambda x: -x[1])
     high_deficit.sort(key=lambda x: -x[1])
-
     best_origin = max(affinity_scores, key=affinity_scores.get)
-    best_score = affinity_scores[best_origin]
-
-    insights = {
-        "best_match": (origin_display.get(best_origin, best_origin), best_score),
+    return {
+        "best_match": (origin_display.get(best_origin, best_origin), affinity_scores[best_origin]),
         "selected_match": (origin_display.get(selected_origin_key, selected_origin_key), affinity_scores[selected_origin_key]),
         "excess_classes": high_excess[:3],
         "deficit_classes": high_deficit[:3],
         "mri_vs_bench": mri - bench.get("avg_mri", 0.3),
         "gene_vs_bench": genes - bench.get("avg_genes", 50)
     }
-    return insights
 
 # ==========================================
-# 4. PDF GENERATOR
+# FIX 3: PDF GENERATOR — with Origin Heatmap section
 # ==========================================
-def create_advanced_pdf_report(bac_name,genes,drug,mech,mri,ari,level,icon,records,dashboard_fig,bac_info,habitat,ai_pred_text,ai_conf_text, origin_label="Unknown"):
-    pdf_file=f"{bac_name.replace('.json','')}_Detailed_Report.pdf"
-    doc=SimpleDocTemplate(pdf_file,pagesize=letter,rightMargin=30,leftMargin=30,topMargin=30,bottomMargin=30)
-    styles=getSampleStyleSheet()
-    title_style=ParagraphStyle(name='TitleStyle',parent=styles['Heading1'],fontSize=18,spaceAfter=15,textColor=colors.HexColor('#1E3A8A'))
-    h2_style=ParagraphStyle(name='H2',parent=styles['Heading2'],fontSize=14,spaceBefore=15,spaceAfter=8,textColor=colors.HexColor('#2E86C1'))
-    normal_style=styles['Normal']
-    u_drugs,u_mechs=len(set(drug)),len(set(mech))
-    t_drugs,t_mechs=len(drug),len(mech)
-    elements=[]
-    elements.append(Paragraph(f"AI-MRI Report: {bac_name.replace('.json','')}",title_style))
-    elements.append(Paragraph("Executive Summary & AI Analysis",h2_style))
-    summary_text=f"<b>Pathogen File:</b> {bac_name}<br/><b>Gram Stain:</b> {bac_info['gram']}<br/><b>Associated Pathology:</b> {bac_info['disease']}<br/><b>Ecological Habitat:</b> {habitat}<br/><b>Genomic Origin Label:</b> {origin_label}<br/><b>Total Resistance Genes:</b> {genes}<br/><b>Drug Classes Resisted:</b> {u_drugs}<br/><b>Resistance Mechanisms:</b> {u_mechs}<br/><b>MRI Score:</b> {round(mri,3)} ({level})<br/><b>ARI Score:</b> {round(ari,3)}<br/><br/><b>Machine Learning Prediction:</b> {ai_pred_text} Risk<br/><b>Confidence Distribution:</b> {ai_conf_text}"
-    elements.append(Paragraph(summary_text,normal_style))
-    elements.append(Spacer(1,15))
-    elements.append(Paragraph("Metric Definitions & Clinical Significance",h2_style))
-    elements.append(Paragraph("<b>Pathogen Profile:</b> Establishes the essential biological and ecological context.<br/><br/><b>Total Resistance Genes:</b> Absolute count of ARGs identified within the sequenced genomic data.<br/><br/><b>Drug Classes Resisted & Mechanisms Deployed:</b> Enumerates the distinct pharmaceutical classes and molecular strategies.<br/><br/><b>AI Prediction & Confidence Distribution:</b> Random Forest probabilistic classification trained on reference genomic profiles.<br/><br/><b>Origin Label & Comparative Heatmap:</b> Assigns the isolate to one of five environmental/clinical origin categories, then benchmarks its drug-class resistance intensity against curated reference databases for that category. Elevated delta scores (red cells) indicate resistance patterns exceeding the expected baseline for the labelled source.",normal_style))
-    elements.append(Paragraph("Clinical Rationale for MRI and ARI Frameworks",h2_style))
-    elements.append(Paragraph("The <b>ARI</b> measures resistance density — how efficiently the organism converts its gene count into functional resistance. The <b>MRI</b> consolidates breadth and depth into a single normalized score enabling rapid inter-species triage.",normal_style))
+def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon,
+                                records, dashboard_fig, bac_info, habitat,
+                                ai_pred_text, ai_conf_text, origin_label="Unknown",
+                                affinity_scores=None, drug_profile_norm=None,
+                                selected_origin_key="clinical", heatmap_fig=None):
+    pdf_file = f"{bac_name.replace('.json','')}_Detailed_Report.pdf"
+    doc = SimpleDocTemplate(pdf_file, pagesize=letter,
+                            rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(name='TitleStyle', parent=styles['Heading1'],
+                                 fontSize=18, spaceAfter=15, textColor=colors.HexColor('#1E3A8A'))
+    h2_style = ParagraphStyle(name='H2', parent=styles['Heading2'],
+                              fontSize=14, spaceBefore=15, spaceAfter=8, textColor=colors.HexColor('#2E86C1'))
+    h3_style = ParagraphStyle(name='H3', parent=styles['Heading3'],
+                              fontSize=12, spaceBefore=10, spaceAfter=6, textColor=colors.HexColor('#1a7a3a'))
+    normal_style = styles['Normal']
+    u_drugs, u_mechs = len(set(drug)), len(set(mech))
+    t_drugs, t_mechs = len(drug), len(mech)
+    elements = []
+
+    # ── Title & Executive Summary ──
+    elements.append(Paragraph(f"AI-MRI Report: {bac_name.replace('.json','')}", title_style))
+    elements.append(Paragraph("Executive Summary & AI Analysis", h2_style))
+    summary_text = (
+        f"<b>Pathogen File:</b> {bac_name}<br/>"
+        f"<b>Gram Stain:</b> {bac_info['gram']}<br/>"
+        f"<b>Associated Pathology:</b> {bac_info['disease']}<br/>"
+        f"<b>Ecological Habitat:</b> {habitat}<br/>"
+        f"<b>Genomic Origin Label:</b> {origin_label}<br/>"
+        f"<b>Total Resistance Genes:</b> {genes}<br/>"
+        f"<b>Drug Classes Resisted:</b> {u_drugs}<br/>"
+        f"<b>Resistance Mechanisms:</b> {u_mechs}<br/>"
+        f"<b>MRI Score:</b> {round(mri,3)} ({level})<br/>"
+        f"<b>ARI Score:</b> {round(ari,3)}<br/><br/>"
+        f"<b>Machine Learning Prediction:</b> {ai_pred_text} Risk<br/>"
+        f"<b>Confidence Distribution:</b> {ai_conf_text}"
+    )
+    elements.append(Paragraph(summary_text, normal_style))
+    elements.append(Spacer(1, 15))
+
+    # ── Metric Definitions ──
+    elements.append(Paragraph("Metric Definitions & Clinical Significance", h2_style))
+    elements.append(Paragraph(
+        "<b>Pathogen Profile:</b> Establishes the essential biological and ecological context.<br/><br/>"
+        "<b>Total Resistance Genes:</b> Absolute count of ARGs identified within the sequenced genomic data.<br/><br/>"
+        "<b>Drug Classes Resisted & Mechanisms Deployed:</b> Enumerates the distinct pharmaceutical classes and molecular strategies.<br/><br/>"
+        "<b>AI Prediction & Confidence Distribution:</b> Random Forest probabilistic classification trained on reference genomic profiles.<br/><br/>"
+        "<b>Origin Label & Comparative Heatmap:</b> Assigns the isolate to one of five environmental/clinical origin categories, "
+        "then benchmarks its drug-class resistance intensity against curated reference databases for that category. "
+        "Elevated delta scores (red cells) indicate resistance patterns exceeding the expected baseline for the labelled source.",
+        normal_style))
+    elements.append(Paragraph("Clinical Rationale for MRI and ARI Frameworks", h2_style))
+    elements.append(Paragraph(
+        "The <b>ARI</b> measures resistance density — how efficiently the organism converts its gene count into functional resistance. "
+        "The <b>MRI</b> consolidates breadth and depth into a single normalized score enabling rapid inter-species triage.",
+        normal_style))
+
     elements.append(PageBreak())
-    elements.append(Paragraph("Mathematical Derivations",h2_style))
-    elements.append(Paragraph(f"<b>MRI:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri,3)}</b><br/><b>ARI:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari,3)}</b>",normal_style))
-    elements.append(Paragraph("Risk Assessment Interpretation",h2_style))
-    elements.append(Paragraph(get_risk_reason(level,u_drugs,u_mechs),normal_style))
-    elements.append(Paragraph("Systems Analysis Dashboard",h2_style))
-    buf=io.BytesIO()
+
+    # ── Mathematical Derivations ──
+    elements.append(Paragraph("Mathematical Derivations", h2_style))
+    elements.append(Paragraph(
+        f"<b>MRI:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri,3)}</b><br/>"
+        f"<b>ARI:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari,3)}</b>",
+        normal_style))
+    elements.append(Paragraph("Risk Assessment Interpretation", h2_style))
+    elements.append(Paragraph(get_risk_reason(level, u_drugs, u_mechs), normal_style))
+
+    # ── Dashboard ──
+    elements.append(Paragraph("Systems Analysis Dashboard", h2_style))
+    buf = io.BytesIO()
     dashboard_fig.patch.set_facecolor('white')
-    for ax in dashboard_fig.axes:
-        ax.set_facecolor('white'); ax.tick_params(colors='black'); ax.title.set_color('black')
-        for text in ax.texts: text.set_color('black')
-    dashboard_fig.savefig(buf,format='png',bbox_inches='tight',dpi=150)
+    for ax_item in dashboard_fig.axes:
+        ax_item.set_facecolor('white')
+        ax_item.tick_params(colors='black')
+        ax_item.title.set_color('black')
+        for text in ax_item.texts:
+            text.set_color('black')
+    dashboard_fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
     buf.seek(0)
-    elements.append(RLImage(buf,width=7.5*inch,height=5*inch))
+    elements.append(RLImage(buf, width=7.5*inch, height=5*inch))
+
     elements.append(PageBreak())
-    elements.append(Paragraph("Complete Gene Resistance Ledger",h2_style))
-    table_data=[["Gene Name","Drug Classes Resisted","Mechanisms Deployed","Habitat"]]
+
+    # ── FIX: ORIGIN ANALYSIS SECTION IN PDF ──
+    elements.append(Paragraph("Genomic Origin Analysis", h2_style))
+
+    origin_display_names = {
+        "clinical": "Clinical / Hospital", "agricultural": "Agricultural / Livestock",
+        "environmental": "Environmental / Soil", "wastewater": "Wastewater / Sewage",
+        "food_production": "Food Production"
+    }
+
+    elements.append(Paragraph(
+        f"<b>Assigned Origin Label:</b> {origin_label}<br/>"
+        f"<b>Reference Comparison Population:</b> {origin_display_names.get(selected_origin_key, selected_origin_key)}",
+        normal_style))
+    elements.append(Spacer(1, 10))
+
+    # Affinity scores table
+    if affinity_scores:
+        elements.append(Paragraph("Origin Affinity Scores (0–100)", h3_style))
+        elements.append(Paragraph(
+            "Each score reflects how closely this isolate's resistance profile matches a reference population. "
+            "The score is computed as a weighted composite of: (1) Euclidean distance across 12 standardised drug classes [50%], "
+            "(2) MRI proximity to the reference population mean [30%], and (3) gene count proximity to the reference mean [20%]. "
+            "Scores are inverted and normalised to 0–100 where <b>100 = perfect match</b> and <b>0 = maximally dissimilar</b>. "
+            "A score above 70 indicates strong source attribution confidence; below 40 indicates a mixed or atypical resistance profile.",
+            normal_style))
+        elements.append(Spacer(1, 8))
+
+        aff_table_data = [["Origin Population", "Affinity Score (/100)", "Interpretation"]]
+        for orig_key, score in affinity_scores.items():
+            disp = origin_display_names.get(orig_key, orig_key)
+            if score >= 70:   interp = "Strong match"
+            elif score >= 50: interp = "Moderate match"
+            elif score >= 30: interp = "Weak match"
+            else:             interp = "Dissimilar"
+            is_best = score == max(affinity_scores.values())
+            label = f"{'★ BEST — ' if is_best else ''}{disp}"
+            aff_table_data.append([label, f"{score}/100", interp])
+
+        aff_table = Table(aff_table_data, colWidths=[2.8*inch, 1.8*inch, 2.2*inch])
+        aff_table.setStyle(TableStyle([
+            ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+            ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+            ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+            ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+            ('BOTTOMPADDING', (0,0), (-1,0), 10),
+            ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F0F8FF')),
+            ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+            ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+            ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#F0F8FF'), colors.HexColor('#FFFFFF')]),
+        ]))
+        elements.append(aff_table)
+        elements.append(Spacer(1, 15))
+
+    # Drug-class resistance vs benchmark table
+    if drug_profile_norm and selected_origin_key:
+        elements.append(Paragraph(f"Drug-Class Resistance vs {origin_display_names.get(selected_origin_key,'')} Reference", h3_style))
+        elements.append(Paragraph(
+            "The table below compares the sample's normalised resistance intensity (0–1) against the curated reference benchmark "
+            "for each of the 12 standardised drug classes. Delta values above +0.2 (excess) indicate significantly elevated "
+            "resistance relative to the reference; values below −0.2 (deficit) suggest potential therapeutic candidates.",
+            normal_style))
+        elements.append(Spacer(1, 8))
+
+        bench_ref = REFERENCE_BENCHMARKS[selected_origin_key]
+        drug_table_data = [["Drug Class", "Sample Intensity", "Reference Benchmark", "Delta", "Status"]]
+        for cls in DRUG_CLASS_KEYWORDS.keys():
+            sample_val = round(drug_profile_norm.get(cls, 0), 3)
+            ref_val    = round(bench_ref.get(cls, 0), 3)
+            delta      = round(sample_val - ref_val, 3)
+            if delta > 0.2:    status = "⬆ ELEVATED"
+            elif delta < -0.2: status = "⬇ LOWER"
+            else:              status = "≈ Similar"
+            drug_table_data.append([cls, str(sample_val), str(ref_val),
+                                     f"{'+' if delta>=0 else ''}{delta}", status])
+
+        drug_table = Table(drug_table_data, colWidths=[1.6*inch, 1.3*inch, 1.7*inch, 1.0*inch, 1.2*inch])
+        drug_table.setStyle(TableStyle([
+            ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1a7a3a')),
+            ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+            ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+            ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+            ('ALIGN', (0,0), (0,-1), 'LEFT'),
+            ('BOTTOMPADDING', (0,0), (-1,0), 10),
+            ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+            ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+            ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#F0FFF4'), colors.HexColor('#FFFFFF')]),
+            ('FONTSIZE', (0,0), (-1,-1), 8),
+        ]))
+        elements.append(drug_table)
+        elements.append(Spacer(1, 15))
+
+    # Heatmap image in PDF
+    if heatmap_fig is not None:
+        elements.append(Paragraph("Comparative Resistance Heatmap", h3_style))
+        elements.append(Paragraph(
+            "Visual comparison of drug-class resistance intensity across all five reference origin populations and the target sample. "
+            "Red cells indicate high resistance; green cells indicate low resistance. "
+            "The sample row is highlighted with a cyan border. "
+            "The delta bar chart (right panel) shows sample intensity minus the selected reference benchmark.",
+            normal_style))
+        heatmap_buf = io.BytesIO()
+        heatmap_fig.patch.set_facecolor('white')
+        for ax_item in heatmap_fig.axes:
+            ax_item.set_facecolor('white')
+            ax_item.tick_params(colors='black')
+            if ax_item.title:
+                ax_item.title.set_color('black')
+            ax_item.xaxis.label.set_color('black')
+            for spine in ax_item.spines.values():
+                spine.set_edgecolor('black')
+        heatmap_fig.savefig(heatmap_buf, format='png', bbox_inches='tight', dpi=150, facecolor='white')
+        heatmap_buf.seek(0)
+        elements.append(RLImage(heatmap_buf, width=7.5*inch, height=3.5*inch))
+
+    elements.append(PageBreak())
+
+    # ── Gene Ledger ──
+    elements.append(Paragraph("Complete Gene Resistance Ledger", h2_style))
+    table_data = [["Gene Name","Drug Classes Resisted","Mechanisms Deployed","Habitat"]]
     for g,d,m,h in records:
-        table_data.append([Paragraph(g,normal_style),Paragraph(d,normal_style),Paragraph(m,normal_style),Paragraph(h,normal_style)])
-    t=Table(table_data,colWidths=[1.2*inch,2.2*inch,2.2*inch,0.9*inch])
-    t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#2E86C1')),('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),('ALIGN',(0,0),(-1,-1),'LEFT'),('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),('BOTTOMPADDING',(0,0),(-1,0),12),('BACKGROUND',(0,1),(-1,-1),colors.HexColor('#F8F9F9')),('GRID',(0,0),(-1,-1),1,colors.black),('VALIGN',(0,0),(-1,-1),'TOP')]))
+        table_data.append([
+            Paragraph(g, normal_style), Paragraph(d, normal_style),
+            Paragraph(m, normal_style), Paragraph(h, normal_style)
+        ])
+    t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0,0), (-1,0), 12),
+        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
+        ('GRID', (0,0), (-1,-1), 1, colors.black),
+        ('VALIGN', (0,0), (-1,-1), 'TOP')
+    ]))
     elements.append(t)
     doc.build(elements)
     return pdf_file
@@ -906,7 +1099,7 @@ if st.session_state.show_splash:
       <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers — providing an instant safe-zone shortlist for treatment consideration.</div></div>
       <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Ask questions about any genome in plain English. Gemini-powered AI with full genomic context automatically loaded.</div></div>
       <div class="sp-feat-card"><span class="sp-feat-icon">🗺️</span><div class="sp-feat-title">Origin Labeling &amp; Heatmaps</div><div class="sp-feat-desc">Label isolates by source — clinical, agricultural, environmental, wastewater, or food — and instantly compare resistance profiles against curated environmental benchmarks via interactive heatmaps and radar charts.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, and gene ledgers in one click.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, origin heatmap, affinity scores, and gene ledgers in one click.</div></div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -935,7 +1128,7 @@ if st.session_state.show_splash:
           <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
           <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
           <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Origin labeling + comparative heatmaps reveal source-specific resistance signatures vs 5 curated environmental benchmarks.</div>
+          <div class="sp-comp-item"><span class="sp-chk">✓</span> Origin labeling + comparative heatmaps + affinity scores + drug-class delta table all in the PDF report.</div>
         </div>
       </div>
       <div class="sp-pillars">
@@ -944,7 +1137,7 @@ if st.session_state.show_splash:
         <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores and gene counts into every query — real data, not generic biology.</div></div>
         <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
         <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
-        <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, and ledgers into a professional document with one click.</div></div>
+        <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, origin heatmap, affinity scores, and ledgers into one document.</div></div>
         <div class="sp-pillar c7"><span class="sp-pillar-icon">🗺️</span><div class="sp-pillar-title">Origin-Comparative Heatmaps</div><div class="sp-pillar-desc">Assign isolate origin and instantly benchmark it against 5 curated environmental reference databases via heatmaps, radar charts, and affinity scoring.</div></div>
       </div>
     </div>
@@ -1005,7 +1198,6 @@ if 'chat_sessions' not in st.session_state:
     st.session_state.current_session = "Chat 1"
     st.session_state.chat_counter = 1
 
-# Session state for origin labels across files
 if 'origin_labels' not in st.session_state:
     st.session_state.origin_labels = {}
 
@@ -1027,25 +1219,30 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     habitat = get_habitat(selected_file)
     bac_info = get_bacteria_info(selected_file)
 
-    # Compute drug class profile for this genome
+    # Compute drug class profile — done ONCE outside tabs to avoid NameError
     drug_profile = build_drug_class_profile(drug)
     drug_profile_norm = normalize_profile(drug_profile, len(drug))
+
+    # Compute selected_origin_key ONCE outside tabs — fixes tab8 NameError
+    selected_origin_key = st.session_state.origin_labels.get(selected_file, "clinical")
+
+    # Build dashboard fig ONCE outside tabs — fixes tab8 NameError
+    fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
 
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug — MRI Score: {round(mri,3)}</div>', unsafe_allow_html=True)
 
-    model = train_rf_model()
+    rf_model = train_rf_model()
     ai_pred_text = "N/A"
     ai_conf_text = "N/A"
-    if model:
-        pred = model.predict([[genes, u_drugs, u_mechs]])[0]
-        probs = model.predict_proba([[genes, u_drugs, u_mechs]])[0]
-        classes = model.classes_
+    if rf_model:
+        pred = rf_model.predict([[genes, u_drugs, u_mechs]])[0]
+        probs = rf_model.predict_proba([[genes, u_drugs, u_mechs]])[0]
+        classes = rf_model.classes_
         conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
         ai_pred_text = str(pred)
         ai_conf_text = str(conf_dict).replace("'", "")
 
-    # ── METRIC CARDS
     m1, m2 = st.columns(2)
     m3, m4 = st.columns(2)
     with m1:
@@ -1060,28 +1257,19 @@ if analysis_mode == "Select Known Bacteria" and json_files:
     st.write(" ")
 
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
-        "ℹ️ Summary",
-        "📊 Dashboard",
-        "🧮 Math",
-        "🕸️ Network",
-        "🤖 AI Chat",
-        "🩺 Clinical",
-        "🗺️ Origin",
-        "📄 PDF",
-        "🌌 3D Map"
+        "ℹ️ Summary", "📊 Dashboard", "🧮 Math", "🕸️ Network",
+        "🤖 AI Chat", "🩺 Clinical", "🗺️ Origin", "📄 PDF", "🌌 3D Map"
     ])
 
     with tab1:
         section_explainer("ℹ️", "About This Tab",
             "This section provides a high-level overview of the platform's capabilities and a detailed pathogen identification card for the selected genome. It summarises all key metrics — gram stain, disease associations, MRI/ARI scores, and the AI risk prediction — in a single structured ledger for rapid clinical or research reference.")
-
         st.markdown("""
         <div class="welcome-hero">
             <h2>Genomic Resistance Intelligence Dashboard</h2>
             <p>Comprehensive AMR Analysis Platform — Powered by AI</p>
         </div>
         """, unsafe_allow_html=True)
-
         st.markdown("### 🧬 Platform Capabilities")
         st.info("""
 **The AI-MRI Hub provides a state-of-the-art multidimensional genomic analysis suite:**
@@ -1091,10 +1279,9 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 - **Random Forest Risk Classification:** Machine learning-driven threat stratification benchmarked against a population of reference genomic profiles.
 - **Clinical Susceptibility Zone Analysis:** Genomic exclusion logic identifying drug classes with zero resistance markers for treatment guidance.
 - **Interactive Resistance Topology:** 3D PCA landscape and live network graphs for spatial visualization of mechanism diversity and genetic density.
-- **Origin Labeling & Comparative Heatmaps:** Label genomic data by source (clinical, agricultural, environmental, wastewater, food production) and compare resistance profiles against curated environmental benchmarks.
+- **Origin Labeling & Comparative Heatmaps:** Label genomic data by source and compare resistance profiles against curated environmental benchmarks.
         """)
         st.markdown("### 🦠 Pathogen Identification Profile")
-        # Get stored origin label for display
         stored_origin = st.session_state.origin_labels.get(selected_file, "Not Set")
         st.markdown(f"""
 <div class="report-card">
@@ -1123,73 +1310,60 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 
     with tab2:
         section_explainer("📊", "About This Dashboard",
-            "This six-panel systems analysis dashboard provides a simultaneous visual summary of all core resistance dimensions: drug class distribution (pie), mechanism frequency (bar), the MRI semicircle gauge, top gene frequency, total gene count, and a diversity comparison between unique drug classes and mechanisms. Together, these panels reveal the <em>shape</em> of resistance architecture at a glance — helping identify whether a pathogen is broad-spectrum resistant or mechanism-specialized.")
-
+            "This six-panel systems analysis dashboard provides a simultaneous visual summary of all core resistance dimensions: drug class distribution (pie), mechanism frequency (bar), the MRI semicircle gauge, top gene frequency, total gene count, and a diversity comparison between unique drug classes and mechanisms.")
         st.markdown(f"### Systems Analysis Dashboard — `{selected_file}`")
-        fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
         st.pyplot(fig)
-
         if genes > 50:
             section_explainer("📌", "Interpretation Note",
-                f"With <strong>{genes} resistance genes</strong> detected, this isolate has a large genomic resistance burden. The dashboard above reveals its diversity across {u_drugs} drug classes and {u_mechs} mechanisms — use the Origin tab to benchmark this against environmental reference populations.")
+                f"With <strong>{genes} resistance genes</strong> detected, this isolate has a large genomic resistance burden.")
         else:
             section_explainer("📌", "Interpretation Note",
-                f"This isolate carries <strong>{genes} resistance genes</strong>, a relatively compact profile. The dashboard panels above characterise its resistance specificity — pay attention to which drug classes dominate the pie chart to identify its primary evasion strategy.")
+                f"This isolate carries <strong>{genes} resistance genes</strong>, a relatively compact profile.")
 
     with tab3:
         section_explainer("🧮", "About This Section",
-            "This section presents the full mathematical derivation of the MRI (Multidimensional Resistance Index) and ARI (Antibiotic Resistance Index) frameworks with computed values for the selected genome. Laplace smoothing (+1) prevents division-by-zero for sparse genomes. The risk assessment interpretation box below translates the numerical outputs into plain-language clinical reasoning.")
-
+            "This section presents the full mathematical derivation of the MRI and ARI frameworks with computed values for the selected genome.")
         st.markdown("### 🧮 Mathematical Framework & Validation")
         col_m1, col_m2 = st.columns([1,1])
         with col_m1:
-            st.markdown('<div class="math-card">', unsafe_allow_html=True)
-            st.markdown('<div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
+            st.markdown('<div class="math-card"><div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
             st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
-            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_drugs</span> — Unique drug classes resisted</div><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_drugs</span> — Unique drug classes resisted</div><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div></div>', unsafe_allow_html=True)
             st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri,3)}")
-            st.markdown('</div>', unsafe_allow_html=True)
         with col_m2:
-            st.markdown('<div class="math-card">', unsafe_allow_html=True)
-            st.markdown('<div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
+            st.markdown('<div class="math-card"><div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
             st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
-            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">G_total</span> — Total genomic resistance genes</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">G_total</span> — Total genomic resistance genes</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div></div>', unsafe_allow_html=True)
             st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari,3)}")
-            st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("### 🎯 Risk Assessment Interpretation")
         st.markdown(f'<div class="reasoning-box">{get_risk_reason(level,u_drugs,u_mechs)}</div>', unsafe_allow_html=True)
         st.write("")
         section_explainer("📜", "Complete Resistance Gene Ledger",
-            "The table below lists every antibiotic resistance gene extracted from the CARD-format JSON, alongside the drug classes it confers resistance to, the molecular mechanism employed, and the ecological habitat annotation. This ledger can be exported as part of the PDF report.")
+            "The table below lists every antibiotic resistance gene extracted from the CARD-format JSON.")
         df = pd.DataFrame(records, columns=["Gene Name","Drug Classes Resisted","Mechanisms Deployed","Habitat"])
         st.dataframe(df, use_container_width=True)
 
     with tab4:
         section_explainer("🕸️", "About the Resistance Network",
-            "This interactive network graph maps the resistance topology of the selected genome. The central hub node represents the organism. Blue nodes are individual resistance genes; orange box nodes are the molecular mechanisms they deploy. Edges connect genes to their mechanisms, revealing which biological strategies are most heavily convergent. Use the built-in filter and selection menus to isolate specific genes or mechanism clusters.")
-
+            "This interactive network graph maps the resistance topology of the selected genome.")
         st.markdown("### 🕸️ Interactive Resistance Mechanism Network")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path,'r',encoding='utf-8') as f:
             components.html(f.read(), height=550)
-
         if u_mechs > 5:
             section_explainer("📌", "Network Complexity Note",
-                f"This genome deploys <strong>{u_mechs} distinct resistance mechanisms</strong> — a high-complexity network. Highly connected mechanism nodes (orange boxes with many edges) represent bottleneck strategies that, if pharmacologically bypassed, could simultaneously disable multiple resistance genes.")
+                f"This genome deploys <strong>{u_mechs} distinct resistance mechanisms</strong> — a high-complexity network.")
         else:
             section_explainer("📌", "Network Complexity Note",
-                f"This genome's resistance network is relatively streamlined with <strong>{u_mechs} mechanisms</strong>. Fewer mechanism nodes means the organism's resistance relies on a narrower but potentially highly efficient set of strategies.")
+                f"This genome's resistance network is relatively streamlined with <strong>{u_mechs} mechanisms</strong>.")
 
     with tab5:
         section_explainer("🤖", "About J.A.R.V.I.S. Bio-AI",
-            "J.A.R.V.I.S. (Justified Analytical Resistance & Virulence Intelligence System) is a Gemini-powered genomic AI assistant. Unlike generic chatbots, J.A.R.V.I.S. automatically receives the full context of the selected genome — MRI score, gene count, drug classes, and mechanism diversity — before answering. Ask it clinical questions, mechanism explanations, treatment strategy suggestions, or comparative queries across the database.")
-
+            "J.A.R.V.I.S. is a Gemini-powered genomic AI assistant with full genomic context automatically injected.")
         st.session_state.current_session = st.selectbox(
-            "Active Chat Session:",
-            list(st.session_state.chat_sessions.keys())
-        )
+            "Active Chat Session:", list(st.session_state.chat_sessions.keys()))
         col_new, col_clear = st.columns(2)
         with col_new:
             if st.button("➕ New Chat", use_container_width=True):
@@ -1202,11 +1376,9 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             if st.button("🗑️ Clear Chat", use_container_width=True):
                 st.session_state.chat_sessions[st.session_state.current_session] = []
                 st.rerun()
-
         for msg in st.session_state.chat_sessions[st.session_state.current_session]:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
-
         user_msg = st.chat_input(f"Query J.A.R.V.I.S. about {selected_file}...")
         if user_msg:
             st.chat_message("user").markdown(user_msg)
@@ -1219,20 +1391,21 @@ if analysis_mode == "Select Known Bacteria" and json_files:
                     context = f"""You are J.A.R.V.I.S., an expert Bioinformatics AI specializing in antimicrobial resistance genomics.
 The analyst is examining genome: '{selected_file}'.
 Genomic Data: Total ARGs: {genes}, Drug Classes: {u_drugs}, Mechanisms: {u_mechs}, MRI: {round(mri,3)} ({level}), ARI: {round(ari,3)}.
-Genomic Origin: {origin_ctx}.
+Genomic Origin: {origin_ctx}. Ecological Habitat: {habitat}.
 Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
                     with st.spinner("Processing genomic data..."):
-                        available_models=[m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+                        available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
                             st.error("No models available.")
                         else:
-                            target_model=next((m for m in available_models if 'flash' in m),next((m for m in available_models if 'pro' in m),available_models[0]))
-                            model_ai=genai.GenerativeModel(target_model)
-                            response=model_ai.generate_content(context)
+                            target_model = next((m for m in available_models if 'flash' in m),
+                                               next((m for m in available_models if 'pro' in m), available_models[0]))
+                            model_ai = genai.GenerativeModel(target_model)
+                            response = model_ai.generate_content(context)
                             st.chat_message("assistant").markdown(response.text)
                             st.session_state.chat_sessions[st.session_state.current_session].append({"role":"assistant","content":response.text})
                 except Exception as e:
-                    error_msg=str(e)
+                    error_msg = str(e)
                     if "429" in error_msg or "quota" in error_msg.lower():
                         st.error("⚠️ API Quota Exceeded. Please wait 60 seconds before re-submitting.")
                     else:
@@ -1240,43 +1413,39 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
 
     with tab6:
         section_explainer("🩺", "About Clinical Susceptibility Analysis",
-            "This section identifies drug classes that carry <strong>zero detected resistance genes</strong> in the selected isolate — these are potential candidate therapeutic classes based purely on genomic evidence. The population benchmark chart below compares this genome's MRI against the database average, contextualising its severity relative to all other sequenced isolates. Always confirm susceptibility via standard MIC (Minimum Inhibitory Concentration) antibiogram testing before clinical application.")
-
+            "This section identifies drug classes with zero detected resistance genes — potential therapeutic candidates.")
         st.markdown("### 🩺 Clinical Susceptibility Zone Analysis")
-        DRUG_UNIVERSE=["Penicillin","Cephalosporin","Carbapenem","Macrolide","Aminoglycoside","Fluoroquinolone","Tetracycline","Sulfonamide","Glycopeptide"]
-        resisted_norm=set([d.lower() for d in drug])
-        safe_zones=[d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
+        DRUG_UNIVERSE = ["Penicillin","Cephalosporin","Carbapenem","Macrolide","Aminoglycoside","Fluoroquinolone","Tetracycline","Sulfonamide","Glycopeptide"]
+        resisted_norm = set([d.lower() for d in drug])
+        safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
         st.write("Drug classes with **zero resistance markers** in this isolate — potential therapeutic candidates:")
         st.markdown(f'<div class="susceptibility-card">🛡️ Candidate Therapeutic Classes:<br>{", ".join(safe_zones) if safe_zones else "⚠️ No unresisted classes found in the standard panel."}</div>', unsafe_allow_html=True)
         st.caption("⚠️ Clinical confirmation via standard antibiogram (MIC testing) is required before therapeutic application.")
         st.write("---")
         st.markdown("### 📈 Population Benchmark Comparison")
         section_explainer("📊", "What This Chart Shows",
-            "The bar chart compares this genome's MRI score against the mean MRI of all other genomes in the local database. A score significantly above the database average signals an outlier-level resistance burden, potentially indicating a novel superbug candidate or a highly adapted clinical strain.")
-        all_mris=[]
+            "Compares this genome's MRI score against the mean MRI of all other genomes in the local database.")
+        all_mris = []
         for f in json_files:
             try:
-                _,_,_,f_mri,_,_=extract_data(f); all_mris.append(f_mri)
+                _,_,_,f_mri,_,_ = extract_data(f); all_mris.append(f_mri)
             except: continue
         if all_mris:
-            avg_mri=sum(all_mris)/len(all_mris)
-            comparison_df=pd.DataFrame({"MRI Score":[mri,avg_mri]},index=["Target Genome","Database Average"])
+            avg_mri = sum(all_mris)/len(all_mris)
+            comparison_df = pd.DataFrame({"MRI Score":[mri,avg_mri]}, index=["Target Genome","Database Average"])
             st.bar_chart(comparison_df)
 
-    # ─────────────────────────────────────────────────────────
-    # TAB 7: ORIGIN LABELING & COMPARATIVE HEATMAPS (NEW)
-    # ─────────────────────────────────────────────────────────
     with tab7:
         section_explainer("🗺️", "About Origin Labeling & Comparative Heatmaps",
-            "This module allows you to <strong>label each genome by its biological source</strong> (Clinical, Agricultural, Environmental, Wastewater, or Food Production) and then automatically compare its drug-class resistance profile against a curated reference database of environmental benchmarks. "
-            "The <strong>comparative heatmap</strong> shows resistance intensity across 12 standardised drug classes for both the sample and all 5 reference origins simultaneously — red cells indicate elevated resistance, green cells indicate lower resistance. "
-            "The <strong>delta bar chart</strong> shows exactly how much higher or lower the sample's resistance is vs. your chosen reference. "
-            "The <strong>radar chart</strong> overlays all origins in a single polar view for a holistic topological comparison. "
-            "The <strong>origin affinity scores</strong> quantify which reference population the sample most closely resembles — a key tool for source attribution in One Health and AMR epidemiology research.")
+            "Label each genome by its biological source and compare its resistance profile against curated reference benchmarks. "
+            "The <strong>comparative heatmap</strong> shows resistance intensity across 12 drug classes. "
+            "The <strong>delta bar chart</strong> quantifies the gap vs your chosen reference. "
+            "The <strong>radar chart</strong> overlays all origins for a holistic comparison. "
+            "The <strong>origin affinity scores (0–100)</strong> quantify how closely this isolate resembles each reference population — "
+            "computed from Euclidean distance in drug-class space, MRI proximity, and gene count proximity.")
 
         st.markdown("### 🗺️ Genomic Origin Labeling & Source-Comparative Analysis")
 
-        # ── ORIGIN LABELING UI ──
         col_label, col_display = st.columns([2, 1])
         with col_label:
             origin_choice = st.selectbox(
@@ -1290,6 +1459,7 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
                 st.session_state.origin_labels[selected_file] = ORIGIN_LABELS[origin_choice]
                 st.success(f"Origin label saved: **{origin_choice}** for `{selected_file}`")
 
+        # Update selected_origin_key after potential save
         selected_origin_key = st.session_state.origin_labels.get(selected_file, "clinical")
 
         with col_display:
@@ -1310,7 +1480,6 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
 
         st.markdown("---")
 
-        # ── REFERENCE BENCHMARK SELECTOR ──
         st.markdown("#### 🔬 Select Reference Origin for Delta Comparison")
         ref_labels = list(ORIGIN_LABELS.keys())
         ref_choice = st.selectbox(
@@ -1322,10 +1491,18 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
 
         st.markdown("---")
 
-        # ── AFFINITY SCORES ──
+        # ── FIX 2: AFFINITY SCORE EXPLANATION WITH /100 RATIONALE ──
         st.markdown("#### 🎯 Origin Affinity Scores — Which Source Does This Genome Most Resemble?")
-        section_explainer("📐", "How Affinity is Computed",
-            "Affinity scores are computed as a weighted composite of (1) Euclidean distance in 12-dimensional drug-class resistance space [50%], (2) MRI proximity to the reference population mean [30%], and (3) gene count proximity to the reference mean [20%]. Scores are normalized to 0–100, where 100 = perfect match.")
+        section_explainer("📐", "How Affinity Scores (0–100) Are Computed",
+            "Each score quantifies how closely this isolate's resistance fingerprint matches a reference population. "
+            "The algorithm computes a <strong>weighted composite distance</strong> across three axes:<br><br>"
+            "• <strong>Drug-class Euclidean distance (50%)</strong> — measures similarity across all 12 standardised drug classes simultaneously.<br>"
+            "• <strong>MRI proximity (30%)</strong> — compares this genome's MRI score to the reference population's average MRI.<br>"
+            "• <strong>Gene count proximity (20%)</strong> — compares total gene count to the reference population mean.<br><br>"
+            "These distances are summed into a raw dissimilarity score, then <strong>inverted and normalised to 0–100</strong>: "
+            "<em>100 = perfect match (identical to the reference), 0 = maximally dissimilar</em>. "
+            "A score <strong>≥ 70</strong> indicates strong source attribution; <strong>50–69</strong> moderate; "
+            "<strong>30–49</strong> weak; <strong>&lt; 30</strong> = atypical or multi-source profile.")
 
         affinity_scores = compute_origin_affinity_scores(drug_profile_norm, genes, mri)
         aff_display = {
@@ -1343,12 +1520,17 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
         aff_vals = list(aff_display.values())
         for i, col in enumerate(aff_cols):
             val = aff_vals[i]
-            highlight = "border:2px solid #00d4ff;" if aff_vals[i]==max(aff_vals) else ""
+            highlight = "border:2px solid #00d4ff;" if val == max(aff_vals) else ""
+            # Interpretation label
+            if val >= 70:   interp_txt = "Strong"
+            elif val >= 50: interp_txt = "Moderate"
+            elif val >= 30: interp_txt = "Weak"
+            else:           interp_txt = "Atypical"
             col.markdown(f"""
             <div class="metric-card" style="{highlight}">
               <div class="metric-label">{aff_keys[i]}</div>
               <div class="metric-value" style="font-size:1.4rem;">{val}</div>
-              <div style="color:#94a3b8;font-size:0.7rem;">/ 100</div>
+              <div style="color:#94a3b8;font-size:0.68rem;margin-top:2px;">/ 100 · {interp_txt}</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -1356,52 +1538,32 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
         <div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.25);border-radius:10px;padding:12px 16px;margin-top:14px;">
         <span style="color:#00d4ff;font-weight:700;">🏆 Best Match:</span>
         <span style="color:#ffffff;margin-left:8px;font-size:1.05rem;">{best_match_label}</span>
-        <span style="color:#94a3b8;margin-left:8px;font-size:0.85rem;">(Affinity Score: {affinity_scores[best_match_key]}/100)</span>
+        <span style="color:#94a3b8;margin-left:8px;font-size:0.85rem;">(Affinity Score: {affinity_scores[best_match_key]}/100 — {'Strong match' if affinity_scores[best_match_key]>=70 else 'Moderate match' if affinity_scores[best_match_key]>=50 else 'Weak match'})</span>
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("---")
 
-        # ── AUTOMATED INSIGHTS ──
         insights = generate_origin_insights(drug_profile_norm, ref_key, affinity_scores,
                                              selected_file.replace('.json',''), mri, genes)
-
         st.markdown("#### 🔍 Automated Source-Specific Resistance Pattern Insights")
-
         ins_cols = st.columns(2)
         with ins_cols[0]:
             if insights["excess_classes"]:
                 excess_str = ", ".join([f"<strong>{cls}</strong> (+{delta:.2f})" for cls, delta in insights["excess_classes"]])
-                st.markdown(f"""
-                <div class="insight-card">
-                  <div class="ins-title">⬆️ Resistance Exceeds Reference Baseline</div>
-                  <div class="ins-body">This isolate shows significantly elevated resistance vs. <em>{ref_choice}</em> benchmarks in: {excess_str}. This may indicate selective pressure from therapeutic or agricultural antibiotic use not typical of this source.</div>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown(f"""<div class="insight-card"><div class="ins-title">⬆️ Resistance Exceeds Reference Baseline</div>
+                  <div class="ins-body">This isolate shows significantly elevated resistance vs. <em>{ref_choice}</em> in: {excess_str}.</div></div>""", unsafe_allow_html=True)
             else:
-                st.markdown("""
-                <div class="insight-card">
-                  <div class="ins-title">⬆️ Resistance vs Reference</div>
-                  <div class="ins-body">No drug class shows resistance intensity more than 0.2 above the reference baseline — the isolate's profile is broadly consistent with the selected origin.</div>
-                </div>
-                """, unsafe_allow_html=True)
-
+                st.markdown("""<div class="insight-card"><div class="ins-title">⬆️ Resistance vs Reference</div>
+                  <div class="ins-body">No drug class exceeds the reference baseline by more than 0.2 — profile is broadly consistent.</div></div>""", unsafe_allow_html=True)
         with ins_cols[1]:
             if insights["deficit_classes"]:
                 deficit_str = ", ".join([f"<strong>{cls}</strong> (−{delta:.2f})" for cls, delta in insights["deficit_classes"]])
-                st.markdown(f"""
-                <div class="insight-card">
-                  <div class="ins-title">⬇️ Resistance Below Reference Baseline</div>
-                  <div class="ins-body">This isolate shows notably lower resistance vs. <em>{ref_choice}</em> in: {deficit_str}. These classes may represent viable therapeutic options or indicate this isolate has not been historically exposed to these agents.</div>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown(f"""<div class="insight-card"><div class="ins-title">⬇️ Resistance Below Reference Baseline</div>
+                  <div class="ins-body">This isolate shows lower resistance vs. <em>{ref_choice}</em> in: {deficit_str}. These may be viable therapeutic options.</div></div>""", unsafe_allow_html=True)
             else:
-                st.markdown("""
-                <div class="insight-card">
-                  <div class="ins-title">⬇️ Resistance vs Reference</div>
-                  <div class="ins-body">No drug class shows resistance more than 0.2 below the reference baseline — resistance is broadly distributed in line with expected patterns for this source.</div>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown("""<div class="insight-card"><div class="ins-title">⬇️ Resistance vs Reference</div>
+                  <div class="ins-body">No drug class is more than 0.2 below the reference baseline — resistance is broadly distributed.</div></div>""", unsafe_allow_html=True)
 
         mri_delta = insights["mri_vs_bench"]
         gene_delta = insights["gene_vs_bench"]
@@ -1416,34 +1578,25 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
         """, unsafe_allow_html=True)
 
         st.markdown("---")
-
-        # ── HEATMAP ──
         st.markdown(f"#### 🔥 Comparative Resistance Heatmap — Sample vs All Origins")
         section_explainer("🎨", "Reading the Heatmap",
-            "Each row represents a reference origin population or the target genome (highlighted with a cyan border). Each column represents a standardised drug class. Cell colour intensity indicates resistance level: <strong style='color:#ef4444'>red = high resistance</strong>, <strong style='color:#10b981'>green = low resistance</strong>. The delta bar chart on the right quantifies the gap between your sample and the selected reference — red bars indicate the sample exceeds the reference, green bars indicate it is below.")
-
-        heatmap_fig = plot_origin_comparison_heatmap(drug_profile_norm, ref_key,
-                                                      selected_file.replace('.json',''))
+            "Each row is a reference origin or the target genome (cyan border). Each column is a drug class. "
+            "Red = high resistance, green = low. Delta bar chart (right) shows sample minus reference.")
+        heatmap_fig = plot_origin_comparison_heatmap(drug_profile_norm, ref_key, selected_file.replace('.json',''))
         st.pyplot(heatmap_fig, use_container_width=True)
 
         st.markdown("---")
-
-        # ── RADAR CHART ──
         st.markdown("#### 📡 Resistance Topology Radar — Sample vs All Reference Origins")
         section_explainer("📡", "Reading the Radar Chart",
-            "Each axis represents a drug class. The solid cyan polygon is your target genome. Dotted coloured lines are each reference origin's expected resistance profile. Axes where your sample polygon extends significantly beyond all reference lines indicate resistance patterns that are elevated above all known environmental benchmarks — a potential indicator of anthropogenic selection pressure or multi-source contamination.")
-
-        radar_fig = plot_radar_origin_comparison(drug_profile_norm,
-                                                  selected_file.replace('.json',''))
+            "The solid cyan polygon is your target genome. Dotted lines are reference origins. "
+            "Axes where the sample exceeds all references indicate anthropogenic selection pressure.")
+        radar_fig = plot_radar_origin_comparison(drug_profile_norm, selected_file.replace('.json',''))
         st.plotly_chart(radar_fig, use_container_width=True)
 
         st.markdown("---")
-
-        # ── ALL LABELLED GENOMES TABLE ──
         st.markdown("#### 🗃️ All Labelled Genomes in Database")
         section_explainer("📋", "What This Table Shows",
-            "This table summarises all genomes in your local database that have been assigned an origin label. It enables cross-genome comparison by source — for example, clustering all agricultural isolates to detect shared resistance signatures, or comparing clinical vs environmental isolates for One Health epidemiology.")
-
+            "All genomes assigned an origin label — enables cross-genome source comparison for One Health research.")
         if st.session_state.origin_labels:
             label_rows = []
             for fname, orig_key in st.session_state.origin_labels.items():
@@ -1454,57 +1607,73 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
                     label_rows.append({
                         "Genome": fname,
                         "Origin": display_orig[0] if display_orig else orig_key,
-                        "Genes": g,
-                        "MRI": round(mr, 3),
-                        "ARI": round(ar, 3),
-                        "Risk": f"{lv} {ic}"
+                        "Genes": g, "MRI": round(mr,3), "ARI": round(ar,3), "Risk": f"{lv} {ic}"
                     })
-                except:
-                    continue
+                except: continue
             if label_rows:
-                label_df = pd.DataFrame(label_rows)
-                st.dataframe(label_df, use_container_width=True)
+                st.dataframe(pd.DataFrame(label_rows), use_container_width=True)
         else:
-            st.info("No genomes have been labelled yet. Use the selector above to assign an origin to the current genome.")
+            st.info("No genomes have been labelled yet. Use the selector above to assign an origin.")
 
     with tab8:
         section_explainer("📄", "About the PDF Report",
-            "This module generates a comprehensive, publication-ready analytical report in PDF format. The document includes: executive summary with all key metrics and origin label, metric definitions and clinical significance, MRI and ARI mathematical derivations, risk interpretation, the 6-panel systems dashboard rendered in print colours, and the complete gene resistance ledger table. The origin label assigned in the Origin tab is automatically incorporated into the report.")
+            "Generates a comprehensive PDF including: executive summary, metric definitions, mathematical derivations, "
+            "risk interpretation, 6-panel dashboard, <strong>full origin analysis section</strong> with affinity score table, "
+            "drug-class delta table, and comparative heatmap image, plus the complete gene resistance ledger.")
 
         st.markdown("### 📥 Generate Master Analytical Report")
-        st.write("Compile a comprehensive, publication-ready PDF containing executive summary, mathematical derivations, systems dashboard, and complete gene resistance ledger.")
+        st.write("The PDF now includes the full Origin Analysis section: affinity scores with /100 explanation, drug-class resistance delta table, and the comparative heatmap.")
+
         current_origin_label = [k for k,v in ORIGIN_LABELS.items() if v==selected_origin_key]
         origin_label_str = current_origin_label[0] if current_origin_label else "Not Set"
-        st.info(f"📌 Origin label that will be included in the PDF: **{origin_label_str}**")
+        st.info(f"📌 Origin label in PDF: **{origin_label_str}** | Reference: **{[k for k,v in ORIGIN_LABELS.items() if v==selected_origin_key][0] if selected_origin_key else 'Clinical'}**")
+
         if st.button("Generate Master PDF Report", type="primary"):
             with st.spinner("Compiling analytical components into PDF..."):
-                pdf_path=create_advanced_pdf_report(selected_file,genes,drug,mech,mri,ari,level,icon,records,fig,bac_info,habitat,ai_pred_text,ai_conf_text, origin_label=origin_label_str)
-                with open(pdf_path,"rb") as file:
-                    st.download_button(label="⬇️ Download Analytical Report (PDF)",data=file,file_name=pdf_path,mime="application/pdf")
+                # Build heatmap fig for PDF (light background version)
+                pdf_heatmap_fig = plot_origin_comparison_heatmap(
+                    drug_profile_norm, selected_origin_key, selected_file.replace('.json',''))
+                pdf_affinity = compute_origin_affinity_scores(drug_profile_norm, genes, mri)
+
+                pdf_path = create_advanced_pdf_report(
+                    selected_file, genes, drug, mech, mri, ari, level, icon,
+                    records, fig, bac_info, habitat, ai_pred_text, ai_conf_text,
+                    origin_label=origin_label_str,
+                    affinity_scores=pdf_affinity,
+                    drug_profile_norm=drug_profile_norm,
+                    selected_origin_key=selected_origin_key,
+                    heatmap_fig=pdf_heatmap_fig
+                )
+                with open(pdf_path, "rb") as file:
+                    st.download_button(
+                        label="⬇️ Download Analytical Report (PDF)",
+                        data=file, file_name=pdf_path, mime="application/pdf"
+                    )
 
     with tab9:
         section_explainer("🌌", "About the 3D Resistance Landscape",
-            "This three-dimensional PCA (Principal Component Analysis) map projects every genome in the database into a spatial coordinate system derived from three composite resistance dimensions: Overall Resistance (PC1), Mechanism Diversity (PC2), and Genetic Density (PC3). Your target genome appears as a gold star. Spatial proximity to other genomes indicates similar resistance architecture. Use the toolbar to rotate, zoom, and export the plot. Genomes clustering in the upper-right-forward region represent the highest combined resistance threat.")
-
+            "3D PCA map projecting every genome across Overall Resistance (PC1), Mechanism Diversity (PC2), and Genetic Density (PC3). "
+            "Your target appears as a gold star. Spatial proximity = similar resistance architecture.")
         st.markdown("### 🌌 Interactive Global Resistance Landscape (3D PCA)")
         plot_3d_pca_plotly(selected_file)
 
 elif analysis_mode == "AI Predict Unknown":
     section_explainer("🤖", "About AI Prediction Mode",
-        "This mode allows you to input resistance parameters for an <strong>uncharacterised isolate</strong> — one for which you have no JSON genome file — and receive a Random Forest AI risk classification. Enter the total resistance gene count, the number of unique drug classes resisted, and the number of distinct mechanisms detected. The model was trained on all genomes present in the local database and outputs a LOW / MODERATE / HIGH risk prediction with full probability confidence scores.")
-
+        "Input resistance parameters for an uncharacterised isolate and receive a Random Forest AI risk classification.")
     st.header("🤖 Machine Learning Risk Classification — Unknown Pathogen")
     st.write("Input resistance parameters for an uncharacterized isolate to obtain an AI-driven risk stratification.")
-    in_genes=st.number_input("Total Resistance Genes Identified",min_value=1,value=15)
-    in_drugs=st.number_input("Unique Drug Classes Resisted",min_value=1,value=5)
-    in_mechs=st.number_input("Unique Resistance Mechanisms",min_value=1,value=2)
-    model=train_rf_model()
-    if model and st.button("Run Risk Classification",type="primary"):
-        prediction=model.predict([[in_genes,in_drugs,in_mechs]])[0]
-        probs=model.predict_proba([[in_genes,in_drugs,in_mechs]])[0]
-        classes=model.classes_
-        prob_str=" | ".join([f"{c}: {p:.3f}" for c,p in zip(classes,probs)])
+    in_genes = st.number_input("Total Resistance Genes Identified", min_value=1, value=15)
+    in_drugs = st.number_input("Unique Drug Classes Resisted", min_value=1, value=5)
+    in_mechs = st.number_input("Unique Resistance Mechanisms", min_value=1, value=2)
+    rf_model = train_rf_model()
+    if rf_model and st.button("Run Risk Classification", type="primary"):
+        prediction = rf_model.predict([[in_genes, in_drugs, in_mechs]])[0]
+        probs = rf_model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
+        classes = rf_model.classes_
+        prob_str = " | ".join([f"{c}: {p:.3f}" for c, p in zip(classes, probs)])
         st.success(f"### AI Risk Classification: **{prediction}**")
         st.info(f"**Probability Distribution:** {prob_str}")
         section_explainer("📊", "Interpreting the Prediction",
-            f"The model classified this isolate as <strong>{prediction}</strong> risk based on {in_genes} total genes, {in_drugs} drug classes, and {in_mechs} mechanisms. The probability distribution above reflects the model's confidence across all three risk tiers. For isolates near classification boundaries, consider running a full genome CARD analysis and uploading the JSON for comprehensive MRI/ARI scoring.")
+            f"The model classified this isolate as <strong>{prediction}</strong> risk based on {in_genes} total genes, "
+            f"{in_drugs} drug classes, and {in_mechs} mechanisms. "
+            "The probability distribution reflects confidence across all three risk tiers.")
