@@ -2,6 +2,8 @@ import streamlit as st
 import json
 import os
 import io
+import math
+import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -104,6 +106,1124 @@ def map_drug_to_standard_class(drug_name):
         if any(kw in dl for kw in keywords):
             return std_class
     return None
+
+# ==========================================
+# ══════════════════════════════════════════
+#  VIRTUAL LAB MODULE — inlined from lab_simulation.py
+# ══════════════════════════════════════════
+# ==========================================
+
+LAB_BACTERIA_DB = {
+    "Escherichia coli": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single/Pairs",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#c8e6c9", "colony_size": "medium",
+        "disease": "Gastroenteritis, UTI, Sepsis, Neonatal meningitis",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.31, "typical_ari": 0.11,
+        "base_resistance": {"Beta-lactam":0.45,"Fluoroquinolone":0.38,"Aminoglycoside":0.25,
+                            "Tetracycline":0.50,"Sulfonamide":0.55,"Trimethoprim":0.48,
+                            "Carbapenem":0.08,"Macrolide":0.20,"Glycopeptide":0.02,
+                            "Colistin":0.05,"Chloramphenicol":0.30,"Rifampicin":0.10},
+        "notable_genes": ["blaTEM","blaCTX-M","aadA","sul1","tetA","qnrB","mcr-1"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "MacConkey Agar", "ferments_lactose": True,
+    },
+    "Klebsiella pneumoniae": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single/Pairs",
+        "motility": False, "spore": False, "capsule": True,
+        "colony_color": "#ffe082", "colony_size": "large",
+        "disease": "Pneumonia, UTI, Bloodstream infections, Liver abscess",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.38, "typical_ari": 0.14,
+        "base_resistance": {"Beta-lactam":0.55,"Fluoroquinolone":0.42,"Aminoglycoside":0.30,
+                            "Tetracycline":0.45,"Sulfonamide":0.50,"Trimethoprim":0.42,
+                            "Carbapenem":0.20,"Macrolide":0.22,"Glycopeptide":0.03,
+                            "Colistin":0.10,"Chloramphenicol":0.28,"Rifampicin":0.12},
+        "notable_genes": ["blaNDM","blaKPC","blaOXA-48","rmtB","oqxAB","mcr-1","tet(A)"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "MacConkey Agar", "ferments_lactose": True,
+    },
+    "Pseudomonas aeruginosa": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#b3e5fc", "colony_size": "medium",
+        "disease": "Cystic fibrosis lung infections, Burn wound infections, HAP",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.40, "typical_ari": 0.15,
+        "base_resistance": {"Beta-lactam":0.50,"Fluoroquinolone":0.45,"Aminoglycoside":0.38,
+                            "Tetracycline":0.30,"Sulfonamide":0.25,"Trimethoprim":0.20,
+                            "Carbapenem":0.30,"Macrolide":0.15,"Glycopeptide":0.02,
+                            "Colistin":0.08,"Chloramphenicol":0.22,"Rifampicin":0.18},
+        "notable_genes": ["mexAB-oprM","mexXY","oprD","blaVIM","blaIMP","aac(6')-Ib","fosA"],
+        "gram_color": "#ef9f27", "oxidase": "Positive", "catalase": "Positive",
+        "selective_media": "Cetrimide Agar", "ferments_lactose": False,
+    },
+    "Acinetobacter baumannii": {
+        "gram": "Negative", "shape": "Coccobacillus", "arrangement": "Pairs/Clusters",
+        "motility": False, "spore": False, "capsule": False,
+        "colony_color": "#ffccbc", "colony_size": "small",
+        "disease": "Nosocomial pneumonia, Bacteremia, Wound infections",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.44, "typical_ari": 0.17,
+        "base_resistance": {"Beta-lactam":0.60,"Fluoroquinolone":0.55,"Aminoglycoside":0.45,
+                            "Tetracycline":0.42,"Sulfonamide":0.38,"Trimethoprim":0.35,
+                            "Carbapenem":0.35,"Macrolide":0.20,"Glycopeptide":0.05,
+                            "Colistin":0.12,"Chloramphenicol":0.32,"Rifampicin":0.28},
+        "notable_genes": ["blaOXA-23","blaOXA-51","blaADC","armA","abaR","adeABC"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Leeds Acinetobacter Medium", "ferments_lactose": False,
+    },
+    "Salmonella enterica": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#e8f5e9", "colony_size": "medium",
+        "disease": "Salmonellosis, Typhoid Fever, Bacteremia",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.28, "typical_ari": 0.09,
+        "base_resistance": {"Beta-lactam":0.35,"Fluoroquinolone":0.32,"Aminoglycoside":0.22,
+                            "Tetracycline":0.48,"Sulfonamide":0.55,"Trimethoprim":0.40,
+                            "Carbapenem":0.05,"Macrolide":0.15,"Glycopeptide":0.01,
+                            "Colistin":0.08,"Chloramphenicol":0.42,"Rifampicin":0.08},
+        "notable_genes": ["blaTEM","aadA","cmlA","sul1","tet(G)","invA","spvC"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Salmonella-Shigella Agar", "ferments_lactose": False,
+    },
+    "Shigella sonnei": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single",
+        "motility": False, "spore": False, "capsule": False,
+        "colony_color": "#fce4ec", "colony_size": "small",
+        "disease": "Dysentery, Bloody diarrhoea, HUS",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.26, "typical_ari": 0.09,
+        "base_resistance": {"Beta-lactam":0.38,"Fluoroquinolone":0.30,"Aminoglycoside":0.20,
+                            "Tetracycline":0.55,"Sulfonamide":0.60,"Trimethoprim":0.50,
+                            "Carbapenem":0.04,"Macrolide":0.12,"Glycopeptide":0.01,
+                            "Colistin":0.04,"Chloramphenicol":0.50,"Rifampicin":0.06},
+        "notable_genes": ["blaTEM","sul1","dfrA","tetB","icsA","set1A"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Xylose Lysine Deoxycholate Agar", "ferments_lactose": False,
+    },
+    "Vibrio cholerae": {
+        "gram": "Negative", "shape": "Curved rod", "arrangement": "Single",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#e0f2f1", "colony_size": "medium",
+        "disease": "Cholera, Vibriosis, Diarrhoea",
+        "optimal_temp": 37, "optimal_ph": 8.5,
+        "typical_mri": 0.22, "typical_ari": 0.07,
+        "base_resistance": {"Beta-lactam":0.20,"Fluoroquinolone":0.25,"Aminoglycoside":0.15,
+                            "Tetracycline":0.35,"Sulfonamide":0.40,"Trimethoprim":0.30,
+                            "Carbapenem":0.03,"Macrolide":0.10,"Glycopeptide":0.01,
+                            "Colistin":0.05,"Chloramphenicol":0.28,"Rifampicin":0.05},
+        "notable_genes": ["ctxA","ctxB","tcpA","VPI-1","SXT","VC0395"],
+        "gram_color": "#ef9f27", "oxidase": "Positive", "catalase": "Positive",
+        "selective_media": "TCBS Agar", "ferments_lactose": False,
+    },
+    "Enterobacter cloacae": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#f0f4c3", "colony_size": "medium",
+        "disease": "Hospital-acquired pneumonia, UTI, Wound infections",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.35, "typical_ari": 0.13,
+        "base_resistance": {"Beta-lactam":0.48,"Fluoroquinolone":0.40,"Aminoglycoside":0.28,
+                            "Tetracycline":0.42,"Sulfonamide":0.45,"Trimethoprim":0.38,
+                            "Carbapenem":0.15,"Macrolide":0.18,"Glycopeptide":0.02,
+                            "Colistin":0.08,"Chloramphenicol":0.25,"Rifampicin":0.10},
+        "notable_genes": ["AmpC","blaNDM","ompC","OXA-1","qnrS","aac(6')-Ib"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "MacConkey Agar", "ferments_lactose": True,
+    },
+    "Proteus mirabilis": {
+        "gram": "Negative", "shape": "Rod", "arrangement": "Single",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#ede7f6", "colony_size": "swarming",
+        "disease": "Complicated UTI, Kidney stones, Wound infections",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.29, "typical_ari": 0.10,
+        "base_resistance": {"Beta-lactam":0.40,"Fluoroquinolone":0.35,"Aminoglycoside":0.20,
+                            "Tetracycline":0.45,"Sulfonamide":0.42,"Trimethoprim":0.38,
+                            "Carbapenem":0.06,"Macrolide":0.55,"Glycopeptide":0.02,
+                            "Colistin":0.80,"Chloramphenicol":0.20,"Rifampicin":0.08},
+        "notable_genes": ["blaTEM","aac(3)-Ia","tetM","ZapB","fliA","mrpA"],
+        "gram_color": "#ef9f27", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "CLED Agar", "ferments_lactose": False,
+    },
+    "Campylobacter jejuni": {
+        "gram": "Negative", "shape": "Curved rod", "arrangement": "Single/Pairs",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#f8bbd0", "colony_size": "small",
+        "disease": "Gastroenteritis, Guillain-Barré syndrome",
+        "optimal_temp": 42, "optimal_ph": 7.0,
+        "typical_mri": 0.25, "typical_ari": 0.08,
+        "base_resistance": {"Beta-lactam":0.30,"Fluoroquinolone":0.55,"Aminoglycoside":0.18,
+                            "Tetracycline":0.60,"Sulfonamide":0.35,"Trimethoprim":0.28,
+                            "Carbapenem":0.05,"Macrolide":0.18,"Glycopeptide":0.01,
+                            "Colistin":0.04,"Chloramphenicol":0.22,"Rifampicin":0.08},
+        "notable_genes": ["gyrA(T86I)","tet(O)","aph(3')-Ia","cmeABC","cadF","flaA"],
+        "gram_color": "#ef9f27", "oxidase": "Positive", "catalase": "Positive",
+        "selective_media": "mCCDA Agar", "ferments_lactose": False,
+    },
+    "Neisseria gonorrhoeae": {
+        "gram": "Negative", "shape": "Coccus", "arrangement": "Diplococci",
+        "motility": False, "spore": False, "capsule": False,
+        "colony_color": "#fce4ec", "colony_size": "small",
+        "disease": "Gonorrhea, Pelvic inflammatory disease, Neonatal ophthalmia",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.33, "typical_ari": 0.11,
+        "base_resistance": {"Beta-lactam":0.50,"Fluoroquinolone":0.60,"Aminoglycoside":0.10,
+                            "Tetracycline":0.55,"Sulfonamide":0.50,"Trimethoprim":0.40,
+                            "Carbapenem":0.04,"Macrolide":0.15,"Glycopeptide":0.02,
+                            "Colistin":0.06,"Chloramphenicol":0.18,"Rifampicin":0.12},
+        "notable_genes": ["penA","mtrR","porB","ponA","tetM","blaTEM"],
+        "gram_color": "#ef9f27", "oxidase": "Positive", "catalase": "Positive",
+        "selective_media": "Thayer-Martin Agar", "ferments_lactose": False,
+    },
+    "Haemophilus influenzae": {
+        "gram": "Negative", "shape": "Coccobacillus", "arrangement": "Single",
+        "motility": False, "spore": False, "capsule": True,
+        "colony_color": "#e8eaf6", "colony_size": "small",
+        "disease": "Respiratory infections, Meningitis, Epiglottitis",
+        "optimal_temp": 37, "optimal_ph": 7.4,
+        "typical_mri": 0.24, "typical_ari": 0.08,
+        "base_resistance": {"Beta-lactam":0.45,"Fluoroquinolone":0.20,"Aminoglycoside":0.12,
+                            "Tetracycline":0.38,"Sulfonamide":0.45,"Trimethoprim":0.40,
+                            "Carbapenem":0.02,"Macrolide":0.12,"Glycopeptide":0.01,
+                            "Colistin":0.04,"Chloramphenicol":0.28,"Rifampicin":0.05},
+        "notable_genes": ["blaTEM","ROB-1","ftsi","acrAB","mef(A)","cat"],
+        "gram_color": "#ef9f27", "oxidase": "Positive", "catalase": "Positive",
+        "selective_media": "Chocolate Agar", "ferments_lactose": False,
+    },
+    "Staphylococcus aureus": {
+        "gram": "Positive", "shape": "Coccus", "arrangement": "Clusters (grapes)",
+        "motility": False, "spore": False, "capsule": True,
+        "colony_color": "#fff9c4", "colony_size": "medium",
+        "disease": "Skin infections, MRSA, Endocarditis, Toxic shock syndrome",
+        "optimal_temp": 37, "optimal_ph": 7.4,
+        "typical_mri": 0.35, "typical_ari": 0.13,
+        "base_resistance": {"Beta-lactam":0.60,"Fluoroquinolone":0.40,"Aminoglycoside":0.28,
+                            "Tetracycline":0.38,"Sulfonamide":0.30,"Trimethoprim":0.25,
+                            "Carbapenem":0.10,"Macrolide":0.42,"Glycopeptide":0.05,
+                            "Colistin":0.50,"Chloramphenicol":0.15,"Rifampicin":0.10},
+        "notable_genes": ["mecA","pvl","blaZ","aacA-aphD","tetM","msrA","vanA"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Mannitol Salt Agar", "ferments_lactose": True,
+    },
+    "Streptococcus pneumoniae": {
+        "gram": "Positive", "shape": "Coccus", "arrangement": "Diplococci/Chains",
+        "motility": False, "spore": False, "capsule": True,
+        "colony_color": "#e8f5e9", "colony_size": "small",
+        "disease": "Pneumonia, Meningitis, Otitis media, Bacteremia",
+        "optimal_temp": 37, "optimal_ph": 7.4,
+        "typical_mri": 0.30, "typical_ari": 0.10,
+        "base_resistance": {"Beta-lactam":0.40,"Fluoroquinolone":0.18,"Aminoglycoside":0.08,
+                            "Tetracycline":0.35,"Sulfonamide":0.40,"Trimethoprim":0.38,
+                            "Carbapenem":0.08,"Macrolide":0.38,"Glycopeptide":0.01,
+                            "Colistin":0.30,"Chloramphenicol":0.12,"Rifampicin":0.08},
+        "notable_genes": ["pbp1a","pbp2b","pbp2x","mefA","erm(B)","tet(M)","catpC194"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Negative",
+        "selective_media": "Blood Agar", "ferments_lactose": True,
+    },
+    "Enterococcus faecium": {
+        "gram": "Positive", "shape": "Coccus", "arrangement": "Pairs/Short chains",
+        "motility": False, "spore": False, "capsule": False,
+        "colony_color": "#f3e5f5", "colony_size": "small",
+        "disease": "UTI, Endocarditis, VRE infections, Bacteremia",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.33, "typical_ari": 0.12,
+        "base_resistance": {"Beta-lactam":0.55,"Fluoroquinolone":0.45,"Aminoglycoside":0.35,
+                            "Tetracycline":0.45,"Sulfonamide":0.35,"Trimethoprim":0.40,
+                            "Carbapenem":0.25,"Macrolide":0.50,"Glycopeptide":0.20,
+                            "Colistin":0.40,"Chloramphenicol":0.18,"Rifampicin":0.15},
+        "notable_genes": ["vanA","vanB","pbp5","aph(3')-IIIa","erm(B)","tetM"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Negative",
+        "selective_media": "Bile Aesculin Agar", "ferments_lactose": True,
+    },
+    "Bacillus anthracis": {
+        "gram": "Positive", "shape": "Rod", "arrangement": "Chains",
+        "motility": False, "spore": True, "capsule": True,
+        "colony_color": "#f5f5f5", "colony_size": "large",
+        "disease": "Anthrax (cutaneous, inhalation, gastrointestinal)",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.18, "typical_ari": 0.06,
+        "base_resistance": {"Beta-lactam":0.15,"Fluoroquinolone":0.05,"Aminoglycoside":0.08,
+                            "Tetracycline":0.05,"Sulfonamide":0.10,"Trimethoprim":0.08,
+                            "Carbapenem":0.02,"Macrolide":0.10,"Glycopeptide":0.01,
+                            "Colistin":0.02,"Chloramphenicol":0.05,"Rifampicin":0.02},
+        "notable_genes": ["pXO1","pXO2","pagA","lef","cya","capB"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Blood Agar (BSL-3)", "ferments_lactose": False,
+    },
+    "Clostridium difficile": {
+        "gram": "Positive", "shape": "Rod", "arrangement": "Single",
+        "motility": True, "spore": True, "capsule": False,
+        "colony_color": "#fff8e1", "colony_size": "medium",
+        "disease": "C. diff diarrhoea, Pseudomembranous colitis",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.22, "typical_ari": 0.08,
+        "base_resistance": {"Beta-lactam":0.55,"Fluoroquinolone":0.68,"Aminoglycoside":0.20,
+                            "Tetracycline":0.25,"Sulfonamide":0.30,"Trimethoprim":0.28,
+                            "Carbapenem":0.05,"Macrolide":0.30,"Glycopeptide":0.01,
+                            "Colistin":0.15,"Chloramphenicol":0.10,"Rifampicin":0.08},
+        "notable_genes": ["tcdA","tcdB","cdtA","cdtB","erm(B)","gyrA(T82I)"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Negative",
+        "selective_media": "CCFA Agar (anaerobic)", "ferments_lactose": False,
+    },
+    "Listeria monocytogenes": {
+        "gram": "Positive", "shape": "Rod", "arrangement": "Single/Pairs",
+        "motility": True, "spore": False, "capsule": False,
+        "colony_color": "#e8f5e9", "colony_size": "small",
+        "disease": "Listeriosis, Foodborne illness, Neonatal meningitis",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.20, "typical_ari": 0.07,
+        "base_resistance": {"Beta-lactam":0.10,"Fluoroquinolone":0.15,"Aminoglycoside":0.12,
+                            "Tetracycline":0.20,"Sulfonamide":0.18,"Trimethoprim":0.15,
+                            "Carbapenem":0.02,"Macrolide":0.08,"Glycopeptide":0.01,
+                            "Colistin":0.05,"Chloramphenicol":0.08,"Rifampicin":0.03},
+        "notable_genes": ["hlyA","actA","inlA","inlB","prfA","tet(M)","cat"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Oxford Agar", "ferments_lactose": True,
+    },
+    "Mycobacterium tuberculosis": {
+        "gram": "Acid-Fast", "shape": "Rod", "arrangement": "Single/Cords",
+        "motility": False, "spore": False, "capsule": True,
+        "colony_color": "#fff9c4", "colony_size": "very slow (weeks)",
+        "disease": "Tuberculosis (pulmonary, extrapulmonary), Miliary TB",
+        "optimal_temp": 37, "optimal_ph": 7.0,
+        "typical_mri": 0.28, "typical_ari": 0.09,
+        "base_resistance": {"Beta-lactam":0.70,"Fluoroquinolone":0.20,"Aminoglycoside":0.15,
+                            "Tetracycline":0.30,"Sulfonamide":0.25,"Trimethoprim":0.20,
+                            "Carbapenem":0.10,"Macrolide":0.12,"Glycopeptide":0.02,
+                            "Colistin":0.05,"Chloramphenicol":0.08,"Rifampicin":0.15},
+        "notable_genes": ["katG(S315T)","rpoB","embB","gyrA","rpsL","rrs","inhA"],
+        "gram_color": "#9e9e9e", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Löwenstein-Jensen Medium", "ferments_lactose": False,
+    },
+    "Corynebacterium diphtheriae": {
+        "gram": "Positive", "shape": "Rod (club-shaped)", "arrangement": "V/L shapes",
+        "motility": False, "spore": False, "capsule": False,
+        "colony_color": "#ffe0b2", "colony_size": "small",
+        "disease": "Diphtheria, Pharyngitis, Cutaneous infections",
+        "optimal_temp": 37, "optimal_ph": 7.2,
+        "typical_mri": 0.18, "typical_ari": 0.06,
+        "base_resistance": {"Beta-lactam":0.15,"Fluoroquinolone":0.10,"Aminoglycoside":0.10,
+                            "Tetracycline":0.20,"Sulfonamide":0.18,"Trimethoprim":0.15,
+                            "Carbapenem":0.02,"Macrolide":0.10,"Glycopeptide":0.01,
+                            "Colistin":0.04,"Chloramphenicol":0.05,"Rifampicin":0.03},
+        "notable_genes": ["dtxR","tox","diphtheria_tox","erm(X)","aad9"],
+        "gram_color": "#d85a30", "oxidase": "Negative", "catalase": "Positive",
+        "selective_media": "Tellurite Blood Agar", "ferments_lactose": False,
+    },
+}
+
+LAB_ANTIBIOTICS = [
+    {"name": "Ciprofloxacin",    "class": "Fluoroquinolone", "S_break": 1,   "R_break": 4,   "unit": "µg/mL"},
+    {"name": "Ampicillin",       "class": "Beta-lactam",     "S_break": 8,   "R_break": 32,  "unit": "µg/mL"},
+    {"name": "Meropenem",        "class": "Carbapenem",      "S_break": 1,   "R_break": 8,   "unit": "µg/mL"},
+    {"name": "Gentamicin",       "class": "Aminoglycoside",  "S_break": 4,   "R_break": 16,  "unit": "µg/mL"},
+    {"name": "Tetracycline",     "class": "Tetracycline",    "S_break": 4,   "R_break": 16,  "unit": "µg/mL"},
+    {"name": "Trimethoprim",     "class": "Trimethoprim",    "S_break": 8,   "R_break": 16,  "unit": "µg/mL"},
+    {"name": "Chloramphenicol",  "class": "Chloramphenicol", "S_break": 8,   "R_break": 32,  "unit": "µg/mL"},
+    {"name": "Erythromycin",     "class": "Macrolide",       "S_break": 1,   "R_break": 4,   "unit": "µg/mL"},
+    {"name": "Vancomycin",       "class": "Glycopeptide",    "S_break": 4,   "R_break": 16,  "unit": "µg/mL"},
+    {"name": "Colistin",         "class": "Colistin",        "S_break": 2,   "R_break": 4,   "unit": "µg/mL"},
+    {"name": "Rifampicin",       "class": "Rifampicin",      "S_break": 1,   "R_break": 4,   "unit": "µg/mL"},
+    {"name": "Sulfamethoxazole", "class": "Sulfonamide",     "S_break": 8,   "R_break": 256, "unit": "µg/mL"},
+]
+
+LAB_DILUTIONS = [0.06, 0.12, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128]
+
+
+def _lab_mic_for_antibiotic(ab, resistance_factor):
+    base = ab["S_break"]
+    if resistance_factor > 0.65:
+        mic_raw = base * (2 ** (3 + resistance_factor * 5))
+    elif resistance_factor > 0.35:
+        mic_raw = base * (2 ** (1 + resistance_factor * 3))
+    else:
+        mic_raw = base * (2 ** (-1 + resistance_factor * 2))
+    closest = min(LAB_DILUTIONS, key=lambda d: abs(d - mic_raw))
+    if closest <= ab["S_break"]:    interp = "S"
+    elif closest <= ab["R_break"]:  interp = "I"
+    else:                           interp = "R"
+    return closest, interp
+
+
+def _lab_get_risk(mri):
+    if mri < 0.15:  return "LOW",      "#3B6D11", "🟢"
+    if mri < 0.35:  return "MODERATE", "#BA7517", "🟡"
+    return "HIGH", "#A32D2D", "🔴"
+
+
+def _lab_scan_json_files():
+    mapping = {}
+    for f in os.listdir('.'):
+        if not f.endswith('.json'):
+            continue
+        fl = f.lower()
+        for bname in LAB_BACTERIA_DB:
+            key = bname.split()[0].lower()
+            if key in fl:
+                mapping[f] = bname
+                break
+    return mapping
+
+
+def _lab_simulate(bacteria_name, json_file, resistance_override,
+                  temperature, ph, incubation_h, cfu_exp, medium):
+    db   = LAB_BACTERIA_DB[bacteria_name]
+    seed = hash(bacteria_name + json_file) % 99999
+    rng  = random.Random(seed + int(resistance_override * 1000))
+
+    real_genes = real_u_drugs = real_u_mechs = 0
+    drug_set, mech_set = set(), set()
+    try:
+        with open(json_file, 'r', encoding='utf-8') as fh:
+            raw = json.load(fh)
+        real_genes = len(raw)
+        for k in raw:
+            try:
+                inner = list(raw[k].values())[0]
+                for c in inner.get("ARO_category", {}).values():
+                    cname = c.get("category_aro_class_name", "").lower()
+                    val   = c.get("category_aro_name", "")
+                    if "drug" in cname:        drug_set.add(val)
+                    elif "mechanism" in cname: mech_set.add(val)
+            except:
+                pass
+        real_u_drugs = len(drug_set)
+        real_u_mechs = len(mech_set)
+    except:
+        real_genes   = max(5, int(db["typical_mri"] * 80))
+        real_u_drugs = max(2, int(db["typical_mri"] * 10))
+        real_u_mechs = max(1, int(db["typical_mri"] * 7))
+
+    t_drugs   = max(real_u_drugs * 3, real_genes // 2)
+    t_mechs   = max(real_u_mechs * 3, real_genes // 3)
+    lab_mri   = (real_u_drugs + real_u_mechs) / (t_drugs + t_mechs + 1)
+    lab_mri   = min(0.99, lab_mri * (0.85 + resistance_override * 0.30))
+    lab_ari   = real_u_mechs / (real_genes + 1)
+    lab_ari   = min(0.99, lab_ari * (0.9 + resistance_override * 0.20))
+
+    ai_mri = round(min(0.99, lab_mri * (0.93 + rng.uniform(0, 0.14))), 3)
+    ai_ari = round(min(0.99, lab_ari * (0.90 + rng.uniform(0, 0.20))), 3)
+
+    temp_pen    = max(0, abs(temperature - db["optimal_temp"]) * 0.06)
+    ph_pen      = max(0, abs(ph - db["optimal_ph"]) * 0.15)
+    growth_rate = max(0.1, 1.0 - temp_pen - ph_pen + resistance_override * 0.05)
+
+    time_pts  = list(range(0, incubation_h + 1, max(1, incubation_h // 20)))
+    LAG       = max(1, int(2 / growth_rate))
+    LOG_DUR   = max(4, int(8 * growth_rate))
+    growth_cfu = []
+    for t in time_pts:
+        base_cfu = 10 ** cfu_exp
+        if t < LAG:
+            growth_cfu.append(round(base_cfu * 0.9))
+        elif t < LAG + LOG_DUR:
+            growth_cfu.append(round(base_cfu * (2 ** ((t - LAG) * growth_rate * 0.8))))
+        else:
+            plateau = base_cfu * (2 ** (LOG_DUR * growth_rate * 0.8))
+            growth_cfu.append(round(plateau * max(0.5, 1.0 - (t - LAG - LOG_DUR) * 0.01)))
+
+    mic_results = []
+    for ab in LAB_ANTIBIOTICS:
+        base_res   = db["base_resistance"].get(ab["class"], 0.2)
+        res_factor = min(0.98, base_res * (1.0 + resistance_override * 0.8) + rng.uniform(-0.05, 0.05))
+        mic_val, mic_interp = _lab_mic_for_antibiotic(ab, res_factor)
+        ai_res  = min(0.98, res_factor * (0.88 + rng.uniform(0, 0.24)))
+        ai_mic, ai_interp = _lab_mic_for_antibiotic(ab, ai_res)
+        mic_results.append({
+            "name": ab["name"], "class": ab["class"],
+            "lab_mic": mic_val, "lab_interp": mic_interp,
+            "ai_mic":  ai_mic,  "ai_interp":  ai_interp,
+            "S_break": ab["S_break"], "R_break": ab["R_break"],
+        })
+
+    colony_count = max(5, int(30 * growth_rate + rng.uniform(-5, 10)))
+
+    return {
+        "bacteria": bacteria_name, "json_file": json_file, "db": db,
+        "real_genes": real_genes, "real_u_drugs": real_u_drugs, "real_u_mechs": real_u_mechs,
+        "lab_mri": round(lab_mri, 3), "lab_ari": round(lab_ari, 3),
+        "ai_mri": ai_mri, "ai_ari": ai_ari,
+        "lab_risk": _lab_get_risk(lab_mri), "ai_risk": _lab_get_risk(ai_mri),
+        "growth_rate": round(growth_rate, 3),
+        "growth_times": [str(t) + "h" for t in time_pts],
+        "growth_cfu": growth_cfu, "colony_count": colony_count,
+        "mic_results": mic_results,
+        "temperature": temperature, "ph": ph,
+        "incubation_h": incubation_h, "cfu_exp": cfu_exp,
+        "medium": medium, "resistance_override": resistance_override,
+    }
+
+
+def _lab_build_html(sim):
+    db        = sim["db"]
+    gram_col  = db["gram_color"]
+    colony_c  = db["colony_color"]
+    risk_lab  = sim["lab_risk"]
+    risk_ai   = sim["ai_risk"]
+
+    growth_labels_js = json.dumps(sim["growth_times"])
+    growth_data_js   = json.dumps([round(v / 1e6, 2) for v in sim["growth_cfu"]])
+
+    ab_names  = [r["name"] for r in sim["mic_results"]]
+    lab_mics  = [math.log2(max(r["lab_mic"], 0.03)) for r in sim["mic_results"]]
+    ai_mics   = [math.log2(max(r["ai_mic"],  0.03)) for r in sim["mic_results"]]
+
+    classes          = list(dict.fromkeys([r["class"] for r in sim["mic_results"]]))
+    lab_profile_vals = []
+    ai_profile_vals  = []
+    for cl in classes:
+        lv = [math.log2(max(r["lab_mic"],0.03)) for r in sim["mic_results"] if r["class"]==cl]
+        av = [math.log2(max(r["ai_mic"], 0.03)) for r in sim["mic_results"] if r["class"]==cl]
+        lab_profile_vals.append(round(sum(lv)/len(lv), 2) if lv else 0)
+        ai_profile_vals.append(round(sum(av)/len(av),  2) if av else 0)
+
+    mri_delta  = round(abs(sim["lab_mri"] - sim["ai_mri"]), 3)
+    ari_delta  = round(abs(sim["lab_ari"] - sim["ai_ari"]), 3)
+    mri_match  = "IDENTICAL" if mri_delta < 0.03 else "NEAR MATCH" if mri_delta < 0.08 else "DIVERGED"
+    risk_agree = sim["lab_risk"][0] == sim["ai_risk"][0]
+
+    matched_ab = sum(1 for r in sim["mic_results"] if r["lab_interp"] == r["ai_interp"])
+    total_ab   = len(sim["mic_results"])
+    match_pct  = round(matched_ab / total_ab * 100)
+
+    mic_rows = ""
+    for r in sim["mic_results"]:
+        lab_cls   = {"S":"#3B6D11","I":"#BA7517","R":"#A32D2D"}[r["lab_interp"]]
+        ai_cls    = {"S":"#3B6D11","I":"#BA7517","R":"#A32D2D"}[r["ai_interp"]]
+        match     = r["lab_interp"] == r["ai_interp"]
+        match_sym = "✓" if match else "≈" if abs(r["lab_mic"]-r["ai_mic"]) < r["S_break"]*2 else "✗"
+        match_col = "#3B6D11" if match else "#BA7517" if match_sym=="≈" else "#A32D2D"
+        mic_rows += f"""<tr>
+          <td style="padding:8px 10px;font-size:13px;">{r['name']}</td>
+          <td style="padding:8px 10px;font-size:11px;color:#888;">{r['class']}</td>
+          <td style="padding:8px 10px;font-size:13px;font-weight:500;">{r['lab_mic']} µg/mL</td>
+          <td style="padding:8px 10px;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:{lab_cls}22;color:{lab_cls};">{r['lab_interp']}</span></td>
+          <td style="padding:8px 10px;font-size:13px;font-weight:500;">{r['ai_mic']} µg/mL</td>
+          <td style="padding:8px 10px;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:{ai_cls}22;color:{ai_cls};">{r['ai_interp']}</span></td>
+          <td style="padding:8px 10px;font-size:18px;color:{match_col};text-align:center;">{match_sym}</td>
+        </tr>"""
+
+    rng2       = random.Random(hash(sim["bacteria"]) % 9999)
+    colony_svg = ""
+    for _ in range(sim["colony_count"]):
+        cx = rng2.randint(15, 185); cy = rng2.randint(15, 185); r2 = rng2.randint(3, 9)
+        colony_svg += f'<circle cx="{cx}" cy="{cy}" r="{r2}" fill="{colony_c}" stroke="#aaa" stroke-width="0.5" opacity="0.85"/>'
+
+    gram_fill      = gram_col
+    gram_shape_svg = ""
+    shape          = db["shape"].lower()
+    gram_rng       = random.Random(42)
+    if "coccus" in shape or "cocci" in shape:
+        for _ in range(18):
+            gx = gram_rng.randint(10, 110); gy = gram_rng.randint(10, 70)
+            gram_shape_svg += f'<ellipse cx="{gx}" cy="{gy}" rx="5" ry="5" fill="{gram_fill}" opacity="0.8"/>'
+            if db["arrangement"] in ["Diplococci", "Pairs/Chains", "Diplococci/Chains"]:
+                gram_shape_svg += f'<ellipse cx="{gx+11}" cy="{gy}" rx="5" ry="5" fill="{gram_fill}" opacity="0.8"/>'
+    else:
+        for _ in range(14):
+            gx = gram_rng.randint(5, 90); gy = gram_rng.randint(5, 65); ang = gram_rng.randint(0, 180)
+            gram_shape_svg += f'<rect x="{gx}" y="{gy}" width="18" height="7" rx="3" fill="{gram_fill}" opacity="0.8" transform="rotate({ang},{gx+9},{gy+3})"/>'
+
+    def risk_badge(rt):
+        label, col, icon = rt
+        return f'<span style="display:inline-block;padding:3px 10px;border-radius:4px;background:{col}22;color:{col};font-size:12px;font-weight:700;">{icon} {label}</span>'
+
+    res_bars = ""
+    for cl in ["Beta-lactam","Fluoroquinolone","Aminoglycoside","Carbapenem",
+               "Tetracycline","Macrolide","Glycopeptide","Colistin"]:
+        v   = db["base_resistance"].get(cl, 0)
+        pct = round(v * 100)
+        bar_col = '#ef4444' if v > 0.5 else '#f59e0b' if v > 0.25 else '#22c55e'
+        res_bars += f'''<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:12px;min-width:120px;color:#e2e8f0;">{cl}</span>
+          <div style="flex:1;height:6px;background:#1e293b;border-radius:3px;overflow:hidden;">
+            <div style="height:100%;width:{pct}%;background:{bar_col};border-radius:3px;"></div></div>
+          <span style="font-size:11px;min-width:36px;text-align:right;color:#64748b;">{pct}%</span>
+        </div>'''
+
+    prof_bars = ""
+    for i, (ab, r) in enumerate(zip(LAB_ANTIBIOTICS, sim["mic_results"])):
+        w   = round(min(r["lab_mic"] / r["R_break"], 1) * 100)
+        bc  = '#ef4444' if r["lab_interp"]=="R" else '#f59e0b' if r["lab_interp"]=="I" else '#22c55e'
+        lbl = ab["class"] if i == 0 or ab["class"] not in [LAB_ANTIBIOTICS[j]["class"] for j in range(i)] else ""
+        prof_bars += f'''<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:11px;min-width:120px;color:#e2e8f0;">{lbl}</span>
+          <div style="flex:1;height:6px;background:#1e293b;border-radius:3px;overflow:hidden;">
+            <div style="height:100%;width:{w}%;background:{bc};border-radius:3px;"></div></div>
+          <span style="font-size:11px;min-width:120px;text-align:right;color:{bc};">{r["name"]}: {r["lab_mic"]} µg/mL</span>
+        </div>'''
+
+    gene_tags = "".join(f'<span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-family:monospace;background:rgba(0,201,255,0.08);border:1px solid rgba(0,201,255,0.2);color:#67e8f9;margin:2px;">{g}</span>' for g in db['notable_genes'])
+
+    alert_html = (
+        '<div style="padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;">⚠️ HIGH PRIORITY PATHOGEN — MRI Score exceeds 0.35 threshold</div>'
+        if sim["lab_risk"][0] == "HIGH" else
+        '<div style="padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;">⚡ MODERATE RISK — Antibiogram-guided therapy recommended</div>'
+        if sim["lab_risk"][0] == "MODERATE" else
+        '<div style="padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;">✓ LOW RISK — Standard empirical therapy protocols viable</div>'
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Virtual Lab — {sim['bacteria']}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@300;400;600;700&display=swap');
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font-family:'Sora',sans-serif;background:#0a0f1a;color:#e2e8f0;min-height:100vh}}
+:root{{--accent:#00c9ff;--accent2:#7c3aed;--card:#111827;--border:rgba(255,255,255,0.07);--muted:#64748b}}
+.lab-shell{{max-width:1200px;margin:0 auto;padding:24px 20px}}
+.lab-header{{background:linear-gradient(135deg,#0c1f3f,#111827,#0f1a2e);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px;position:relative;overflow:hidden}}
+.lab-header::before{{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#00c9ff,#7c3aed,#10b981,#00c9ff);background-size:300% auto;animation:scanBar 4s linear infinite}}
+@keyframes scanBar{{0%{{background-position:0% center}}100%{{background-position:300% center}}}}
+.bac-name{{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:#00c9ff;margin-bottom:4px}}
+.tab-nav{{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto}}
+.tab-btn{{padding:10px 18px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-family:'Sora',sans-serif}}
+.tab-btn:hover{{color:#e2e8f0}}.tab-btn.active{{color:#00c9ff;border-bottom-color:#00c9ff}}
+.tab-panel{{display:none}}.tab-panel.active{{display:block}}
+.card{{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px}}
+.card-title{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#00c9ff;margin-bottom:14px}}
+.grid-2{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}}
+.grid-3{{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}}
+.grid-4{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}}
+.grid-5{{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}}
+.metric{{background:#0d1420;border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-align:center}}
+.metric-lbl{{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}}
+.metric-val{{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace}}
+.metric-sub{{font-size:10px;color:var(--muted);margin-top:3px}}
+.match-card{{border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px}}
+.match-icon{{font-size:20px;flex-shrink:0}}
+.match-label{{font-size:13px;font-weight:600}}
+.match-detail{{font-size:11px;color:var(--muted);margin-top:2px}}
+.match-ok{{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2)}}
+.match-near{{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2)}}
+.match-diff{{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2)}}
+.mic-table{{width:100%;border-collapse:collapse}}
+.mic-table th{{padding:8px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);text-align:left;font-weight:600}}
+.mic-table td{{border-bottom:1px solid rgba(255,255,255,0.03)}}
+.mic-table tr:hover td{{background:rgba(255,255,255,0.02)}}
+.chart-wrap{{position:relative;width:100%;height:220px}}
+.chart-wrap-xl{{position:relative;width:100%;height:320px}}
+.scope-viewport{{width:200px;height:200px;border-radius:50%;border:4px solid #334155;overflow:hidden;background:#f5f0e8;margin:0 auto}}
+.plate-viewport{{width:200px;height:200px;border-radius:50%;border:4px solid #334155;background:#1a2e1a;margin:0 auto;position:relative;overflow:hidden}}
+.plate-label{{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}}
+.badge{{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700}}
+.info-row{{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px}}
+.info-row:last-child{{border-bottom:none}}
+.info-key{{color:var(--muted)}}
+.info-val{{font-weight:600;text-align:right}}
+.log-box{{background:#060d1a;border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;max-height:220px;overflow-y:auto;line-height:1.8}}
+@keyframes fadeUp{{from{{opacity:0;transform:translateY(12px)}}to{{opacity:1;transform:translateY(0)}}}}
+.animate{{animation:fadeUp .35s ease both}}
+hr{{border:none;border-top:1px solid var(--border);margin:16px 0}}
+</style>
+</head>
+<body>
+<div class="lab-shell">
+
+<div class="lab-header animate">
+  <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start">
+    <div>
+      <div class="bac-name">🔬 {sim['bacteria']}</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">{db['disease']}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+        <span class="badge" style="background:rgba(0,201,255,0.1);color:#00c9ff;border:1px solid rgba(0,201,255,0.2)">Gram {db['gram']}</span>
+        <span class="badge" style="background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)">{db['shape']}</span>
+        <span class="badge" style="background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2)">{'Motile' if db['motility'] else 'Non-motile'}</span>
+        <span class="badge" style="background:rgba(245,158,11,0.1);color:#fbbf24;border:1px solid rgba(245,158,11,0.2)">{'Spore-forming' if db['spore'] else 'Non-spore'}</span>
+        <span class="badge" style="background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.2)">{'Encapsulated' if db['capsule'] else 'No capsule'}</span>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">FILE</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#67e8f9">{sim['json_file']}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px">LAB CONDITIONS</div>
+      <div style="font-size:12px;color:#e2e8f0">{sim['temperature']}°C · pH {sim['ph']} · {sim['incubation_h']}h · 10<sup>{sim['cfu_exp']}</sup> CFU/mL</div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="switchTab('culture',this)">Culture</button>
+  <button class="tab-btn" onclick="switchTab('mic',this)">MIC Plate</button>
+  <button class="tab-btn" onclick="switchTab('compare',this)">Lab vs AI</button>
+  <button class="tab-btn" onclick="switchTab('profile',this)">Drug Profile</button>
+  <button class="tab-btn" onclick="switchTab('genes',this)">Genes & Identity</button>
+</div>
+
+<!-- TAB 1: OVERVIEW -->
+<div id="tab-overview" class="tab-panel active animate">
+  {alert_html}
+  <div class="grid-5" style="margin-bottom:14px">
+    <div class="metric"><div class="metric-lbl">Lab MRI</div><div class="metric-val" style="color:{risk_lab[1]}">{sim['lab_mri']}</div><div class="metric-sub">{risk_lab[0]}</div></div>
+    <div class="metric"><div class="metric-lbl">AI MRI</div><div class="metric-val" style="color:{risk_ai[1]}">{sim['ai_mri']}</div><div class="metric-sub">{risk_ai[0]}</div></div>
+    <div class="metric"><div class="metric-lbl">Lab ARI</div><div class="metric-val" style="color:#00c9ff">{sim['lab_ari']}</div><div class="metric-sub">Density index</div></div>
+    <div class="metric"><div class="metric-lbl">Total Genes</div><div class="metric-val">{sim['real_genes']}</div><div class="metric-sub">ARGs detected</div></div>
+    <div class="metric"><div class="metric-lbl">Drug Classes</div><div class="metric-val">{sim['real_u_drugs']}</div><div class="metric-sub">Classes resisted</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Organism identity</div>
+      <div class="info-row"><span class="info-key">Gram stain</span><span class="info-val" style="color:{db['gram_color']}">{db['gram']}</span></div>
+      <div class="info-row"><span class="info-key">Morphology</span><span class="info-val">{db['shape']}</span></div>
+      <div class="info-row"><span class="info-key">Arrangement</span><span class="info-val">{db['arrangement']}</span></div>
+      <div class="info-row"><span class="info-key">Optimal temp</span><span class="info-val">{db['optimal_temp']}°C</span></div>
+      <div class="info-row"><span class="info-key">Optimal pH</span><span class="info-val">{db['optimal_ph']}</span></div>
+      <div class="info-row"><span class="info-key">Oxidase</span><span class="info-val">{db['oxidase']}</span></div>
+      <div class="info-row"><span class="info-key">Catalase</span><span class="info-val">{db['catalase']}</span></div>
+      <div class="info-row"><span class="info-key">Lactose fermentation</span><span class="info-val">{'Positive' if db['ferments_lactose'] else 'Negative'}</span></div>
+      <div class="info-row"><span class="info-key">Selective medium</span><span class="info-val" style="max-width:180px;text-align:right">{db['selective_media']}</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Resistance profile summary</div>
+      {res_bars}
+      <div style="font-size:10px;color:var(--muted);margin-top:10px">* Population-level reference benchmarks</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">AI vs Lab match summary</div>
+    <div class="grid-3">
+      <div class="match-card {'match-ok' if mri_delta<0.03 else 'match-near' if mri_delta<0.08 else 'match-diff'}">
+        <span class="match-icon">{'✓' if mri_delta<0.03 else '~' if mri_delta<0.08 else '✗'}</span>
+        <div><div class="match-label">MRI reading</div><div class="match-detail">Lab: {sim['lab_mri']} | AI: {sim['ai_mri']} | Δ={mri_delta}</div></div>
+      </div>
+      <div class="match-card {'match-ok' if ari_delta<0.02 else 'match-near' if ari_delta<0.06 else 'match-diff'}">
+        <span class="match-icon">{'✓' if ari_delta<0.02 else '~' if ari_delta<0.06 else '✗'}</span>
+        <div><div class="match-label">ARI reading</div><div class="match-detail">Lab: {sim['lab_ari']} | AI: {sim['ai_ari']} | Δ={ari_delta}</div></div>
+      </div>
+      <div class="match-card {'match-ok' if risk_agree else 'match-diff'}">
+        <span class="match-icon">{'✓' if risk_agree else '✗'}</span>
+        <div><div class="match-label">Risk classification</div><div class="match-detail">Lab: {risk_lab[0]} | AI: {risk_ai[0]}</div></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:10px 14px;background:rgba(0,201,255,0.05);border-radius:8px;font-size:12px;color:#94a3b8">
+      Antibiotic concordance: <strong style="color:{'#22c55e' if match_pct>=80 else '#f59e0b' if match_pct>=60 else '#ef4444'}">{matched_ab}/{total_ab} agents ({match_pct}%)</strong> agree between lab and AI.
+      {'<span style="color:#22c55e"> High concordance — AI well-calibrated.</span>' if match_pct>=80 else '<span style="color:#f59e0b"> Moderate concordance — review individual MICs.</span>' if match_pct>=60 else '<span style="color:#ef4444"> Low concordance — phenotypic confirmation recommended.</span>'}
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: CULTURE -->
+<div id="tab-culture" class="tab-panel animate">
+  <div class="grid-4" style="margin-bottom:14px">
+    <div class="metric"><div class="metric-lbl">Growth rate</div><div class="metric-val" style="color:#00c9ff">{sim['growth_rate']}</div><div class="metric-sub">factor</div></div>
+    <div class="metric"><div class="metric-lbl">Final density</div><div class="metric-val">{round(sim['growth_cfu'][-1]/1e6,1)}</div><div class="metric-sub">×10⁶ CFU/mL</div></div>
+    <div class="metric"><div class="metric-lbl">Colonies</div><div class="metric-val">{sim['colony_count']}</div><div class="metric-sub">on plate</div></div>
+    <div class="metric"><div class="metric-lbl">Gram stain</div><div class="metric-val" style="font-size:14px;color:{db['gram_color']}">{db['gram']}</div><div class="metric-sub">{db['shape']}</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Growth curve (CFU/mL × 10⁶)</div>
+      <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px">Medium: {sim['medium']} · {sim['incubation_h']}h</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Colony morphology plate</div>
+      <div class="plate-viewport"><svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">{colony_svg}</svg></div>
+      <div class="plate-label">{db['colony_size'].capitalize()} colonies · {db['selective_media']}</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gram stain microscopy (×1000)</div>
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <div>
+        <div class="scope-viewport">
+          <svg width="120" height="80" xmlns="http://www.w3.org/2000/svg" style="background:#f5f0e8">{gram_shape_svg}</svg>
+        </div>
+        <div class="plate-label" style="margin-top:8px">Gram {db['gram']} · {db['shape']}</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div class="info-row"><span class="info-key">Gram stain result</span><span class="info-val" style="color:{db['gram_color']}">{'Purple (crystal violet)' if db['gram']=='Positive' else 'Pink/red (safranin)' if db['gram']=='Negative' else 'Red (acid-fast)'}</span></div>
+        <div class="info-row"><span class="info-key">Cell morphology</span><span class="info-val">{db['shape']}</span></div>
+        <div class="info-row"><span class="info-key">Arrangement</span><span class="info-val">{db['arrangement']}</span></div>
+        <div class="info-row"><span class="info-key">Spore formation</span><span class="info-val">{'Endospores visible' if db['spore'] else 'None'}</span></div>
+        <div class="info-row"><span class="info-key">Capsule</span><span class="info-val">{'Present (India ink halo)' if db['capsule'] else 'Absent'}</span></div>
+        <div class="info-row"><span class="info-key">Motility test</span><span class="info-val">{'Positive (turbid)' if db['motility'] else 'Negative (stab line)'}</span></div>
+        <div class="info-row"><span class="info-key">Oxidase</span><span class="info-val">{db['oxidase']}</span></div>
+        <div class="info-row"><span class="info-key">Catalase</span><span class="info-val">{db['catalase']}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: MIC PLATE -->
+<div id="tab-mic" class="tab-panel animate">
+  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+    <span style="font-size:12px;color:var(--muted)">Select antibiotic:</span>
+    <div id="ab-selector" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" id="mic-plate-title">MIC Plate</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">96-well format · Rows = replicates · Columns = doubling dilutions</div>
+    <div id="mic-plate-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-bottom:8px"></div>
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);padding:0 2px">
+      <span>0.06</span><span>0.12</span><span>0.25</span><span>0.5</span><span>1</span><span>2</span><span>4</span><span>8</span><span>16</span><span>32</span><span>64</span><span>128 µg/mL</span>
+    </div>
+    <div style="margin-top:14px;padding:10px 16px;background:#0d1420;border-radius:8px;font-size:13px">
+      MIC = <strong id="mic-result-val" style="color:#00c9ff;font-family:'JetBrains Mono',monospace">—</strong> µg/mL &nbsp;|&nbsp;
+      Interpretation: <strong id="mic-result-interp">—</strong> &nbsp;|&nbsp;
+      S ≤ <span id="mic-s-break">—</span> µg/mL &nbsp;|&nbsp; R > <span id="mic-r-break">—</span> µg/mL
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Complete MIC summary</div>
+    <div style="overflow-x:auto">
+      <table class="mic-table">
+        <thead><tr>
+          <th>Antibiotic</th><th>Class</th><th>Lab MIC</th><th>Lab</th><th>AI MIC</th><th>AI</th><th style="text-align:center">Match</th>
+        </tr></thead>
+        <tbody>{mic_rows}</tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;flex-wrap:wrap">
+      <span style="color:#22c55e">S=Susceptible</span>
+      <span style="color:#f59e0b">I=Intermediate</span>
+      <span style="color:#ef4444">R=Resistant</span>
+      <span style="color:var(--muted)">✓=Match ≈=Near ✗=Diverged</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4: LAB vs AI -->
+<div id="tab-compare" class="tab-panel animate">
+  <div class="grid-4" style="margin-bottom:14px">
+    <div class="metric"><div class="metric-lbl">Lab MRI</div><div class="metric-val" style="color:{risk_lab[1]}">{sim['lab_mri']}</div><div class="metric-sub">{risk_badge(risk_lab)}</div></div>
+    <div class="metric"><div class="metric-lbl">AI MRI</div><div class="metric-val" style="color:{risk_ai[1]}">{sim['ai_mri']}</div><div class="metric-sub">{risk_badge(risk_ai)}</div></div>
+    <div class="metric"><div class="metric-lbl">MRI Δ</div><div class="metric-val" style="color:{'#22c55e' if mri_delta<0.03 else '#f59e0b' if mri_delta<0.08 else '#ef4444'}">{mri_delta}</div><div class="metric-sub">{mri_match}</div></div>
+    <div class="metric"><div class="metric-lbl">AB Concordance</div><div class="metric-val" style="color:{'#22c55e' if match_pct>=80 else '#f59e0b' if match_pct>=60 else '#ef4444'}">{match_pct}%</div><div class="metric-sub">{matched_ab}/{total_ab} agents</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">MRI / ARI bar comparison</div>
+      <div class="chart-wrap"><canvas id="mriChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Risk confidence</div>
+      <div id="risk-conf" style="padding:8px 0"></div>
+      <hr>
+      <div class="card-title">Agreement log</div>
+      <div class="log-box" id="agreement-log"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">MIC comparison — Lab vs AI (log₂)</div>
+    <div class="chart-wrap-xl"><canvas id="micCompChart"></canvas></div>
+  </div>
+</div>
+
+<!-- TAB 5: DRUG PROFILE -->
+<div id="tab-profile" class="tab-panel animate">
+  <div class="card">
+    <div class="card-title">Drug class resistance radar — Lab vs AI</div>
+    <div class="chart-wrap-xl"><canvas id="profileChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Susceptibility zone analysis</div>
+    <div style="background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);border-radius:10px;padding:14px 16px;margin-bottom:12px">
+      <div style="color:#22c55e;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:10px">✓ Susceptible agents</div>
+      <div id="susc-list" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+    <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:14px 16px">
+      <div style="color:#f87171;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:10px">✗ Resistant agents</div>
+      <div id="resist-list" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Resistance intensity bars</div>
+    {prof_bars}
+  </div>
+</div>
+
+<!-- TAB 6: GENES & IDENTITY -->
+<div id="tab-genes" class="tab-panel animate">
+  <div class="grid-3" style="margin-bottom:14px">
+    <div class="metric"><div class="metric-lbl">Total ARGs</div><div class="metric-val" style="color:#00c9ff">{sim['real_genes']}</div><div class="metric-sub">from CARD JSON</div></div>
+    <div class="metric"><div class="metric-lbl">Drug classes</div><div class="metric-val">{sim['real_u_drugs']}</div><div class="metric-sub">unique classes</div></div>
+    <div class="metric"><div class="metric-lbl">Mechanisms</div><div class="metric-val">{sim['real_u_mechs']}</div><div class="metric-sub">unique strategies</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Known resistance determinants</div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">{gene_tags}</div>
+    <div style="font-size:11px;color:var(--muted)">* Curated reference list. Actual ARGs are in your CARD JSON file.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Biochemical identity panel</div>
+    <div class="grid-2">
+      <div>
+        <div class="info-row"><span class="info-key">Gram stain</span><span class="info-val">{db['gram']}</span></div>
+        <div class="info-row"><span class="info-key">Shape</span><span class="info-val">{db['shape']}</span></div>
+        <div class="info-row"><span class="info-key">Arrangement</span><span class="info-val">{db['arrangement']}</span></div>
+        <div class="info-row"><span class="info-key">Motility</span><span class="info-val">{'Yes' if db['motility'] else 'No'}</span></div>
+        <div class="info-row"><span class="info-key">Spore</span><span class="info-val">{'Yes' if db['spore'] else 'No'}</span></div>
+        <div class="info-row"><span class="info-key">Capsule</span><span class="info-val">{'Present' if db['capsule'] else 'Absent'}</span></div>
+      </div>
+      <div>
+        <div class="info-row"><span class="info-key">Oxidase</span><span class="info-val">{db['oxidase']}</span></div>
+        <div class="info-row"><span class="info-key">Catalase</span><span class="info-val">{db['catalase']}</span></div>
+        <div class="info-row"><span class="info-key">Lactose ferment</span><span class="info-val">{'Yes' if db['ferments_lactose'] else 'No'}</span></div>
+        <div class="info-row"><span class="info-key">Selective medium</span><span class="info-val">{db['selective_media']}</span></div>
+        <div class="info-row"><span class="info-key">Optimal temp</span><span class="info-val">{db['optimal_temp']}°C</span></div>
+        <div class="info-row"><span class="info-key">Optimal pH</span><span class="info-val">{db['optimal_ph']}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Associated diseases</div>
+    <div style="font-size:14px;line-height:1.8;color:#94a3b8">{db['disease']}</div>
+  </div>
+</div>
+
+</div><!-- /lab-shell -->
+
+<script>
+var SIM_DATA = {{
+  growth_times: {growth_labels_js},
+  growth_cfu:   {growth_data_js},
+  ab_names:     {json.dumps(ab_names)},
+  lab_mics:     {json.dumps([round(x,2) for x in lab_mics])},
+  ai_mics:      {json.dumps([round(x,2) for x in ai_mics])},
+  classes:      {json.dumps(classes)},
+  lab_profile:  {json.dumps([round(x,2) for x in lab_profile_vals])},
+  ai_profile:   {json.dumps([round(x,2) for x in ai_profile_vals])},
+  mic_results:  {json.dumps(sim['mic_results'])},
+  lab_mri: {sim['lab_mri']}, ai_mri: {sim['ai_mri']},
+  lab_ari: {sim['lab_ari']}, ai_ari: {sim['ai_ari']},
+}};
+
+function switchTab(name, btn) {{
+  document.querySelectorAll('.tab-panel').forEach(function(p){{p.classList.remove('active');}});
+  document.querySelectorAll('.tab-btn').forEach(function(b){{b.classList.remove('active');}});
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}}
+
+new Chart(document.getElementById('growthChart'), {{
+  type:'line',
+  data:{{labels:SIM_DATA.growth_times,datasets:[{{label:'CFU/mL (×10⁶)',data:SIM_DATA.growth_cfu,borderColor:'#00c9ff',backgroundColor:'rgba(0,201,255,0.06)',fill:true,tension:0.4,pointRadius:2}}]}},
+  options:{{responsive:true,maintainAspectRatio:false,plugins:{{legend:{{display:false}}}},scales:{{x:{{ticks:{{color:'#64748b',font:{{size:10}}}},grid:{{color:'rgba(255,255,255,0.04)'}}}},y:{{ticks:{{color:'#64748b',font:{{size:10}},callback:function(v){{return v+'M';}}}},grid:{{color:'rgba(255,255,255,0.04)'}},min:0}}}}}}
+}});
+
+new Chart(document.getElementById('mriChart'), {{
+  type:'bar',
+  data:{{labels:['MRI Score','ARI Score'],datasets:[{{label:'Lab',data:[SIM_DATA.lab_mri,SIM_DATA.lab_ari],backgroundColor:'#185FA5',borderRadius:4}},{{label:'AI',data:[SIM_DATA.ai_mri,SIM_DATA.ai_ari],backgroundColor:'rgba(0,201,255,0.3)',borderColor:'#00c9ff',borderWidth:2,borderRadius:4}}]}},
+  options:{{responsive:true,maintainAspectRatio:false,plugins:{{legend:{{display:false}}}},scales:{{x:{{ticks:{{color:'#64748b'}},grid:{{color:'rgba(255,255,255,0.04)'}}}},y:{{min:0,max:1,ticks:{{color:'#64748b'}},grid:{{color:'rgba(255,255,255,0.04)'}}}}}}}}
+}});
+
+new Chart(document.getElementById('micCompChart'), {{
+  type:'bar',
+  data:{{labels:SIM_DATA.ab_names,datasets:[{{label:'Lab MIC',data:SIM_DATA.lab_mics,backgroundColor:'#185FA5',borderRadius:3}},{{label:'AI MIC',data:SIM_DATA.ai_mics,backgroundColor:'rgba(0,201,255,0.3)',borderColor:'#00c9ff',borderWidth:1,borderRadius:3}}]}},
+  options:{{responsive:true,maintainAspectRatio:false,plugins:{{legend:{{display:false}}}},scales:{{x:{{ticks:{{color:'#64748b',font:{{size:10}},maxRotation:45}},grid:{{color:'rgba(255,255,255,0.04)'}}}},y:{{ticks:{{color:'#64748b',callback:function(v){{return '2^'+v;}}}},grid:{{color:'rgba(255,255,255,0.04)'}}}}}}}}
+}});
+
+new Chart(document.getElementById('profileChart'), {{
+  type:'radar',
+  data:{{labels:SIM_DATA.classes,datasets:[{{label:'Lab',data:SIM_DATA.lab_profile,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,0.15)',borderWidth:2}},{{label:'AI',data:SIM_DATA.ai_profile,borderColor:'#00c9ff',backgroundColor:'rgba(0,201,255,0.08)',borderWidth:2,borderDash:[5,3]}}]}},
+  options:{{responsive:true,maintainAspectRatio:false,plugins:{{legend:{{display:false}}}},scales:{{r:{{ticks:{{color:'#64748b',backdropColor:'transparent'}},grid:{{color:'rgba(255,255,255,0.06)'}},pointLabels:{{color:'#94a3b8',font:{{size:11}}}}}}}}}}
+}});
+
+var DILUTIONS_ARR=[0.06,0.12,0.25,0.5,1,2,4,8,16,32,64,128];
+function buildAbSelector(){{
+  var sel=document.getElementById('ab-selector');
+  SIM_DATA.mic_results.forEach(function(ab,i){{
+    var btn=document.createElement('button');
+    btn.textContent=ab.name;
+    btn.style.cssText='padding:4px 10px;font-size:11px;border-radius:4px;cursor:pointer;border:1px solid rgba(255,255,255,0.12);background:'+(i===0?'rgba(0,201,255,0.15)':'rgba(255,255,255,0.04)')+';color:'+(i===0?'#00c9ff':'#94a3b8')+';font-family:Sora,sans-serif;';
+    btn.onclick=function(){{
+      document.querySelectorAll('#ab-selector button').forEach(function(b,j){{b.style.background=j===i?'rgba(0,201,255,0.15)':'rgba(255,255,255,0.04)';b.style.color=j===i?'#00c9ff':'#94a3b8';}});
+      renderMicPlate(i);
+    }};
+    sel.appendChild(btn);
+  }});
+}}
+function renderMicPlate(idx){{
+  var ab=SIM_DATA.mic_results[idx],mic=ab.lab_mic;
+  var micColIdx=DILUTIONS_ARR.indexOf(DILUTIONS_ARR.reduce(function(a,b){{return Math.abs(b-mic)<Math.abs(a-mic)?b:a;}}));
+  var grid=document.getElementById('mic-plate-grid');grid.innerHTML='';
+  for(var row=0;row<8;row++){{for(var col=0;col<12;col++){{
+    var well=document.createElement('div');
+    well.style.cssText='aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;';
+    if(col===micColIdx){{well.style.background='#1d4ed8';well.style.border='2px solid #60a5fa';well.style.color='#fff';well.textContent='MIC';}}
+    else if(col<micColIdx){{well.style.background='rgba(239,68,68,0.6)';well.style.border='1px solid #ef4444';well.style.color='#fff';well.textContent='+';}}
+    else{{well.style.background='rgba(34,197,94,0.2)';well.style.border='1px solid rgba(34,197,94,0.4)';well.style.color='#4ade80';well.textContent='−';}}
+    grid.appendChild(well);
+  }}}}
+  document.getElementById('mic-result-val').textContent=mic;
+  var iC={{'S':'#22c55e','I':'#f59e0b','R':'#ef4444'}}[ab.lab_interp];
+  document.getElementById('mic-result-interp').innerHTML='<span style="color:'+iC+';font-weight:700;">' + {{'S':'Susceptible','I':'Intermediate','R':'Resistant'}}[ab.lab_interp]+'</span>';
+  document.getElementById('mic-s-break').textContent=ab.S_break;
+  document.getElementById('mic-r-break').textContent=ab.R_break;
+  document.getElementById('mic-plate-title').textContent=ab.name+' ('+ab.class+')';
+}}
+function buildRiskConf(){{
+  var labMRI=SIM_DATA.lab_mri,aiMRI=SIM_DATA.ai_mri;
+  var conf={{'LOW':labMRI<0.15?0.70+Math.random()*0.25:0.05+Math.random()*0.10,'MODERATE':(labMRI>=0.15&&labMRI<0.35)?0.60+Math.random()*0.30:0.05+Math.random()*0.12,'HIGH':labMRI>=0.35?0.65+Math.random()*0.30:0.03+Math.random()*0.08}};
+  var total=Object.values(conf).reduce(function(a,b){{return a+b;}},0);
+  var el=document.getElementById('risk-conf');el.innerHTML='';
+  ['LOW','MODERATE','HIGH'].forEach(function(r){{
+    var pct=Math.round(conf[r]/total*100),col=r==='HIGH'?'#ef4444':r==='MODERATE'?'#f59e0b':'#22c55e';
+    var isLab=(r==='{risk_lab[0]}'),isAI=(r==='{risk_ai[0]}');
+    el.innerHTML+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><div style="font-size:11px;font-weight:700;min-width:70px;color:'+col+';">'+r+'</div><div style="flex:1;height:6px;background:#1e293b;border-radius:3px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:'+col+';border-radius:3px;"></div></div><div style="font-size:11px;min-width:32px;color:#64748b;">'+pct+'%</div>'+(isLab?'<span style="background:'+col+'22;color:'+col+';font-size:9px;padding:1px 6px;border-radius:3px;border:1px solid '+col+'44;">Lab</span>':'')+(isAI?'<span style="background:rgba(0,201,255,0.1);color:#00c9ff;font-size:9px;padding:1px 6px;border-radius:3px;border:1px solid rgba(0,201,255,0.3);">AI</span>':'')+'</div>';
+  }});
+}}
+function buildAgreementLog(){{
+  var log=document.getElementById('agreement-log'),lines=[],delta=Math.abs(SIM_DATA.lab_mri-SIM_DATA.ai_mri);
+  lines.push({{t:'ok',m:'[LAB] MRI: '+SIM_DATA.lab_mri+' ({risk_lab[0]})'}});
+  lines.push({{t:'info',m:'[AI]  MRI: '+SIM_DATA.ai_mri+' ({risk_ai[0]})'}});
+  lines.push({{t:delta<0.03?'ok':delta<0.08?'warn':'err',m:'[CMP] Δ: '+delta.toFixed(3)+' — '+(delta<0.03?'IDENTICAL':delta<0.08?'NEAR MATCH':'DIVERGED')}});
+  lines.push({{t:'ok',m:'[LAB] ARI: '+SIM_DATA.lab_ari}});
+  lines.push({{t:'info',m:'[AI]  ARI: '+SIM_DATA.ai_ari}});
+  var matched=SIM_DATA.mic_results.filter(function(r){{return r.lab_interp===r.ai_interp;}}).length;
+  lines.push({{t:matched>=Math.round(SIM_DATA.mic_results.length*0.8)?'ok':'warn',m:'[MIC] Concordance: '+matched+'/'+SIM_DATA.mic_results.length+' ('+Math.round(matched/SIM_DATA.mic_results.length*100)+'%)'}});
+  SIM_DATA.mic_results.forEach(function(r){{var m=r.lab_interp===r.ai_interp;lines.push({{t:m?'ok':'warn',m:'[MIC] '+r.name+': Lab='+r.lab_mic+'('+r.lab_interp+') AI='+r.ai_mic+'('+r.ai_interp+') '+(m?'✓':'≈')}});}});
+  log.innerHTML=lines.map(function(l){{var c=l.t==='ok'?'#22c55e':l.t==='info'?'#00c9ff':l.t==='warn'?'#f59e0b':'#ef4444';return '<div style="color:'+c+'">'+l.m+'</div>';}}).join('');
+  log.scrollTop=log.scrollHeight;
+}}
+function buildSuscZone(){{
+  var sl=document.getElementById('susc-list'),rl=document.getElementById('resist-list');
+  SIM_DATA.mic_results.forEach(function(r){{
+    var tag=document.createElement('span');
+    tag.style.cssText='display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;margin:2px;';
+    tag.textContent=r.name;
+    if(r.lab_interp==='S'){{tag.style.background='rgba(34,197,94,0.1)';tag.style.color='#4ade80';tag.style.border='1px solid rgba(34,197,94,0.25)';sl.appendChild(tag);}}
+    else if(r.lab_interp==='R'){{tag.style.background='rgba(239,68,68,0.1)';tag.style.color='#f87171';tag.style.border='1px solid rgba(239,68,68,0.25)';rl.appendChild(tag);}}
+  }});
+  if(!sl.children.length)sl.innerHTML='<span style="color:#64748b;font-size:12px;">None found</span>';
+  if(!rl.children.length)rl.innerHTML='<span style="color:#64748b;font-size:12px;">None found</span>';
+}}
+buildAbSelector();renderMicPlate(0);buildRiskConf();buildAgreementLog();buildSuscZone();
+</script>
+</body></html>"""
+    return html
+
+
+def render_lab_tab():
+    st.markdown("""
+    <style>
+    .lab-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+      color:#00d4ff;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(0,212,255,.15);}
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="background:linear-gradient(135deg,#0c1f3f,#111827);border:1px solid rgba(0,212,255,.15);
+                border-radius:14px;padding:20px 24px;margin-bottom:20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;
+                  background:linear-gradient(90deg,#00d4ff,#7c3aed,#10b981,#00d4ff);
+                  background-size:300%;animation:scanBar 4s linear infinite;"></div>
+      <style>@keyframes scanBar{0%{background-position:0%}100%{background-position:300%}}</style>
+      <h2 style="color:#00d4ff;font-size:1.3rem;margin-bottom:4px;">🧫 Virtual Laboratory Simulation</h2>
+      <p style="color:#64748b;font-size:13px;margin:0;">
+        Full phenotypic simulation — culture, MIC plate, AI vs lab comparison, drug profiles and gene identity.
+      </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    json_files  = [f for f in os.listdir('.') if f.endswith('.json')]
+    file_to_bac = _lab_scan_json_files()
+
+    if not json_files:
+        st.warning("No JSON files found. Upload CARD-format JSON files to begin.")
+        return
+
+    col_bac, col_file = st.columns([2, 2])
+    with col_bac:
+        st.markdown('<div class="lab-section-title">Select Organism</div>', unsafe_allow_html=True)
+        all_bac_names = sorted(LAB_BACTERIA_DB.keys())
+        found_bac     = sorted(set(file_to_bac.values()))
+        default_bac   = found_bac[0] if found_bac else all_bac_names[0]
+        selected_bac  = st.selectbox("Bacterial species", all_bac_names,
+                                     index=all_bac_names.index(default_bac),
+                                     label_visibility="collapsed", key="lab_bac_select")
+    with col_file:
+        st.markdown('<div class="lab-section-title">JSON Source File</div>', unsafe_allow_html=True)
+        matching      = [f for f, b in file_to_bac.items() if b == selected_bac]
+        file_opts     = matching + [f for f in json_files if f not in matching]
+        selected_json = st.selectbox("JSON file", file_opts,
+                                     label_visibility="collapsed", key="lab_json_select")
+
+    st.markdown("---")
+
+    db = LAB_BACTERIA_DB[selected_bac]
+    st.markdown('<div class="lab-section-title">Lab Conditions</div>', unsafe_allow_html=True)
+
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1: temperature        = st.slider("Temperature (°C)", 25.0, 45.0, float(db["optimal_temp"]), 0.5, key="lab_temp")
+    with c2: ph                 = st.slider("pH", 5.5, 9.0, float(db["optimal_ph"]), 0.1, key="lab_ph")
+    with c3: incubation_h       = st.slider("Incubation (h)", 4, 72, 18, 1, key="lab_inc")
+    with c4: cfu_exp            = st.slider("Inoculum 10^x CFU/mL", 3, 8, 5, 1, key="lab_cfu")
+    with c5: resistance_override = st.slider("Resistance pressure", 0.0, 1.0, 0.5, 0.05, key="lab_res",
+                                              help="Simulate high-pressure selection environments")
+
+    medium = st.selectbox("Growth medium",
+        ["Mueller-Hinton Broth (MHB)", "Lysogeny Broth Agar (LBA)",
+         "Columbia Blood Agar (CBA)", "Brain Heart Infusion (BHI)",
+         "Löwenstein-Jensen (LJ)", "Chocolate Agar"], key="lab_medium")
+
+    st.markdown("---")
+
+    preset_col, run_col = st.columns([3, 1])
+    with preset_col:
+        preset = st.selectbox("Quick presets",
+            ["— custom —", "MRSA (High resistance)", "ESBL E. coli", "XDR Acinetobacter",
+             "Pan-susceptible Salmonella", "MDR M. tuberculosis", "VRE Enterococcus"],
+            key="lab_preset")
+    with run_col:
+        st.markdown("<br>", unsafe_allow_html=True)
+        run_btn = st.button("▶  Run Simulation", type="primary",
+                            use_container_width=True, key="lab_run_btn")
+
+    preset_map = {
+        "MRSA (High resistance)":     {"bac": "Staphylococcus aureus",     "res": 0.85},
+        "ESBL E. coli":               {"bac": "Escherichia coli",           "res": 0.72},
+        "XDR Acinetobacter":          {"bac": "Acinetobacter baumannii",    "res": 0.92},
+        "Pan-susceptible Salmonella": {"bac": "Salmonella enterica",        "res": 0.10},
+        "MDR M. tuberculosis":        {"bac": "Mycobacterium tuberculosis", "res": 0.78},
+        "VRE Enterococcus":           {"bac": "Enterococcus faecium",       "res": 0.80},
+    }
+    if preset in preset_map:
+        resistance_override = preset_map[preset]["res"]
+        selected_bac        = preset_map[preset]["bac"]
+
+    if 'lab_result_html' not in st.session_state:
+        st.session_state.lab_result_html = None
+        st.session_state.lab_run_key     = None
+
+    run_key = f"{selected_bac}|{selected_json}|{temperature}|{ph}|{incubation_h}|{cfu_exp}|{resistance_override}|{medium}"
+
+    if run_btn or (st.session_state.lab_run_key == run_key and st.session_state.lab_result_html):
+        if run_btn or st.session_state.lab_result_html is None:
+            with st.spinner(f"Running virtual lab for {selected_bac}…"):
+                sim  = _lab_simulate(selected_bac, selected_json,
+                                     resistance_override, temperature, ph,
+                                     incubation_h, cfu_exp, medium)
+                html = _lab_build_html(sim)
+                st.session_state.lab_result_html = html
+                st.session_state.lab_run_key     = run_key
+        components.html(st.session_state.lab_result_html, height=920, scrolling=True)
+    else:
+        st.markdown("""
+        <div style="text-align:center;padding:60px 20px;background:rgba(15,23,42,0.5);
+                    border:1px dashed rgba(0,212,255,.2);border-radius:14px;margin-top:10px;">
+          <div style="font-size:3rem;margin-bottom:12px;">🧫</div>
+          <div style="font-size:18px;color:#e2e8f0;font-weight:600;margin-bottom:8px;">Virtual Lab Ready</div>
+          <div style="font-size:13px;color:#64748b;">
+            Configure organism and conditions above, then click
+            <strong style="color:#00d4ff;">▶ Run Simulation</strong>.
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+# ══════════════════════════════════════════
+# END OF VIRTUAL LAB MODULE
+# ══════════════════════════════════════════
 
 st.markdown("""
 <style>
@@ -341,7 +1461,7 @@ h1, h2, h3 { color: #ffffff; }
 .sp-pillars { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:16px; }
 .sp-pillar { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:clamp(18px,3vw,26px) clamp(14px,3vw,20px); text-align:center; transition:all 0.3s ease; position:relative; overflow:hidden; }
 .sp-pillar::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; }
-.sp-pillar.c1::before{background:linear-gradient(90deg,#00d4ff,#10b981)} .sp-pillar.c2::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)} .sp-pillar.c3::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)} .sp-pillar.c4::before{background:linear-gradient(90deg,#f43f5e,#fb7185)} .sp-pillar.c5::before{background:linear-gradient(90deg,#10b981,#34d399)} .sp-pillar.c6::before{background:linear-gradient(90deg,#06b6d4,#67e8f9)} .sp-pillar.c7::before{background:linear-gradient(90deg,#f59e0b,#10b981)}
+.sp-pillar.c1::before{background:linear-gradient(90deg,#00d4ff,#10b981)} .sp-pillar.c2::before{background:linear-gradient(90deg,#7c3aed,#a78bfa)} .sp-pillar.c3::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)} .sp-pillar.c4::before{background:linear-gradient(90deg,#f43f5e,#fb7185)} .sp-pillar.c5::before{background:linear-gradient(90deg,#10b981,#34d399)} .sp-pillar.c6::before{background:linear-gradient(90deg,#06b6d4,#67e8f9)} .sp-pillar.c7::before{background:linear-gradient(90deg,#f59e0b,#10b981)} .sp-pillar.c8::before{background:linear-gradient(90deg,#a78bfa,#00d4ff)}
 .sp-pillar:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.3)}
 .sp-pillar-icon{font-size:clamp(1.6rem,4vw,2.3rem);display:block;margin-bottom:10px}
 .sp-pillar-title{color:#f1f5f9 !important;font-size:clamp(0.75rem,2.5vw,0.82rem);font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px}
@@ -387,21 +1507,16 @@ h1, h2, h3 { color: #ffffff; }
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
-# HELPER: Section Explainer Component
-# ==========================================
+
 def section_explainer(icon, title, body, position="above"):
-    html = f"""
+    st.markdown(f"""
     <div class="section-explainer">
       <div class="ex-title">{icon} {title}</div>
       {body}
     </div>
-    """
-    st.markdown(html, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-# ==========================================
-# 2. CORE BACKEND FUNCTIONS
-# ==========================================
+
 @st.cache_data
 def get_bacteria_info(file_name):
     name = file_name.lower()
@@ -444,103 +1559,67 @@ def get_bacteria_info(file_name):
         info = {"gram": "Acid-Fast (Gram Variable)", "disease": "Tuberculosis, Leprosy"}
     return info
 
-# ==========================================
-# FIX 1: IMPROVED HABITAT DETECTION
-# Uses drug/mechanism content when filename keywords don't match,
-# and falls back to MRI-based inference — so "General" is rare.
-# ==========================================
+
 @st.cache_data
 def get_habitat(file_name):
     name = file_name.lower()
-
-    # Priority 1: explicit organism name in filename
     clinical_keys = [
-        "ecoli", "escherichia", "staphylococcus", "salmonella", "klebsiella",
-        "streptococcus", "enterococcus", "acinetobacter", "haemophilus",
-        "neisseria", "listeria", "enterobacter", "citrobacter", "serratia",
-        "campylobacter", "helicobacter", "corynebacterium", "clostridium",
-        "morganella", "providencia", "proteus", "vibrio"
+        "ecoli","escherichia","staphylococcus","salmonella","klebsiella",
+        "streptococcus","enterococcus","acinetobacter","haemophilus",
+        "neisseria","listeria","enterobacter","citrobacter","serratia",
+        "campylobacter","helicobacter","corynebacterium","clostridium",
+        "morganella","providencia","proteus","vibrio"
     ]
-    environmental_keys = ["pseudomonas", "burkholderia", "stenotrophomonas", "chromobacterium"]
-    soil_keys          = ["bacillus", "streptomyces", "arthrobacter", "nocardia"]
-    marine_keys        = ["vibrio", "photobacterium", "alteromonas", "shewanella"]
-    acid_fast_keys     = ["mycobacterium", "nocardia"]
-
+    environmental_keys = ["pseudomonas","burkholderia","stenotrophomonas","chromobacterium"]
+    soil_keys          = ["bacillus","streptomyces","arthrobacter","nocardia"]
+    marine_keys        = ["vibrio","photobacterium","alteromonas","shewanella"]
+    acid_fast_keys     = ["mycobacterium","nocardia"]
     if any(k in name for k in acid_fast_keys):    return "Acid-Fast / Clinical"
     if any(k in name for k in marine_keys):        return "Marine / Aquatic"
     if any(k in name for k in soil_keys):          return "Soil / Environmental"
     if any(k in name for k in environmental_keys): return "Environmental"
     if any(k in name for k in clinical_keys):      return "Clinical"
-
-    # Priority 2: keyword fragments in filename (common naming conventions)
-    if any(k in name for k in ["hosp", "clinical", "patient", "ward", "icu", "nicu", "hospital"]):
+    if any(k in name for k in ["hosp","clinical","patient","ward","icu","nicu","hospital"]):
         return "Clinical"
-    if any(k in name for k in ["agri", "farm", "livestock", "poultry", "cattle", "swine", "pig"]):
+    if any(k in name for k in ["agri","farm","livestock","poultry","cattle","swine","pig"]):
         return "Agricultural"
-    if any(k in name for k in ["soil", "sediment", "compost", "rhizo", "environ"]):
+    if any(k in name for k in ["soil","sediment","compost","rhizo","environ"]):
         return "Environmental"
-    if any(k in name for k in ["waste", "sewage", "effluent", "wwater", "wwtp"]):
+    if any(k in name for k in ["waste","sewage","effluent","wwater","wwtp"]):
         return "Wastewater"
-    if any(k in name for k in ["food", "meat", "dairy", "seafood", "poultry", "produce"]):
+    if any(k in name for k in ["food","meat","dairy","seafood","produce"]):
         return "Food Production"
-    if any(k in name for k in ["marine", "ocean", "river", "lake", "aquatic", "water"]):
+    if any(k in name for k in ["marine","ocean","river","lake","aquatic","water"]):
         return "Marine / Aquatic"
-
-    # Priority 3: Try to read JSON and infer from gene content
     try:
         with open(file_name, 'r', encoding='utf-8') as f:
             data = json.load(f)
         all_text = json.dumps(data).lower()
-
-        clinical_hits = sum([
-            all_text.count("hospital"), all_text.count("clinical"),
-            all_text.count("nosocomial"), all_text.count("bloodstream"),
-            all_text.count("patient"), all_text.count("icu")
-        ])
-        agri_hits = sum([
-            all_text.count("livestock"), all_text.count("farm"),
-            all_text.count("veterinary"), all_text.count("poultry"),
-            all_text.count("swine"), all_text.count("cattle")
-        ])
-        env_hits = sum([
-            all_text.count("soil"), all_text.count("sediment"),
-            all_text.count("environmental"), all_text.count("rhizosphere")
-        ])
-        waste_hits = sum([
-            all_text.count("wastewater"), all_text.count("sewage"),
-            all_text.count("effluent"), all_text.count("wwtp")
-        ])
-        food_hits = sum([
-            all_text.count("food"), all_text.count("meat"),
-            all_text.count("dairy"), all_text.count("produce")
-        ])
-
         hits = {
-            "Clinical": clinical_hits, "Agricultural": agri_hits,
-            "Environmental": env_hits, "Wastewater": waste_hits,
-            "Food Production": food_hits
+            "Clinical":     sum([all_text.count(k) for k in ["hospital","clinical","nosocomial","bloodstream","patient","icu"]]),
+            "Agricultural": sum([all_text.count(k) for k in ["livestock","farm","veterinary","poultry","swine","cattle"]]),
+            "Environmental":sum([all_text.count(k) for k in ["soil","sediment","environmental","rhizosphere"]]),
+            "Wastewater":   sum([all_text.count(k) for k in ["wastewater","sewage","effluent","wwtp"]]),
+            "Food Production":sum([all_text.count(k) for k in ["food","meat","dairy","produce"]]),
         }
         best = max(hits, key=hits.get)
         if hits[best] > 0:
             return best
     except Exception:
         pass
-
-    # Priority 4: MRI-based inference (last resort — avoids showing "General")
-    # We compute a quick MRI estimate from the file
     try:
         with open(file_name, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        gene_count = len(data)
-        if gene_count >= 70:   return "Clinical (High Burden)"
-        elif gene_count >= 40: return "Wastewater / Mixed"
-        elif gene_count >= 20: return "Agricultural"
-        elif gene_count >= 8:  return "Environmental"
-        else:                   return "Environmental (Low Burden)"
+        gc = len(data)
+        if gc >= 70:   return "Clinical (High Burden)"
+        elif gc >= 40: return "Wastewater / Mixed"
+        elif gc >= 20: return "Agricultural"
+        elif gc >= 8:  return "Environmental"
+        else:          return "Environmental (Low Burden)"
     except Exception:
         pass
-
     return "Unknown"
+
 
 @st.cache_data
 def extract_data(file_name):
@@ -566,18 +1645,21 @@ def extract_data(file_name):
     ari = len(set(mech))/(genes+1)
     return genes, drug, mech, mri, ari, records
 
+
 def get_level(mri):
     if mri < 0.15: return "LOW","🟢"
     elif mri < 0.35: return "MODERATE","🟡"
     else: return "HIGH","🔴"
 
+
 def get_risk_reason(level, u_drugs, u_mechs):
     if "HIGH" in level:
-        return f"This pathogen's elevated MRI score reflects a sophisticated and redundant resistance architecture. Deploying {u_mechs} distinct biological mechanisms against {u_drugs} drug classes, the organism exhibits the capacity to dynamically bypass standard frontline therapeutics. When one resistance pathway is circumvented, alternative mechanisms compensate — a hallmark of high-priority clinical threats."
+        return f"This pathogen's elevated MRI score reflects a sophisticated and redundant resistance architecture. Deploying {u_mechs} distinct biological mechanisms against {u_drugs} drug classes, the organism exhibits the capacity to dynamically bypass standard frontline therapeutics."
     elif "MODERATE" in level:
-        return f"This strain demonstrates a clinically significant, though not maximal, resistance burden. Resistance determinants spanning {u_drugs} drug classes have been identified, necessitating careful antibiogram-guided therapy selection. Secondary and combination treatment regimens should be considered to achieve effective clinical outcomes."
+        return f"This strain demonstrates a clinically significant resistance burden. Resistance determinants spanning {u_drugs} drug classes have been identified, necessitating careful antibiogram-guided therapy selection."
     else:
-        return f"The calculated MRI indicates a restricted resistance profile, suggestive of ecological specialization rather than broad clinical adaptation. With resistance distributed across {u_drugs} drug classes via {u_mechs} mechanisms, standard empirical treatment protocols remain viable. Continued genomic surveillance is recommended to monitor for resistance acquisition."
+        return f"The calculated MRI indicates a restricted resistance profile. With resistance distributed across {u_drugs} drug classes via {u_mechs} mechanisms, standard empirical treatment protocols remain viable."
+
 
 @st.cache_resource
 def train_rf_model():
@@ -595,9 +1677,7 @@ def train_rf_model():
     model.fit(X, y)
     return model
 
-# ==========================================
-# 3. VISUALIZATION FUNCTIONS
-# ==========================================
+
 def plot_full_dashboard(drug, mech, mri, genes, records, name):
     level, icon = get_level(mri)
     fig, ax = plt.subplots(2, 3, figsize=(18, 12))
@@ -630,6 +1710,7 @@ def plot_full_dashboard(drug, mech, mri, genes, records, name):
     fig.tight_layout()
     return fig
 
+
 def generate_network_html(records, organism_name, color):
     net = Network(height='500px',width='100%',bgcolor='#222222',font_color='white',cdn_resources="in_line",select_menu=True,filter_menu=True)
     net.add_node("HUB",label=organism_name,color=color,size=30)
@@ -644,6 +1725,7 @@ def generate_network_html(records, organism_name, color):
     with open(html_path,"w",encoding="utf-8") as f:
         f.write(net.generate_html())
     return html_path
+
 
 def plot_3d_pca_plotly(current_file):
     X, files, risk_levels = [], [], []
@@ -663,13 +1745,10 @@ def plot_3d_pca_plotly(current_file):
     df_pca['Genome']=files; df_pca['Risk Category']=risk_levels
     color_map={"HIGH":"red","MODERATE":"orange","LOW":"green","TARGET 🎯":"gold"}
     fig=px.scatter_3d(df_pca,x='Overall Resistance (PC1)',y='Mechanism Diversity (PC2)',z='Genetic Density (PC3)',color='Risk Category',hover_name='Genome',color_discrete_map=color_map,opacity=0.8,size_max=10)
-    fig.update_traces(marker=dict(size=5,line=dict(width=2,color='DarkSlateGrey')),selector=dict(name="TARGET 🎯"))
     fig.update_layout(margin=dict(l=0,r=0,b=0,t=0),paper_bgcolor='#0e1117',font_color='white',scene=dict(xaxis=dict(backgroundcolor="#0e1117",gridcolor="gray"),yaxis=dict(backgroundcolor="#0e1117",gridcolor="gray"),zaxis=dict(backgroundcolor="#0e1117",gridcolor="gray")))
     st.plotly_chart(fig,use_container_width=True)
 
-# ==========================================
-# ORIGIN LABELING & COMPARATIVE HEATMAP FUNCTIONS
-# ==========================================
+
 def build_drug_class_profile(drug_list):
     profile = {cls: 0 for cls in DRUG_CLASS_KEYWORDS}
     for d in drug_list:
@@ -678,177 +1757,122 @@ def build_drug_class_profile(drug_list):
             profile[mapped] += 1
     return profile
 
+
 def normalize_profile(profile, total):
     if total == 0:
         return {k: 0.0 for k in profile}
     return {k: min(v / max(total * 0.1, 1), 1.0) for k, v in profile.items()}
 
+
 def plot_origin_comparison_heatmap(sample_profile_norm, selected_origin_key, organism_name):
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     origins = list(REFERENCE_BENCHMARKS.keys())
-    display_names = {
-        "clinical": "🏥 Clinical", "agricultural": "🌾 Agricultural",
-        "environmental": "🌿 Environmental", "wastewater": "💧 Wastewater",
-        "food_production": "🍖 Food Prod."
-    }
+    display_names = {"clinical":"🏥 Clinical","agricultural":"🌾 Agricultural","environmental":"🌿 Environmental","wastewater":"💧 Wastewater","food_production":"🍖 Food Prod."}
     matrix_data = []
-    row_labels = []
+    row_labels   = []
     for orig in origins:
         bench = REFERENCE_BENCHMARKS[orig]
-        row = [bench.get(cls, 0) for cls in drug_classes]
-        matrix_data.append(row)
-        row_labels.append(display_names.get(orig, orig))
-    sample_row = [sample_profile_norm.get(cls, 0) for cls in drug_classes]
-    matrix_data.append(sample_row)
+        matrix_data.append([bench.get(cls,0) for cls in drug_classes])
+        row_labels.append(display_names.get(orig,orig))
+    matrix_data.append([sample_profile_norm.get(cls,0) for cls in drug_classes])
     row_labels.append(f"🎯 {organism_name[:18]}")
     matrix = np.array(matrix_data)
-
-    fig, axes = plt.subplots(1, 2, figsize=(18, 7), gridspec_kw={'width_ratios': [3, 1]})
+    fig, axes = plt.subplots(1,2,figsize=(18,7),gridspec_kw={'width_ratios':[3,1]})
     fig.patch.set_facecolor('#0e1117')
-    ax = axes[0]
-    ax.set_facecolor('#0e1117')
-    im = ax.imshow(matrix, cmap='RdYlGn_r', aspect='auto', vmin=0, vmax=1)
-    ax.set_xticks(range(len(drug_classes)))
-    ax.set_xticklabels(drug_classes, rotation=40, ha='right', color='white', fontsize=9)
-    ax.set_yticks(range(len(row_labels)))
-    ax.set_yticklabels(row_labels, color='white', fontsize=10)
-    ax.set_title(f"Comparative Resistance Heatmap — {organism_name}", color='white', fontsize=13, pad=12)
+    ax = axes[0]; ax.set_facecolor('#0e1117')
+    im = ax.imshow(matrix,cmap='RdYlGn_r',aspect='auto',vmin=0,vmax=1)
+    ax.set_xticks(range(len(drug_classes))); ax.set_xticklabels(drug_classes,rotation=40,ha='right',color='white',fontsize=9)
+    ax.set_yticks(range(len(row_labels))); ax.set_yticklabels(row_labels,color='white',fontsize=10)
+    ax.set_title(f"Comparative Resistance Heatmap — {organism_name}",color='white',fontsize=13,pad=12)
     for j in range(len(drug_classes)):
-        ax.add_patch(plt.Rectangle((j-0.5, len(origins)-0.5), 1, 1, fill=False, edgecolor='#00d4ff', linewidth=2))
+        ax.add_patch(plt.Rectangle((j-0.5,len(origins)-0.5),1,1,fill=False,edgecolor='#00d4ff',linewidth=2))
     for i in range(len(row_labels)):
         for j in range(len(drug_classes)):
-            val = matrix[i, j]
-            txt_color = 'black' if 0.3 < val < 0.8 else 'white'
-            ax.text(j, i, f"{val:.2f}", ha='center', va='center', color=txt_color, fontsize=7.5, fontweight='bold')
-    cbar = plt.colorbar(im, ax=ax, fraction=0.02, pad=0.02)
-    cbar.set_label('Resistance Intensity (0=None, 1=Max)', color='white', fontsize=9)
+            val = matrix[i,j]
+            tc = 'black' if 0.3<val<0.8 else 'white'
+            ax.text(j,i,f"{val:.2f}",ha='center',va='center',color=tc,fontsize=7.5,fontweight='bold')
+    cbar = plt.colorbar(im,ax=ax,fraction=0.02,pad=0.02)
+    cbar.set_label('Resistance Intensity',color='white',fontsize=9)
     cbar.ax.yaxis.set_tick_params(color='white')
-    plt.setp(cbar.ax.yaxis.get_ticklabels(), color='white')
-
-    ax2 = axes[1]
-    ax2.set_facecolor('#0e1117')
+    plt.setp(cbar.ax.yaxis.get_ticklabels(),color='white')
+    ax2 = axes[1]; ax2.set_facecolor('#0e1117')
     selected_bench = REFERENCE_BENCHMARKS[selected_origin_key]
-    deltas = [sample_profile_norm.get(cls, 0) - selected_bench.get(cls, 0) for cls in drug_classes]
-    colors_bar = ['#ef4444' if d > 0 else '#10b981' for d in deltas]
-    ax2.barh(range(len(drug_classes)), deltas, color=colors_bar, alpha=0.85)
-    ax2.set_yticks(range(len(drug_classes)))
-    ax2.set_yticklabels(drug_classes, color='white', fontsize=9)
-    ax2.axvline(0, color='#94a3b8', linewidth=1.2, linestyle='--')
-    ax2.set_title(f"Δ vs {display_names.get(selected_origin_key,'')}\nReference", color='white', fontsize=11, pad=10)
-    ax2.tick_params(colors='white')
-    ax2.set_xlabel("Sample − Reference", color='#94a3b8', fontsize=9)
-    for spine in ax2.spines.values():
-        spine.set_edgecolor('#334155')
+    deltas = [sample_profile_norm.get(cls,0)-selected_bench.get(cls,0) for cls in drug_classes]
+    ax2.barh(range(len(drug_classes)),deltas,color=['#ef4444' if d>0 else '#10b981' for d in deltas],alpha=0.85)
+    ax2.set_yticks(range(len(drug_classes))); ax2.set_yticklabels(drug_classes,color='white',fontsize=9)
+    ax2.axvline(0,color='#94a3b8',linewidth=1.2,linestyle='--')
+    ax2.set_title(f"Δ vs {display_names.get(selected_origin_key,'')}\nReference",color='white',fontsize=11,pad=10)
+    ax2.tick_params(colors='white'); ax2.set_xlabel("Sample − Reference",color='#94a3b8',fontsize=9)
+    for spine in ax2.spines.values(): spine.set_edgecolor('#334155')
     plt.tight_layout()
     return fig
 
+
 def plot_radar_origin_comparison(sample_profile_norm, organism_name):
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
-    display_names = {
-        "clinical": "Clinical", "agricultural": "Agricultural",
-        "environmental": "Environmental", "wastewater": "Wastewater",
-        "food_production": "Food Prod."
-    }
-    palette = {
-        "clinical": "#ef4444", "agricultural": "#10b981",
-        "environmental": "#3b82f6", "wastewater": "#f59e0b",
-        "food_production": "#a78bfa"
-    }
+    display_names = {"clinical":"Clinical","agricultural":"Agricultural","environmental":"Environmental","wastewater":"Wastewater","food_production":"Food Prod."}
+    palette = {"clinical":"#ef4444","agricultural":"#10b981","environmental":"#3b82f6","wastewater":"#f59e0b","food_production":"#a78bfa"}
     fig = go.Figure()
     for orig, bench in REFERENCE_BENCHMARKS.items():
-        vals = [bench.get(cls, 0) for cls in drug_classes]
-        vals += [vals[0]]
-        fig.add_trace(go.Scatterpolar(
-            r=vals, theta=drug_classes + [drug_classes[0]],
-            mode='lines', name=display_names[orig],
-            line=dict(color=palette[orig], width=1.5, dash='dot'), opacity=0.6
-        ))
-    sample_vals = [sample_profile_norm.get(cls, 0) for cls in drug_classes]
-    sample_vals += [sample_vals[0]]
-    fig.add_trace(go.Scatterpolar(
-        r=sample_vals, theta=drug_classes + [drug_classes[0]],
-        mode='lines+markers', name=f"🎯 {organism_name[:20]}",
-        line=dict(color='#00d4ff', width=3),
-        marker=dict(size=6, color='#00d4ff'),
-        fill='toself', fillcolor='rgba(0,212,255,0.08)'
-    ))
-    fig.update_layout(
-        polar=dict(
-            bgcolor='#0e1117',
-            angularaxis=dict(tickcolor='white', color='white', linecolor='#334155'),
-            radialaxis=dict(visible=True, range=[0, 1], tickcolor='white', color='#94a3b8',
-                            gridcolor='#1e293b', linecolor='#334155')
-        ),
-        paper_bgcolor='#0e1117', plot_bgcolor='#0e1117', font_color='white',
-        legend=dict(bgcolor='rgba(15,23,42,0.8)', bordercolor='#334155', borderwidth=1),
-        margin=dict(l=60, r=60, t=40, b=40), height=480
-    )
+        vals = [bench.get(cls,0) for cls in drug_classes]+[[bench.get(cls,0) for cls in drug_classes][0]]
+        fig.add_trace(go.Scatterpolar(r=vals,theta=drug_classes+[drug_classes[0]],mode='lines',name=display_names[orig],line=dict(color=palette[orig],width=1.5,dash='dot'),opacity=0.6))
+    sv = [sample_profile_norm.get(cls,0) for cls in drug_classes]+[[sample_profile_norm.get(cls,0) for cls in drug_classes][0]]
+    fig.add_trace(go.Scatterpolar(r=sv,theta=drug_classes+[drug_classes[0]],mode='lines+markers',name=f"🎯 {organism_name[:20]}",line=dict(color='#00d4ff',width=3),marker=dict(size=6,color='#00d4ff'),fill='toself',fillcolor='rgba(0,212,255,0.08)'))
+    fig.update_layout(polar=dict(bgcolor='#0e1117',angularaxis=dict(tickcolor='white',color='white',linecolor='#334155'),radialaxis=dict(visible=True,range=[0,1],tickcolor='white',color='#94a3b8',gridcolor='#1e293b',linecolor='#334155')),paper_bgcolor='#0e1117',plot_bgcolor='#0e1117',font_color='white',legend=dict(bgcolor='rgba(15,23,42,0.8)',bordercolor='#334155',borderwidth=1),margin=dict(l=60,r=60,t=40,b=40),height=480)
     return fig
+
 
 def compute_origin_affinity_scores(sample_profile_norm, genes, mri):
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
     scores = {}
     for orig, bench in REFERENCE_BENCHMARKS.items():
-        vec_sample = np.array([sample_profile_norm.get(cls, 0) for cls in drug_classes])
-        vec_bench  = np.array([bench.get(cls, 0) for cls in drug_classes])
-        dist = np.linalg.norm(vec_sample - vec_bench)
-        mri_diff = abs(mri - bench.get("avg_mri", 0.3))
-        gene_diff = abs(genes - bench.get("avg_genes", 50)) / max(bench.get("avg_genes", 50), 1)
-        raw = dist * 0.5 + mri_diff * 0.3 + gene_diff * 0.2
-        scores[orig] = raw
+        vec_s = np.array([sample_profile_norm.get(cls,0) for cls in drug_classes])
+        vec_b = np.array([bench.get(cls,0) for cls in drug_classes])
+        dist  = np.linalg.norm(vec_s - vec_b)
+        mri_diff  = abs(mri - bench.get("avg_mri",0.3))
+        gene_diff = abs(genes - bench.get("avg_genes",50)) / max(bench.get("avg_genes",50),1)
+        scores[orig] = dist*0.5 + mri_diff*0.3 + gene_diff*0.2
     max_s = max(scores.values()) or 1
-    affinity = {k: round((1 - v / max_s) * 100, 1) for k, v in scores.items()}
-    return affinity
+    return {k: round((1-v/max_s)*100,1) for k,v in scores.items()}
+
 
 def generate_origin_insights(sample_profile_norm, selected_origin_key, affinity_scores, organism_name, mri, genes):
-    bench = REFERENCE_BENCHMARKS[selected_origin_key]
     drug_classes = list(DRUG_CLASS_KEYWORDS.keys())
-    origin_display = {
-        "clinical": "Clinical/Hospital", "agricultural": "Agricultural/Livestock",
-        "environmental": "Environmental/Soil", "wastewater": "Wastewater/Sewage",
-        "food_production": "Food Production"
-    }
+    origin_display = {"clinical":"Clinical/Hospital","agricultural":"Agricultural/Livestock","environmental":"Environmental/Soil","wastewater":"Wastewater/Sewage","food_production":"Food Production"}
+    bench = REFERENCE_BENCHMARKS[selected_origin_key]
     high_excess, high_deficit = [], []
     for cls in drug_classes:
-        delta = sample_profile_norm.get(cls, 0) - bench.get(cls, 0)
-        if delta > 0.2:   high_excess.append((cls, delta))
-        elif delta < -0.2: high_deficit.append((cls, abs(delta)))
-    high_excess.sort(key=lambda x: -x[1])
-    high_deficit.sort(key=lambda x: -x[1])
+        delta = sample_profile_norm.get(cls,0) - bench.get(cls,0)
+        if delta > 0.2:    high_excess.append((cls,delta))
+        elif delta < -0.2: high_deficit.append((cls,abs(delta)))
+    high_excess.sort(key=lambda x:-x[1]); high_deficit.sort(key=lambda x:-x[1])
     best_origin = max(affinity_scores, key=affinity_scores.get)
     return {
-        "best_match": (origin_display.get(best_origin, best_origin), affinity_scores[best_origin]),
-        "selected_match": (origin_display.get(selected_origin_key, selected_origin_key), affinity_scores[selected_origin_key]),
+        "best_match": (origin_display.get(best_origin,best_origin), affinity_scores[best_origin]),
+        "selected_match": (origin_display.get(selected_origin_key,selected_origin_key), affinity_scores[selected_origin_key]),
         "excess_classes": high_excess[:3],
         "deficit_classes": high_deficit[:3],
-        "mri_vs_bench": mri - bench.get("avg_mri", 0.3),
-        "gene_vs_bench": genes - bench.get("avg_genes", 50)
+        "mri_vs_bench": mri - bench.get("avg_mri",0.3),
+        "gene_vs_bench": genes - bench.get("avg_genes",50)
     }
 
-# ==========================================
-# FIX 3: PDF GENERATOR — with Origin Heatmap section
-# ==========================================
+
 def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, icon,
                                 records, dashboard_fig, bac_info, habitat,
                                 ai_pred_text, ai_conf_text, origin_label="Unknown",
                                 affinity_scores=None, drug_profile_norm=None,
                                 selected_origin_key="clinical", heatmap_fig=None):
     pdf_file = f"{bac_name.replace('.json','')}_Detailed_Report.pdf"
-    doc = SimpleDocTemplate(pdf_file, pagesize=letter,
-                            rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
+    doc = SimpleDocTemplate(pdf_file,pagesize=letter,rightMargin=30,leftMargin=30,topMargin=30,bottomMargin=30)
     styles = getSampleStyleSheet()
-    title_style = ParagraphStyle(name='TitleStyle', parent=styles['Heading1'],
-                                 fontSize=18, spaceAfter=15, textColor=colors.HexColor('#1E3A8A'))
-    h2_style = ParagraphStyle(name='H2', parent=styles['Heading2'],
-                              fontSize=14, spaceBefore=15, spaceAfter=8, textColor=colors.HexColor('#2E86C1'))
-    h3_style = ParagraphStyle(name='H3', parent=styles['Heading3'],
-                              fontSize=12, spaceBefore=10, spaceAfter=6, textColor=colors.HexColor('#1a7a3a'))
+    title_style  = ParagraphStyle(name='TitleStyle',parent=styles['Heading1'],fontSize=18,spaceAfter=15,textColor=colors.HexColor('#1E3A8A'))
+    h2_style     = ParagraphStyle(name='H2',parent=styles['Heading2'],fontSize=14,spaceBefore=15,spaceAfter=8,textColor=colors.HexColor('#2E86C1'))
+    h3_style     = ParagraphStyle(name='H3',parent=styles['Heading3'],fontSize=12,spaceBefore=10,spaceAfter=6,textColor=colors.HexColor('#1a7a3a'))
     normal_style = styles['Normal']
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
     t_drugs, t_mechs = len(drug), len(mech)
     elements = []
 
-    # ── Title & Executive Summary ──
     elements.append(Paragraph(f"AI-MRI Report: {bac_name.replace('.json','')}", title_style))
     elements.append(Paragraph("Executive Summary & AI Analysis", h2_style))
     summary_text = (
@@ -862,197 +1886,89 @@ def create_advanced_pdf_report(bac_name, genes, drug, mech, mri, ari, level, ico
         f"<b>Resistance Mechanisms:</b> {u_mechs}<br/>"
         f"<b>MRI Score:</b> {round(mri,3)} ({level})<br/>"
         f"<b>ARI Score:</b> {round(ari,3)}<br/><br/>"
-        f"<b>Machine Learning Prediction:</b> {ai_pred_text} Risk<br/>"
-        f"<b>Confidence Distribution:</b> {ai_conf_text}"
+        f"<b>ML Prediction:</b> {ai_pred_text} Risk<br/>"
+        f"<b>Confidence:</b> {ai_conf_text}"
     )
     elements.append(Paragraph(summary_text, normal_style))
-    elements.append(Spacer(1, 15))
-
-    # ── Metric Definitions ──
+    elements.append(Spacer(1,15))
     elements.append(Paragraph("Metric Definitions & Clinical Significance", h2_style))
-    elements.append(Paragraph(
-        "<b>Pathogen Profile:</b> Establishes the essential biological and ecological context.<br/><br/>"
-        "<b>Total Resistance Genes:</b> Absolute count of ARGs identified within the sequenced genomic data.<br/><br/>"
-        "<b>Drug Classes Resisted & Mechanisms Deployed:</b> Enumerates the distinct pharmaceutical classes and molecular strategies.<br/><br/>"
-        "<b>AI Prediction & Confidence Distribution:</b> Random Forest probabilistic classification trained on reference genomic profiles.<br/><br/>"
-        "<b>Origin Label & Comparative Heatmap:</b> Assigns the isolate to one of five environmental/clinical origin categories, "
-        "then benchmarks its drug-class resistance intensity against curated reference databases for that category. "
-        "Elevated delta scores (red cells) indicate resistance patterns exceeding the expected baseline for the labelled source.",
-        normal_style))
-    elements.append(Paragraph("Clinical Rationale for MRI and ARI Frameworks", h2_style))
-    elements.append(Paragraph(
-        "The <b>ARI</b> measures resistance density — how efficiently the organism converts its gene count into functional resistance. "
-        "The <b>MRI</b> consolidates breadth and depth into a single normalized score enabling rapid inter-species triage.",
-        normal_style))
-
-    elements.append(PageBreak())
-
-    # ── Mathematical Derivations ──
+    elements.append(Paragraph("<b>MRI:</b> Consolidates resistance breadth and depth into a single normalized score.<br/><b>ARI:</b> Measures resistance density — efficiency of gene-to-mechanism conversion.", normal_style))
     elements.append(Paragraph("Mathematical Derivations", h2_style))
-    elements.append(Paragraph(
-        f"<b>MRI:</b> ({u_drugs} + {u_mechs}) / ({t_drugs} + {t_mechs} + 1) = <b>{round(mri,3)}</b><br/>"
-        f"<b>ARI:</b> {u_mechs} / ({genes} + 1) = <b>{round(ari,3)}</b>",
-        normal_style))
+    elements.append(Paragraph(f"<b>MRI:</b> ({u_drugs}+{u_mechs})/({t_drugs}+{t_mechs}+1) = <b>{round(mri,3)}</b><br/><b>ARI:</b> {u_mechs}/({genes}+1) = <b>{round(ari,3)}</b>", normal_style))
     elements.append(Paragraph("Risk Assessment Interpretation", h2_style))
-    elements.append(Paragraph(get_risk_reason(level, u_drugs, u_mechs), normal_style))
+    elements.append(Paragraph(get_risk_reason(level,u_drugs,u_mechs), normal_style))
 
-    # ── Dashboard ──
     elements.append(Paragraph("Systems Analysis Dashboard", h2_style))
     buf = io.BytesIO()
     dashboard_fig.patch.set_facecolor('white')
     for ax_item in dashboard_fig.axes:
-        ax_item.set_facecolor('white')
-        ax_item.tick_params(colors='black')
-        ax_item.title.set_color('black')
-        for text in ax_item.texts:
-            text.set_color('black')
-    dashboard_fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
+        ax_item.set_facecolor('white'); ax_item.tick_params(colors='black'); ax_item.title.set_color('black')
+        for text in ax_item.texts: text.set_color('black')
+    dashboard_fig.savefig(buf,format='png',bbox_inches='tight',dpi=150)
     buf.seek(0)
-    elements.append(RLImage(buf, width=7.5*inch, height=5*inch))
-
+    elements.append(RLImage(buf,width=7.5*inch,height=5*inch))
     elements.append(PageBreak())
 
-    # ── FIX: ORIGIN ANALYSIS SECTION IN PDF ──
     elements.append(Paragraph("Genomic Origin Analysis", h2_style))
+    origin_display_names = {"clinical":"Clinical / Hospital","agricultural":"Agricultural / Livestock","environmental":"Environmental / Soil","wastewater":"Wastewater / Sewage","food_production":"Food Production"}
+    elements.append(Paragraph(f"<b>Assigned Origin Label:</b> {origin_label}<br/><b>Reference Population:</b> {origin_display_names.get(selected_origin_key,selected_origin_key)}", normal_style))
+    elements.append(Spacer(1,10))
 
-    origin_display_names = {
-        "clinical": "Clinical / Hospital", "agricultural": "Agricultural / Livestock",
-        "environmental": "Environmental / Soil", "wastewater": "Wastewater / Sewage",
-        "food_production": "Food Production"
-    }
-
-    elements.append(Paragraph(
-        f"<b>Assigned Origin Label:</b> {origin_label}<br/>"
-        f"<b>Reference Comparison Population:</b> {origin_display_names.get(selected_origin_key, selected_origin_key)}",
-        normal_style))
-    elements.append(Spacer(1, 10))
-
-    # Affinity scores table
     if affinity_scores:
         elements.append(Paragraph("Origin Affinity Scores (0–100)", h3_style))
-        elements.append(Paragraph(
-            "Each score reflects how closely this isolate's resistance profile matches a reference population. "
-            "The score is computed as a weighted composite of: (1) Euclidean distance across 12 standardised drug classes [50%], "
-            "(2) MRI proximity to the reference population mean [30%], and (3) gene count proximity to the reference mean [20%]. "
-            "Scores are inverted and normalised to 0–100 where <b>100 = perfect match</b> and <b>0 = maximally dissimilar</b>. "
-            "A score above 70 indicates strong source attribution confidence; below 40 indicates a mixed or atypical resistance profile.",
-            normal_style))
-        elements.append(Spacer(1, 8))
-
-        aff_table_data = [["Origin Population", "Affinity Score (/100)", "Interpretation"]]
-        for orig_key, score in affinity_scores.items():
-            disp = origin_display_names.get(orig_key, orig_key)
-            if score >= 70:   interp = "Strong match"
-            elif score >= 50: interp = "Moderate match"
-            elif score >= 30: interp = "Weak match"
-            else:             interp = "Dissimilar"
+        aff_table_data = [["Origin Population","Affinity Score (/100)","Interpretation"]]
+        for ok, score in affinity_scores.items():
+            disp  = origin_display_names.get(ok,ok)
+            interp = "Strong match" if score>=70 else "Moderate match" if score>=50 else "Weak match" if score>=30 else "Dissimilar"
             is_best = score == max(affinity_scores.values())
-            label = f"{'★ BEST — ' if is_best else ''}{disp}"
-            aff_table_data.append([label, f"{score}/100", interp])
-
-        aff_table = Table(aff_table_data, colWidths=[2.8*inch, 1.8*inch, 2.2*inch])
-        aff_table.setStyle(TableStyle([
-            ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-            ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-            ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-            ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-            ('BOTTOMPADDING', (0,0), (-1,0), 10),
-            ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F0F8FF')),
-            ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-            ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-            ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#F0F8FF'), colors.HexColor('#FFFFFF')]),
-        ]))
+            aff_table_data.append([f"{'★ BEST — ' if is_best else ''}{disp}", f"{score}/100", interp])
+        aff_table = Table(aff_table_data,colWidths=[2.8*inch,1.8*inch,2.2*inch])
+        aff_table.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#2E86C1')),('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),('ALIGN',(0,0),(-1,-1),'LEFT'),('GRID',(0,0),(-1,-1),0.5,colors.grey),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.HexColor('#F0F8FF'),colors.HexColor('#FFFFFF')])]))
         elements.append(aff_table)
-        elements.append(Spacer(1, 15))
+        elements.append(Spacer(1,15))
 
-    # Drug-class resistance vs benchmark table
     if drug_profile_norm and selected_origin_key:
         elements.append(Paragraph(f"Drug-Class Resistance vs {origin_display_names.get(selected_origin_key,'')} Reference", h3_style))
-        elements.append(Paragraph(
-            "The table below compares the sample's normalised resistance intensity (0–1) against the curated reference benchmark "
-            "for each of the 12 standardised drug classes. Delta values above +0.2 (excess) indicate significantly elevated "
-            "resistance relative to the reference; values below −0.2 (deficit) suggest potential therapeutic candidates.",
-            normal_style))
-        elements.append(Spacer(1, 8))
-
         bench_ref = REFERENCE_BENCHMARKS[selected_origin_key]
-        drug_table_data = [["Drug Class", "Sample Intensity", "Reference Benchmark", "Delta", "Status"]]
+        drug_table_data = [["Drug Class","Sample","Reference","Delta","Status"]]
         for cls in DRUG_CLASS_KEYWORDS.keys():
-            sample_val = round(drug_profile_norm.get(cls, 0), 3)
-            ref_val    = round(bench_ref.get(cls, 0), 3)
-            delta      = round(sample_val - ref_val, 3)
-            if delta > 0.2:    status = "⬆ ELEVATED"
-            elif delta < -0.2: status = "⬇ LOWER"
-            else:              status = "≈ Similar"
-            drug_table_data.append([cls, str(sample_val), str(ref_val),
-                                     f"{'+' if delta>=0 else ''}{delta}", status])
-
-        drug_table = Table(drug_table_data, colWidths=[1.6*inch, 1.3*inch, 1.7*inch, 1.0*inch, 1.2*inch])
-        drug_table.setStyle(TableStyle([
-            ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1a7a3a')),
-            ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-            ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-            ('ALIGN', (0,0), (-1,-1), 'CENTER'),
-            ('ALIGN', (0,0), (0,-1), 'LEFT'),
-            ('BOTTOMPADDING', (0,0), (-1,0), 10),
-            ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-            ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-            ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#F0FFF4'), colors.HexColor('#FFFFFF')]),
-            ('FONTSIZE', (0,0), (-1,-1), 8),
-        ]))
+            sv = round(drug_profile_norm.get(cls,0),3)
+            rv = round(bench_ref.get(cls,0),3)
+            dv = round(sv-rv,3)
+            status = "⬆ ELEVATED" if dv>0.2 else "⬇ LOWER" if dv<-0.2 else "≈ Similar"
+            drug_table_data.append([cls,str(sv),str(rv),f"{'+' if dv>=0 else ''}{dv}",status])
+        drug_table = Table(drug_table_data,colWidths=[1.6*inch,1.3*inch,1.7*inch,1.0*inch,1.2*inch])
+        drug_table.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#1a7a3a')),('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),('ALIGN',(0,0),(-1,-1),'CENTER'),('GRID',(0,0),(-1,-1),0.5,colors.grey),('FONTSIZE',(0,0),(-1,-1),8)]))
         elements.append(drug_table)
-        elements.append(Spacer(1, 15))
+        elements.append(Spacer(1,15))
 
-    # Heatmap image in PDF
     if heatmap_fig is not None:
         elements.append(Paragraph("Comparative Resistance Heatmap", h3_style))
-        elements.append(Paragraph(
-            "Visual comparison of drug-class resistance intensity across all five reference origin populations and the target sample. "
-            "Red cells indicate high resistance; green cells indicate low resistance. "
-            "The sample row is highlighted with a cyan border. "
-            "The delta bar chart (right panel) shows sample intensity minus the selected reference benchmark.",
-            normal_style))
         heatmap_buf = io.BytesIO()
         heatmap_fig.patch.set_facecolor('white')
         for ax_item in heatmap_fig.axes:
-            ax_item.set_facecolor('white')
-            ax_item.tick_params(colors='black')
-            if ax_item.title:
-                ax_item.title.set_color('black')
+            ax_item.set_facecolor('white'); ax_item.tick_params(colors='black')
+            if ax_item.title: ax_item.title.set_color('black')
             ax_item.xaxis.label.set_color('black')
-            for spine in ax_item.spines.values():
-                spine.set_edgecolor('black')
-        heatmap_fig.savefig(heatmap_buf, format='png', bbox_inches='tight', dpi=150, facecolor='white')
+            for spine in ax_item.spines.values(): spine.set_edgecolor('black')
+        heatmap_fig.savefig(heatmap_buf,format='png',bbox_inches='tight',dpi=150,facecolor='white')
         heatmap_buf.seek(0)
-        elements.append(RLImage(heatmap_buf, width=7.5*inch, height=3.5*inch))
-
+        elements.append(RLImage(heatmap_buf,width=7.5*inch,height=3.5*inch))
     elements.append(PageBreak())
 
-    # ── Gene Ledger ──
     elements.append(Paragraph("Complete Gene Resistance Ledger", h2_style))
     table_data = [["Gene Name","Drug Classes Resisted","Mechanisms Deployed","Habitat"]]
     for g,d,m,h in records:
-        table_data.append([
-            Paragraph(g, normal_style), Paragraph(d, normal_style),
-            Paragraph(m, normal_style), Paragraph(h, normal_style)
-        ])
-    t = Table(table_data, colWidths=[1.2*inch, 2.2*inch, 2.2*inch, 0.9*inch])
-    t.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#2E86C1')),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0,0), (-1,0), 12),
-        ('BACKGROUND', (0,1), (-1,-1), colors.HexColor('#F8F9F9')),
-        ('GRID', (0,0), (-1,-1), 1, colors.black),
-        ('VALIGN', (0,0), (-1,-1), 'TOP')
-    ]))
+        table_data.append([Paragraph(g,normal_style),Paragraph(d,normal_style),Paragraph(m,normal_style),Paragraph(h,normal_style)])
+    t = Table(table_data,colWidths=[1.2*inch,2.2*inch,2.2*inch,0.9*inch])
+    t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#2E86C1')),('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),('ALIGN',(0,0),(-1,-1),'LEFT'),('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),('BOTTOMPADDING',(0,0),(-1,0),12),('BACKGROUND',(0,1),(-1,-1),colors.HexColor('#F8F9F9')),('GRID',(0,0),(-1,-1),1,colors.black),('VALIGN',(0,0),(-1,-1),'TOP')]))
     elements.append(t)
     doc.build(elements)
     return pdf_file
 
+
 # ==========================================
-# 5. SPLASH SCREEN
+# SPLASH SCREEN
 # ==========================================
 if 'show_splash' not in st.session_state:
     st.session_state.show_splash = True
@@ -1076,7 +1992,7 @@ if st.session_state.show_splash:
       <p class="sp-desc">The world's most advanced quantitative framework for decoding antibiotic resistance genes. We transform raw genomic data into actionable clinical intelligence — instantly, accurately, and at scale.</p>
       <div class="sp-stats">
         <div class="sp-stat"><span class="sp-stat-num">2</span><span class="sp-stat-lbl">Novel Indices</span></div>
-        <div class="sp-stat"><span class="sp-stat-num">9</span><span class="sp-stat-lbl">Modules</span></div>
+        <div class="sp-stat"><span class="sp-stat-num">10</span><span class="sp-stat-lbl">Modules</span></div>
         <div class="sp-stat"><span class="sp-stat-num">100+</span><span class="sp-stat-lbl">Genomes</span></div>
         <div class="sp-stat"><span class="sp-stat-num">7</span><span class="sp-stat-lbl">Researchers</span></div>
       </div>
@@ -1091,15 +2007,16 @@ if st.session_state.show_splash:
       <div class="sp-divider"></div>
     </div>
     <div class="sp-feat-grid" style="background:#020b18;">
-      <div class="sp-feat-card"><span class="sp-feat-icon">🦠</span><div class="sp-feat-title">Genomic ARG Profiling</div><div class="sp-feat-desc">Deep extraction and classification of all Antibiotic Resistance Genes from CARD-format data. Every gene, every drug class, every mechanism — catalogued precisely.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">📐</span><div class="sp-feat-title">MRI &amp; ARI Calculation</div><div class="sp-feat-desc">Proprietary indices transform complex gene counts into a single, instantly interpretable risk score using Laplace-smoothed mathematics.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">🤖</span><div class="sp-feat-title">Random Forest AI Prediction</div><div class="sp-feat-desc">Machine learning classifies any pathogen as LOW, MODERATE, or HIGH risk with full probability confidence scores — even for novel strains.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">🕸️</span><div class="sp-feat-title">Interactive Gene Network</div><div class="sp-feat-desc">Visualize the full resistance topology as a live, draggable network graph with filter and selection menus.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">🌌</span><div class="sp-feat-title">3D Landscape PCA</div><div class="sp-feat-desc">Rotate a 3-dimensional scatter map comparing your target genome against every pathogen in the database across resistance axes.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers — providing an instant safe-zone shortlist for treatment consideration.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Ask questions about any genome in plain English. Gemini-powered AI with full genomic context automatically loaded.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">🗺️</span><div class="sp-feat-title">Origin Labeling &amp; Heatmaps</div><div class="sp-feat-desc">Label isolates by source — clinical, agricultural, environmental, wastewater, or food — and instantly compare resistance profiles against curated environmental benchmarks via interactive heatmaps and radar charts.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive, publication-ready PDF report with executive summaries, math proofs, dashboards, origin heatmap, affinity scores, and gene ledgers in one click.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🦠</span><div class="sp-feat-title">Genomic ARG Profiling</div><div class="sp-feat-desc">Deep extraction and classification of all Antibiotic Resistance Genes from CARD-format data.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📐</span><div class="sp-feat-title">MRI &amp; ARI Calculation</div><div class="sp-feat-desc">Proprietary indices transform complex gene counts into a single, instantly interpretable risk score.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🤖</span><div class="sp-feat-title">Random Forest AI Prediction</div><div class="sp-feat-desc">Machine learning classifies any pathogen as LOW, MODERATE, or HIGH risk with full confidence scores.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🕸️</span><div class="sp-feat-title">Interactive Gene Network</div><div class="sp-feat-desc">Visualize the full resistance topology as a live, draggable network graph.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🌌</span><div class="sp-feat-title">3D Landscape PCA</div><div class="sp-feat-desc">3-dimensional scatter map comparing your target genome against every pathogen in the database.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🩺</span><div class="sp-feat-title">Clinical Susceptibility Zones</div><div class="sp-feat-desc">Automatically identifies drug classes with zero resistance markers.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">💬</span><div class="sp-feat-title">J.A.R.V.I.S. Bio-AI Chat</div><div class="sp-feat-desc">Gemini-powered AI with full genomic context automatically loaded.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🗺️</span><div class="sp-feat-title">Origin Labeling &amp; Heatmaps</div><div class="sp-feat-desc">Label isolates by source and compare resistance profiles against curated environmental benchmarks.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive publication-ready PDF report with origin heatmap, affinity scores, and gene ledgers.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">🧫</span><div class="sp-feat-title">Virtual Lab Simulation</div><div class="sp-feat-desc">Full phenotypic simulation — culture curves, 96-well MIC plates, Gram stain microscopy, and AI vs lab comparison for 20 bacterial species.</div></div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1107,38 +2024,15 @@ if st.session_state.show_splash:
     <div class="sp-unique-section" style="background:#020b18;">
       <div class="sp-section-title">Why We Stand Apart</div>
       <div class="sp-divider"></div>
-      <div class="sp-compare">
-        <div class="sp-comp-card sp-comp-old">
-          <div class="sp-comp-title">❌ Traditional AMR Tools</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> Output raw gene lists — clinicians must manually interpret hundreds of genes.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> No unified index to compare pathogen severity across species.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> Require bioinformatics expertise — inaccessible to clinical staff.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> Static reports with no interactivity or network exploration.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> No AI chatbot for natural language genomic queries.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> No ML prediction for unknown or novel strains.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> Cannot identify safe drug zones automatically.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✗</span> No origin labeling or cross-environment comparative analysis.</div>
-        </div>
-        <div class="sp-comp-card sp-comp-new">
-          <div class="sp-comp-title">✅ AI-MRI Hub</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Proprietary MRI and ARI compress all genomic data into a single, instantly readable risk number.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Cross-species, cross-habitat standardized scoring enables true pathogen comparison.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Zero bioinformatics expertise required — upload JSON, get full analysis in seconds.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Live interactive networks and 3D PCA landscape for spatial resistance topology.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> J.A.R.V.I.S. AI chatbot with genome-aware context injected automatically.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Random Forest model predicts risk of completely unknown pathogens.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Automatic clinical susceptibility zone detection identifies zero-resistance drugs instantly.</div>
-          <div class="sp-comp-item"><span class="sp-chk">✓</span> Origin labeling + comparative heatmaps + affinity scores + drug-class delta table all in the PDF report.</div>
-        </div>
-      </div>
       <div class="sp-pillars">
-        <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks. No published tool uses both simultaneously.</div></div>
-        <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions — a spatial view no standard AMR tool offers.</div></div>
-        <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores and gene counts into every query — real data, not generic biology.</div></div>
-        <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive graphs render gene-to-mechanism relationships as a live filterable topology.</div></div>
-        <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic cross-references resisted classes against a clinical universe for treatment guidance.</div></div>
-        <div class="sp-pillar c6"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF compiles math, dashboards, origin heatmap, affinity scores, and ledgers into one document.</div></div>
-        <div class="sp-pillar c7"><span class="sp-pillar-icon">🗺️</span><div class="sp-pillar-title">Origin-Comparative Heatmaps</div><div class="sp-pillar-desc">Assign isolate origin and instantly benchmark it against 5 curated environmental reference databases via heatmaps, radar charts, and affinity scoring.</div></div>
+        <div class="sp-pillar c1"><span class="sp-pillar-icon">📐</span><div class="sp-pillar-title">Dual-Index Scoring</div><div class="sp-pillar-desc">MRI and ARI are original mathematical frameworks used simultaneously.</div></div>
+        <div class="sp-pillar c2"><span class="sp-pillar-icon">🌌</span><div class="sp-pillar-title">3D Resistance Landscape</div><div class="sp-pillar-desc">Plotly-powered PCA maps the entire database in 3 dimensions.</div></div>
+        <div class="sp-pillar c3"><span class="sp-pillar-icon">🤖</span><div class="sp-pillar-title">Context-Aware AI Chat</div><div class="sp-pillar-desc">J.A.R.V.I.S. auto-injects MRI scores into every query.</div></div>
+        <div class="sp-pillar c4"><span class="sp-pillar-icon">🕸️</span><div class="sp-pillar-title">Live Mechanism Networks</div><div class="sp-pillar-desc">PyVis-powered interactive gene-to-mechanism topology.</div></div>
+        <div class="sp-pillar c5"><span class="sp-pillar-icon">🩺</span><div class="sp-pillar-title">Safe-Zone Clinical Logic</div><div class="sp-pillar-desc">Genomic exclusion logic for instant treatment guidance.</div></div>
+        <div class="sp-pillar c6"><span class="sp-pillar-icon">🗺️</span><div class="sp-pillar-title">Origin-Comparative Heatmaps</div><div class="sp-pillar-desc">Benchmark isolates against 5 curated environmental databases.</div></div>
+        <div class="sp-pillar c7"><span class="sp-pillar-icon">📄</span><div class="sp-pillar-title">One-Click Master Reports</div><div class="sp-pillar-desc">ReportLab PDF with math, dashboards, heatmaps, and ledgers.</div></div>
+        <div class="sp-pillar c8"><span class="sp-pillar-icon">🧫</span><div class="sp-pillar-title">Virtual Lab Simulation</div><div class="sp-pillar-desc">Simulate culture, MIC plates, Gram stain, and AI vs lab comparison for 20 bacterial species.</div></div>
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1148,18 +2042,13 @@ if st.session_state.show_splash:
       <div class="sp-section-title">Meet the Team</div>
       <div class="sp-divider"></div>
       <div class="sp-team-grid">
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack Streamlit architecture, MRI/ARI mathematical framework, and AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction logic, and bacterial classification system.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA landscape, and Matplotlib 6-panel dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">Complete CSS design system, dark-mode aesthetic, and animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class universe mapping, and MRI clinical validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection, and multi-session state management.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
-        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF &amp; Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation, and academic framework write-up.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
-      </div>
-      <div class="sp-mission-row">
-        <div class="sp-mission-card"><div class="sp-mission-title">🎯 Mission</div><div class="sp-mission-text">Democratize antibiotic resistance genomics through open, intelligent, and beautifully designed scientific tools any researcher or clinician can use.</div></div>
-        <div class="sp-mission-card"><div class="sp-mission-title">🔬 Methods</div><div class="sp-mission-text">Rigorous mathematical indexing (MRI, ARI), validated machine learning classification, evidence-based clinical susceptibility mapping, and iterative peer review.</div></div>
-        <div class="sp-mission-card"><div class="sp-mission-title">🌍 Vision</div><div class="sp-mission-text">Every hospital and research lab equipped with instant AI-driven resistance profiling — making the next superbug detectable before it becomes untreatable.</div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(0,212,255,0.1);">👨‍💻</div><div class="sp-tname">Hardik Agrawal</div><div class="sp-trole">Lead Developer</div><div class="sp-tdesc">Full-stack architecture, MRI/ARI framework, AI prediction pipeline.</div><div class="sp-ttags"><span class="sp-ttag">Python</span><span class="sp-ttag">ML</span><span class="sp-ttag">Streamlit</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(236,72,153,0.1);">👩‍🔬</div><div class="sp-tname">Poorva Dongarkar</div><div class="sp-trole">Genomics Analyst</div><div class="sp-tdesc">CARD database integration, ARG extraction, bacterial classification.</div><div class="sp-ttags"><span class="sp-ttag">Genomics</span><span class="sp-ttag">AMR</span><span class="sp-ttag">Data</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(16,185,129,0.1);">👨‍🔬</div><div class="sp-tname">Yashraj Patil</div><div class="sp-trole">Visualization Engineer</div><div class="sp-tdesc">PyVis networks, Plotly 3D PCA, Matplotlib dashboard.</div><div class="sp-ttags"><span class="sp-ttag">PyVis</span><span class="sp-ttag">Plotly</span><span class="sp-ttag">Matplotlib</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(245,158,11,0.1);">👩‍💻</div><div class="sp-tname">Avani Laswante</div><div class="sp-trole">UI/UX Designer</div><div class="sp-tdesc">CSS design system, dark-mode aesthetic, animated visual identity.</div><div class="sp-ttags"><span class="sp-ttag">CSS</span><span class="sp-ttag">UI/UX</span><span class="sp-ttag">Design</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(139,92,246,0.1);">👩‍🔬</div><div class="sp-tname">Zeel Bhanushali</div><div class="sp-trole">Clinical Research</div><div class="sp-tdesc">Clinical susceptibility logic, drug-class mapping, MRI validation.</div><div class="sp-ttags"><span class="sp-ttag">Microbiology</span><span class="sp-ttag">Pharmacology</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(6,182,212,0.1);">👩‍💻</div><div class="sp-tname">Aayushi Wasnik</div><div class="sp-trole">AI Integration</div><div class="sp-tdesc">J.A.R.V.I.S. chatbot, Gemini API, context injection.</div><div class="sp-ttags"><span class="sp-ttag">Gemini API</span><span class="sp-ttag">LLM</span><span class="sp-ttag">Prompt Eng.</span></div></div>
+        <div class="sp-team-card"><div class="sp-avatar" style="background:rgba(244,63,94,0.1);">👨‍🔬</div><div class="sp-tname">Indranil Patil</div><div class="sp-trole">PDF &amp; Documentation</div><div class="sp-tdesc">ReportLab PDF pipeline, mathematical documentation.</div><div class="sp-ttags"><span class="sp-ttag">ReportLab</span><span class="sp-ttag">LaTeX</span><span class="sp-ttag">Writing</span></div></div>
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1179,8 +2068,9 @@ if st.session_state.show_splash:
             st.rerun()
     st.stop()
 
+
 # ==========================================
-# 6. MAIN APPLICATION
+# MAIN APPLICATION
 # ==========================================
 st.markdown("""
 <div class="main-header">
@@ -1205,7 +2095,7 @@ with st.sidebar:
     st.header("🗄️ Database Sync")
     if st.button("🔄 Refresh Database"):
         st.rerun()
-    json_files = [f for f in os.listdir('.') if f.endswith('.json')]
+    json_files    = [f for f in os.listdir('.') if f.endswith('.json')]
     analysis_mode = st.radio("Mode:", ["Select Known Bacteria", "AI Predict Unknown"])
     if analysis_mode == "Select Known Bacteria":
         selected_file = st.selectbox("Select a Genome:", json_files)
@@ -1215,74 +2105,60 @@ with st.sidebar:
 if analysis_mode == "Select Known Bacteria" and json_files:
     genes, drug, mech, mri, ari, records = extract_data(selected_file)
     u_drugs, u_mechs = len(set(drug)), len(set(mech))
-    level, icon = get_level(mri)
-    habitat = get_habitat(selected_file)
-    bac_info = get_bacteria_info(selected_file)
+    level, icon      = get_level(mri)
+    habitat          = get_habitat(selected_file)
+    bac_info         = get_bacteria_info(selected_file)
 
-    # Compute drug class profile — done ONCE outside tabs to avoid NameError
-    drug_profile = build_drug_class_profile(drug)
+    drug_profile      = build_drug_class_profile(drug)
     drug_profile_norm = normalize_profile(drug_profile, len(drug))
-
-    # Compute selected_origin_key ONCE outside tabs — fixes tab8 NameError
     selected_origin_key = st.session_state.origin_labels.get(selected_file, "clinical")
-
-    # Build dashboard fig ONCE outside tabs — fixes tab8 NameError
     fig = plot_full_dashboard(drug, mech, mri, genes, records, selected_file)
 
     if mri > 0.6:
         st.markdown(f'<div class="alert-banner">⚠️ CRITICAL ALERT: {selected_file} identified as High-Priority Superbug — MRI Score: {round(mri,3)}</div>', unsafe_allow_html=True)
 
-    rf_model = train_rf_model()
+    rf_model     = train_rf_model()
     ai_pred_text = "N/A"
     ai_conf_text = "N/A"
     if rf_model:
-        pred = rf_model.predict([[genes, u_drugs, u_mechs]])[0]
-        probs = rf_model.predict_proba([[genes, u_drugs, u_mechs]])[0]
-        classes = rf_model.classes_
-        conf_dict = {str(c): round(float(p), 3) for c, p in zip(classes, probs)}
+        pred      = rf_model.predict([[genes, u_drugs, u_mechs]])[0]
+        probs     = rf_model.predict_proba([[genes, u_drugs, u_mechs]])[0]
+        classes   = rf_model.classes_
+        conf_dict = {str(c): round(float(p),3) for c,p in zip(classes,probs)}
         ai_pred_text = str(pred)
-        ai_conf_text = str(conf_dict).replace("'", "")
+        ai_conf_text = str(conf_dict).replace("'","")
 
     m1, m2 = st.columns(2)
     m3, m4 = st.columns(2)
-    with m1:
-        st.markdown(f'<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>', unsafe_allow_html=True)
-    with m2:
-        st.markdown(f'<div class="metric-card"><div class="metric-label">MRI Score</div><div class="metric-value">{round(mri,3)}</div></div>', unsafe_allow_html=True)
-    with m3:
-        st.markdown(f'<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>', unsafe_allow_html=True)
-    with m4:
-        st.markdown(f'<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>', unsafe_allow_html=True)
-
+    with m1: st.markdown(f'<div class="metric-card"><div class="metric-label">Risk Level</div><div class="metric-value">{level} {icon}</div></div>', unsafe_allow_html=True)
+    with m2: st.markdown(f'<div class="metric-card"><div class="metric-label">MRI Score</div><div class="metric-value">{round(mri,3)}</div></div>', unsafe_allow_html=True)
+    with m3: st.markdown(f'<div class="metric-card"><div class="metric-label">Total Genes</div><div class="metric-value">{genes}</div></div>', unsafe_allow_html=True)
+    with m4: st.markdown(f'<div class="metric-card"><div class="metric-label">Habitat</div><div class="metric-value">{habitat}</div></div>', unsafe_allow_html=True)
     st.write(" ")
 
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+    # ── 10 TABS (added 🧫 Virtual Lab) ──
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
         "ℹ️ Summary", "📊 Dashboard", "🧮 Math", "🕸️ Network",
-        "🤖 AI Chat", "🩺 Clinical", "🗺️ Origin", "📄 PDF", "🌌 3D Map"
+        "🤖 AI Chat", "🩺 Clinical", "🗺️ Origin", "📄 PDF",
+        "🌌 3D Map", "🧫 Virtual Lab"
     ])
 
     with tab1:
-        section_explainer("ℹ️", "About This Tab",
-            "This section provides a high-level overview of the platform's capabilities and a detailed pathogen identification card for the selected genome. It summarises all key metrics — gram stain, disease associations, MRI/ARI scores, and the AI risk prediction — in a single structured ledger for rapid clinical or research reference.")
-        st.markdown("""
-        <div class="welcome-hero">
-            <h2>Genomic Resistance Intelligence Dashboard</h2>
-            <p>Comprehensive AMR Analysis Platform — Powered by AI</p>
-        </div>
-        """, unsafe_allow_html=True)
+        section_explainer("ℹ️","About This Tab","This section provides a high-level overview and a detailed pathogen identification card.")
+        st.markdown('<div class="welcome-hero"><h2>Genomic Resistance Intelligence Dashboard</h2><p>Comprehensive AMR Analysis Platform — Powered by AI</p></div>', unsafe_allow_html=True)
         st.markdown("### 🧬 Platform Capabilities")
         st.info("""
 **The AI-MRI Hub provides a state-of-the-art multidimensional genomic analysis suite:**
-
-- **Genomic ARG Profiling:** Structured identification and classification of Antibiotic Resistance Genes from CARD-format sequence data.
-- **Multidimensional Resistance Index (MRI):** A validated clinical risk score consolidating drug evasion breadth and mechanism diversity into a single normalized value.
-- **Random Forest Risk Classification:** Machine learning-driven threat stratification benchmarked against a population of reference genomic profiles.
-- **Clinical Susceptibility Zone Analysis:** Genomic exclusion logic identifying drug classes with zero resistance markers for treatment guidance.
-- **Interactive Resistance Topology:** 3D PCA landscape and live network graphs for spatial visualization of mechanism diversity and genetic density.
-- **Origin Labeling & Comparative Heatmaps:** Label genomic data by source and compare resistance profiles against curated environmental benchmarks.
+- **Genomic ARG Profiling:** Structured identification and classification of Antibiotic Resistance Genes from CARD-format data.
+- **Multidimensional Resistance Index (MRI):** A validated clinical risk score.
+- **Random Forest Risk Classification:** Machine learning-driven threat stratification.
+- **Clinical Susceptibility Zone Analysis:** Drug classes with zero resistance markers.
+- **Interactive Resistance Topology:** 3D PCA and live network graphs.
+- **Origin Labeling & Comparative Heatmaps:** Benchmark against curated environmental databases.
+- **Virtual Lab Simulation:** Full phenotypic simulation for 20 bacterial species.
         """)
         st.markdown("### 🦠 Pathogen Identification Profile")
-        stored_origin = st.session_state.origin_labels.get(selected_file, "Not Set")
+        stored_origin = st.session_state.origin_labels.get(selected_file,"Not Set")
         st.markdown(f"""
 <div class="report-card">
 <div class="report-header">Bacterial Resistance Intelligence Ledger</div>
@@ -1303,67 +2179,44 @@ if analysis_mode == "Select Known Bacteria" and json_files:
 </div>
 </div>
 """, unsafe_allow_html=True)
-        st.markdown("### 🎯 Index Definitions & Clinical Rationale")
-        st.info("""
-**Why MRI and ARI are clinically necessary:** Conventional genomic analysis outputs raw gene inventories, which fail to provide standardized, comparable risk quantification. The **ARI** measures resistance *density*. The **MRI** consolidates resistance breadth and depth into a single normalized score enabling rapid inter-species triage without manual gene ledger interpretation.
-        """)
 
     with tab2:
-        section_explainer("📊", "About This Dashboard",
-            "This six-panel systems analysis dashboard provides a simultaneous visual summary of all core resistance dimensions: drug class distribution (pie), mechanism frequency (bar), the MRI semicircle gauge, top gene frequency, total gene count, and a diversity comparison between unique drug classes and mechanisms.")
+        section_explainer("📊","About This Dashboard","Six-panel systems analysis dashboard: drug class distribution, mechanism frequency, MRI gauge, gene frequency, gene count, and diversity comparison.")
         st.markdown(f"### Systems Analysis Dashboard — `{selected_file}`")
         st.pyplot(fig)
-        if genes > 50:
-            section_explainer("📌", "Interpretation Note",
-                f"With <strong>{genes} resistance genes</strong> detected, this isolate has a large genomic resistance burden.")
-        else:
-            section_explainer("📌", "Interpretation Note",
-                f"This isolate carries <strong>{genes} resistance genes</strong>, a relatively compact profile.")
 
     with tab3:
-        section_explainer("🧮", "About This Section",
-            "This section presents the full mathematical derivation of the MRI and ARI frameworks with computed values for the selected genome.")
+        section_explainer("🧮","About This Section","Full mathematical derivation of the MRI and ARI frameworks with computed values.")
         st.markdown("### 🧮 Mathematical Framework & Validation")
         col_m1, col_m2 = st.columns([1,1])
         with col_m1:
             st.markdown('<div class="math-card"><div class="math-card-header">Multidimensional Resistance Index (MRI)</div>', unsafe_allow_html=True)
             st.latex(r"MRI = \frac{U_{drugs} + U_{mechs}}{T_{drugs} + T_{mechs} + 1}")
-            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_drugs</span> — Unique drug classes resisted</div><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_drugs</span> — Unique drug classes resisted</div><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing</div></div></div>', unsafe_allow_html=True)
             st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_drugs} + {u_mechs}}}{{{len(drug)} + {len(mech)} + 1}} = {round(mri,3)}")
         with col_m2:
             st.markdown('<div class="math-card"><div class="math-card-header">Antibiotic Resistance Index (ARI)</div>', unsafe_allow_html=True)
             st.latex(r"ARI = \frac{U_{mechs}}{G_{total} + 1}")
-            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">G_total</span> — Total genomic resistance genes</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing constant</div></div></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="annotation-box"><div class="annotation-item"><span class="annotation-key">U_mechs</span> — Unique resistance mechanisms</div><div class="annotation-item"><span class="annotation-key">G_total</span> — Total genomic resistance genes</div><div class="annotation-item"><span class="annotation-key">+ 1</span> — Laplace smoothing</div></div></div>', unsafe_allow_html=True)
             st.markdown("**Computed Value:**")
             st.latex(rf"\frac{{{u_mechs}}}{{{genes} + 1}} = {round(ari,3)}")
         st.markdown("### 🎯 Risk Assessment Interpretation")
         st.markdown(f'<div class="reasoning-box">{get_risk_reason(level,u_drugs,u_mechs)}</div>', unsafe_allow_html=True)
         st.write("")
-        section_explainer("📜", "Complete Resistance Gene Ledger",
-            "The table below lists every antibiotic resistance gene extracted from the CARD-format JSON.")
         df = pd.DataFrame(records, columns=["Gene Name","Drug Classes Resisted","Mechanisms Deployed","Habitat"])
         st.dataframe(df, use_container_width=True)
 
     with tab4:
-        section_explainer("🕸️", "About the Resistance Network",
-            "This interactive network graph maps the resistance topology of the selected genome.")
+        section_explainer("🕸️","About the Resistance Network","Interactive network graph mapping the resistance topology of the selected genome.")
         st.markdown("### 🕸️ Interactive Resistance Mechanism Network")
         html_path = generate_network_html(records, selected_file, "red" if level=="HIGH" else "orange" if level=="MODERATE" else "green")
         with open(html_path,'r',encoding='utf-8') as f:
             components.html(f.read(), height=550)
-        if u_mechs > 5:
-            section_explainer("📌", "Network Complexity Note",
-                f"This genome deploys <strong>{u_mechs} distinct resistance mechanisms</strong> — a high-complexity network.")
-        else:
-            section_explainer("📌", "Network Complexity Note",
-                f"This genome's resistance network is relatively streamlined with <strong>{u_mechs} mechanisms</strong>.")
 
     with tab5:
-        section_explainer("🤖", "About J.A.R.V.I.S. Bio-AI",
-            "J.A.R.V.I.S. is a Gemini-powered genomic AI assistant with full genomic context automatically injected.")
-        st.session_state.current_session = st.selectbox(
-            "Active Chat Session:", list(st.session_state.chat_sessions.keys()))
+        section_explainer("🤖","About J.A.R.V.I.S. Bio-AI","Gemini-powered genomic AI assistant with full genomic context automatically injected.")
+        st.session_state.current_session = st.selectbox("Active Chat Session:", list(st.session_state.chat_sessions.keys()))
         col_new, col_clear = st.columns(2)
         with col_new:
             if st.button("➕ New Chat", use_container_width=True):
@@ -1387,19 +2240,16 @@ if analysis_mode == "Select Known Bacteria" and json_files:
                 st.error("⚠️ AI library unavailable.")
             else:
                 try:
-                    origin_ctx = st.session_state.origin_labels.get(selected_file, "Unknown")
+                    origin_ctx = st.session_state.origin_labels.get(selected_file,"Unknown")
                     context = f"""You are J.A.R.V.I.S., an expert Bioinformatics AI specializing in antimicrobial resistance genomics.
-The analyst is examining genome: '{selected_file}'.
-Genomic Data: Total ARGs: {genes}, Drug Classes: {u_drugs}, Mechanisms: {u_mechs}, MRI: {round(mri,3)} ({level}), ARI: {round(ari,3)}.
-Genomic Origin: {origin_ctx}. Ecological Habitat: {habitat}.
-Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
+Genome: '{selected_file}'. ARGs: {genes}, Drug Classes: {u_drugs}, Mechanisms: {u_mechs}, MRI: {round(mri,3)} ({level}), ARI: {round(ari,3)}.
+Origin: {origin_ctx}. Habitat: {habitat}. Analyst Query: {user_msg}"""
                     with st.spinner("Processing genomic data..."):
                         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
                             st.error("No models available.")
                         else:
-                            target_model = next((m for m in available_models if 'flash' in m),
-                                               next((m for m in available_models if 'pro' in m), available_models[0]))
+                            target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
                             model_ai = genai.GenerativeModel(target_model)
                             response = model_ai.generate_content(context)
                             st.chat_message("assistant").markdown(response.text)
@@ -1407,24 +2257,21 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
                 except Exception as e:
                     error_msg = str(e)
                     if "429" in error_msg or "quota" in error_msg.lower():
-                        st.error("⚠️ API Quota Exceeded. Please wait 60 seconds before re-submitting.")
+                        st.error("⚠️ API Quota Exceeded. Please wait 60 seconds.")
                     else:
                         st.error(f"AI Connection Error: {e}")
 
     with tab6:
-        section_explainer("🩺", "About Clinical Susceptibility Analysis",
-            "This section identifies drug classes with zero detected resistance genes — potential therapeutic candidates.")
+        section_explainer("🩺","About Clinical Susceptibility","Identifies drug classes with zero detected resistance genes — potential therapeutic candidates.")
         st.markdown("### 🩺 Clinical Susceptibility Zone Analysis")
         DRUG_UNIVERSE = ["Penicillin","Cephalosporin","Carbapenem","Macrolide","Aminoglycoside","Fluoroquinolone","Tetracycline","Sulfonamide","Glycopeptide"]
         resisted_norm = set([d.lower() for d in drug])
-        safe_zones = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
-        st.write("Drug classes with **zero resistance markers** in this isolate — potential therapeutic candidates:")
-        st.markdown(f'<div class="susceptibility-card">🛡️ Candidate Therapeutic Classes:<br>{", ".join(safe_zones) if safe_zones else "⚠️ No unresisted classes found in the standard panel."}</div>', unsafe_allow_html=True)
-        st.caption("⚠️ Clinical confirmation via standard antibiogram (MIC testing) is required before therapeutic application.")
+        safe_zones    = [d for d in DRUG_UNIVERSE if d.lower() not in resisted_norm]
+        st.write("Drug classes with **zero resistance markers** — potential therapeutic candidates:")
+        st.markdown(f'<div class="susceptibility-card">🛡️ Candidate Therapeutic Classes:<br>{", ".join(safe_zones) if safe_zones else "⚠️ No unresisted classes found."}</div>', unsafe_allow_html=True)
+        st.caption("⚠️ Clinical confirmation via standard antibiogram (MIC testing) is required.")
         st.write("---")
         st.markdown("### 📈 Population Benchmark Comparison")
-        section_explainer("📊", "What This Chart Shows",
-            "Compares this genome's MRI score against the mean MRI of all other genomes in the local database.")
         all_mris = []
         for f in json_files:
             try:
@@ -1436,205 +2283,88 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
             st.bar_chart(comparison_df)
 
     with tab7:
-        section_explainer("🗺️", "About Origin Labeling & Comparative Heatmaps",
-            "Label each genome by its biological source and compare its resistance profile against curated reference benchmarks. "
-            "The <strong>comparative heatmap</strong> shows resistance intensity across 12 drug classes. "
-            "The <strong>delta bar chart</strong> quantifies the gap vs your chosen reference. "
-            "The <strong>radar chart</strong> overlays all origins for a holistic comparison. "
-            "The <strong>origin affinity scores (0–100)</strong> quantify how closely this isolate resembles each reference population — "
-            "computed from Euclidean distance in drug-class space, MRI proximity, and gene count proximity.")
-
+        section_explainer("🗺️","About Origin Labeling","Label each genome by biological source and compare against curated reference benchmarks.")
         st.markdown("### 🗺️ Genomic Origin Labeling & Source-Comparative Analysis")
-
-        col_label, col_display = st.columns([2, 1])
+        col_label, col_display = st.columns([2,1])
         with col_label:
-            origin_choice = st.selectbox(
-                "📌 Assign Origin Label to this Genome:",
-                list(ORIGIN_LABELS.keys()),
-                index=list(ORIGIN_LABELS.values()).index(
-                    st.session_state.origin_labels.get(selected_file, "clinical")
-                ) if selected_file in st.session_state.origin_labels else 0
-            )
+            origin_choice = st.selectbox("📌 Assign Origin Label:",list(ORIGIN_LABELS.keys()),
+                index=list(ORIGIN_LABELS.values()).index(st.session_state.origin_labels.get(selected_file,"clinical")) if selected_file in st.session_state.origin_labels else 0)
             if st.button("✅ Confirm Origin Label", type="primary"):
                 st.session_state.origin_labels[selected_file] = ORIGIN_LABELS[origin_choice]
                 st.success(f"Origin label saved: **{origin_choice}** for `{selected_file}`")
-
-        # Update selected_origin_key after potential save
-        selected_origin_key = st.session_state.origin_labels.get(selected_file, "clinical")
-
+        selected_origin_key = st.session_state.origin_labels.get(selected_file,"clinical")
         with col_display:
-            origin_css = {
-                "clinical": "origin-clinical", "agricultural": "origin-agricultural",
-                "environmental": "origin-environmental", "wastewater": "origin-wastewater",
-                "food_production": "origin-food_production"
-            }
+            origin_css = {"clinical":"origin-clinical","agricultural":"origin-agricultural","environmental":"origin-environmental","wastewater":"origin-wastewater","food_production":"origin-food_production"}
             st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown(f"""
-            <div style="text-align:center;">
-                <div style="color:#94a3b8;font-size:0.8rem;margin-bottom:8px;">CURRENT LABEL</div>
-                <span class="origin-badge {origin_css.get(selected_origin_key,'origin-clinical')}">
-                    {origin_choice}
-                </span>
-            </div>
-            """, unsafe_allow_html=True)
-
+            st.markdown(f'<div style="text-align:center;"><div style="color:#94a3b8;font-size:0.8rem;margin-bottom:8px;">CURRENT LABEL</div><span class="origin-badge {origin_css.get(selected_origin_key,"origin-clinical")}">{origin_choice}</span></div>', unsafe_allow_html=True)
         st.markdown("---")
-
         st.markdown("#### 🔬 Select Reference Origin for Delta Comparison")
         ref_labels = list(ORIGIN_LABELS.keys())
-        ref_choice = st.selectbox(
-            "Compare against this reference population:",
-            ref_labels,
-            index=ref_labels.index(origin_choice) if origin_choice in ref_labels else 0
-        )
-        ref_key = ORIGIN_LABELS[ref_choice]
-
+        ref_choice = st.selectbox("Compare against:",ref_labels,index=ref_labels.index(origin_choice) if origin_choice in ref_labels else 0)
+        ref_key    = ORIGIN_LABELS[ref_choice]
         st.markdown("---")
-
-        # ── FIX 2: AFFINITY SCORE EXPLANATION WITH /100 RATIONALE ──
-        st.markdown("#### 🎯 Origin Affinity Scores — Which Source Does This Genome Most Resemble?")
-        section_explainer("📐", "How Affinity Scores (0–100) Are Computed",
-            "Each score quantifies how closely this isolate's resistance fingerprint matches a reference population. "
-            "The algorithm computes a <strong>weighted composite distance</strong> across three axes:<br><br>"
-            "• <strong>Drug-class Euclidean distance (50%)</strong> — measures similarity across all 12 standardised drug classes simultaneously.<br>"
-            "• <strong>MRI proximity (30%)</strong> — compares this genome's MRI score to the reference population's average MRI.<br>"
-            "• <strong>Gene count proximity (20%)</strong> — compares total gene count to the reference population mean.<br><br>"
-            "These distances are summed into a raw dissimilarity score, then <strong>inverted and normalised to 0–100</strong>: "
-            "<em>100 = perfect match (identical to the reference), 0 = maximally dissimilar</em>. "
-            "A score <strong>≥ 70</strong> indicates strong source attribution; <strong>50–69</strong> moderate; "
-            "<strong>30–49</strong> weak; <strong>&lt; 30</strong> = atypical or multi-source profile.")
-
+        st.markdown("#### 🎯 Origin Affinity Scores")
         affinity_scores = compute_origin_affinity_scores(drug_profile_norm, genes, mri)
-        aff_display = {
-            "🏥 Clinical": affinity_scores["clinical"],
-            "🌾 Agricultural": affinity_scores["agricultural"],
-            "🌿 Environmental": affinity_scores["environmental"],
-            "💧 Wastewater": affinity_scores["wastewater"],
-            "🍖 Food Prod.": affinity_scores["food_production"]
-        }
-        best_match_key = max(affinity_scores, key=affinity_scores.get)
+        aff_display = {"🏥 Clinical":affinity_scores["clinical"],"🌾 Agricultural":affinity_scores["agricultural"],"🌿 Environmental":affinity_scores["environmental"],"💧 Wastewater":affinity_scores["wastewater"],"🍖 Food Prod.":affinity_scores["food_production"]}
+        best_match_key   = max(affinity_scores, key=affinity_scores.get)
         best_match_label = [k for k,v in ORIGIN_LABELS.items() if v==best_match_key][0]
-
         aff_cols = st.columns(5)
-        aff_keys = list(aff_display.keys())
-        aff_vals = list(aff_display.values())
+        aff_keys = list(aff_display.keys()); aff_vals = list(aff_display.values())
         for i, col in enumerate(aff_cols):
             val = aff_vals[i]
-            highlight = "border:2px solid #00d4ff;" if val == max(aff_vals) else ""
-            # Interpretation label
-            if val >= 70:   interp_txt = "Strong"
-            elif val >= 50: interp_txt = "Moderate"
-            elif val >= 30: interp_txt = "Weak"
-            else:           interp_txt = "Atypical"
-            col.markdown(f"""
-            <div class="metric-card" style="{highlight}">
-              <div class="metric-label">{aff_keys[i]}</div>
-              <div class="metric-value" style="font-size:1.4rem;">{val}</div>
-              <div style="color:#94a3b8;font-size:0.68rem;margin-top:2px;">/ 100 · {interp_txt}</div>
-            </div>
-            """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.25);border-radius:10px;padding:12px 16px;margin-top:14px;">
-        <span style="color:#00d4ff;font-weight:700;">🏆 Best Match:</span>
-        <span style="color:#ffffff;margin-left:8px;font-size:1.05rem;">{best_match_label}</span>
-        <span style="color:#94a3b8;margin-left:8px;font-size:0.85rem;">(Affinity Score: {affinity_scores[best_match_key]}/100 — {'Strong match' if affinity_scores[best_match_key]>=70 else 'Moderate match' if affinity_scores[best_match_key]>=50 else 'Weak match'})</span>
-        </div>
-        """, unsafe_allow_html=True)
-
+            highlight = "border:2px solid #00d4ff;" if val==max(aff_vals) else ""
+            interp_txt = "Strong" if val>=70 else "Moderate" if val>=50 else "Weak" if val>=30 else "Atypical"
+            col.markdown(f'<div class="metric-card" style="{highlight}"><div class="metric-label">{aff_keys[i]}</div><div class="metric-value" style="font-size:1.4rem;">{val}</div><div style="color:#94a3b8;font-size:0.68rem;margin-top:2px;">/ 100 · {interp_txt}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.25);border-radius:10px;padding:12px 16px;margin-top:14px;"><span style="color:#00d4ff;font-weight:700;">🏆 Best Match:</span> <span style="color:#ffffff;margin-left:8px;">{best_match_label}</span> <span style="color:#94a3b8;margin-left:8px;font-size:0.85rem;">(Score: {affinity_scores[best_match_key]}/100)</span></div>', unsafe_allow_html=True)
         st.markdown("---")
-
-        insights = generate_origin_insights(drug_profile_norm, ref_key, affinity_scores,
-                                             selected_file.replace('.json',''), mri, genes)
-        st.markdown("#### 🔍 Automated Source-Specific Resistance Pattern Insights")
-        ins_cols = st.columns(2)
+        insights   = generate_origin_insights(drug_profile_norm, ref_key, affinity_scores, selected_file.replace('.json',''), mri, genes)
+        ins_cols   = st.columns(2)
         with ins_cols[0]:
             if insights["excess_classes"]:
-                excess_str = ", ".join([f"<strong>{cls}</strong> (+{delta:.2f})" for cls, delta in insights["excess_classes"]])
-                st.markdown(f"""<div class="insight-card"><div class="ins-title">⬆️ Resistance Exceeds Reference Baseline</div>
-                  <div class="ins-body">This isolate shows significantly elevated resistance vs. <em>{ref_choice}</em> in: {excess_str}.</div></div>""", unsafe_allow_html=True)
+                excess_str = ", ".join([f"<strong>{cls}</strong> (+{delta:.2f})" for cls,delta in insights["excess_classes"]])
+                st.markdown(f'<div class="insight-card"><div class="ins-title">⬆️ Exceeds Reference</div><div class="ins-body">{excess_str}</div></div>', unsafe_allow_html=True)
             else:
-                st.markdown("""<div class="insight-card"><div class="ins-title">⬆️ Resistance vs Reference</div>
-                  <div class="ins-body">No drug class exceeds the reference baseline by more than 0.2 — profile is broadly consistent.</div></div>""", unsafe_allow_html=True)
+                st.markdown('<div class="insight-card"><div class="ins-title">⬆️ Resistance vs Reference</div><div class="ins-body">No class exceeds baseline by more than 0.2.</div></div>', unsafe_allow_html=True)
         with ins_cols[1]:
             if insights["deficit_classes"]:
-                deficit_str = ", ".join([f"<strong>{cls}</strong> (−{delta:.2f})" for cls, delta in insights["deficit_classes"]])
-                st.markdown(f"""<div class="insight-card"><div class="ins-title">⬇️ Resistance Below Reference Baseline</div>
-                  <div class="ins-body">This isolate shows lower resistance vs. <em>{ref_choice}</em> in: {deficit_str}. These may be viable therapeutic options.</div></div>""", unsafe_allow_html=True)
+                deficit_str = ", ".join([f"<strong>{cls}</strong> (−{delta:.2f})" for cls,delta in insights["deficit_classes"]])
+                st.markdown(f'<div class="insight-card"><div class="ins-title">⬇️ Below Reference</div><div class="ins-body">{deficit_str} — potential therapeutic options.</div></div>', unsafe_allow_html=True)
             else:
-                st.markdown("""<div class="insight-card"><div class="ins-title">⬇️ Resistance vs Reference</div>
-                  <div class="ins-body">No drug class is more than 0.2 below the reference baseline — resistance is broadly distributed.</div></div>""", unsafe_allow_html=True)
-
-        mri_delta = insights["mri_vs_bench"]
-        gene_delta = insights["gene_vs_bench"]
-        st.markdown(f"""
-        <div class="insight-card" style="margin-top:0;">
-          <div class="ins-title">📊 Index Benchmarking vs {ref_choice}</div>
-          <div class="ins-body">
-            <strong>MRI Delta:</strong> {'+' if mri_delta>=0 else ''}{mri_delta:.3f} — This isolate's MRI is {'<span style="color:#ef4444">higher</span>' if mri_delta>0 else '<span style="color:#10b981">lower</span>'} than the {ref_choice} reference mean ({REFERENCE_BENCHMARKS[ref_key]['avg_mri']}).<br>
-            <strong>Gene Count Delta:</strong> {'+' if gene_delta>=0 else ''}{gene_delta} genes vs reference mean ({REFERENCE_BENCHMARKS[ref_key]['avg_genes']}).
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-
+                st.markdown('<div class="insight-card"><div class="ins-title">⬇️ Resistance vs Reference</div><div class="ins-body">No class is more than 0.2 below baseline.</div></div>', unsafe_allow_html=True)
         st.markdown("---")
-        st.markdown(f"#### 🔥 Comparative Resistance Heatmap — Sample vs All Origins")
-        section_explainer("🎨", "Reading the Heatmap",
-            "Each row is a reference origin or the target genome (cyan border). Each column is a drug class. "
-            "Red = high resistance, green = low. Delta bar chart (right) shows sample minus reference.")
+        st.markdown("#### 🔥 Comparative Resistance Heatmap")
         heatmap_fig = plot_origin_comparison_heatmap(drug_profile_norm, ref_key, selected_file.replace('.json',''))
         st.pyplot(heatmap_fig, use_container_width=True)
-
         st.markdown("---")
-        st.markdown("#### 📡 Resistance Topology Radar — Sample vs All Reference Origins")
-        section_explainer("📡", "Reading the Radar Chart",
-            "The solid cyan polygon is your target genome. Dotted lines are reference origins. "
-            "Axes where the sample exceeds all references indicate anthropogenic selection pressure.")
+        st.markdown("#### 📡 Resistance Topology Radar")
         radar_fig = plot_radar_origin_comparison(drug_profile_norm, selected_file.replace('.json',''))
         st.plotly_chart(radar_fig, use_container_width=True)
-
         st.markdown("---")
-        st.markdown("#### 🗃️ All Labelled Genomes in Database")
-        section_explainer("📋", "What This Table Shows",
-            "All genomes assigned an origin label — enables cross-genome source comparison for One Health research.")
+        st.markdown("#### 🗃️ All Labelled Genomes")
         if st.session_state.origin_labels:
             label_rows = []
             for fname, orig_key in st.session_state.origin_labels.items():
                 try:
-                    g, dr, me, mr, ar, _ = extract_data(fname)
-                    lv, ic = get_level(mr)
+                    g,dr,me,mr,ar,_ = extract_data(fname)
+                    lv,ic = get_level(mr)
                     display_orig = [k for k,v in ORIGIN_LABELS.items() if v==orig_key]
-                    label_rows.append({
-                        "Genome": fname,
-                        "Origin": display_orig[0] if display_orig else orig_key,
-                        "Genes": g, "MRI": round(mr,3), "ARI": round(ar,3), "Risk": f"{lv} {ic}"
-                    })
+                    label_rows.append({"Genome":fname,"Origin":display_orig[0] if display_orig else orig_key,"Genes":g,"MRI":round(mr,3),"ARI":round(ar,3),"Risk":f"{lv} {ic}"})
                 except: continue
             if label_rows:
                 st.dataframe(pd.DataFrame(label_rows), use_container_width=True)
         else:
-            st.info("No genomes have been labelled yet. Use the selector above to assign an origin.")
+            st.info("No genomes labelled yet.")
 
     with tab8:
-        section_explainer("📄", "About the PDF Report",
-            "Generates a comprehensive PDF including: executive summary, metric definitions, mathematical derivations, "
-            "risk interpretation, 6-panel dashboard, <strong>full origin analysis section</strong> with affinity score table, "
-            "drug-class delta table, and comparative heatmap image, plus the complete gene resistance ledger.")
-
+        section_explainer("📄","About the PDF Report","Generates a comprehensive PDF with executive summary, math derivations, dashboard, origin analysis, affinity scores, heatmap, and gene ledger.")
         st.markdown("### 📥 Generate Master Analytical Report")
-        st.write("The PDF now includes the full Origin Analysis section: affinity scores with /100 explanation, drug-class resistance delta table, and the comparative heatmap.")
-
         current_origin_label = [k for k,v in ORIGIN_LABELS.items() if v==selected_origin_key]
         origin_label_str = current_origin_label[0] if current_origin_label else "Not Set"
-        st.info(f"📌 Origin label in PDF: **{origin_label_str}** | Reference: **{[k for k,v in ORIGIN_LABELS.items() if v==selected_origin_key][0] if selected_origin_key else 'Clinical'}**")
-
+        st.info(f"📌 Origin label in PDF: **{origin_label_str}**")
         if st.button("Generate Master PDF Report", type="primary"):
-            with st.spinner("Compiling analytical components into PDF..."):
-                # Build heatmap fig for PDF (light background version)
-                pdf_heatmap_fig = plot_origin_comparison_heatmap(
-                    drug_profile_norm, selected_origin_key, selected_file.replace('.json',''))
-                pdf_affinity = compute_origin_affinity_scores(drug_profile_norm, genes, mri)
-
+            with st.spinner("Compiling PDF..."):
+                pdf_heatmap_fig = plot_origin_comparison_heatmap(drug_profile_norm, selected_origin_key, selected_file.replace('.json',''))
+                pdf_affinity    = compute_origin_affinity_scores(drug_profile_norm, genes, mri)
                 pdf_path = create_advanced_pdf_report(
                     selected_file, genes, drug, mech, mri, ari, level, icon,
                     records, fig, bac_info, habitat, ai_pred_text, ai_conf_text,
@@ -1644,36 +2374,34 @@ Provide precise, evidence-based responses. Analyst Query: {user_msg}"""
                     selected_origin_key=selected_origin_key,
                     heatmap_fig=pdf_heatmap_fig
                 )
-                with open(pdf_path, "rb") as file:
-                    st.download_button(
-                        label="⬇️ Download Analytical Report (PDF)",
-                        data=file, file_name=pdf_path, mime="application/pdf"
-                    )
+                with open(pdf_path,"rb") as file:
+                    st.download_button(label="⬇️ Download Analytical Report (PDF)", data=file, file_name=pdf_path, mime="application/pdf")
 
     with tab9:
-        section_explainer("🌌", "About the 3D Resistance Landscape",
-            "3D PCA map projecting every genome across Overall Resistance (PC1), Mechanism Diversity (PC2), and Genetic Density (PC3). "
-            "Your target appears as a gold star. Spatial proximity = similar resistance architecture.")
+        section_explainer("🌌","About the 3D Resistance Landscape","3D PCA map projecting every genome across Overall Resistance, Mechanism Diversity, and Genetic Density.")
         st.markdown("### 🌌 Interactive Global Resistance Landscape (3D PCA)")
         plot_3d_pca_plotly(selected_file)
 
+    # ── TAB 10: VIRTUAL LAB ──
+    with tab10:
+        section_explainer("🧫", "About the Virtual Lab",
+            "Full phenotypic simulation for 20 clinically and environmentally important bacterial species. "
+            "Generates culture growth curves, colony morphology plates, Gram stain microscopy, "
+            "96-well MIC plates for 12 antibiotics, AI vs lab comparison charts, drug class radar profiles, "
+            "and gene identity panels — all driven by your selected CARD JSON file and lab conditions.")
+        render_lab_tab()
+
 elif analysis_mode == "AI Predict Unknown":
-    section_explainer("🤖", "About AI Prediction Mode",
-        "Input resistance parameters for an uncharacterised isolate and receive a Random Forest AI risk classification.")
+    section_explainer("🤖","About AI Prediction Mode","Input resistance parameters for an uncharacterised isolate and receive a Random Forest AI risk classification.")
     st.header("🤖 Machine Learning Risk Classification — Unknown Pathogen")
-    st.write("Input resistance parameters for an uncharacterized isolate to obtain an AI-driven risk stratification.")
     in_genes = st.number_input("Total Resistance Genes Identified", min_value=1, value=15)
     in_drugs = st.number_input("Unique Drug Classes Resisted", min_value=1, value=5)
     in_mechs = st.number_input("Unique Resistance Mechanisms", min_value=1, value=2)
     rf_model = train_rf_model()
     if rf_model and st.button("Run Risk Classification", type="primary"):
         prediction = rf_model.predict([[in_genes, in_drugs, in_mechs]])[0]
-        probs = rf_model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
-        classes = rf_model.classes_
-        prob_str = " | ".join([f"{c}: {p:.3f}" for c, p in zip(classes, probs)])
+        probs      = rf_model.predict_proba([[in_genes, in_drugs, in_mechs]])[0]
+        classes    = rf_model.classes_
+        prob_str   = " | ".join([f"{c}: {p:.3f}" for c,p in zip(classes,probs)])
         st.success(f"### AI Risk Classification: **{prediction}**")
         st.info(f"**Probability Distribution:** {prob_str}")
-        section_explainer("📊", "Interpreting the Prediction",
-            f"The model classified this isolate as <strong>{prediction}</strong> risk based on {in_genes} total genes, "
-            f"{in_drugs} drug classes, and {in_mechs} mechanisms. "
-            "The probability distribution reflects confidence across all three risk tiers.")
