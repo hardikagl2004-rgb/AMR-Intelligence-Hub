@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import json
 import os
 import io
@@ -26,20 +25,6 @@ from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib import colors
 from reportlab.lib.units import inch, cm
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
-
-# ── Voice input additions ────────────────────────────────────────────────────
-try:
-    from streamlit_mic_recorder import mic_recorder
-    MIC_AVAILABLE = True
-except ImportError:
-    MIC_AVAILABLE = False
-
-try:
-    import speech_recognition as sr
-    SR_AVAILABLE = True
-except ImportError:
-    SR_AVAILABLE = False
-# ─────────────────────────────────────────────────────────────────────────────
 
 try:
     import google.generativeai as genai
@@ -2912,119 +2897,8 @@ if analysis_mode == "Select Known Bacteria" and json_files:
             components.html(f.read(), height=550)
 
     with tab5:
-"""
-╔══════════════════════════════════════════════════════════════════════════════╗
-║          AI-MRI Hub  —  Voice / Microphone Patch  (voice_mic_patch.py)      ║
-║                                                                              ║
-║  HOW TO APPLY                                                                ║
-║  ─────────────────────────────────────────────────────────────────────────  ║
-║  STEP 1  Install dependencies (run in your terminal once):                   ║
-║          pip install streamlit-mic-recorder SpeechRecognition                ║
-║          (No pyaudio needed — mic-recorder uses the browser microphone)      ║
-║                                                                              ║
-║  STEP 2  In app.py, find the existing import block near the top              ║
-║          (the lines that start with  `import streamlit as st`)               ║
-║          and ADD the two new import lines shown in BLOCK A below.            ║
-║                                                                              ║
-║  STEP 3  Find the entire  `with tab5:`  block in app.py                      ║
-║          (it starts with  `with tab5:` and ends just before `with tab6:`)    ║
-║          and REPLACE it completely with BLOCK B below.                       ║
-║                                                                              ║
-║  STEP 4  Save app.py and run:  streamlit run app.py                          ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-"""
-
-# ─────────────────────────────────────────────────────────────────────────────
-# BLOCK A  —  NEW IMPORTS  (add right after  `import streamlit.components.v1`)
-# ─────────────────────────────────────────────────────────────────────────────
-
-BLOCK_A_IMPORTS = """
-# ── Voice input additions ────────────────────────────────────────────────────
-try:
-    from streamlit_mic_recorder import mic_recorder   # browser-native recorder
-    MIC_AVAILABLE = True
-except ImportError:
-    MIC_AVAILABLE = False
-
-try:
-    import speech_recognition as sr                   # Google free STT
-    SR_AVAILABLE = True
-except ImportError:
-    SR_AVAILABLE = False
-# ─────────────────────────────────────────────────────────────────────────────
-"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# BLOCK B  —  COMPLETE REPLACEMENT FOR  `with tab5:`
-# ─────────────────────────────────────────────────────────────────────────────
-#
-# Copy everything between the triple-quotes below and use it to replace the
-# existing `with tab5:` block in app.py.
-# ─────────────────────────────────────────────────────────────────────────────
-
-BLOCK_B_TAB5 = '''
-    with tab5:
-        # ── helper: transcribe audio bytes from mic_recorder ──────────────────
-        def transcribe_audio(audio_bytes: bytes) -> str:
-            """Convert raw WAV bytes from mic_recorder into text via Google STT."""
-            if not SR_AVAILABLE:
-                return ""
-            recognizer = sr.Recognizer()
-            import io as _io
-            with sr.AudioFile(_io.BytesIO(audio_bytes)) as source:
-                audio_data = recognizer.record(source)
-            try:
-                return recognizer.recognize_google(audio_data)
-            except sr.UnknownValueError:
-                return "__UNRECOGNISED__"
-            except sr.RequestError as e:
-                return f"__STT_ERROR__:{e}"
-
-        # ── CSS: voice UI chrome ───────────────────────────────────────────────
-        st.markdown("""
-        <style>
-        /* mic status pill */
-        .mic-status {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 14px; border-radius: 20px; font-size: 12px;
-            font-weight: 700; letter-spacing: .05em; margin-bottom: 10px;
-        }
-        .mic-ready   { background: rgba(34,197,94,.12);  border: 1px solid #22c55e; color: #4ade80; }
-        .mic-missing { background: rgba(239,68,68,.12);  border: 1px solid #ef4444; color: #f87171; }
-        .mic-result-box {
-            background: rgba(0,212,255,.06); border: 1px solid rgba(0,212,255,.25);
-            border-radius: 10px; padding: 12px 16px; margin-bottom: 12px;
-            font-size: 14px; color: #e2e8f0; display: flex; align-items: flex-start; gap: 12px;
-        }
-        .mic-result-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-        .mic-result-text { flex: 1; line-height: 1.55; }
-        .mic-result-text em { color: #00d4ff; font-style: normal; font-weight: 600; }
-        .voice-divider {
-            display: flex; align-items: center; gap: 10px;
-            color: #334155; font-size: 11px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: .1em; margin: 10px 0;
-        }
-        .voice-divider::before, .voice-divider::after {
-            content: ""; flex: 1; height: 1px; background: #1e293b;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-        # ── section header ─────────────────────────────────────────────────────
-        section_explainer(
-            "🤖", "About J.A.R.V.I.S. Bio-AI",
-            "Gemini-powered genomic AI assistant with full genomic context automatically "
-            "injected. Supports <b>typed</b> queries and <b>🎙️ voice input</b> — click the "
-            "microphone button, speak your question, and J.A.R.V.I.S. will transcribe and "
-            "answer automatically."
-        )
-
-        # ── session management row ─────────────────────────────────────────────
-        st.session_state.current_session = st.selectbox(
-            "Active Chat Session:",
-            list(st.session_state.chat_sessions.keys())
-        )
+        section_explainer("🤖","About J.A.R.V.I.S. Bio-AI","Gemini-powered genomic AI assistant with full genomic context automatically injected.")
+        st.session_state.current_session = st.selectbox("Active Chat Session:", list(st.session_state.chat_sessions.keys()))
         col_new, col_clear = st.columns(2)
         with col_new:
             if st.button("➕ New Chat", use_container_width=True):
@@ -3037,163 +2911,37 @@ BLOCK_B_TAB5 = '''
             if st.button("🗑️ Clear Chat", use_container_width=True):
                 st.session_state.chat_sessions[st.session_state.current_session] = []
                 st.rerun()
-
-        # ── previous messages ──────────────────────────────────────────────────
         for msg in st.session_state.chat_sessions[st.session_state.current_session]:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
-
-        # ══════════════════════════════════════════════════════════════════════
-        #  VOICE INPUT PANEL
-        # ══════════════════════════════════════════════════════════════════════
-        with st.expander("🎙️  Voice Input  (click to expand, then press ● Record)", expanded=False):
-
-            # availability badge
-            if MIC_AVAILABLE and SR_AVAILABLE:
-                st.markdown(
-                    '<span class="mic-status mic-ready">● Mic Ready — browser microphone active</span>',
-                    unsafe_allow_html=True
-                )
-            else:
-                missing = []
-                if not MIC_AVAILABLE: missing.append("streamlit-mic-recorder")
-                if not SR_AVAILABLE:  missing.append("SpeechRecognition")
-                st.markdown(
-                    f'<span class="mic-status mic-missing">✕ Missing: {", ".join(missing)} — '
-                    f'run: pip install {" ".join(missing)}</span>',
-                    unsafe_allow_html=True
-                )
-
-            if MIC_AVAILABLE and SR_AVAILABLE:
-                st.caption(
-                    "🔴 Press **Start recording**, speak clearly, then press **Stop**. "
-                    "The transcript will appear below and be sent to J.A.R.V.I.S. automatically."
-                )
-
-                # mic widget — returns a dict with key 'bytes' when recording stops
-                audio_data = mic_recorder(
-                    start_prompt="▶ Start Recording",
-                    stop_prompt="■ Stop Recording",
-                    just_once=True,         # auto-resets after one recording
-                    use_container_width=True,
-                    key="jarvis_mic_recorder",
-                )
-
-                # ── process completed recording ──────────────────────────────
-                if audio_data and audio_data.get("bytes"):
-                    raw_bytes = audio_data["bytes"]
-
-                    with st.spinner("🔊 Transcribing your voice..."):
-                        transcript = transcribe_audio(raw_bytes)
-
-                    if transcript == "__UNRECOGNISED__":
-                        st.warning(
-                            "⚠️ Could not understand the audio. "
-                            "Please speak clearly and try again."
-                        )
-                    elif transcript.startswith("__STT_ERROR__"):
-                        err_detail = transcript.split(":", 1)[-1]
-                        st.error(
-                            f"Speech-to-Text service error: {err_detail}. "
-                            "Check your internet connection."
-                        )
-                    else:
-                        # show the transcript card
-                        st.markdown(
-                            f'<div class="mic-result-box">'
-                            f'<span class="mic-result-icon">🎙️</span>'
-                            f'<div class="mic-result-text">'
-                            f'<em>Transcribed query:</em><br>{transcript}'
-                            f'</div></div>',
-                            unsafe_allow_html=True
-                        )
-
-                        # store voice query in session so AI block below picks it up
-                        st.session_state["_voice_query"] = transcript
-                        st.rerun()   # re-run so the AI block fires with the new query
-
-        # ══════════════════════════════════════════════════════════════════════
-        #  TEXT INPUT (always visible)
-        # ══════════════════════════════════════════════════════════════════════
-        st.markdown('<div class="voice-divider">or type your query</div>', unsafe_allow_html=True)
         user_msg = st.chat_input(f"Query J.A.R.V.I.S. about {selected_file}...")
-
-        # ── merge voice query (if any) with typed query ────────────────────────
-        # Voice queries are stored in session state by the block above;
-        # typed queries come from st.chat_input directly.
-        voice_query = st.session_state.pop("_voice_query", None)
-        final_query = user_msg or voice_query   # typed takes priority if both present
-
-        # ══════════════════════════════════════════════════════════════════════
-        #  UNIFIED AI RESPONSE BLOCK  (handles both voice + typed)
-        # ══════════════════════════════════════════════════════════════════════
-        if final_query:
-            # label the message with the input mode
-            input_mode_label = "🎙️ [Voice]" if voice_query and not user_msg else ""
-
-            display_msg = (
-                f"{input_mode_label} {final_query}".strip()
-                if input_mode_label else final_query
-            )
-
-            st.chat_message("user").markdown(display_msg)
-            st.session_state.chat_sessions[st.session_state.current_session].append(
-                {"role": "user", "content": display_msg}
-            )
-
+        if user_msg:
+            st.chat_message("user").markdown(user_msg)
+            st.session_state.chat_sessions[st.session_state.current_session].append({"role":"user","content":user_msg})
             if not AI_AVAILABLE:
                 st.error("AI library unavailable.")
             else:
                 try:
-                    origin_ctx = st.session_state.origin_labels.get(selected_file, "Unknown")
-                    context = (
-                        f"You are J.A.R.V.I.S., an expert Bioinformatics AI specialising "
-                        f"in antimicrobial resistance genomics.\\n"
-                        f"Genome: '{selected_file}'. ARGs: {genes}, Drug Classes: {u_drugs}, "
-                        f"Mechanisms: {u_mechs}, MRI: {round(mri, 3)} ({level}), "
-                        f"ARI: {round(ari, 3)}.\\n"
-                        f"Origin: {origin_ctx}. Habitat: {habitat}.\\n"
-                        f"Analyst Query: {final_query}"
-                    )
-
+                    origin_ctx = st.session_state.origin_labels.get(selected_file,"Unknown")
+                    context = f"""You are J.A.R.V.I.S., an expert Bioinformatics AI specializing in antimicrobial resistance genomics.
+Genome: '{selected_file}'. ARGs: {genes}, Drug Classes: {u_drugs}, Mechanisms: {u_mechs}, MRI: {round(mri,3)} ({level}), ARI: {round(ari,3)}.
+Origin: {origin_ctx}. Habitat: {habitat}. Analyst Query: {user_msg}"""
                     with st.spinner("Processing genomic data..."):
-                        available_models = [
-                            m.name for m in genai.list_models()
-                            if "generateContent" in m.supported_generation_methods
-                        ]
+                        available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
                         if not available_models:
-                            st.error("No Gemini models available.")
+                            st.error("No models available.")
                         else:
-                            target_model = next(
-                                (m for m in available_models if "flash" in m),
-                                next(
-                                    (m for m in available_models if "pro" in m),
-                                    available_models[0]
-                                )
-                            )
+                            target_model = next((m for m in available_models if 'flash' in m), next((m for m in available_models if 'pro' in m), available_models[0]))
                             model_ai = genai.GenerativeModel(target_model)
-                            response  = model_ai.generate_content(context)
+                            response = model_ai.generate_content(context)
                             st.chat_message("assistant").markdown(response.text)
-                            st.session_state.chat_sessions[
-                                st.session_state.current_session
-                            ].append({"role": "assistant", "content": response.text})
-
+                            st.session_state.chat_sessions[st.session_state.current_session].append({"role":"assistant","content":response.text})
                 except Exception as e:
                     error_msg = str(e)
                     if "429" in error_msg or "quota" in error_msg.lower():
-                        st.error("API Quota Exceeded. Please wait 60 seconds and retry.")
+                        st.error("API Quota Exceeded. Please wait 60 seconds.")
                     else:
                         st.error(f"AI Connection Error: {e}")
-'''
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Quick self-test (optional) — run:  python voice_mic_patch.py
-# ─────────────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    print("voice_mic_patch.py loaded successfully.")
-    print("BLOCK_A_IMPORTS length :", len(BLOCK_A_IMPORTS))
-    print("BLOCK_B_TAB5 length    :", len(BLOCK_B_TAB5))
-    print("\nInstall command:\n  pip install streamlit-mic-recorder SpeechRecognition")
 
     with tab6:
         section_explainer("🩺","About Clinical Susceptibility","Identifies drug classes with zero detected resistance genes — potential therapeutic candidates.")
