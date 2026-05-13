@@ -2109,7 +2109,7 @@ if st.session_state.show_splash:
       <div class="sp-stats">
         <div class="sp-stat"><span class="sp-stat-num">2</span><span class="sp-stat-lbl">Novel Indices</span></div>
         <div class="sp-stat"><span class="sp-stat-num">10</span><span class="sp-stat-lbl">Modules</span></div>
-        <div class="sp-stat"><span class="sp-stat-num">100+</span><span class="sp-stat-lbl">Genomes</span></div>
+        <div class="sp-stat"><span class="sp-stat-num">33+</span><span class="sp-stat-lbl">Genomes</span></div>
         <div class="sp-stat"><span class="sp-stat-num">7</span><span class="sp-stat-lbl">Researchers</span></div>
       </div>
     </div>
