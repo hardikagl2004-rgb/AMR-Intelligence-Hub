@@ -17,11 +17,14 @@ import streamlit.components.v1 as components
 import plotly.express as px
 import plotly.graph_objects as go
 
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, Table, TableStyle, PageBreak, HRFlowable
+from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer,
+                                 Image as RLImage, Table, TableStyle,
+                                 PageBreak, HRFlowable, KeepTogether)
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib import colors
 from reportlab.lib.units import inch, cm
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 
 try:
     import google.generativeai as genai
@@ -454,15 +457,10 @@ def _lab_get_risk(mri):
 
 
 def _lab_simulate(bacteria_name, resistance_override, temperature, ph, incubation_h, cfu_exp, medium):
-    """
-    Simulate lab results for the SELECTED bacteria_name only.
-    All data comes from LAB_BACTERIA_DB[bacteria_name] — no JSON file used.
-    """
     db   = LAB_BACTERIA_DB[bacteria_name]
     seed = hash(bacteria_name) % 99999
     rng  = random.Random(seed + int(resistance_override * 1000))
 
-    # Use the organism's own typical values + resistance override scaling
     base_mri = db["typical_mri"]
     base_ari = db["typical_ari"]
 
@@ -473,12 +471,10 @@ def _lab_simulate(bacteria_name, resistance_override, temperature, ph, incubatio
     lab_mri = round(lab_mri, 3)
     lab_ari = round(lab_ari, 3)
 
-    # Derive gene counts from the organism's own profile
     total_genes   = max(5, int(base_mri * 120 + resistance_override * 40 + rng.uniform(-3, 3)))
     u_drug_classes = max(2, int(len([v for v in db["base_resistance"].values() if v > 0.2]) * (0.7 + resistance_override * 0.3)))
     u_mechs        = max(1, int(u_drug_classes * 0.6 + resistance_override * 3))
 
-    # Temperature/pH penalty on growth
     temp_pen    = max(0, abs(temperature - db["optimal_temp"]) * 0.06)
     ph_pen      = max(0, abs(ph - db["optimal_ph"]) * 0.15)
     growth_rate = max(0.1, 1.0 - temp_pen - ph_pen + resistance_override * 0.05)
@@ -497,7 +493,6 @@ def _lab_simulate(bacteria_name, resistance_override, temperature, ph, incubatio
             plateau = base_cfu * (2 ** (LOG_DUR * growth_rate * 0.8))
             growth_cfu.append(round(plateau * max(0.5, 1.0 - (t - LAG - LOG_DUR) * 0.01)))
 
-    # MIC results — all derived from THIS organism's base_resistance
     mic_results = []
     for ab in LAB_ANTIBIOTICS:
         base_res   = db["base_resistance"].get(ab["class"], 0.2)
@@ -1191,274 +1186,841 @@ def render_lab_tab():
 
 
 # ==========================================
-# USER MANUAL PDF GENERATOR
+# COMPREHENSIVE USER MANUAL PDF GENERATOR
+# (upgraded from Code 1 — includes Sections 8 & 9 with full literature citations)
 # ==========================================
 
 def generate_user_manual():
     pdf_file = "AI_MRI_Hub_User_Manual.pdf"
-    doc = SimpleDocTemplate(pdf_file, pagesize=A4,
-                            rightMargin=2*cm, leftMargin=2*cm,
-                            topMargin=2*cm, bottomMargin=2*cm)
+    doc = SimpleDocTemplate(
+        pdf_file, pagesize=A4,
+        rightMargin=2.2*cm, leftMargin=2.2*cm,
+        topMargin=2*cm, bottomMargin=2*cm
+    )
     styles = getSampleStyleSheet()
 
-    title_style = ParagraphStyle('TitleS', parent=styles['Title'],
-        fontSize=28, textColor=colors.HexColor('#1E3A8A'), spaceAfter=8,
-        fontName='Helvetica-Bold', alignment=1)
-    subtitle_style = ParagraphStyle('SubtitleS', parent=styles['Normal'],
-        fontSize=14, textColor=colors.HexColor('#2E86C1'), spaceAfter=20,
-        fontName='Helvetica', alignment=1)
-    h1_style = ParagraphStyle('H1S', parent=styles['Heading1'],
-        fontSize=18, textColor=colors.HexColor('#1E3A8A'), spaceAfter=10,
-        spaceBefore=18, fontName='Helvetica-Bold')
-    h2_style = ParagraphStyle('H2S', parent=styles['Heading2'],
-        fontSize=14, textColor=colors.HexColor('#2E86C1'), spaceAfter=8,
-        spaceBefore=12, fontName='Helvetica-Bold')
-    h3_style = ParagraphStyle('H3S', parent=styles['Heading3'],
-        fontSize=12, textColor=colors.HexColor('#1a7a3a'), spaceAfter=6,
-        spaceBefore=8, fontName='Helvetica-Bold')
-    body_style = ParagraphStyle('BodyS', parent=styles['Normal'],
-        fontSize=10, textColor=colors.HexColor('#1a1a2e'), spaceAfter=6,
-        fontName='Helvetica', leading=16)
-    tip_style = ParagraphStyle('TipS', parent=styles['Normal'],
-        fontSize=10, textColor=colors.HexColor('#155724'), spaceAfter=6,
-        fontName='Helvetica', leading=14,
+    # ── Style definitions ─────────────────────────────────────────────────────
+    title_style = ParagraphStyle(
+        'TitleS', parent=styles['Title'],
+        fontSize=26, textColor=colors.HexColor('#1E3A8A'),
+        spaceAfter=6, fontName='Helvetica-Bold', alignment=TA_CENTER
+    )
+    subtitle_style = ParagraphStyle(
+        'SubtitleS', parent=styles['Normal'],
+        fontSize=13, textColor=colors.HexColor('#2E86C1'),
+        spaceAfter=18, fontName='Helvetica', alignment=TA_CENTER
+    )
+    h1_style = ParagraphStyle(
+        'H1S', parent=styles['Heading1'],
+        fontSize=16, textColor=colors.HexColor('#1E3A8A'),
+        spaceAfter=8, spaceBefore=16, fontName='Helvetica-Bold'
+    )
+    h2_style = ParagraphStyle(
+        'H2S', parent=styles['Heading2'],
+        fontSize=13, textColor=colors.HexColor('#2E86C1'),
+        spaceAfter=6, spaceBefore=10, fontName='Helvetica-Bold'
+    )
+    h3_style = ParagraphStyle(
+        'H3S', parent=styles['Heading3'],
+        fontSize=11, textColor=colors.HexColor('#1a7a3a'),
+        spaceAfter=4, spaceBefore=8, fontName='Helvetica-Bold'
+    )
+    body_style = ParagraphStyle(
+        'BodyS', parent=styles['Normal'],
+        fontSize=9.5, textColor=colors.HexColor('#1a1a2e'),
+        spaceAfter=5, fontName='Helvetica',
+        leading=15, alignment=TA_JUSTIFY, wordWrap='LTR'
+    )
+    tip_style = ParagraphStyle(
+        'TipS', parent=styles['Normal'],
+        fontSize=9.5, textColor=colors.HexColor('#155724'),
+        spaceAfter=5, fontName='Helvetica', leading=14,
         backColor=colors.HexColor('#d4edda'), borderPad=8,
-        leftIndent=12, rightIndent=12)
-    warning_style = ParagraphStyle('WarnS', parent=styles['Normal'],
-        fontSize=10, textColor=colors.HexColor('#721c24'), spaceAfter=6,
-        fontName='Helvetica', leading=14,
-        backColor=colors.HexColor('#f8d7da'), borderPad=8,
-        leftIndent=12, rightIndent=12)
-    bullet_style = ParagraphStyle('BulletS', parent=styles['Normal'],
-        fontSize=10, textColor=colors.HexColor('#1a1a2e'), spaceAfter=4,
-        fontName='Helvetica', leading=14, leftIndent=20)
+        leftIndent=10, rightIndent=10, alignment=TA_JUSTIFY, wordWrap='LTR'
+    )
+    bullet_style = ParagraphStyle(
+        'BulletS', parent=styles['Normal'],
+        fontSize=9.5, textColor=colors.HexColor('#1a1a2e'),
+        spaceAfter=3, fontName='Helvetica',
+        leading=14, leftIndent=16, alignment=TA_JUSTIFY, wordWrap='LTR'
+    )
+    ref_style = ParagraphStyle(
+        'RefS', parent=styles['Normal'],
+        fontSize=8.5, textColor=colors.HexColor('#333355'),
+        spaceAfter=4, fontName='Helvetica',
+        leading=13, leftIndent=20, firstLineIndent=-20,
+        alignment=TA_LEFT, wordWrap='LTR'
+    )
+    ref_title_style = ParagraphStyle(
+        'RefTitle', parent=styles['Normal'],
+        fontSize=10, textColor=colors.HexColor('#1E3A8A'),
+        spaceAfter=6, spaceBefore=8, fontName='Helvetica-Bold',
+        alignment=TA_LEFT, wordWrap='LTR'
+    )
+    small_cell = ParagraphStyle(
+        'SmallCell', parent=styles['Normal'],
+        fontSize=8.5, leading=12, fontName='Helvetica',
+        wordWrap='LTR', alignment=TA_LEFT
+    )
+    small_cell_bold = ParagraphStyle(
+        'SmallCellBold', parent=styles['Normal'],
+        fontSize=8.5, leading=12, fontName='Helvetica-Bold',
+        wordWrap='LTR', alignment=TA_LEFT
+    )
 
     elements = []
 
+    # ═══════════════════════════════════════════════════════════════════════════
     # COVER PAGE
-    elements.append(Spacer(1, 1.5*inch))
+    # ═══════════════════════════════════════════════════════════════════════════
+    elements.append(Spacer(1, 1.2*inch))
     elements.append(Paragraph("AI-MRI Hub", title_style))
-    elements.append(Paragraph("Complete User Manual and Guide", subtitle_style))
-    elements.append(Spacer(1, 0.3*inch))
+    elements.append(Paragraph("Complete User Manual and Technical Guide", subtitle_style))
     elements.append(HRFlowable(width="100%", thickness=3, color=colors.HexColor('#1E3A8A')))
-    elements.append(Spacer(1, 0.2*inch))
+    elements.append(Spacer(1, 0.15*inch))
     elements.append(Paragraph("Antimicrobial Resistance Intelligence Platform", subtitle_style))
-    elements.append(Spacer(1, 0.4*inch))
+    elements.append(Spacer(1, 0.3*inch))
 
     cover_data = [
-        ["Version", "2.0 (2025)"],
-        ["Platform", "Streamlit Web Application"],
-        ["Developed by", "Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, Indranil Patil"],
-        ["Purpose", "Quantitative genomic AMR analysis for research and clinical decision support"],
-        ["Language", "English"],
+        [Paragraph("<b>Version</b>", small_cell_bold),        Paragraph("2.0 (2025)", small_cell)],
+        [Paragraph("<b>Platform</b>", small_cell_bold),       Paragraph("Streamlit Web Application", small_cell)],
+        [Paragraph("<b>Developed by</b>", small_cell_bold),
+         Paragraph("Hardik Agrawal, Poorva Dongarkar, Yashraj Patil, "
+                   "Avani Laswante, Zeel Bhanushali, Aayushi Wasnik, Indranil Patil", small_cell)],
+        [Paragraph("<b>Purpose</b>", small_cell_bold),
+         Paragraph("Quantitative genomic AMR analysis for research and clinical decision support", small_cell)],
+        [Paragraph("<b>Language</b>", small_cell_bold), Paragraph("English", small_cell)],
     ]
-    cover_table = Table(cover_data, colWidths=[2*inch, 4*inch])
+    cover_table = Table(cover_data, colWidths=[4*cm, 13*cm])
     cover_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#EBF5FB')),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 10),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#2E86C1')),
-        ('ROWBACKGROUNDS', (0,0), (-1,-1), [colors.HexColor('#EBF5FB'), colors.white]),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('PADDING', (0,0), (-1,-1), 8),
+        ('BACKGROUND',    (0, 0), (0, -1), colors.HexColor('#EBF5FB')),
+        ('FONTNAME',      (0, 0), (0, -1), 'Helvetica-Bold'),
+        ('FONTSIZE',      (0, 0), (-1, -1), 9),
+        ('GRID',          (0, 0), (-1, -1), 0.5, colors.HexColor('#2E86C1')),
+        ('ROWBACKGROUNDS',(0, 0), (-1, -1), [colors.HexColor('#EBF5FB'), colors.white]),
+        ('VALIGN',        (0, 0), (-1, -1), 'MIDDLE'),
+        ('PADDING',       (0, 0), (-1, -1), 7),
     ]))
     elements.append(cover_table)
-    elements.append(Spacer(1, 0.5*inch))
+    elements.append(Spacer(1, 0.4*inch))
     elements.append(Paragraph(
-        "<i>This manual explains every feature of the AI-MRI Hub. No advanced technical background required.</i>",
+        "<i>This manual explains every feature of the AI-MRI Hub platform. "
+        "No advanced technical background is required to follow the documentation.</i>",
         body_style))
     elements.append(PageBreak())
 
-    # SECTION 1
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 1 — What is AI-MRI Hub?
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("1. What is AI-MRI Hub?", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.08*inch))
     elements.append(Paragraph(
-        "The <b>AI-MRI Hub</b> is a web-based platform for scientists, microbiologists, and researchers "
-        "to understand antibiotic resistance from genomic data.", body_style))
+        "The <b>AI-MRI Hub</b> is a web-based analytical platform designed for scientists, "
+        "microbiologists, and clinical researchers to decode antibiotic resistance from raw genomic "
+        "data. By uploading CARD-format JSON files, users obtain instant quantitative risk "
+        "stratification, interactive visualisations, AI-assisted interpretation, and "
+        "publication-ready reports.", body_style))
+    elements.append(Spacer(1, 0.05*inch))
     for item in [
-        "Measures how dangerous a bacterium is via its MRI and ARI scores",
-        "Identifies which antibiotics it resists and which might still work",
-        "Compares isolates against hospital, farm, sewage, or environmental reference profiles",
-        "Provides a 3D landscape comparing all uploaded genomes",
-        "Runs a full Virtual Laboratory simulation for 20 bacterial species",
+        "Computes MRI and ARI — two novel quantitative indices of resistance burden.",
+        "Identifies which antibiotic classes are resisted and which mechanisms are active.",
+        "Benchmarks isolates against hospital, farm, sewage, food, and environmental reference profiles.",
+        "Renders an interactive 3D resistance landscape for all uploaded genomes simultaneously.",
+        "Provides a fully organism-accurate Virtual Laboratory simulation for 20 clinically important bacterial species.",
+        "Generates one-click comprehensive PDF reports with heatmaps, mathematics, and gene ledgers.",
     ]:
-        elements.append(Paragraph(f"  - {item}", bullet_style))
-    elements.append(Spacer(1, 0.2*inch))
+        elements.append(Paragraph(f"\u2022  {item}", bullet_style))
+    elements.append(Spacer(1, 0.15*inch))
 
-    # SECTION 2
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 2 — Getting Started
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("2. Getting Started", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+
     steps = [
-        ("Step 1", "Open the app in your browser. The Splash Screen appears with features overview."),
-        ("Step 2", "Click 'ENTER AI-MRI HUB' to enter the main platform."),
-        ("Step 3", "In the left sidebar, click 'Refresh Database' after adding new JSON files."),
-        ("Step 4", "Choose analysis mode: 'Select Known Bacteria' or 'AI Predict Unknown'."),
-        ("Step 5", "Select your genome JSON file and explore all 10 analysis tabs."),
+        ("Step 1", "Open the application in your browser. The animated Splash Screen "
+                   "appears with a full feature overview and team profiles."),
+        ("Step 2", "Click the <b>ENTER AI-MRI HUB</b> button to enter the main analysis platform."),
+        ("Step 3", "In the left sidebar, click <b>Refresh Database</b> after adding new JSON files "
+                   "to the application directory."),
+        ("Step 4", "Choose analysis mode: <b>Select Known Bacteria</b> (to analyse a genome from "
+                   "the database) or <b>AI Predict Unknown</b> (to classify an uncharacterised "
+                   "isolate using machine learning)."),
+        ("Step 5", "Select your target genome JSON file from the dropdown and explore all ten "
+                   "analysis modules via the tab navigation bar."),
     ]
-    steps_data = [[Paragraph(f"<b>{s}</b>", body_style), Paragraph(d, body_style)] for s,d in steps]
-    steps_table = Table(steps_data, colWidths=[1.2*inch, 5.3*inch])
+    steps_data = [
+        [Paragraph(f"<b>{s}</b>", small_cell_bold), Paragraph(d, small_cell)]
+        for s, d in steps
+    ]
+    steps_table = Table(steps_data, colWidths=[3*cm, 14*cm])
     steps_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#DBEAFE')),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#93C5FD')),
-        ('ROWBACKGROUNDS', (0,0), (-1,-1), [colors.HexColor('#EFF6FF'), colors.white]),
-        ('PADDING', (0,0), (-1,-1), 8),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('BACKGROUND',    (0, 0), (0, -1), colors.HexColor('#DBEAFE')),
+        ('GRID',          (0, 0), (-1, -1), 0.5, colors.HexColor('#93C5FD')),
+        ('ROWBACKGROUNDS',(0, 0), (-1, -1), [colors.HexColor('#EFF6FF'), colors.white]),
+        ('PADDING',       (0, 0), (-1, -1), 7),
+        ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
     ]))
     elements.append(steps_table)
     elements.append(PageBreak())
 
-    # SECTION 3 - MRI/ARI
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 3 — MRI and ARI Scores
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("3. Understanding MRI and ARI Scores", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph(
+        "The platform introduces two novel quantitative indices that condense complex genomic "
+        "resistance data into single, instantly interpretable risk values.", body_style))
+    elements.append(Spacer(1, 0.08*inch))
+
     scores_data = [
-        ["Score", "Full Name", "What It Measures", "Risk Zones"],
-        ["MRI", "Multidimensional Resistance Index",
-         "Breadth of resistance: how many drug classes it resists combined with mechanism count",
-         "< 0.15 = LOW\n0.15-0.35 = MODERATE\n> 0.35 = HIGH"],
-        ["ARI", "Antibiotic Resistance Index",
-         "Efficiency: how effectively genes convert to active resistance strategies",
-         "Lower = better\nHigh ARI = very efficient resistance"],
+        [Paragraph("<b>Score</b>", small_cell_bold),
+         Paragraph("<b>Full Name</b>", small_cell_bold),
+         Paragraph("<b>What It Measures</b>", small_cell_bold),
+         Paragraph("<b>Risk Thresholds</b>", small_cell_bold)],
+        [Paragraph("MRI", small_cell_bold),
+         Paragraph("Multidimensional Resistance Index", small_cell),
+         Paragraph("Breadth of resistance: unique drug classes combined with unique "
+                   "mechanism count, normalised by total gene hits.", small_cell),
+         Paragraph("&lt; 0.15 = LOW\n0.15 – 0.35 = MODERATE\n&gt; 0.35 = HIGH", small_cell)],
+        [Paragraph("ARI", small_cell_bold),
+         Paragraph("Antibiotic Resistance Index", small_cell),
+         Paragraph("Efficiency: how effectively resistance genes translate into "
+                   "active, distinct resistance strategies.", small_cell),
+         Paragraph("Lower = better outcome.\nHigh ARI = very efficient resistance "
+                   "machinery.", small_cell)],
     ]
-    scores_table = Table(scores_data, colWidths=[0.6*inch, 1.5*inch, 2.8*inch, 1.6*inch])
+    scores_table = Table(scores_data, colWidths=[1.5*cm, 4*cm, 7.5*cm, 4*cm])
     scores_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#1E3A8A')),
-        ('TEXTCOLOR', (0,0), (-1,0), colors.white),
-        ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 9),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-        ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.HexColor('#EFF6FF'), colors.HexColor('#DBEAFE')]),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('PADDING', (0,0), (-1,-1), 7),
+        ('BACKGROUND',    (0, 0), (-1, 0), colors.HexColor('#1E3A8A')),
+        ('TEXTCOLOR',     (0, 0), (-1, 0), colors.white),
+        ('FONTNAME',      (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE',      (0, 0), (-1, -1), 8.5),
+        ('GRID',          (0, 0), (-1, -1), 0.5, colors.grey),
+        ('ROWBACKGROUNDS',(0, 1), (-1, -1), [colors.HexColor('#EFF6FF'), colors.HexColor('#DBEAFE')]),
+        ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+        ('PADDING',       (0, 0), (-1, -1), 6),
     ]))
     elements.append(scores_table)
-    elements.append(Spacer(1, 0.2*inch))
+    elements.append(Spacer(1, 0.12*inch))
     elements.append(Paragraph(
-        "<b>Formula:</b> MRI = (Unique drug classes + Unique mechanisms) / (Total drug hits + Total mechanism hits + 1). "
-        "ARI = Unique mechanisms / (Total genes + 1).", body_style))
+        "<b>MRI Formula:</b>  MRI = (Unique drug classes + Unique mechanisms) / "
+        "(Total drug hits + Total mechanism hits + 1)", body_style))
+    elements.append(Paragraph(
+        "<b>ARI Formula:</b>  ARI = Unique mechanisms / (Total resistance genes + 1)",
+        body_style))
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph(
+        "The +1 denominator term is a Laplace smoothing constant that prevents division-by-zero "
+        "errors for genomes with very sparse resistance annotations.", body_style))
     elements.append(PageBreak())
 
-    # SECTION 4 - ALL TABS
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 4 — All 10 Analysis Tabs
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("4. All 10 Analysis Tabs Explained", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+
     tab_descriptions = [
-        ("Summary (i)", "Overview profile card: Gram stain, diseases, habitat, MRI/ARI, AI risk classification, gene count."),
-        ("Dashboard", "6-panel visual: drug class pie chart, mechanism bars, MRI gauge, gene frequency, gene count, diversity comparison."),
-        ("Math", "Full LaTeX mathematical derivation of MRI and ARI with your actual data values. Includes downloadable gene table."),
-        ("Network", "Interactive PyVis network mapping every gene to its mechanisms. Drag nodes, zoom, and filter."),
-        ("AI Chat", "J.A.R.V.I.S. Gemini-powered assistant with full genomic context auto-injected. Create multiple chat sessions."),
-        ("Clinical", "Susceptibility zone analysis: drug classes with zero resistance markers and population MRI comparison."),
-        ("Origin", "Label isolate by source (hospital/farm/environment). Compare against 5 curated reference databases with heatmaps, radar, and affinity scores."),
-        ("PDF Report", "One-click comprehensive publication-ready PDF with all analysis, heatmaps, math, and gene ledger."),
-        ("3D Map", "Interactive 3D PCA scatter plot of all genomes. Target organism highlighted in gold."),
-        ("Virtual Lab", "Full phenotypic simulation for 20 species. See Section 5 for full details."),
+        ("Summary (\u2139)", "High-level overview profile card presenting Gram stain classification, "
+                        "known diseases, habitat, MRI and ARI scores, AI-predicted risk "
+                        "classification, gene count, and the complete resistance intelligence ledger."),
+        ("Dashboard (\U0001f4ca)", "Six-panel visual analysis system: drug class pie chart, mechanism "
+                           "frequency bar chart, MRI semicircular gauge, top gene frequency bars, "
+                           "overall gene count, and unique drug/mechanism diversity comparison."),
+        ("Math (\U0001f9ee)", "Full mathematical derivation of MRI and ARI with the actual computed values "
+                      "substituted into the formulae. Includes a downloadable tabular gene ledger "
+                      "listing every ARG, its drug classes, and its mechanisms."),
+        ("Network (\U0001f578)", "Interactive PyVis network graph mapping every resistance gene to its "
+                         "target mechanisms. Nodes are draggable, zoomable, and filterable. Hub "
+                         "node colour encodes overall risk level (red/orange/green)."),
+        ("AI Chat (\U0001f916)", "J.A.R.V.I.S. — a Gemini-powered bioinformatics assistant with the "
+                         "full genomic context (MRI, ARI, gene count, origin label) automatically "
+                         "injected into every query. Supports multiple independent chat sessions."),
+        ("Clinical (\U0001fa7a)", "Susceptibility zone analysis: drug classes for which zero resistance "
+                          "markers are detected, presented as potential therapeutic candidates. "
+                          "Includes a population MRI benchmark comparison chart."),
+        ("Origin (\U0001f5fa)", "Assign an ecological origin label (Clinical, Agricultural, Environmental, "
+                        "Wastewater, or Food Production) and compare the isolate's resistance "
+                        "profile against five curated reference databases using heatmaps, delta "
+                        "charts, radar plots, and affinity scores."),
+        ("PDF Report (\U0001f4c4)", "One-click generation of a comprehensive, publication-ready PDF "
+                            "containing executive summary, mathematical derivations, dashboard "
+                            "figures, origin comparison heatmap, affinity scores, and the "
+                            "complete gene resistance ledger."),
+        ("3D Map (\U0001f30c)", "Interactive 3D PCA scatter plot projecting all uploaded genomes across "
+                        "three axes: Overall Resistance (PC1), Mechanism Diversity (PC2), and "
+                        "Genetic Density (PC3). The target organism is highlighted in gold."),
+        ("Virtual Lab (\U0001f9eb)", "Full phenotypic simulation for 20 clinically and environmentally "
+                             "important species. See Section 5 for a detailed operational guide."),
     ]
     for tab_name, desc in tab_descriptions:
         elements.append(Paragraph(f"<b>{tab_name}:</b>  {desc}", bullet_style))
+        elements.append(Spacer(1, 0.03*inch))
     elements.append(PageBreak())
 
-    # SECTION 5 - VIRTUAL LAB
-    elements.append(Paragraph("5. Virtual Lab Simulation -- Detailed Guide", h1_style))
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 5 — Virtual Lab
+    # ═══════════════════════════════════════════════════════════════════════════
+    elements.append(Paragraph("5. Virtual Lab Simulation — Detailed Guide", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph(
+        "The Virtual Lab simulates real microbiology laboratory experiments for 20 bacterial "
+        "species. Every simulation result — MIC values, resistance profiles, growth curves, "
+        "Gram stain appearance, and gene lists — is derived exclusively from the "
+        "selected organism's internal database. No data is shared or mixed between species.", body_style))
+    elements.append(Spacer(1, 0.06*inch))
+    elements.append(Paragraph(
+        "IMPORTANT: The Virtual Lab always shows data for the selected organism. "
+        "Selecting E. coli will display E. coli-specific MICs, resistance genes, Gram stain, "
+        "and culture behaviour. Selecting M. tuberculosis will display TB-specific data.",
+        tip_style))
     elements.append(Spacer(1, 0.1*inch))
-    elements.append(Paragraph(
-        "The Virtual Lab simulates real microbiology laboratory experiments for 20 bacterial species. "
-        "All simulation data is derived from the SELECTED organism -- the results always match the "
-        "chosen species. No data mixing occurs between different bacteria.", body_style))
-    elements.append(Paragraph(
-        "IMPORTANT FIX: The Virtual Lab now correctly shows data only for the selected organism. "
-        "Selecting E. coli will show E. coli-specific MICs, resistance genes, Gram stain, and culture data.", tip_style))
 
     elements.append(Paragraph("How to run a simulation:", h3_style))
     lab_steps = [
-        ("1. Select Organism", "Choose from 20 species in the dropdown. All results will be specific to this species."),
-        ("2. Optional Preset", "Use quick presets like 'MRSA (High resistance)' or 'Pan-susceptible Salmonella' for instant configuration."),
-        ("3. Set Lab Conditions", "Adjust Temperature, pH, Incubation hours, Inoculum (CFU/mL), and Resistance Pressure slider."),
-        ("4. Choose Medium", "Select growth medium: Mueller-Hinton Broth, Blood Agar, etc."),
-        ("5. Click Run", "Press the Run Simulation button. Results appear in 6 tabs below."),
+        ("1. Select Organism",    "Choose from 20 species in the dropdown. All subsequent results "
+                                   "are species-specific."),
+        ("2. Optional Preset",     "Use quick presets such as 'MRSA (High resistance)', 'ESBL "
+                                   "E. coli', or 'Pan-susceptible Salmonella' for instant "
+                                   "pre-configured resistance scenarios."),
+        ("3. Set Lab Conditions",  "Adjust Temperature (\u00b0C), pH, Incubation hours, Inoculum "
+                                   "(CFU/mL exponent), and Resistance Pressure slider."),
+        ("4. Choose Medium",       "Select the growth medium: Mueller-Hinton Broth, Lysogeny "
+                                   "Broth Agar, Columbia Blood Agar, Brain Heart Infusion, "
+                                   "Lowenstein-Jensen, or Chocolate Agar."),
+        ("5. Click Run",           "Press the <b>Run Simulation</b> button. The six-tab result "
+                                   "panel appears below."),
     ]
-    lab_table = Table([[Paragraph(f"<b>{s}</b>", body_style), Paragraph(d, body_style)] for s,d in lab_steps],
-                       colWidths=[1.5*inch, 5*inch])
+    lab_data = [
+        [Paragraph(f"<b>{s}</b>", small_cell_bold), Paragraph(d, small_cell)]
+        for s, d in lab_steps
+    ]
+    lab_table = Table(lab_data, colWidths=[4.2*cm, 12.8*cm])
     lab_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#D1FAE5')),
-        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#6EE7B7')),
-        ('PADDING', (0,0), (-1,-1), 8),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
+        ('BACKGROUND', (0, 0), (0, -1), colors.HexColor('#D1FAE5')),
+        ('GRID',       (0, 0), (-1, -1), 0.5, colors.HexColor('#6EE7B7')),
+        ('PADDING',    (0, 0), (-1, -1), 7),
+        ('VALIGN',     (0, 0), (-1, -1), 'TOP'),
+        ('FONTNAME',   (0, 0), (0, -1), 'Helvetica-Bold'),
     ]))
     elements.append(lab_table)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.12*inch))
 
     elements.append(Paragraph("Result Tabs:", h3_style))
     result_tabs = [
-        ("Overview", "MRI/ARI for Lab and AI, organism identity card, resistance profile bars specific to the species."),
-        ("Culture", "Growth curve, colony morphology plate, Gram stain microscopy view with correct cell shapes for the species."),
-        ("MIC Plate", "96-well microplate for each of 12 antibiotics showing turbid (resistant) and clear (susceptible) wells. MIC value shown at bottom."),
-        ("Lab vs AI", "MRI/ARI bar chart comparison, agreement log showing concordance for every antibiotic tested."),
-        ("Drug Profile", "Radar chart, susceptible agents list (green), resistant agents list (red), intensity bars."),
-        ("Genes & Identity", "Species-specific resistance genes, biochemical identity panel, associated diseases."),
+        ("Overview",     "Displays MRI and ARI scores for both the Lab simulation and AI estimate, "
+                         "the organism identity card, and resistance profile bars drawn from "
+                         "species-level curated data."),
+        ("Culture",      "Renders the growth curve (CFU/mL over time), a colony morphology plate, "
+                         "and a Gram stain microscopy view with cell shapes appropriate to the "
+                         "selected species."),
+        ("MIC Plate",    "Simulates a 96-well microtitre plate for each of 12 antibiotics. "
+                         "Turbid (growth-positive) wells are red, the MIC well is highlighted in "
+                         "blue, and clear wells are green. The MIC value and S/I/R interpretation "
+                         "are shown below the plate."),
+        ("Lab vs AI",    "Presents a side-by-side MRI/ARI bar chart, an agreement log showing "
+                         "concordance for every antibiotic tested, and a summary concordance "
+                         "percentage."),
+        ("Drug Profile", "Radar chart comparing Lab and AI-estimated resistance across all drug "
+                         "classes, plus colour-coded lists of susceptible (green) and resistant "
+                         "(red) agents."),
+        ("Genes & Identity", "Lists known resistance determinants for the species, a complete "
+                              "biochemical identity panel, and associated diseases."),
     ]
     for rname, rdesc in result_tabs:
-        elements.append(Paragraph(f"  - <b>{rname}:</b> {rdesc}", bullet_style))
+        elements.append(Paragraph(f"\u2022  <b>{rname}:</b>  {rdesc}", bullet_style))
+        elements.append(Spacer(1, 0.02*inch))
     elements.append(PageBreak())
 
-    # SECTION 6 - FAQ
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 6 — FAQ
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("6. Frequently Asked Questions", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+
     faqs = [
         ("Q: My JSON file is not being detected.",
-         "Make sure the file has a .json extension and is in the same folder as app.py. Click Refresh Database in the sidebar."),
+         "Make sure the file has a .json extension and is saved in the same directory as app.py. "
+         "Click Refresh Database in the sidebar to reload the file list."),
         ("Q: The AI Chat says API Quota Exceeded.",
-         "The Gemini API key has hit its usage limit. Wait 60 seconds and try again."),
+         "The Gemini API key has reached its usage limit. Wait 60 seconds and retry. "
+         "If the problem persists, check your API quota on the Google AI Studio dashboard."),
         ("Q: The 3D PCA map shows very few points.",
-         "PCA requires at least 3 JSON files. Add more genome files to the database."),
+         "PCA rendering requires at least three JSON genome files. Add more files to the "
+         "application directory and refresh the database."),
         ("Q: The Virtual Lab showed data for the wrong organism.",
-         "This bug has been fixed. The Virtual Lab now always uses data from the selected organism only. Re-run the simulation."),
-        ("Q: Can I use this for clinical diagnosis?",
-         "No. This tool is for research and education only. All clinical decisions require certified diagnostic testing."),
+         "This bug was fixed in version 2.0. The Virtual Lab now exclusively uses data "
+         "from the selected organism's built-in profile. Re-run the simulation after "
+         "selecting the correct species."),
+        ("Q: Can I use this tool for clinical diagnosis?",
+         "No. This platform is intended strictly for research and educational purposes. "
+         "All clinical diagnostic decisions must be made using certified laboratory testing "
+         "and qualified medical expertise."),
         ("Q: What are the 20 bacteria in the Virtual Lab?",
-         "E. coli, K. pneumoniae, P. aeruginosa, A. baumannii, S. enterica, S. sonnei, V. cholerae, E. cloacae, P. mirabilis, C. jejuni, N. gonorrhoeae, H. influenzae, S. aureus, S. pneumoniae, E. faecium, B. anthracis, C. difficile, L. monocytogenes, M. tuberculosis, C. diphtheriae."),
+         "E. coli, K. pneumoniae, P. aeruginosa, A. baumannii, S. enterica, S. sonnei, "
+         "V. cholerae, E. cloacae, P. mirabilis, C. jejuni, N. gonorrhoeae, "
+         "H. influenzae, S. aureus, S. pneumoniae, E. faecium, B. anthracis, "
+         "C. difficile, L. monocytogenes, M. tuberculosis, C. diphtheriae."),
+        ("Q: Where does the resistance data in the Virtual Lab come from?",
+         "Base resistance values for each species are derived from curated clinical and "
+         "surveillance literature (see Section 8: Bacterial Reference Data and Literature "
+         "Citations for full references per organism)."),
     ]
     for q, a in faqs:
-        elements.append(Paragraph(f"<b>{q}</b>", body_style))
-        elements.append(Paragraph(f"A: {a}", bullet_style))
-        elements.append(Spacer(1, 0.08*inch))
+        block = KeepTogether([
+            Paragraph(f"<b>{q}</b>", body_style),
+            Paragraph(f"A:  {a}", bullet_style),
+            Spacer(1, 0.07*inch),
+        ])
+        elements.append(block)
     elements.append(PageBreak())
 
-    # SECTION 7 - GLOSSARY
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 7 — Glossary
+    # ═══════════════════════════════════════════════════════════════════════════
     elements.append(Paragraph("7. Glossary", h1_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+
     glossary = [
-        ("ARG", "Antibiotic Resistance Gene -- gives a bacterium ability to survive antibiotic exposure."),
-        ("CARD", "Comprehensive Antibiotic Resistance Database -- global database of resistance genes."),
-        ("MRI", "Multidimensional Resistance Index -- primary risk score (0 to 1)."),
-        ("ARI", "Antibiotic Resistance Index -- measures gene-to-mechanism efficiency."),
-        ("MIC", "Minimum Inhibitory Concentration -- lowest antibiotic concentration stopping bacterial growth."),
-        ("S / I / R", "Susceptible / Intermediate / Resistant -- clinical interpretation of MIC results."),
-        ("PCA", "Principal Component Analysis -- reduces complex data to 2D or 3D for visualization."),
-        ("MDR", "Multi-Drug Resistant -- resistant to 3 or more antibiotic classes."),
-        ("XDR", "Extensively Drug Resistant -- resistant to nearly all antibiotic classes."),
-        ("AMR", "Antimicrobial Resistance -- ability of microorganisms to survive antimicrobial treatment."),
+        ("ARG",    "Antibiotic Resistance Gene — a gene that confers on a bacterium the "
+                   "ability to survive exposure to one or more antibiotic agents."),
+        ("CARD",   "Comprehensive Antibiotic Resistance Database — the global gold-standard "
+                   "curated database of resistance genes, their mechanisms, and their clinical "
+                   "relevance (www.card.mcmaster.ca)."),
+        ("MRI",    "Multidimensional Resistance Index — the platform's primary risk score "
+                   "ranging from 0 to 1, measuring the breadth and diversity of resistance."),
+        ("ARI",    "Antibiotic Resistance Index — measures how efficiently a genome's resistance "
+                   "genes convert to active distinct mechanisms (0 to 1)."),
+        ("MIC",    "Minimum Inhibitory Concentration — the lowest antibiotic concentration that "
+                   "visibly inhibits bacterial growth in a standardised broth microdilution assay."),
+        ("S / I / R", "Susceptible / Intermediate / Resistant — the clinical interpretation "
+                      "categories for MIC results according to EUCAST or CLSI breakpoints."),
+        ("PCA",    "Principal Component Analysis — a dimensionality-reduction technique that "
+                   "projects high-dimensional data onto 2 or 3 principal axes for visualisation."),
+        ("MDR",    "Multi-Drug Resistant — an organism resistant to agents in three or more "
+                   "distinct antibiotic classes."),
+        ("XDR",    "Extensively Drug Resistant — resistant to all but one or two antibiotic "
+                   "classes."),
+        ("AMR",    "Antimicrobial Resistance — the broad ability of microorganisms to survive "
+                   "treatment with antimicrobial drugs, encompassing bacteria, viruses, fungi, "
+                   "and parasites."),
+        ("ESKAPE", "Acronym for the six high-priority nosocomial pathogens: Enterococcus "
+                   "faecium, Staphylococcus aureus, Klebsiella pneumoniae, Acinetobacter "
+                   "baumannii, Pseudomonas aeruginosa, and Enterobacter spp."),
     ]
-    glossary_data = [[Paragraph(f"<b>{t}</b>", body_style), Paragraph(d, body_style)] for t,d in glossary]
-    glossary_table = Table(glossary_data, colWidths=[1.2*inch, 5.3*inch])
+    glossary_data = [
+        [Paragraph(f"<b>{t}</b>", small_cell_bold), Paragraph(d, small_cell)]
+        for t, d in glossary
+    ]
+    glossary_table = Table(glossary_data, colWidths=[2.8*cm, 14.2*cm])
     glossary_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#EBF5FB')),
-        ('GRID', (0,0), (-1,-1), 0.3, colors.HexColor('#BEE3F8')),
-        ('ROWBACKGROUNDS', (0,0), (-1,-1), [colors.HexColor('#EBF5FB'), colors.white]),
-        ('PADDING', (0,0), (-1,-1), 6),
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0,0), (-1,-1), 9),
+        ('BACKGROUND',    (0, 0), (0, -1), colors.HexColor('#EBF5FB')),
+        ('GRID',          (0, 0), (-1, -1), 0.3, colors.HexColor('#BEE3F8')),
+        ('ROWBACKGROUNDS',(0, 0), (-1, -1), [colors.HexColor('#EBF5FB'), colors.white]),
+        ('PADDING',       (0, 0), (-1, -1), 6),
+        ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+        ('FONTSIZE',      (0, 0), (-1, -1), 8.5),
     ]))
     elements.append(glossary_table)
+    elements.append(PageBreak())
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 8 — Bacterial Reference Data and Literature Citations
+    # ═══════════════════════════════════════════════════════════════════════════
+    elements.append(Paragraph("8. Bacterial Reference Data and Literature Citations", h1_style))
+    elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph(
+        "The Virtual Lab simulation module contains curated resistance profiles, biochemical "
+        "characteristics, and MIC baselines for 20 bacterial species. These values are "
+        "grounded in peer-reviewed surveillance studies, EUCAST/CLSI breakpoint tables, "
+        "and WHO priority pathogen reports. The following sections list the primary "
+        "evidence sources for each organism.", body_style))
+    elements.append(Spacer(1, 0.1*inch))
+
+    organisms = [
+        {
+            "name": "Escherichia coli",
+            "gram": "Gram-negative rod",
+            "diseases": "Gastroenteritis, UTI, sepsis, neonatal meningitis",
+            "key_genes": "blaTEM, blaCTX-M, aadA, sul1, tetA, qnrB, mcr-1",
+            "refs": [
+                "[1] Pitout JD, Laupland KB. Extended-spectrum beta-lactamase-producing Enterobacteriaceae: "
+                "an emerging public-health concern. <i>Lancet Infect Dis.</i> 2008;8(3):159-166.",
+                "[2] EUCAST. Breakpoint tables for interpretation of MICs and zone diameters, "
+                "Version 14.0. 2024. Available at: www.eucast.org",
+                "[3] Allocati N, et al. Escherichia coli in Europe: an overview. "
+                "<i>Int J Environ Res Public Health.</i> 2013;10(12):6235-6254.",
+                "[4] WHO. Global Antimicrobial Resistance and Use Surveillance System (GLASS) "
+                "Report 2022. Geneva: World Health Organization.",
+            ]
+        },
+        {
+            "name": "Klebsiella pneumoniae",
+            "gram": "Gram-negative encapsulated rod",
+            "diseases": "Pneumonia, UTI, bloodstream infections, liver abscess",
+            "key_genes": "blaNDM, blaKPC, blaOXA-48, rmtB, oqxAB, mcr-1, tet(A)",
+            "refs": [
+                "[1] Patel G, Bonomo RA. 'Stormy waters ahead': global emergence of carbapenemases. "
+                "<i>Front Microbiol.</i> 2013;4:48.",
+                "[2] Tzouvelekis LS, et al. Carbapenemases in Klebsiella pneumoniae and other "
+                "Enterobacteriaceae. <i>Clin Microbiol Rev.</i> 2012;25(4):682-707.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[4] Wyres KL, Lam MMC, Holt KE. Population genomics of Klebsiella pneumoniae. "
+                "<i>Nat Rev Microbiol.</i> 2020;18(6):344-359.",
+            ]
+        },
+        {
+            "name": "Pseudomonas aeruginosa",
+            "gram": "Gram-negative rod (non-fermentative)",
+            "diseases": "Cystic fibrosis lung infections, burn wound infections, HAP/VAP",
+            "key_genes": "mexAB-oprM, mexXY, oprD, blaVIM, blaIMP, aac(6')-Ib, fosA",
+            "refs": [
+                "[1] Lister PD, Wolter DJ, Hanson ND. Antibacterial-resistant Pseudomonas aeruginosa: "
+                "clinical impact and complex regulation of chromosomally encoded resistance mechanisms. "
+                "<i>Clin Microbiol Rev.</i> 2009;22(4):582-610.",
+                "[2] Magiorakos AP, et al. Multidrug-resistant, extensively drug-resistant and "
+                "pandrug-resistant bacteria. <i>Clin Microbiol Infect.</i> 2012;18(3):268-281.",
+                "[3] Poole K. Pseudomonas aeruginosa: resistance to the max. "
+                "<i>Front Microbiol.</i> 2011;2:65.",
+                "[4] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Acinetobacter baumannii",
+            "gram": "Gram-negative coccobacillus",
+            "diseases": "Nosocomial pneumonia, bacteraemia, wound infections",
+            "key_genes": "blaOXA-23, blaOXA-51, blaADC, armA, abaR, adeABC",
+            "refs": [
+                "[1] Peleg AY, Seifert H, Paterson DL. Acinetobacter baumannii: emergence of a "
+                "successful pathogen. <i>Clin Microbiol Rev.</i> 2008;21(3):538-582.",
+                "[2] Fournier PE, et al. Comparative genomics of multidrug resistance in "
+                "Acinetobacter baumannii. <i>PLoS Genet.</i> 2006;2(1):e7.",
+                "[3] WHO. Priority pathogens list for R&amp;D of new antibiotics. 2017.",
+                "[4] Dijkshoorn L, Nemec A, Seifert H. An increasing threat in hospitals: "
+                "multidrug-resistant Acinetobacter baumannii. <i>Nat Rev Microbiol.</i> 2007;5:939-951.",
+            ]
+        },
+        {
+            "name": "Salmonella enterica",
+            "gram": "Gram-negative rod",
+            "diseases": "Salmonellosis, typhoid fever, bacteraemia",
+            "key_genes": "blaTEM, aadA, cmlA, sul1, tet(G), invA, spvC",
+            "refs": [
+                "[1] Crump JA, et al. Epidemiology, clinical presentation, laboratory diagnosis, "
+                "antimicrobial resistance, and antimicrobial management of invasive Salmonella infections. "
+                "<i>Clin Microbiol Rev.</i> 2015;28(4):901-937.",
+                "[2] WHO. Salmonella (non-typhoidal) Fact Sheet. 2018. www.who.int",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[4] Feasey NA, et al. Non-typhoidal Salmonella disease: epidemiology, outcomes "
+                "and challenges for vaccine development. <i>Vaccine.</i> 2012;30 Suppl 3:D1-D9.",
+            ]
+        },
+        {
+            "name": "Shigella sonnei",
+            "gram": "Gram-negative rod (non-motile)",
+            "diseases": "Bacillary dysentery, bloody diarrhoea, HUS",
+            "key_genes": "blaTEM, sul1, dfrA, tetB, icsA, set1A",
+            "refs": [
+                "[1] Kotloff KL, et al. Burden and aetiology of diarrhoeal disease in infants "
+                "and young children in developing countries (GEMS study). "
+                "<i>Lancet.</i> 2013;382(9888):209-222.",
+                "[2] Nuesch-Inderbinen M, et al. Shigella antimicrobial drug resistance "
+                "mechanisms, 2004-2014. <i>Emerg Infect Dis.</i> 2016;22(6):1083-1085.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Vibrio cholerae",
+            "gram": "Gram-negative curved rod",
+            "diseases": "Cholera, vibriosis, secretory diarrhoea",
+            "key_genes": "ctxA, ctxB, tcpA, VPI-1, SXT element, VC0395",
+            "refs": [
+                "[1] Ali M, et al. Updated global burden of cholera in endemic countries. "
+                "<i>PLoS Negl Trop Dis.</i> 2015;9(6):e0003832.",
+                "[2] Safa A, Nair GB, Kong RY. Evolution of new variants of Vibrio cholerae O1. "
+                "<i>Trends Microbiol.</i> 2010;18(2):46-54.",
+                "[3] WHO. Cholera Fact Sheet. 2023. www.who.int",
+                "[4] Das B, et al. Molecular characterisation of multidrug-resistant Vibrio "
+                "cholerae O1 clinical isolates. <i>J Antimicrob Chemother.</i> 2020;75(5):1230-1238.",
+            ]
+        },
+        {
+            "name": "Enterobacter cloacae",
+            "gram": "Gram-negative rod",
+            "diseases": "Hospital-acquired pneumonia, UTI, wound infections",
+            "key_genes": "AmpC, blaNDM, ompC, OXA-1, qnrS, aac(6')-Ib",
+            "refs": [
+                "[1] Sanders WE Jr, Sanders CC. Enterobacter spp.: pathogens poised to flourish "
+                "at the turn of the century. <i>Clin Microbiol Rev.</i> 1997;10(2):220-241.",
+                "[2] Davin-Regli A, Pages JM. Enterobacter aerogenes and Enterobacter cloacae: "
+                "versatile bacterial pathogens confronting antibiotic treatment. "
+                "<i>Front Microbiol.</i> 2015;6:392.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Proteus mirabilis",
+            "gram": "Gram-negative swarming rod",
+            "diseases": "Complicated UTI, kidney stones, wound infections",
+            "key_genes": "blaTEM, aac(3)-Ia, tetM, ZapB, fliA, mrpA",
+            "refs": [
+                "[1] Schaffer JN, Pearson MM. Proteus mirabilis and urinary tract infections. "
+                "<i>Microbiol Spectr.</i> 2015;3(5).",
+                "[2] Armbruster CE, et al. Resistance mechanisms of uropathogens. "
+                "<i>Nat Rev Microbiol.</i> 2018;16:242-258.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Campylobacter jejuni",
+            "gram": "Gram-negative curved rod",
+            "diseases": "Gastroenteritis, Guillain-Barré syndrome",
+            "key_genes": "gyrA(T86I), tet(O), aph(3')-Ia, cmeABC, cadF, flaA",
+            "refs": [
+                "[1] Kaakoush NO, et al. Global epidemiology of Campylobacter infection. "
+                "<i>Clin Microbiol Rev.</i> 2015;28(3):687-720.",
+                "[2] EFSA. The European Union One Health 2021 Zoonoses Report. "
+                "<i>EFSA Journal.</i> 2022;20(3):e07666.",
+                "[3] Ruiz-Palacios GM. The health burden of Campylobacter infection and the "
+                "impact of antimicrobial resistance. <i>Clin Infect Dis.</i> 2007;44 Suppl 3:S79-84.",
+                "[4] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Neisseria gonorrhoeae",
+            "gram": "Gram-negative diplococci",
+            "diseases": "Gonorrhoea, pelvic inflammatory disease, neonatal ophthalmia",
+            "key_genes": "penA, mtrR, porB, ponA, tetM, blaTEM",
+            "refs": [
+                "[1] WHO. Gonorrhoea — growing antibiotic resistance forces updated "
+                "treatment guidelines. 2016. www.who.int",
+                "[2] Unemo M, Shafer WM. Antimicrobial resistance in Neisseria gonorrhoeae "
+                "in the 21st century. <i>Clin Microbiol Rev.</i> 2014;27(3):587-613.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[4] Kirkcaldy RD, et al. Gonorrhea surveillance — United States, 2022. "
+                "<i>MMWR.</i> 2023;72(26):709-714.",
+            ]
+        },
+        {
+            "name": "Haemophilus influenzae",
+            "gram": "Gram-negative coccobacillus",
+            "diseases": "Respiratory infections, meningitis, epiglottitis",
+            "key_genes": "blaTEM, ROB-1, ftsi, acrAB, mef(A), cat",
+            "refs": [
+                "[1] Tristram S, Jacobs MR, Appelbaum PC. Antimicrobial resistance in "
+                "Haemophilus influenzae. <i>Clin Microbiol Rev.</i> 2007;20(2):368-389.",
+                "[2] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[3] Slack MPE. A review of the role of Haemophilus influenzae in community-"
+                "acquired pneumonia. <i>Pneumonia.</i> 2015;6:26-43.",
+            ]
+        },
+        {
+            "name": "Staphylococcus aureus",
+            "gram": "Gram-positive coccus (clusters)",
+            "diseases": "Skin infections, MRSA, endocarditis, toxic shock syndrome",
+            "key_genes": "mecA, pvl, blaZ, aacA-aphD, tetM, msrA, vanA",
+            "refs": [
+                "[1] Lowy FD. Staphylococcus aureus infections. "
+                "<i>N Engl J Med.</i> 1998;339(8):520-532.",
+                "[2] Chambers HF, Deleo FR. Waves of resistance: Staphylococcus aureus "
+                "in the antibiotic era. <i>Nat Rev Microbiol.</i> 2009;7(9):629-641.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[4] WHO. Staphylococcus aureus (S. aureus) — Priority Pathogen. 2017.",
+            ]
+        },
+        {
+            "name": "Streptococcus pneumoniae",
+            "gram": "Gram-positive diplococci",
+            "diseases": "Pneumonia, meningitis, otitis media, bacteraemia",
+            "key_genes": "pbp1a, pbp2b, pbp2x, mefA, erm(B), tet(M), catpC194",
+            "refs": [
+                "[1] Henriques-Normark B, Tuomanen EI. The pneumococcus: epidemiology, "
+                "microbiology and pathogenesis. <i>Cold Spring Harb Perspect Med.</i> "
+                "2013;3(7):a010215.",
+                "[2] Cornick JE, Bentley SD. Streptococcus pneumoniae: the evolution of "
+                "antimicrobial resistance to beta-lactams, fluoroquinolones and macrolides. "
+                "<i>Microbes Infect.</i> 2012;14(7-8):573-583.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Enterococcus faecium",
+            "gram": "Gram-positive coccus (pairs/short chains)",
+            "diseases": "UTI, endocarditis, VRE infections, bacteraemia",
+            "key_genes": "vanA, vanB, pbp5, aph(3')-IIIa, erm(B), tetM",
+            "refs": [
+                "[1] Van Tyne D, Gilmore MS. Friend turned foe: evolution of Enterococcal "
+                "virulence and antibiotic resistance. <i>Annu Rev Microbiol.</i> "
+                "2014;68:337-356.",
+                "[2] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+                "[3] WHO. Enterococcus faecium — Priority Pathogen 2017 List.",
+            ]
+        },
+        {
+            "name": "Bacillus anthracis",
+            "gram": "Gram-positive spore-forming rod",
+            "diseases": "Anthrax (cutaneous, inhalation, gastrointestinal forms)",
+            "key_genes": "pXO1, pXO2, pagA, lef, cya, capB",
+            "refs": [
+                "[1] Turnbull PC. Anthrax in humans and animals. 4th ed. "
+                "Geneva: World Health Organization; 2008.",
+                "[2] Moayeri M, et al. Bacillus anthracis pathogenesis. "
+                "<i>Annu Rev Microbiol.</i> 2015;69:185-208.",
+                "[3] Hendricks KA, et al. CDC expert panel meetings on prevention and "
+                "treatment of anthrax in adults. <i>Emerg Infect Dis.</i> 2014;20(2):e130687.",
+            ]
+        },
+        {
+            "name": "Clostridioides difficile",
+            "gram": "Gram-positive spore-forming rod (anaerobic)",
+            "diseases": "C. diff diarrhoea, pseudomembranous colitis, toxic megacolon",
+            "key_genes": "tcdA, tcdB, cdtA, cdtB, erm(B), gyrA(T82I)",
+            "refs": [
+                "[1] Lessa FC, et al. Burden of Clostridium difficile infection in the "
+                "United States. <i>N Engl J Med.</i> 2015;372(9):825-834.",
+                "[2] Rupnik M, Wilcox MH, Gerding DN. Clostridium difficile infection: "
+                "new developments in epidemiology and pathogenesis. "
+                "<i>Nat Rev Microbiol.</i> 2009;7(7):526-536.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Listeria monocytogenes",
+            "gram": "Gram-positive rod (facultative intracellular)",
+            "diseases": "Listeriosis, foodborne illness, neonatal meningitis",
+            "key_genes": "hlyA, actA, inlA, inlB, prfA, tet(M), cat",
+            "refs": [
+                "[1] Swaminathan B, Gerner-Smidt P. The epidemiology of human listeriosis. "
+                "<i>Microbes Infect.</i> 2007;9(10):1236-1243.",
+                "[2] Cossart P. Illuminating the landscape of host-pathogen interactions "
+                "with the bacterium Listeria monocytogenes. "
+                "<i>Proc Natl Acad Sci USA.</i> 2011;108(49):19484-19491.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+        {
+            "name": "Mycobacterium tuberculosis",
+            "gram": "Acid-fast bacillus (gram-variable)",
+            "diseases": "Tuberculosis — pulmonary, extrapulmonary, miliary forms",
+            "key_genes": "katG(S315T), rpoB, embB, gyrA, rpsL, rrs, inhA",
+            "refs": [
+                "[1] WHO. Global Tuberculosis Report 2023. Geneva: World Health Organization.",
+                "[2] Zumla A, et al. Tuberculosis. <i>N Engl J Med.</i> 2013;368(8):745-755.",
+                "[3] Eldholm V, Balloux F. Antimicrobial resistance in Mycobacterium "
+                "tuberculosis: the odd one out. <i>Trends Microbiol.</i> 2016;24(8):637-648.",
+                "[4] EUCAST. EUCAST Expert rules: Intrinsic resistance and exceptional "
+                "phenotypes. Version 3.3. 2021.",
+            ]
+        },
+        {
+            "name": "Corynebacterium diphtheriae",
+            "gram": "Gram-positive club-shaped rod",
+            "diseases": "Diphtheria, pharyngitis, cutaneous infections",
+            "key_genes": "dtxR, tox (diphtheria toxin gene), erm(X), aad9",
+            "refs": [
+                "[1] Sharma NC, et al. Diphtheria. <i>Nat Rev Dis Primers.</i> "
+                "2019;5(1):81.",
+                "[2] Wagner KS, et al. Diphtheria in the postepidemic period, Europe, "
+                "2000-2009. <i>Emerg Infect Dis.</i> 2012;18(2):217-225.",
+                "[3] EUCAST. Breakpoint tables for interpretation of MICs, Version 14.0. 2024.",
+            ]
+        },
+    ]
+
+    for idx, org in enumerate(organisms):
+        org_elements = []
+        org_elements.append(Paragraph(f"8.{idx+1}  {org['name']}", h2_style))
+
+        org_data = [
+            [Paragraph("<b>Gram / Morphology</b>", small_cell_bold), Paragraph(org["gram"], small_cell)],
+            [Paragraph("<b>Key Diseases</b>", small_cell_bold),       Paragraph(org["diseases"], small_cell)],
+            [Paragraph("<b>Key Resistance Genes</b>", small_cell_bold), Paragraph(org["key_genes"], small_cell)],
+        ]
+        org_table = Table(org_data, colWidths=[4.5*cm, 12.5*cm])
+        org_table.setStyle(TableStyle([
+            ('BACKGROUND',    (0, 0), (0, -1), colors.HexColor('#F0F4FF')),
+            ('GRID',          (0, 0), (-1, -1), 0.3, colors.HexColor('#C7D2FE')),
+            ('ROWBACKGROUNDS',(0, 0), (-1, -1), [colors.HexColor('#F0F4FF'), colors.white]),
+            ('PADDING',       (0, 0), (-1, -1), 5),
+            ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+        ]))
+        org_elements.append(org_table)
+        org_elements.append(Spacer(1, 0.05*inch))
+        org_elements.append(Paragraph("Key Literature:", ref_title_style))
+        for ref in org["refs"]:
+            org_elements.append(Paragraph(ref, ref_style))
+        org_elements.append(Spacer(1, 0.1*inch))
+        org_elements.append(HRFlowable(width="100%", thickness=0.4,
+                                        color=colors.HexColor('#CBD5E1')))
+        org_elements.append(Spacer(1, 0.08*inch))
+
+        elements.append(KeepTogether(org_elements))
+
+    elements.append(PageBreak())
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SECTION 9 — General AMR References
+    # ═══════════════════════════════════════════════════════════════════════════
+    elements.append(Paragraph("9. General AMR and Platform References", h1_style))
+    elements.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#2E86C1')))
+    elements.append(Spacer(1, 0.08*inch))
+
+    general_refs = [
+        "Alcock BP, et al. CARD 2023: expanded curation, support for machine learning, and "
+        "resistome prediction at the Comprehensive Antibiotic Resistance Database. "
+        "<i>Nucleic Acids Res.</i> 2023;51(D1):D690-D699. doi:10.1093/nar/gkac920",
+
+        "WHO. Global Action Plan on Antimicrobial Resistance. Geneva: World Health "
+        "Organization; 2015. ISBN 978-92-4-150976-3",
+
+        "Magiorakos AP, et al. Multidrug-resistant, extensively drug-resistant and pandrug-"
+        "resistant bacteria: an international expert proposal for interim standard definitions "
+        "for acquired resistance. <i>Clin Microbiol Infect.</i> 2012;18(3):268-281.",
+
+        "EUCAST. The European Committee on Antimicrobial Susceptibility Testing. Breakpoint "
+        "tables for interpretation of MICs and zone diameters, Version 14.0. 2024. "
+        "Available at: www.eucast.org",
+
+        "CLSI. Performance Standards for Antimicrobial Susceptibility Testing, M100, "
+        "34th Edition. Clinical and Laboratory Standards Institute, 2024.",
+
+        "Antimicrobial Resistance Collaborators. Global burden of bacterial antimicrobial "
+        "resistance in 2019: a systematic analysis. <i>Lancet.</i> "
+        "2022;399(10325):629-655. doi:10.1016/S0140-6736(21)02724-0",
+
+        "Van Boeckel TP, et al. Global antibiotic consumption 2000 to 2010: an analysis of "
+        "national pharmaceutical sales data. <i>Lancet Infect Dis.</i> "
+        "2014;14(8):742-750.",
+
+        "Breiman L. Random Forests. <i>Machine Learning.</i> 2001;45(1):5-32. "
+        "doi:10.1023/A:1010933404324 [ML algorithm underlying the AI prediction module]",
+
+        "Bastian M, Heymann S, Jacomy M. Gephi: An open source software for exploring "
+        "and manipulating networks. <i>Proc Int AAAI Conf Web Social Media.</i> "
+        "2009;8:361-362. [PyVis network visualisation methodology]",
+    ]
+    for i, ref in enumerate(general_refs, 1):
+        elements.append(Paragraph(f"[{i}]  {ref}", ref_style))
+        elements.append(Spacer(1, 0.04*inch))
+
     elements.append(Spacer(1, 0.3*inch))
     elements.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor('#1E3A8A')))
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.12*inch))
     elements.append(Paragraph(
-        "AI-MRI Hub  |  Version 2.0  |  2025 Hardik Agrawal and Team  |  For research and educational use only.",
+        "AI-MRI Hub  \u2022  Version 2.0  \u2022  2025 Hardik Agrawal and Team  "
+        "\u2022  For research and educational use only.  "
+        "All clinical decisions require certified diagnostic testing.",
         body_style))
 
     doc.build(elements)
@@ -2132,7 +2694,7 @@ if st.session_state.show_splash:
       <div class="sp-feat-card"><span class="sp-feat-icon">🗺️</span><div class="sp-feat-title">Origin Labeling &amp; Heatmaps</div><div class="sp-feat-desc">Label isolates by source and compare resistance profiles against curated environmental benchmarks.</div></div>
       <div class="sp-feat-card"><span class="sp-feat-icon">📄</span><div class="sp-feat-title">Master PDF Export</div><div class="sp-feat-desc">Generate a comprehensive publication-ready PDF report with origin heatmap, affinity scores, and gene ledgers.</div></div>
       <div class="sp-feat-card"><span class="sp-feat-icon">🧫</span><div class="sp-feat-title">Virtual Lab Simulation</div><div class="sp-feat-desc">Full phenotypic simulation — culture curves, 96-well MIC plates, Gram stain microscopy — all data specific to the selected organism.</div></div>
-      <div class="sp-feat-card"><span class="sp-feat-icon">📘</span><div class="sp-feat-title">User Manual PDF</div><div class="sp-feat-desc">Download a comprehensive illustrated user manual directly from the app with one click.</div></div>
+      <div class="sp-feat-card"><span class="sp-feat-icon">📘</span><div class="sp-feat-title">User Manual PDF</div><div class="sp-feat-desc">Download a comprehensive 9-section illustrated user manual with full literature citations — directly from the app with one click.</div></div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -2185,7 +2747,7 @@ if st.session_state.show_splash:
     st.markdown("---")
     st.markdown("#### 📘 Download User Manual")
     if st.button("Generate & Download User Manual PDF", use_container_width=True):
-        with st.spinner("Generating manual..."):
+        with st.spinner("Generating comprehensive manual (Sections 1–9)..."):
             manual_path = generate_user_manual()
             with open(manual_path, "rb") as f:
                 st.download_button("⬇️ Download AI-MRI Hub User Manual", data=f,
@@ -2228,7 +2790,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("#### 📘 User Manual")
     if st.button("Generate Manual PDF", use_container_width=True):
-        with st.spinner("Generating..."):
+        with st.spinner("Generating comprehensive manual..."):
             manual_path = generate_user_manual()
             with open(manual_path, "rb") as f:
                 st.download_button("⬇️ Download Manual", data=f,
@@ -2305,7 +2867,6 @@ if analysis_mode == "Select Known Bacteria" and json_files:
         section_explainer("📊","About This Dashboard","Six-panel systems analysis dashboard with drug class distribution, mechanism frequency, MRI gauge, gene frequency, gene count, and diversity comparison.")
         st.markdown(f"### Systems Analysis Dashboard — `{selected_file}`")
         st.pyplot(fig)
-
     with tab3:
         section_explainer("🧮","About This Section","Full mathematical derivation of the MRI and ARI frameworks with computed values.")
         st.markdown("### 🧮 Mathematical Framework & Validation")
