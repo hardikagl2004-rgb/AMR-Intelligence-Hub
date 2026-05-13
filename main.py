@@ -1252,7 +1252,7 @@ def generate_user_manual():
         ["Purpose", "Quantitative genomic AMR analysis for research and clinical decision support"],
         ["Language", "English"],
     ]
-    cover_table = Table(cover_data, colWidths=[2*inch, 4*inch])
+    cover_table = Table(cover_data, colWidths=[2.0*inch, 4.8*inch])
     cover_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#EBF5FB')),
         ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
